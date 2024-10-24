@@ -1,0 +1,91 @@
+@font-face {
+    font-family: 'Humane';
+    src: url('Humane-Bold.eot');
+    src: url('Humane-Bold.eot?#iefix') format('embedded-opentype'),
+        url('Humane-Bold.woff2') format('woff2'),
+        url('Humane-Bold.woff') format('woff'),
+        url('Humane-Bold.ttf') format('truetype'),
+        url('Humane-Bold.svg#Humane-Bold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Humane';
+    src: url('Humane-Regular.eot');
+    src: url('Humane-Regular.eot?#iefix') format('embedded-opentype'),
+        url('Humane-Regular.woff2') format('woff2'),
+        url('Humane-Regular.woff') format('woff'),
+        url('Humane-Regular.ttf') format('truetype'),
+        url('Humane-Regular.svg#Humane-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Humane';
+    src: url('Humane-Thin.eot');
+    src: url('Humane-Thin.eot?#iefix') format('embedded-opentype'),
+        url('Humane-Thin.woff2') format('woff2'),
+        url('Humane-Thin.woff') format('woff'),
+        url('Humane-Thin.ttf') format('truetype'),
+        url('Humane-Thin.svg#Humane-Thin') format('svg');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Humane';
+    src: url('Humane-ExtraLight.eot');
+    src: url('Humane-ExtraLight.eot?#iefix') format('embedded-opentype'),
+        url('Humane-ExtraLight.woff2') format('woff2'),
+        url('Humane-ExtraLight.woff') format('woff'),
+        url('Humane-ExtraLight.ttf') format('truetype'),
+        url('Humane-ExtraLight.svg#Humane-ExtraLight') format('svg');
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Humane';
+    src: url('Humane-SemiBold.eot');
+    src: url('Humane-SemiBold.eot?#iefix') format('embedded-opentype'),
+        url('Humane-SemiBold.woff2') format('woff2'),
+        url('Humane-SemiBold.woff') format('woff'),
+        url('Humane-SemiBold.ttf') format('truetype'),
+        url('Humane-SemiBold.svg#Humane-SemiBold') format('svg');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Humane';
+    src: url('Humane-Medium.eot');
+    src: url('Humane-Medium.eot?#iefix') format('embedded-opentype'),
+        url('Humane-Medium.woff2') format('woff2'),
+        url('Humane-Medium.woff') format('woff'),
+        url('Humane-Medium.ttf') format('truetype'),
+        url('Humane-Medium.svg#Humane-Medium') format('svg');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Humane';
+    src: url('Humane-Light.eot');
+    src: url('Humane-Light.eot?#iefix') format('embedded-opentype'),
+        url('Humane-Light.woff2') format('woff2'),
+        url('Humane-Light.woff') format('woff'),
+        url('Humane-Light.ttf') format('truetype'),
+        url('Humane-Light.svg#Humane-Light') format('svg');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+

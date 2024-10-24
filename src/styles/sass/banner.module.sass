@@ -1,0 +1,145 @@
+@import 'vars/colors'
+@import 'vars/fonts'
+
+.botonBannerHeader
+    top: 30%
+    &::before
+        content: ''
+        background: url('/images/arrow.svg') no-repeat
+        background-position: center
+        width: 90px
+        height: 82px
+        display: block
+    &.stickRight
+        right: 1rem
+    &.stickLeft
+        Left: -4rem
+        &::before
+            transform: scale(-1)
+
+.containerCarrusel
+    position: relative
+    z-index: 20
+    border: 0px solid red
+    padding-top: 7rem
+    @media screen and (min-width: 992px)
+        padding-top: 10rem
+    .itemCarrusel
+        > div
+            padding-top: 2rem
+            &.centerItemBanner
+                padding-top: 1rem
+                @media screen and (min-width: 992px)
+                    padding-top: 8rem
+            &:nth-of-type(1)
+                grid-column: 1 / span 6
+                position: relative
+                left: 1rem
+                @media screen and (min-width: 992px)
+                    left: 4rem
+                @media screen and (min-width: 1400px)
+                    grid-column: 1 / span 6
+                .buttonContainer
+                    margin-top: 1rem
+                    padding-bottom: 2rem
+                .titleContainer
+                    position: relative
+                    .stickerContainer
+                        position: absolute
+                        top: -4rem
+                        left: -1.5rem
+                        width: 80px
+                        object-fit: contain
+                        z-index: 5
+                h3
+                    font-size: 12px
+                    color: $negroClaro
+                    margin-top: 1rem
+                    @media screen and (min-width: 992px)
+                        font-size: 18px
+                    @media screen and (min-width: 1400px)
+                        font-size: 20px
+                h2
+                    color: white
+                    font-size: 3.5rem
+                    line-height: .88em
+                    @media screen and (min-width: 1400px)
+                        font-size: 9.5rem
+                        line-height: .88em
+                    &.titularPC
+                        display: none
+                    &.titularMovil
+                        display: block
+                    span
+                        padding: 0.25rem 1rem
+                        position: relative
+
+                        &:before
+                            content: ''
+                            position: absolute
+                            top: 0
+                            left: 0
+                            width: 100%
+                            height: 100%
+                            background-color: $morado
+                            clip-path: polygon(0px 0px, 99.18% 2px, 97.37% 93.07%, 1.29% 100%)
+                            z-index: -1
+                        &:nth-of-type(2)
+                            &:before
+                                clip-path: polygon(12px 1px, 96.38% 0px, 99.53% 99.33%, 0.46% 99.33%)
+                        &:nth-of-type(3)
+                            &:before
+                                clip-path: polygon(10px 0px, 99.95% 1px, 99.53% 90%, 0.1% 98%)
+
+            &:nth-of-type(2)
+                grid-column: 7 / -1
+                @media screen and (min-width: 1400px)
+                    grid-column: 7 / -1
+                .imageContainer
+                    img
+                        width: 100%
+                        height: 100%
+                        object-fit: contain
+                        position: relative
+                        left: 0rem
+                        @media screen and (min-width: 992px)
+                            left: -4rem
+                        &.positionInfluencer
+
+                            top: -2.5rem
+                        &.imageResize
+                            height: 200px
+                            @media screen and (min-width: 992px)
+                                height: 500px
+                            @media screen and (min-width: 1400px)
+                                height: 600px
+                        &.imageResize2
+                            height: 300px
+                            @media screen and (min-width: 992px)
+                                height: 600px
+                            @media screen and (min-width: 1400px)
+                                height: 650px
+
+.containerBanner
+    width: 100vw
+    height: 65vh
+    position: relative
+    @media screen and (min-width: 992px)
+        height: 100vh
+    .imageArrow
+        position: absolute
+        bottom: 4rem
+        left: 50%
+        transform: translateX(-50%)
+        z-index: 10
+        height: 70px
+        object-fit: contain
+    .imageBackGround
+        width: 100%
+        object-fit: cover
+        object-position: center top
+        height: 100%
+        position: absolute
+        top: 0
+        left: 0
+        z-index: 10

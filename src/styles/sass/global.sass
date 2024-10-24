@@ -1,0 +1,77 @@
+@import 'vars/colors'
+@import 'vars/fonts'
+// @import 'abstracts/mixins'
+h1,
+h2,
+h3,
+h4,
+p
+    margin: 0
+.gridContainer
+    display: grid
+    grid-template-columns: repeat(12,1fr)
+    gap: 1rem
+.buttonClass
+    width: 238px
+    height: 52px
+    background: $naranja
+    border-radius: 40px
+    border: 0
+    box-shadow: $naranjaOscuro 0px 4px 0px 0px
+    color: white
+    font-size: 16px
+.containerContent
+    position: relative
+    z-index: 300
+
+/* Ocultar el checkbox predeterminado
+
+.custom-checkbox
+    color: $verdeLimon !important
+    input[type="checkbox"]
+        position: absolute
+        opacity: 0
+        cursor: pointer
+
+        display: inline-flex
+        align-items: center
+        cursor: pointer
+        font-size: 16px
+
+.checkmark
+    width: 20px
+    height: 20px
+    background-color: #f1f1f1
+    border: 2px solid #ccc
+    border-radius: 30%
+    display: inline-block
+    position: relative
+    margin-right: 10px
+
+    &::after
+        content: ""
+        position: absolute
+        display: none
+        left: 5px
+        top: 2px
+        width: 6px
+        height: 10px
+        border: solid white
+        border-width: 0 2px 2px 0
+        transform: rotate(45deg)
+
+input[type="checkbox"]:checked + .checkmark
+    background-color: $verdeLimon
+
+    /* Cambia el color de fondo cuando está seleccionado
+    border-color: $verdeLimonOscuro
+
+    &::after
+        display: block
+
+a
+    color: $verdeLimon
+    text-decoration: underline
+
+    &:hover
+        text-decoration: underline

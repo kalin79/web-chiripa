@@ -1,0 +1,112 @@
+@import 'vars/colors'
+@import 'vars/fonts'
+
+.graciasContainer
+    border: 0px solid red
+    display: flex
+    justify-content: center
+    align-items: center
+    flex-direction: column
+    grid-column: 5 / span 4 !important
+    .mensajeBox
+        position: relative
+        text-align: center
+        padding: 0 0rem
+        color: white
+        font-size: 1.125rem
+        img
+            position: absolute
+            bottom: -2rem
+            left: -5rem
+    p
+        color: white
+        font-size: 1.125rem
+        text-align: center
+    a
+        width: 278px
+        height: 52px
+        background: $verdeLimon
+        border-radius: 40px
+        border: 0
+        box-shadow: $verdeLimonOscuro 0px 4px 0px 0px
+        color: white
+        font-size: 16px
+        line-height: 3.25rem
+        text-align: center
+        text-decoration: none
+        margin-top: 1rem
+
+    .titularBox
+        position: relative
+        width: 478px
+        height: 156px
+        text-align: center
+        margin-bottom: 2rem
+        img
+            position: absolute
+            &.imageManta
+                top: 0
+                left: 0
+            &.imageSticker2
+                top: -2rem
+                right: -1rem
+                z-index: 12
+        span
+            position: relative
+            z-index: 11
+            font-size: 7.4rem
+            color: white
+            text-align: center
+.formContainer
+    padding-top: 23rem
+    form
+        display: flex
+        justify-content: flex-start
+        align-content: flex-start
+        flex-wrap: wrap
+        gap: 1rem
+        >div
+            flex: 1 1 48%
+            &.fullWidth
+                flex: 1 1 100%
+    label
+        font-size: 14px
+        color: white
+        margin-bottom: .25rem
+    input[type="text"],
+    input[type="password"]
+        font-size: 14px
+        color: black
+        border: 1px solid $morado
+        border-radius: 30px
+        height: 52px
+        padding: 0 1.5rem
+        &:focus
+            outline: none
+            box-shadow: none
+        &::placeholder
+            color: $plomo
+    > div
+        &:nth-of-type(1)
+            grid-column: 2 / span 3
+            h1
+                color: white
+                font-size: 7.38rem
+                line-height: .82em
+                span
+                    position: relative
+                .imageSticker2
+                    position: absolute
+                    top: -10.5rem
+                    left: -3rem
+                    width: 129px
+                    object-fit: contain
+                .imageSticker
+                    position: absolute
+                    bottom: 4.5rem
+                    right: -1.95rem
+            h3
+                color: white
+                font-size: 1.125rem
+        &:nth-of-type(2)
+            grid-column: 5 / span 6
