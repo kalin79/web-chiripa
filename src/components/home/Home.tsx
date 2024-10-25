@@ -15,33 +15,70 @@ const Home = () => {
         if (typeof window !== 'undefined') {
             gsap.registerPlugin(ScrollTrigger)
 
-            const tl = gsap.timeline({
-                scrollTrigger: {
-                    trigger: layer1Ref.current,
-                    start: "top center", // Comienza cuando la parte superior del contenedor entra en la vista
-                    end: "center center",   // Finaliza cuando la parte inferior del contenedor sale de la vista
-                    scrub: true,         // La animación sigue el scroll
-                    markers: false,
-                },
+            const mm = gsap.matchMedia()
+
+            // Definir diferentes animaciones para diferentes tamaños de pantalla
+            mm.add("(min-width: 992px)", () => {
+                const tl = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: layer1Ref.current,
+                        start: "top+=20% center", // Comienza cuando la parte superior del contenedor entra en la vista
+                        end: "center-=5% center",   // Finaliza cuando la parte inferior del contenedor sale de la vista
+                        scrub: true,         // La animación sigue el scroll
+                        markers: true,
+                    },
+                })
+
+                // Animar el título
+                tl.fromTo(
+                    '.titularPremioHome',
+                    { scale: 0 },
+                    { scale: 1, y: 0, duration: .5, ease: "power2.inOut" }
+                )
+                    .fromTo(
+                        '.descripcionPremioHome',
+                        { opacity: 0, x: -50 },
+                        { opacity: 1, x: 0, duration: 1 }
+                    )
+                    .fromTo(
+                        '.itemPremioHome',
+                        { opacity: 0, y: -50 },
+                        { opacity: 1, y: 0, duration: 1, stagger: 0.2 }
+                    )
+                // stagger: 0.1, // para que avance de manera secuencuial a partir de 0.3 seg.
             })
 
-            // Animar el título
-            tl.fromTo(
-                '.titularPremioHome',
-                { scale: 0 },
-                { scale: 1, y: 0, duration: .5, ease: "power2.inOut" }
-            )
-                .fromTo(
-                    '.descripcionPremioHome',
-                    { opacity: 0, x: -50 },
-                    { opacity: 1, x: 0, duration: 1 }
+            mm.add("(max-width: 992px)", () => {
+                const tl = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: layer1Ref.current,
+                        start: "top+=10% center", // Comienza cuando la parte superior del contenedor entra en la vista
+                        end: "center-=5% center",   // Finaliza cuando la parte inferior del contenedor sale de la vista
+                        scrub: true,         // La animación sigue el scroll
+                        markers: true,
+                    },
+                })
+
+                // Animar el título
+                tl.fromTo(
+                    '.titularPremioHome',
+                    { scale: 0 },
+                    { scale: 1, y: 0, duration: .5, ease: "power2.inOut" }
                 )
-                .fromTo(
-                    '.itemPremioHome',
-                    { opacity: 0, y: -50 },
-                    { opacity: 1, y: 0, duration: 1, stagger: 0.2 }
-                )
-            // stagger: 0.1, // para que avance de manera secuencuial a partir de 0.3 seg.
+                    .fromTo(
+                        '.descripcionPremioHome',
+                        { opacity: 0, x: -50 },
+                        { opacity: 1, x: 0, duration: 1 }
+                    )
+                    .fromTo(
+                        '.itemPremioHome',
+                        { opacity: 0, y: -50 },
+                        { opacity: 1, y: 0, duration: 1, stagger: 0.2 }
+                    )
+                // stagger: 0.1, // para que avance de manera secuencuial a partir de 0.3 seg.
+            })
+
+
 
         }
 

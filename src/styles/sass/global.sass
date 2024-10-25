@@ -9,8 +9,10 @@ p
     margin: 0
 .gridContainer
     display: grid
-    grid-template-columns: repeat(12,1fr)
-    gap: 1rem
+    grid-template-columns: repeat(1,1fr)
+    @media screen and (min-width: 992px)
+        grid-template-columns: repeat(12,1fr)
+        gap: 1rem
 .buttonClass
     width: 238px
     height: 52px

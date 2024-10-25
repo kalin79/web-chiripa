@@ -6,18 +6,30 @@
     position: absolute
     z-index: 10
 .imageRasgado1
-    top: 44rem
+    top: auto
+    bottom: 86rem
     left: 0
-    width: 650px
+    width: 77%
+    height: auto
     object-fit: contain
+    @media screen and (min-width: 992px)
+        top: 44rem
+        bottom: auto
+        width: 650px
     @media screen and (min-width: 1400px)
         top: 48rem
         width: 740px
 .imageRasgado2
-    top: 60rem
+    top: auto
+    bottom: 78rem
     right: 0
-    width: 270px
+    width: 56%
+    height: auto
     object-fit: contain
+    @media screen and (min-width: 992px)
+        top: 60rem
+        bottom: auto
+        width: 270px
     @media screen and (min-width: 1400px)
         top: 65rem
         width: 380px
@@ -49,22 +61,37 @@
                         font-size: 7.4rem
 
             &:nth-of-type(2)
-                grid-column: 4 / -1
-                display: flex
-                justify-content: flex-start
-                align-content: flex-start
-                gap: 1rem
+                grid-column: 1 / -1
+                text-align: center
+                margin: 3rem auto 0
+                @media screen and (min-width: 992px)
+                    grid-column: 4 / -1
+                    display: flex
+                    flex-direction: row
+                    justify-content: flex-start
+                    align-content: flex-start
+                    align-items: flex-start
+                    gap: 1rem
+                    margin: 0
                 .itemPremio
                     position: relative
                     border: 0px solid red
                     height: 460px
+                    width: 280px
                     flex: 1 50%
+                    @media screen and (min-width: 992px)
+                        height: 460px
+                        width: auto
                     @media screen and (min-width: 1400px)
                         height: 540px
                     &:nth-of-type(2)
-                        margin-top: 5.5rem
+                        margin-top: 1.5rem
+                        @media screen and (min-width: 992px)
+                            margin-top: 5.5rem
                     &:nth-of-type(3)
-                        margin-top: 10.5rem
+                        margin-top: 1.5rem
+                        @media screen and (min-width: 992px)
+                            margin-top: 10.5rem
                     .detallePremio
                         text-align: center
                         .imageContainer
@@ -119,8 +146,10 @@
     position: relative
     // min-height: 90vh
     padding-bottom: 15rem
-    margin-top: -6.5rem
+    margin-top: -9.5rem
     z-index: 10
+    @media screen and (min-width: 992px)
+        margin-top: -6.5rem
     @media screen and (min-width: 1400px)
         margin-top: -7.5rem
     .imageBackGround
