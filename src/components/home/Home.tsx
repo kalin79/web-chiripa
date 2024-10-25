@@ -3,14 +3,14 @@ import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
-import Premios from "@/components/home/Premios"
-import Formulario from "@/components/home/Formulario"
+// import Premios from "@components/home/Premios"
+// import Formulario from "@components/home/Formulario"
 import Image from 'next/image'
 import styles from '@/styles/sass/home.module.sass'
 
 const Home = () => {
     const layer1Ref = useRef<HTMLDivElement>(null)
-    const layer2Ref = useRef<HTMLDivElement>(null)
+    // const layer2Ref = useRef<HTMLDivElement>(null)
     useEffect(() => {
         if (typeof window !== 'undefined') {
             gsap.registerPlugin(ScrollTrigger)
@@ -73,12 +73,12 @@ const Home = () => {
                     alt="De Chiripa :: Inscribete y participa de los grandes sorteos que se viene"
                     priority={true}
                 />
-                <div ref={layer1Ref}>
+                {/* <div ref={layer1Ref}>
                     <Premios />
-                </div>
-                <div ref={layer2Ref}>
+                </div> */}
+                {/* <div ref={layer2Ref}>
                     <Formulario />
-                </div>
+                </div> */}
 
             </div>
         </div>

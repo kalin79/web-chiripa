@@ -10,6 +10,7 @@ const Humane600 = localFont({
     src: '../../../public/fonts/Humane-SemiBold.woff2',
     weight: '600',
     style: 'normal',
+    display: 'swap',
 })
 
 

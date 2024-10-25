@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import MainHeader from '@/components/template/MainHeader'
-import MainFooter from '@/components/template/MainFooter'
+import MainHeader from '@components/template/MainHeader'
+import MainFooter from '@components/template/MainFooter'
 
 import 'bootstrap/dist/css/bootstrap.min.css'; // Importa el CSS de Bootstrap
 
