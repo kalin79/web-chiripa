@@ -62,7 +62,7 @@ const BannerMain = () => {
         centerPadding: "60px",
         infinite: true,
         slidesToShow: 1,
-        autoplay: true,
+        autoplay: false,
         speed: 500,
         nav: false,
         autoplaySpeed: 5000,
