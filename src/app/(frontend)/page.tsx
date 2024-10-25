@@ -11,7 +11,7 @@ export const metadata: Metadata = {
         siteName: 'DeChiripa',
         images: [
             {
-                url: 'https://www.misitio.com/imagen-about.jpg',
+                url: 'https://s3.us-east-1.amazonaws.com/img.dechiripa.com.pe/dechiripa/facebook.png',
                 width: 800,
                 height: 492,
                 alt: 'Reg&iacute;strate y obt&eacute;n tu usuario. Pronto multiplicar&aacute;s tu suerte',
