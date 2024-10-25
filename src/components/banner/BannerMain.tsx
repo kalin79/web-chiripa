@@ -89,7 +89,7 @@ const BannerMain = () => {
 
     // Función para manejar el clic y desplazarse a la sección
     const handleScrollToSection = () => {
-        gsap.to(window, { duration: 1.5, scrollTo: '.formularioRegistroHome' });
+        gsap.to(window, { duration: .5, scrollTo: '.formularioRegistroHome' });
     }
 
 
