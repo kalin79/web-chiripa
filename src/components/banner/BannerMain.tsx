@@ -237,6 +237,42 @@ const BannerMain = () => {
                                 </div>
                             </div>
                         </div>
+                        <div>
+                            <div className={`gridContainer ${styles.itemCarrusel}`}>
+                                <div className={styles.centerItemBanner}>
+                                    <div className={styles.titleContainer}>
+                                        <h2 className={`${Humane600.className} ${styles.titularPC}`}>
+                                            <span>MENOS JUGADORES,</span> <br />
+                                            <span>MÁS OPORTUNIDADES</span> <br />
+                                        </h2>
+                                        <h2 className={`${Humane600.className} ${styles.titularMovil}`}>
+                                            <span>MENOS</span> <br />
+                                            <span>JUGADORES,</span> <br />
+                                            <span>MÁS</span> <br />
+                                            <span>OPORTUNIDADES</span> <br />
+                                        </h2>
+                                    </div>
+                                    <h3 className={Poppins500.className}>
+                                        Mayor probabilidad, mayores sueños: Tu oportunidad real de ganar!
+                                    </h3>
+                                    <div className={styles.buttonContainer}>
+                                        <button onClick={handleScrollToSection} className={`buttonClass ${Poppins600.className}`} type='button'>Regístrate</button>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div className={styles.imageContainer}>
+                                        <Image
+                                            src="/images/estudiante2.png"
+                                            className={`${styles.imageResize3} ${styles.positionInfluencer2}`}
+                                            width={1133}
+                                            height={789}
+                                            alt="De Chiripa :: Regístrate y obtén tu usuario. Pronto multiplicarás tu suerte."
+                                        />
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
                     </Slider>
                 </div>
             </div>

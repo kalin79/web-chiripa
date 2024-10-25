@@ -1,7 +1,10 @@
 'use client'
 import { useState, ChangeEvent } from "react"
 import dynamic from 'next/dynamic'
+import Swal from 'sweetalert2'
 
+import { validateRegisterUser } from "@/helpers/validacion-registro"
+import { objUser } from "@/interfaces/user"
 import Image from 'next/image'
 import localFont from 'next/font/local'
 import { Poppins } from 'next/font/google'
@@ -22,16 +25,7 @@ const Poppins500 = Poppins({
 
 type FormElement = HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
 
-interface Todo {
-    name: string;
-    lastname: string;
-    doc: string;
-    movil: string;
-    email: string;
-    password: string;
-    recoveryPass: string;
-    tyc: boolean;
-}
+
 
 const initialTodo = {
     name: "",
@@ -46,12 +40,12 @@ const initialTodo = {
 
 const DynamicGraciasForm = dynamic(() => import('@components/home/GraciasForm'), { loading: () => <p>Loading...</p> })
 
-
-
 const Formulario = () => {
-    const [todos, setTodos] = useState<Todo>(initialTodo)
+    const [todos, setTodos] = useState<objUser>(initialTodo)
     const [isChecked, setIsChecked] = useState<boolean>(false)
     const [isSubmitted, setIsSubmitted] = useState<boolean>(false)
+
+
     const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setIsChecked(event.target.checked);
         setTodos({
@@ -67,33 +61,31 @@ const Formulario = () => {
     }
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
+        const erroresValidacion = await validateRegisterUser(todos);
+        if (erroresValidacion.status) {
+            console.log(erroresValidacion.msjStatus)
 
-        console.log(todos)
+            Swal.fire({
+                title: 'Error!',
+                text: `${erroresValidacion.msjStatus}`,
+                icon: 'error',
+                confirmButtonText: 'Cerrar'
+            })
 
-        setIsSubmitted(true)
+        } else {
+            setIsSubmitted(true)
+            // const responseAPI = await addForm({
+            //     url: 'url',
+            //     dataForm: JSON.stringify(todo),
+            //     token: 'token'
+            // })
+            // router.push('/admin/events/edit/12')
+        }
 
-        // const formDataToSend = new FormData();
-        // formDataToSend.append('uid', todo.uid.toString());
-        // formDataToSend.append('name', todo.name);
-        // formDataToSend.append('published', todo.published.toString());
-        // redesSociales.forEach((item, index) => {
-        //     formDataToSend.append(`redesSociales[${index}][uid]`, item.uid.toString());
-        //     formDataToSend.append(`redesSociales[${index}][red]`, item.red);
-        //     formDataToSend.append(`redesSociales[${index}][link]`, item.link);
-        // })
-
-
-
-        // const responseAPI = await addForm({
-        //     url: 'url',
-        //     dataForm: JSON.stringify(todo),
-        //     token: 'token'
-        // })
-        // router.push('/admin/events/edit/12')
     }
     return (
         <div className="container formularioRegistroHome">
-            {/* {JSON.stringify(todos, null)} */}
+
             <div className={`gridContainer ${styles.formContainer}`}>
                 {
                     isSubmitted ? (
@@ -131,6 +123,7 @@ const Formulario = () => {
                             </div>
                             <div>
                                 <form onSubmit={handleSubmit}>
+                                    {/* {JSON.stringify(todos, null)} */}
                                     <div>
                                         <label htmlFor="nombre">Nombres:</label>
                                         <input

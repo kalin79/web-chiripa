@@ -44,6 +44,8 @@
             padding-top: 2rem
             &.centerItemBanner
                 padding-top: 1rem
+                @media screen and (min-width: 768px)
+                    padding-top: 6rem
                 @media screen and (min-width: 992px)
                     padding-top: 8rem
             &:nth-of-type(1)
@@ -74,6 +76,8 @@
                     color: $negroClaro
                     margin-top: 1rem
                     padding: 0 3rem 0 0rem
+                    @media screen and (min-width: 768px)
+                        font-size: 1rem
                     @media screen and (min-width: 992px)
                         font-size: 1.125rem
                     @media screen and (min-width: 1400px)
@@ -82,17 +86,23 @@
                     color: white
                     font-size: 6rem
                     line-height: .88em
+                    @media screen and (min-width: 768px)
+                        font-size: 5rem
                     @media screen and (min-width: 992px)
-                        font-size: 7.5rem
+                        font-size: 7rem
                     @media screen and (min-width: 1400px)
                         font-size: 8.5rem
                         line-height: .88em
                     &.titularPC
                         display: none
+                        @media screen and (min-width: 768px)
+                            display: block
                         @media screen and (min-width: 992px)
                             display: block
                     &.titularMovil
                         display: block
+                        @media screen and (min-width: 768px)
+                            display: none
                         @media screen and (min-width: 992px)
                             display: none
                     span
@@ -135,22 +145,44 @@
                         position: relative
                         left: 0rem
                         @media screen and (min-width: 992px)
+                            left: 0rem
+                        @media screen and (min-width: 1400px)
                             left: -4rem
                         &.positionInfluencer
-
                             top: -2.5rem
+                        &.positionInfluencer2
+                            top: -4.5rem
+                            left: 4rem
+                            @media screen and (min-width: 768px)
+                                left: 2rem
+                            @media screen and (min-width: 992px)
+                                top: -4.5rem
+                            @media screen and (min-width: 1400px)
+                                top: -3.5rem
                         &.imageResize
                             height: 200px
+                            @media screen and (min-width: 768px)
+                                height: 400px
                             @media screen and (min-width: 992px)
                                 height: 500px
                             @media screen and (min-width: 1400px)
                                 height: 550px
                         &.imageResize2
                             height: 300px
+                            @media screen and (min-width: 768px)
+                                height: 450px
                             @media screen and (min-width: 992px)
                                 height: 600px
                             @media screen and (min-width: 1400px)
                                 height: 600px
+                        &.imageResize3
+                            height: 300px
+                            @media screen and (min-width: 768px)
+                                height: 500px
+                            @media screen and (min-width: 992px)
+                                height: 700px
+                            @media screen and (min-width: 1400px)
+                                height: 700px
 
 .containerBanner
     width: 100vw
