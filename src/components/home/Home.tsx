@@ -55,7 +55,7 @@ const Home = () => {
                         start: "top+=10% center", // Comienza cuando la parte superior del contenedor entra en la vista
                         end: "center-=5% center",   // Finaliza cuando la parte inferior del contenedor sale de la vista
                         scrub: true,         // La animación sigue el scroll
-                        markers: true,
+                        markers: false,
                     },
                 })
 
