@@ -44,7 +44,7 @@ const initialTodo = {
     tyc: false,
 }
 
-const DynamicGraciasForm = dynamic(() => import('@/components/home/GraciasForm'), { loading: () => <p>Loading...</p> })
+const DynamicGraciasForm = dynamic(() => import('@components/home/GraciasForm'), { loading: () => <p>Loading...</p> })
 
 
 

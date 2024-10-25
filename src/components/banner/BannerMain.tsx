@@ -14,7 +14,7 @@ import styles from '@/styles/sass/banner.module.sass'
 
 
 const Humane600 = localFont({
-    src: '../../../public/fonts/Humane-Semibold.woff2',
+    src: '@public/fonts/Humane-Semibold.woff2',
     weight: '600',
     style: 'normal',
 })
