@@ -1,5 +1,26 @@
+import { Metadata } from 'next'
 import BannerMain from "@components/banner/BannerMain"
 import HomeMain from "@components/home/Home"
+export const metadata: Metadata = {
+    title: 'Registro de Usuario - DeChiripa',
+    description: 'Reg&iacute;strate y obt&eacute;n tu usuario. Pronto multiplicar&aacute;s tu suerte',
+    openGraph: {
+        title: 'Registro de Usuario - DeChiripa',
+        description: 'Reg&iacute;strate y obt&eacute;n tu usuario. Pronto multiplicar&aacute;s tu suerte',
+        url: 'https://dechiripa.com.pe/',
+        siteName: 'DeChiripa',
+        images: [
+            {
+                url: 'https://www.misitio.com/imagen-about.jpg',
+                width: 800,
+                height: 492,
+                alt: 'Reg&iacute;strate y obt&eacute;n tu usuario. Pronto multiplicar&aacute;s tu suerte',
+            },
+        ],
+        locale: 'es_ES',
+        type: 'website',
+    }
+}
 const Home = () => {
     return (
         <>

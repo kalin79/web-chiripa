@@ -12,10 +12,13 @@
     width: 77%
     height: auto
     object-fit: contain
-    @media screen and (min-width: 992px)
-        top: 44rem
-        bottom: auto
+    @media screen and (min-width: 768px)
+        top: auto
+        bottom: 55rem
         width: 650px
+    @media screen and (min-width: 992px)
+        top: 48rem
+        bottom: auto
     @media screen and (min-width: 1400px)
         top: 48rem
         width: 740px
@@ -26,15 +29,22 @@
     width: 56%
     height: auto
     object-fit: contain
+    @media screen and (min-width: 768px)
+        bottom: 38rem
+        top: auto
+        width: 370px
     @media screen and (min-width: 992px)
         top: 60rem
         bottom: auto
-        width: 270px
     @media screen and (min-width: 1400px)
         top: 65rem
         width: 380px
 .containerPremios
     padding-top: 15rem
+    @media screen and (min-width: 768px)
+        padding-top: 10rem
+    @media screen and (min-width: 992px)
+        padding-top: 15rem
     .gridContainer
         > div
             &:nth-of-type(1)
@@ -64,9 +74,15 @@
                 grid-column: 1 / -1
                 text-align: center
                 margin: 3rem auto 0
+                @media screen and (min-width: 768px)
+                    flex-direction: row
+                    justify-content: flex-start
+                    align-content: flex-start
+                    align-items: flex-start
+                    gap: 1rem
+                    display: flex
                 @media screen and (min-width: 992px)
                     grid-column: 4 / -1
-                    display: flex
                     flex-direction: row
                     justify-content: flex-start
                     align-content: flex-start
@@ -79,6 +95,9 @@
                     height: 460px
                     width: 280px
                     flex: 1 50%
+                    @media screen and (min-width: 768px)
+                        height: 500px
+                        width: auto
                     @media screen and (min-width: 992px)
                         height: 460px
                         width: auto
@@ -86,10 +105,14 @@
                         height: 540px
                     &:nth-of-type(2)
                         margin-top: 1.5rem
+                        @media screen and (min-width: 768px)
+                            margin-top: 5.5rem
                         @media screen and (min-width: 992px)
                             margin-top: 5.5rem
                     &:nth-of-type(3)
                         margin-top: 1.5rem
+                        @media screen and (min-width: 768px)
+                            margin-top: 10.5rem
                         @media screen and (min-width: 992px)
                             margin-top: 10.5rem
                     .detallePremio
