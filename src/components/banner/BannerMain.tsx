@@ -103,14 +103,14 @@ const BannerMain = () => {
                 alt="De Chiripa :: Preparate para lo que viene"
                 priority={true}
             />
-            <Image
+            {/* <Image
                 className={styles.imageArrow}
                 src="/images/arrow.png"
                 ref={boxRef}
                 width={136}
                 height={248}
                 alt="De Chiripa :: Regístrate y obtén tu usuario. Pronto multiplicarás tu suerte."
-            />
+            /> */}
             <div className={styles.containerCarrusel}>
                 <div className='container'>
                     <Slider {...settings}>

@@ -20,30 +20,30 @@ export function validateRegisterUser(user: objUser) {
         errores.status = true;
         return errores
     }
-    if (!user.recoveryPass) {
+    if (!user.password_confirmation) {
         errores.msjStatus = "El password es obligatorio"
         errores.status = true;
         return errores
     } else {
-        if (user.recoveryPass != user.password) {
+        if (user.password_confirmation != user.password) {
             errores.msjStatus = "Las contraseñas deben ser coincidir"
             errores.status = true;
             return errores
         }
     }
-    if (!user.name) {
+    if (!user.nombres) {
         errores.msjStatus = "El nombre es obligatorio"
         errores.status = true;
     }
-    if (!user.lastname) {
+    if (!user.apellido_materno) {
         errores.msjStatus = "El apellido es obligatorio"
         errores.status = true;
     }
-    if (!user.doc) {
+    if (!user.dni) {
         errores.msjStatus = "El DNI es obligatorio"
         errores.status = true;
     }
-    if (!user.movil) {
+    if (!user.celular) {
         errores.msjStatus = "El movil es obligatorio"
         errores.status = true;
     }

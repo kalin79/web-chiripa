@@ -1,7 +1,11 @@
 'use client'
 import { useState, ChangeEvent } from "react"
+
+import { fecthApi } from '@/actions/form.actions'
+
 import dynamic from 'next/dynamic'
 import Swal from 'sweetalert2'
+
 
 import { validateRegisterUser } from "@/helpers/validacion-registro"
 import { objUser } from "@/interfaces/user"
@@ -28,13 +32,15 @@ type FormElement = HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
 
 
 const initialTodo = {
-    name: "",
-    lastname: "",
-    doc: "",
-    movil: "",
+    nombres: "",
+    apellido_paterno: "",
+    apellido_materno: "@VACIO@",
+    dni: "",
+    register_from: "1",
+    celular: "",
     email: "",
     password: "",
-    recoveryPass: "",
+    password_confirmation: "",
     tyc: false,
 }
 
@@ -44,7 +50,7 @@ const Formulario = () => {
     const [todos, setTodos] = useState<objUser>(initialTodo)
     const [isChecked, setIsChecked] = useState<boolean>(false)
     const [isSubmitted, setIsSubmitted] = useState<boolean>(false)
-
+    const [isLoading, setIsLoading] = useState(false)
 
     const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setIsChecked(event.target.checked);
@@ -63,8 +69,6 @@ const Formulario = () => {
         event.preventDefault();
         const erroresValidacion = await validateRegisterUser(todos);
         if (erroresValidacion.status) {
-            console.log(erroresValidacion.msjStatus)
-
             Swal.fire({
                 title: 'Error!',
                 text: `${erroresValidacion.msjStatus}`,
@@ -73,13 +77,52 @@ const Formulario = () => {
             })
 
         } else {
-            setIsSubmitted(true)
-            // const responseAPI = await addForm({
-            //     url: 'url',
-            //     dataForm: JSON.stringify(todo),
-            //     token: 'token'
-            // })
-            // router.push('/admin/events/edit/12')
+
+            // const urlParamsObject = {
+            //     populate: "*",
+            //     sort: {
+            //         createAt: "ASC",
+            //     },
+            //     pagination: {
+            //         page: 1,
+            //         pageSize: 2,
+            //     },
+            // };
+
+            const urlParamsObject = {}
+            const path = "participante/store"
+
+            const options = {
+                method: 'POST',
+                headers: {
+                    'Authorization': process.env.NEXT_AUTHORIZATION_FORM,  // Encabezado de autorización
+                },
+                body: JSON.stringify(todos),
+            }
+            const data = await fecthApi(path, urlParamsObject, options)
+            if (data.status === 'error') {
+                console.log(data.errors.dni[0])
+                if (data.errors.dni[0] != '') {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: 'El DNI registrado ya existe!',
+                        icon: 'error',
+                        confirmButtonText: 'Cerrar'
+                    })
+                } else {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: 'Vuelva a intentar mas tarde',
+                        icon: 'error',
+                        confirmButtonText: 'Cerrar'
+                    })
+                }
+
+            } else {
+                setIsSubmitted(true)
+            }
+
+            console.log(data)
         }
 
     }
@@ -130,8 +173,8 @@ const Formulario = () => {
                                             type="text"
                                             className="form-control"
                                             placeholder='Ingresa tus nombres aquí'
-                                            value={todos.name}
-                                            name='name'
+                                            value={todos.nombres}
+                                            name='nombres'
                                             onChange={handleChange}
                                         />
                                     </div>
@@ -141,8 +184,8 @@ const Formulario = () => {
                                             type="text"
                                             className="form-control"
                                             placeholder='Ingresa tus apellidos paterno y manterno'
-                                            value={todos.lastname}
-                                            name='lastname'
+                                            value={todos.apellido_paterno}
+                                            name='apellido_paterno'
                                             onChange={handleChange}
                                         />
                                     </div>
@@ -152,8 +195,8 @@ const Formulario = () => {
                                             type="text"
                                             className="form-control"
                                             placeholder='Ingresa tu DNI'
-                                            value={todos.doc}
-                                            name='doc'
+                                            value={todos.dni}
+                                            name='dni'
                                             onChange={handleChange}
                                         />
                                     </div>
@@ -163,8 +206,8 @@ const Formulario = () => {
                                             type="text"
                                             className="form-control"
                                             placeholder='Ingresa tu celular'
-                                            value={todos.movil}
-                                            name='movil'
+                                            value={todos.celular}
+                                            name='celular'
                                             onChange={handleChange}
                                         />
                                     </div>
@@ -196,8 +239,8 @@ const Formulario = () => {
                                             type="password"
                                             className="form-control"
                                             placeholder='Repite tu contraseña'
-                                            value={todos.recoveryPass}
-                                            name='recoveryPass'
+                                            value={todos.password_confirmation}
+                                            name='password_confirmation'
                                             onChange={handleChange}
                                         />
                                     </div>
@@ -212,12 +255,14 @@ const Formulario = () => {
                                             />
                                             <span className="checkmark"></span>
                                             Acepto los <a href="#" target='_blank'>Términos y Condiciones</a>&nbsp;y las&nbsp;
-                                            <a href="#" target='_blank'>política de privacidad</a>
+                                            <a href="#" target='_blank'>Política de Privacidad</a>
                                         </label>
                                     </div>
 
                                     <div>
-                                        <button type='submit' className='buttonClass'>Regístrate</button>
+                                        <button type='submit' className='buttonClass' disabled={isLoading}>
+                                            {isLoading ? 'Loading...' : 'Registrar'}
+                                        </button>
                                     </div>
                                 </form>
                             </div>

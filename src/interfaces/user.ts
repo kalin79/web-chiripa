@@ -1,10 +1,13 @@
 export interface objUser {
-    name: string;
-    lastname: string;
-    doc: string;
-    movil: string;
+    nombres: string;
+    apellido_paterno: string;
+    apellido_materno?: string;
+    celular: string;
     email: string;
+    dni: string;
+    register_from: string;
     password: string;
-    recoveryPass: string;
-    tyc: boolean;
+    password_confirmation: string;
+    direccion?: string;
+    tyc?: boolean;
 }
