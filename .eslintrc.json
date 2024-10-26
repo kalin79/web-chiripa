@@ -3,12 +3,15 @@
     "next/core-web-vitals",
     "next/typescript"
   ],
-  "@typescript-eslint/ban-types": [
-    "error",
-    {
-      "types": {
-        "{}": false
+  "rules": {
+    "@typescript-eslint/ban-types": [
+      "error",
+      {
+        "types": {
+          "{}": false
+        },
+        "message": "Avoid using the `{}` type."
       }
-    }
-  ]
+    ]
+  }
 }
