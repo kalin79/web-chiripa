@@ -70,13 +70,13 @@ const Formulario = () => {
         event.preventDefault();
         const erroresValidacion = await validateRegisterUser(todos);
         if (erroresValidacion.status) {
+            setIsLoading(false)
             Swal.fire({
                 title: 'Error!',
                 text: `${erroresValidacion.msjStatus}`,
                 icon: 'error',
                 confirmButtonText: 'Cerrar'
             })
-
         } else {
 
             // const urlParamsObject = {
