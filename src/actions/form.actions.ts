@@ -30,12 +30,12 @@ export const fecthApi = async (
             `${path}${queryString ? `?${queryString}` : ""}`
         )}`;
 
-        // console.log(mergedOptions);
+        console.log(mergedOptions);
         const res = await fetch(requestUrl, mergedOptions);
-        // console.log(res)
+        console.log(res)
 
         const data = await res.json();
-        // console.log('data', data)
+        console.log('data', data)
         // console.log({queryString})
 
         return data;
