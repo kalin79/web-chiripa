@@ -4,6 +4,14 @@
     "next/typescript"
   ],
   "rules": {
-    "@typescript-eslint/ban-types": "error" // Asegúrate de que esto esté aquí
+    "@typescript-eslint/ban-types": [
+      "error",
+      {
+        "types": {
+          "{}": false
+        },
+        "allowObjectTypes": true // Permitir el uso de tipos de objeto
+      }
+    ]
   }
 }
