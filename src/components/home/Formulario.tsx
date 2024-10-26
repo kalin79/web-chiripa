@@ -102,7 +102,7 @@ const Formulario = () => {
             }
             const data = await fecthApi(path, urlParamsObject, options)
             if (data.status === 'error') {
-
+                setIsLoading(false)
                 console.log(data.errors.dni[0])
                 if (data.errors.dni[0] != '') {
                     Swal.fire({
@@ -122,6 +122,7 @@ const Formulario = () => {
 
             } else {
                 setIsSubmitted(true)
+                setIsLoading(false)
             }
 
             console.log(data)
