@@ -66,6 +66,7 @@ const Formulario = () => {
         })
     }
     const handleSubmit = async (event: React.FormEvent) => {
+        setIsLoading(true)
         event.preventDefault();
         const erroresValidacion = await validateRegisterUser(todos);
         if (erroresValidacion.status) {
@@ -101,6 +102,7 @@ const Formulario = () => {
             }
             const data = await fecthApi(path, urlParamsObject, options)
             if (data.status === 'error') {
+
                 console.log(data.errors.dni[0])
                 if (data.errors.dni[0] != '') {
                     Swal.fire({

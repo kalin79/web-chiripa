@@ -3,11 +3,11 @@
 import qs from "qs";
 import { getStrapiUrl } from "@/helpers/api-helpers";
 import { dataForm } from '@/interfaces/form'
-
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const fecthApi = async (
     path: string,
-    urlParamsObject: {},
-    options?: {} | any,
+    urlParamsObject: any,
+    options?: any,
 ) => {
 
     try {
