@@ -4,14 +4,6 @@
     "next/typescript"
   ],
   "rules": {
-    "@typescript-eslint/ban-types": [
-      "error",
-      {
-        "types": {
-          "{}": false
-        },
-        "message": "Avoid using the `{}` type."
-      }
-    ]
+    "@typescript-eslint/ban-types": "error" // Asegúrate de que esto esté aquí
   }
 }
