@@ -103,8 +103,8 @@ const Formulario = () => {
             const data = await fecthApi(path, urlParamsObject, options)
             if (data.status === 'error') {
                 setIsLoading(false)
-                console.log(data.errors.dni[0])
-                if (data.errors.dni[0] != '') {
+                // console.log(data)
+                if (data.errors.dni) {
                     Swal.fire({
                         title: 'Error!',
                         text: 'El DNI registrado ya existe!',
@@ -112,12 +112,21 @@ const Formulario = () => {
                         confirmButtonText: 'Cerrar'
                     })
                 } else {
-                    Swal.fire({
-                        title: 'Error!',
-                        text: 'Vuelva a intentar mas tarde',
-                        icon: 'error',
-                        confirmButtonText: 'Cerrar'
-                    })
+                    if (data.errors.password) {
+                        Swal.fire({
+                            title: 'Error!',
+                            text: 'El campo de contraseña debe tener al menos 6 caracteres.',
+                            icon: 'error',
+                            confirmButtonText: 'Cerrar'
+                        })
+                    } else {
+                        Swal.fire({
+                            title: 'Error!',
+                            text: 'Vuelva a intentar mas tarde!',
+                            icon: 'error',
+                            confirmButtonText: 'Cerrar'
+                        })
+                    }
                 }
 
             } else {
@@ -125,7 +134,7 @@ const Formulario = () => {
                 setIsLoading(false)
             }
 
-            console.log(data)
+            // console.log(data)
         }
 
     }
