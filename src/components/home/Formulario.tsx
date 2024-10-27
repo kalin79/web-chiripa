@@ -58,13 +58,58 @@ const Formulario = () => {
             ...todos,
             tyc: event.target.checked
         })
-    };
-    const handleChange = (e: ChangeEvent<FormElement>) => {
+    }
+    const handleChangeFull = (e: ChangeEvent<FormElement>) => {
         setTodos({
             ...todos,
             [e.target.name]: e.target.value
         })
     }
+
+    const handleChange = (e: ChangeEvent<FormElement>) => {
+        const value = e.target.value
+        if (value.trim() === "") {
+            setTodos({
+                ...todos,
+                [e.target.name]: e.target.value
+            })
+            // Permitir el campo vacío o solo espacios
+            // Sin error si el campo está vacío o solo tiene espacios
+        } else if (/^[a-zA-Z']*$/.test(value.replace(/\s/g, ''))) {
+            setTodos({
+                ...todos,
+                [e.target.name]: e.target.value
+            })
+        }
+
+    }
+    const handleChangeNumber = (e: ChangeEvent<FormElement>) => {
+        // Permitir solo dígitos numéricos
+        const value = e.target.value;
+        if (/^\d*$/.test(value) && value.length <= 8) {
+            setTodos({
+                ...todos,
+                [e.target.name]: e.target.value
+            })
+        }
+    }
+    const handleChangeMovil = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = e.target.value;
+        // Permitir borrar (campo vacío) y validar números de 1 a 10 dígitos
+        if (value === "") {
+            setTodos({
+                ...todos,
+                [e.target.name]: e.target.value
+            })
+            // Permitir el campo vacío
+            // Sin error si el campo está vacío
+        } else if (/^[1-9]\d{0,9}$/.test(value)) {
+            setTodos({
+                ...todos,
+                [e.target.name]: e.target.value
+            }) // Sin error si cumple con la validación
+        }
+    };
     const handleSubmit = async (event: React.FormEvent) => {
         setIsLoading(true)
         event.preventDefault();
@@ -209,7 +254,7 @@ const Formulario = () => {
                                             placeholder='Ingresa tu DNI'
                                             value={todos.dni}
                                             name='dni'
-                                            onChange={handleChange}
+                                            onChange={handleChangeNumber}
                                         />
                                     </div>
                                     <div>
@@ -220,7 +265,7 @@ const Formulario = () => {
                                             placeholder='Ingresa tu celular'
                                             value={todos.celular}
                                             name='celular'
-                                            onChange={handleChange}
+                                            onChange={handleChangeMovil}
                                         />
                                     </div>
                                     <div className={styles.fullWidth}>
@@ -231,7 +276,7 @@ const Formulario = () => {
                                             placeholder='Ingresa tu correo electrónico'
                                             value={todos.email}
                                             name='email'
-                                            onChange={handleChange}
+                                            onChange={handleChangeFull}
                                         />
                                     </div>
                                     <div>
@@ -242,7 +287,7 @@ const Formulario = () => {
                                             placeholder='Contraseña'
                                             value={todos.password}
                                             name='password'
-                                            onChange={handleChange}
+                                            onChange={handleChangeFull}
                                         />
                                     </div>
                                     <div>
@@ -253,7 +298,7 @@ const Formulario = () => {
                                             placeholder='Repite tu contraseña'
                                             value={todos.password_confirmation}
                                             name='password_confirmation'
-                                            onChange={handleChange}
+                                            onChange={handleChangeFull}
                                         />
                                     </div>
                                     <div className={styles.fullWidth}>

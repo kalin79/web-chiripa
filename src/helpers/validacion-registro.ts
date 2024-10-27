@@ -39,8 +39,8 @@ export function validateRegisterUser(user: objUser) {
         errores.msjStatus = "El apellido es obligatorio"
         errores.status = true;
     }
-    if (!user.dni) {
-        errores.msjStatus = "El DNI es obligatorio"
+    if ((!user.dni) || (user.dni.length === 8)) {
+        errores.msjStatus = "El DNI es obligatorio y debe tener 8 digitos"
         errores.status = true;
     }
     if (!user.celular) {
