@@ -137,11 +137,12 @@ const Formulario = () => {
 
             const urlParamsObject = {}
             const path = "participante/store"
-
+            console.log(process.env.NEXT_AUTHORIZATION_FORM)
+            // ${process.env.NEXT_PUBLIC_BACKEND_URL}
             const options = {
                 method: 'POST',
                 headers: {
-                    'Authorization': process.env.NEXT_AUTHORIZATION_FORM,  // Encabezado de autorización
+                    'Authorization': `${process.env.NEXT_AUTHORIZATION_FORM}`,  // Encabezado de autorización
                 },
                 body: JSON.stringify(todos),
             }
