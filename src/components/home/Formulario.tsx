@@ -1,6 +1,5 @@
 'use client'
 import { useState, ChangeEvent } from "react"
-import { sendGTMEvent } from '@next/third-parties/google'
 import { fecthApi } from '@/actions/form.actions'
 
 import dynamic from 'next/dynamic'
@@ -318,7 +317,7 @@ const Formulario = () => {
                                     </div>
 
                                     <div>
-                                        <button type='submit' className='buttonClass' disabled={isLoading} onClick={() => sendGTMEvent({ event: 'buttonRegister', value: 'Registro Usuario - Etapa Inicial' })}>
+                                        <button type='submit' className='buttonClass' disabled={isLoading} >
                                             {isLoading ? 'Loading...' : 'Registrar'}
                                         </button>
                                     </div>
