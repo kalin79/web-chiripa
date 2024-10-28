@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import MainHeader from '@components/template/MainHeader'
 import MainFooter from '@components/template/MainFooter'
-// import { GoogleTagManager } from '@next/third-parties/google'
+import { GoogleTagManager } from '@next/third-parties/google'
 
 import 'bootstrap/dist/css/bootstrap.min.css'; // Importa el CSS de Bootstrap
 
@@ -20,6 +20,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="es">
+            <GoogleTagManager gtmId="G-Q692FSLEJN" />
             <body>
                 <MainHeader />
                 {children}
