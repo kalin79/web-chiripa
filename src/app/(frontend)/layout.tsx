@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import MainHeader from '@components/template/MainHeader'
 import MainFooter from '@components/template/MainFooter'
-import { GoogleTagManager } from '@next/third-parties/google'
+// import { GoogleTagManager } from '@next/third-parties/google'
 import Script from 'next/script'
 
 import 'bootstrap/dist/css/bootstrap.min.css'; // Importa el CSS de Bootstrap
@@ -31,7 +31,7 @@ export default function RootLayout({
                     window.dataLayer = window.dataLayer || [];
                     function gtag(){dataLayer.push(arguments);}
                     gtag('js', new Date());
-                    gtag('config', '${GTM_ID}');
+                    gtag('config', ${GTM_ID});
                 `}
             </Script>
             <body>
