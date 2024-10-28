@@ -19,7 +19,7 @@ export default function RootLayout({
 }: Readonly<{
     children: React.ReactNode;
 }>) {
-    let GTM_ID = 'G-Q692FSLEJN'
+    const GTM_ID = 'G-Q692FSLEJN'
     return (
         <html lang="es">
             <Script
