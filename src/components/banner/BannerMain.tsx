@@ -134,7 +134,7 @@ const BannerMain = () => {
                                     </div>
                                     <h3 className={Poppins500.className}>
                                         Regístrate y obtén tu usuario.<br />
-                                        Pronto multiplicarás tu suerte.
+                                        Pronto multiplicarás tus probabilidades de ganar.
                                     </h3>
                                     <div className={styles.buttonContainer}>
                                         <button onClick={handleScrollToSection} className={`buttonClass ${Poppins600.className}`} type='button'>Regístrate</button>
@@ -173,7 +173,7 @@ const BannerMain = () => {
                                     </div>
                                     <h3 className={Poppins500.className}>
                                         Regístrate y obtén tu usuario.<br />
-                                        Pronto multiplicarás tu suerte.
+                                        Pronto multiplicarás tus probabilidades de ganar.
                                     </h3>
                                     <div className={styles.buttonContainer}>
                                         <button onClick={handleScrollToSection} className={`buttonClass ${Poppins600.className}`} type='button'>Regístrate</button>

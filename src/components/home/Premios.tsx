@@ -67,8 +67,8 @@ const Premios = () => {
                                 />
                             </div>
                             <div className={styles.footerContent}>
-                                <h3 className={Poppins700.className}>IPHONE PRO MAX 15</h3>
-                                <p className={Poppins500.className}>Iphone 15 Pro Max 256gb</p>
+                                <h3 className={Poppins700.className}>Samsung Galaxy S24 Ultra</h3>
+                                <p className={Poppins500.className}>Samsung Galaxy S24 Ultra</p>
                             </div>
                         </div>
 
@@ -94,9 +94,8 @@ const Premios = () => {
                                 />
                             </div>
                             <div className={styles.footerContent}>
-                                <h3 className={Poppins700.className}>SEGWAY NINEBOT</h3>
-                                <p className={Poppins500.className}>Scooter Eléctrico Ninebot
-                                    E2 Pro Ninebot</p>
+                                <h3 className={Poppins700.className}>Scooters eléctricos</h3>
+                                <p className={Poppins500.className}>Scooters eléctricos</p>
                             </div>
                         </div>
 
@@ -122,9 +121,12 @@ const Premios = () => {
                                 />
                             </div>
                             <div className={styles.footerContent}>
-                                <h3 className={Poppins700.className}>GAMER LAPTOP</h3>
-                                <p className={Poppins500.className}>Laptop Asus Intel Core i5
-                                    de 12 núcleos 12GB 512GB SSD</p>
+                                <h3 className={Poppins700.className}>
+                                    Lenovo 14” - i7 Última generación
+                                </h3>
+                                <p className={Poppins500.className}>
+                                    Lenovo 14” - i7 Última generación
+                                </p>
                             </div>
                         </div>
 
