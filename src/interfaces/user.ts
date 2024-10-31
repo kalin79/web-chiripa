@@ -10,4 +10,8 @@ export interface objUser {
     password_confirmation: string;
     direccion?: string;
     tyc?: boolean;
+    utm_source?: string;
+    utm_medium?: string;
+    utm_campaign?: string;
+    utm_content?: string;
 }

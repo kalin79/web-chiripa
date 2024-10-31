@@ -128,8 +128,8 @@ const BannerMain = () => {
 
                                         <h2 className={Humane600.className}>
                                             <span>LLÉVATE UNA</span> <br />
-                                            <span>COMPUTADORA</span> <br />
-                                            <span>GAMER</span> <br />
+                                            <span>Lenovo 14&apos;</span> <br />
+                                            <span>i7 Última generación</span> <br />
                                         </h2>
                                     </div>
                                     <h3 className={Poppins500.className}>
@@ -182,7 +182,7 @@ const BannerMain = () => {
                                 <div>
                                     <div className={styles.imageContainer}>
                                         <Image
-                                            src="/images/premio2.png"
+                                            src="/images/premio2223.webp"
                                             className={styles.imageResize}
                                             width={1133}
                                             height={789}

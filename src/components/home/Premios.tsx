@@ -86,7 +86,7 @@ const Premios = () => {
                             <div className={styles.imageContainer}>
                                 <Image
                                     className={styles.productoPremio}
-                                    src="/images/scooter.png"
+                                    src="/images/scooter21.webp"
                                     width={311}
                                     height={486}
                                     alt="De Chiripa :: SEGWAY NINEBOT"

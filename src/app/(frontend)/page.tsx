@@ -1,6 +1,10 @@
 import { Metadata } from 'next'
 import BannerMain from "@components/banner/BannerMain"
 import HomeMain from "@components/home/Home"
+
+
+
+
 export const metadata: Metadata = {
     title: 'Registro de Usuario - DeChiripa',
     description: 'Regístrate y obtén tu usuario. Las probabilidades de ganar juegan a tu favor.',
@@ -22,6 +26,7 @@ export const metadata: Metadata = {
     }
 }
 const Home = () => {
+
     return (
         <>
             <BannerMain />

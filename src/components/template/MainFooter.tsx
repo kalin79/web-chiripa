@@ -44,7 +44,7 @@ const Footer = () => {
                                 alt="DeChiripa :: Facebook"
                             />
                         </a>
-                        <a href="#" target='_blank'>
+                        <a href="https://www.instagram.com/dechiripaperu/" target='_blank'>
                             <Image
                                 src="/images/instagram.svg"
                                 width={34}

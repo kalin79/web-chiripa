@@ -30,7 +30,7 @@ export const fecthApi = async (
             `${path}${queryString ? `?${queryString}` : ""}`
         )}`;
 
-        // console.log(mergedOptions);
+        console.log(mergedOptions);
         const res = await fetch(requestUrl, mergedOptions);
         // console.log(res)
 

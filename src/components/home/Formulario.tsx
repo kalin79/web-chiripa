@@ -1,10 +1,11 @@
 'use client'
-import { useState, ChangeEvent } from "react"
+import { useState, ChangeEvent, useEffect } from "react"
 import { fecthApi } from '@/actions/form.actions'
 
 import dynamic from 'next/dynamic'
 import Swal from 'sweetalert2'
 
+import { useSearchParams } from 'next/navigation';
 
 import { validateRegisterUser } from "@/helpers/validacion-registro"
 import { objUser } from "@/interfaces/user"
@@ -41,6 +42,10 @@ const initialTodo = {
     password: "",
     password_confirmation: "",
     tyc: false,
+    utm_source: "",
+    utm_medium: "",
+    utm_campaign: "",
+    utm_content: "",
 }
 
 const DynamicGraciasForm = dynamic(() => import('@components/home/GraciasForm'), { loading: () => <p>Loading...</p> })
@@ -50,6 +55,23 @@ const Formulario = () => {
     const [isChecked, setIsChecked] = useState<boolean>(false)
     const [isSubmitted, setIsSubmitted] = useState<boolean>(false)
     const [isLoading, setIsLoading] = useState(false)
+
+
+
+    const searchParams = useSearchParams();
+
+
+    useEffect(() => {
+        // Obtener el parámetro "id" y actualizar el estado
+        setTodos({
+            ...todos,
+            utm_source: searchParams.get("utm_source") || "",
+            utm_medium: searchParams.get("utm_medium") || "",
+            utm_campaign: searchParams.get("utm_campaign") || "",
+            utm_content: searchParams.get("utm_content") || "",
+        })
+    }, [searchParams]); // Al convertir `searchParams` a cadena, se actualiza cuando cambia
+
 
     const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setIsChecked(event.target.checked);
@@ -93,21 +115,17 @@ const Formulario = () => {
         }
     }
     const handleChangeMovil = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const value = e.target.value;
+        const inputValue = e.target.value;
         // Permitir borrar (campo vacío) y validar números de 1 a 10 dígitos
-        if (value === "") {
-            setTodos({
-                ...todos,
-                [e.target.name]: e.target.value
-            })
-            // Permitir el campo vacío
-            // Sin error si el campo está vacío
-        } else if (/^[1-9]\d{0,9}$/.test(value)) {
+
+        if (/^\d*$/.test(inputValue) && inputValue.length <= 9 && (inputValue === "" || inputValue[0] !== "0")) {
             setTodos({
                 ...todos,
                 [e.target.name]: e.target.value
             }) // Sin error si cumple con la validación
         }
+
+
     };
     const handleSubmit = async (event: React.FormEvent) => {
         setIsLoading(true)
