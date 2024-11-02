@@ -222,9 +222,8 @@ const Formulario = () => {
                                             alt="De Chiripa :: Preparate para lo que viene"
                                         />
                                     </span> <br />
-                                    Y OBTÉN <br />
                                     <span>
-                                        TU USUARIO
+                                        Y PARTICIPA
                                         <Image
                                             className={styles.imageSticker}
                                             src="/images/sticker.svg"
@@ -235,8 +234,7 @@ const Formulario = () => {
                                     </span>
                                 </h1>
                                 <h3 className={Poppins500.className}>
-                                    Multiplica tu oportunidad y maximiza
-                                    tu emoción: ¡Regístrate ahora!
+                                    ¡Maximiza tus tus 5 lucas!
                                 </h3>
                             </div>
                             <div>

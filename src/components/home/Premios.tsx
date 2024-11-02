@@ -67,8 +67,8 @@ const Premios = () => {
                                 />
                             </div>
                             <div className={styles.footerContent}>
-                                <h3 className={Poppins700.className}>Samsung Galaxy S24 Ultra</h3>
-                                <p className={Poppins500.className}>Samsung Galaxy S24 Ultra</p>
+                                <h3 className={Poppins700.className}>Celular Iphone 16 Pro</h3>
+                                <p className={Poppins500.className}>Entra en la tecnolog&iacute;a eSIM, pantalla retina y c&aacute;maras apple</p>
                             </div>
                         </div>
 
@@ -94,8 +94,8 @@ const Premios = () => {
                                 />
                             </div>
                             <div className={styles.footerContent}>
-                                <h3 className={Poppins700.className}>Scooters eléctricos</h3>
-                                <p className={Poppins500.className}>Scooters eléctricos</p>
+                                <h3 className={Poppins700.className}>Scooter eléctrico</h3>
+                                <p className={Poppins500.className}>Super autonom&iacute;a para que te olvides del transporte p&uacute;blico</p>
                             </div>
                         </div>
 
@@ -122,10 +122,10 @@ const Premios = () => {
                             </div>
                             <div className={styles.footerContent}>
                                 <h3 className={Poppins700.className}>
-                                    Lenovo 14” - i7 Última generación
+                                    Laptop Corei 7 Última generación
                                 </h3>
                                 <p className={Poppins500.className}>
-                                    Lenovo 14” - i7 Última generación
+                                    Potencia y velocidad para tus trabajos
                                 </p>
                             </div>
                         </div>

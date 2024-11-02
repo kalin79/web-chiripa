@@ -38,7 +38,7 @@ const GraciasForm = () => {
                     height={156}
                     alt="De Chiripa :: Preparate para lo que viene"
                 />
-                <span className={Humane600.className}>!BUENA BRO!</span>
+                <span className={Humane600.className}>!Te felicito!</span>
             </div>
             <span className={`${Poppins500.className} ${styles.mensajeBox}`}>
                 <Image
@@ -48,9 +48,10 @@ const GraciasForm = () => {
                     height={115}
                     alt="De Chiripa :: Preparate para lo que viene"
                 />
-                Ya estás registrado. <br />
-                ¡No bajes la guardia que en una de esas, la chiripa te corona con un premiazo!
-                Revisa tu correo y sigue los pasos finales. <br />
+                Ya estás dentro. <br />
+                Atento a tu correo, pronto <strong>DeChiripa</strong> te dara la primera
+                sorpresa. <br />
+                El sorteo donde las probabilidades juegan a tu favor<br />
 
             </span>
             {/* <p className={Poppins500.className}>

@@ -32,11 +32,11 @@ const Footer = () => {
                                 height={226}
                                 alt="Picture of the author"
                             />
-                            <p className={Poppins400.className}>© De Chiripa - 2024 - RUC: 20606475757 </p>
+                            <p className={Poppins400.className}>© De Chiripa - 2024 - RUC:  </p>
                         </div>
                     </div>
                     <div>
-                        <a href="#" target='_blank'>
+                        <a href="https://www.facebook.com/profile.php?id=61565494391837" target='_blank'>
                             <Image
                                 src="/images/facebook.svg"
                                 width={34}

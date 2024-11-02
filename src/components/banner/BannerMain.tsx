@@ -128,8 +128,8 @@ const BannerMain = () => {
 
                                         <h2 className={Humane600.className}>
                                             <span>LLÉVATE UNA</span> <br />
-                                            <span>Lenovo 14&apos;</span> <br />
-                                            <span>i7 Última generación</span> <br />
+                                            <span>Laptop i7</span> <br />
+                                            <span>Última generación</span> <br />
                                         </h2>
                                     </div>
                                     <h3 className={Poppins500.className}>
@@ -166,9 +166,9 @@ const BannerMain = () => {
                                         /> */}
 
                                         <h2 className={Humane600.className}>
-                                            <span>LLÉVATE UNA</span> <br />
+                                            <span>LLÉVATE UN</span> <br />
                                             <span>SCOOTER</span> <br />
-                                            <span>ELÉCTRICA</span> <br />
+                                            <span>ELÉCTRICO</span> <br />
                                         </h2>
                                     </div>
                                     <h3 className={Poppins500.className}>
@@ -241,16 +241,16 @@ const BannerMain = () => {
                             <div className={`gridContainer ${styles.itemCarrusel}`}>
                                 <div className={styles.centerItemBanner}>
                                     <div className={styles.titleContainer}>
-                                        <h2 className={`${Humane600.className} ${styles.titularPC}`}>
-                                            <span>MENOS JUGADORES,</span> <br />
-                                            <span>MÁS OPORTUNIDADES</span> <br />
+                                        <h2 className={`${Humane600.className}`}>
+                                            <span>LA PROBABILIDAD</span> <br />
+                                            <span>REAL DE GANAR!</span> <br />
                                         </h2>
-                                        <h2 className={`${Humane600.className} ${styles.titularMovil}`}>
+                                        {/* <h2 className={`${Humane600.className} ${styles.titularMovil}`}>
                                             <span>MENOS</span> <br />
                                             <span>JUGADORES,</span> <br />
                                             <span>MÁS</span> <br />
                                             <span>OPORTUNIDADES</span> <br />
-                                        </h2>
+                                        </h2> */}
                                     </div>
                                     <h3 className={Poppins500.className}>
                                         Mayor probabilidad, mayores sueños: Tu oportunidad real de ganar!
