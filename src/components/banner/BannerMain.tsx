@@ -125,7 +125,9 @@ const BannerMain = () => {
                                             height={120}
                                             alt="De Chiripa :: COMPUTADORA GAMER"
                                         /> */}
-
+                                        <h2 className={`${Humane600.className} ${styles.cartelSorteo}`}>
+                                            <span>ÚNETE A LOS SORTEOS</span>
+                                        </h2>
                                         <h2 className={Humane600.className}>
                                             <span>LLÉVATE UNA</span> <br />
                                             <span>Laptop i7</span> <br />
@@ -164,7 +166,9 @@ const BannerMain = () => {
                                             height={120}
                                             alt="De Chiripa :: SCOOTER ELÉCTRICA"
                                         /> */}
-
+                                        <h2 className={`${Humane600.className} ${styles.cartelSorteo}`}>
+                                            <span>ÚNETE A LOS SORTEOS</span>
+                                        </h2>
                                         <h2 className={Humane600.className}>
                                             <span>LLÉVATE UN</span> <br />
                                             <span>SCOOTER</span> <br />
@@ -204,6 +208,9 @@ const BannerMain = () => {
                                             height={120}
                                             alt="De Chiripa :: SCOOTER ELÉCTRICA"
                                         /> */}
+                                        <h2 className={`${Humane600.className} ${styles.cartelSorteo}`}>
+                                            <span>ÚNETE A LOS SORTEOS</span>
+                                        </h2>
 
                                         <h2 className={`${Humane600.className} ${styles.titularPC}`}>
                                             <span>PRONTO DESCUBRIRAS</span> <br />
@@ -226,7 +233,7 @@ const BannerMain = () => {
                                 <div>
                                     <div className={styles.imageContainer}>
                                         <Image
-                                            src="/images/influencer.png"
+                                            src="/images/influencer2.png"
                                             className={`${styles.imageResize2} ${styles.positionInfluencer}`}
                                             width={1133}
                                             height={789}
@@ -241,6 +248,9 @@ const BannerMain = () => {
                             <div className={`gridContainer ${styles.itemCarrusel}`}>
                                 <div className={styles.centerItemBanner}>
                                     <div className={styles.titleContainer}>
+                                        <h2 className={`${Humane600.className} ${styles.cartelSorteo}`}>
+                                            <span>ÚNETE A LOS SORTEOS</span>
+                                        </h2>
                                         <h2 className={`${Humane600.className}`}>
                                             <span>LA PROBABILIDAD</span> <br />
                                             <span>REAL DE GANAR!</span> <br />
