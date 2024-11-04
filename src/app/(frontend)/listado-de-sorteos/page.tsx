@@ -1,10 +1,14 @@
-import React from 'react'
+import { Suspense } from 'react'
+import ListarSorteos from "@components/sorteos/listado"
 
 const ListadoSorteos = () => {
     return (
-        <div>
-            hola mundo
-        </div>
+        <>
+            <Suspense fallback={<div>Loading...</div>}>
+                <ListarSorteos />
+
+            </Suspense>
+        </>
     )
 }
 

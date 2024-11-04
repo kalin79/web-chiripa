@@ -1,2 +1,80 @@
 @use 'vars/colors' as *
 @use 'vars/fonts' as *
+
+.graciasBox
+    padding: 20rem 0 3rem
+.formContainer
+    padding-top: 2rem
+    form
+        .row
+            margin-top: 1rem
+        .rowGrid
+            display: grid
+            grid-template-columns: repeat(7,1fr)
+            gap: 1rem
+            input[type="text"]
+                grid-column: 1 /span 3
+
+            button[type="submit"]
+                grid-column: 4 /span 3
+                width: 100%
+                height: 52px
+                background: $naranja
+                border-radius: 40px
+                border: 0
+                box-shadow: $naranjaOscuro 0px 4px 0px 0px
+                color: white
+                font-size: 16px
+                line-height: 3.25rem
+                text-align: center
+                text-decoration: none
+
+    label
+        font-size: 14px
+        color: white
+        margin-bottom: .25rem
+    input[type="text"],
+    input[type="password"]
+        font-size: 14px
+        color: black
+        border: 1px solid $morado
+        border-radius: 30px
+        height: 52px
+        padding: 0 1.5rem
+        &:focus
+            outline: none
+            box-shadow: none
+        &::placeholder
+            color: $plomo
+
+.suscribeteBox
+    position: relative
+    z-index: 10
+    .rasgadoBox
+        position: absolute
+        top: -10rem
+        left: 0rem
+        width: 850px
+        object-fit: contain
+    .gridContainer
+        padding-top: 20rem
+        position: relative
+        z-index: 10
+        >div
+            &:nth-of-type(1)
+                grid-column: 2 /span 4
+                .chicoBox
+                    width: 100%
+                    height: 100%
+                    object-fit: contain
+            &:nth-of-type(2)
+                grid-column: 6 / -1
+                p
+                    @extend %descripcionSuave
+                    margin-top: 1rem
+                h3
+                    @extend %descripcion
+                h2
+                    @extend %titulares
+                    span
+                        color: $verdeLimon

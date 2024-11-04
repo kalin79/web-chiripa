@@ -48,7 +48,7 @@ const initialTodo = {
     utm_content: "",
 }
 
-const DynamicGraciasForm = dynamic(() => import('@components/home/GraciasForm'), { loading: () => <p>Loading...</p> })
+const DynamicGraciasForm = dynamic(() => import('@/components/suscripcion/GraciasForm'), { loading: () => <p>Loading...</p> })
 
 const Formulario = () => {
     const [todos, setTodos] = useState<objUser>(initialTodo)

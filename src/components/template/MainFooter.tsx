@@ -63,7 +63,7 @@ const Footer = () => {
                         </div>
                     </div>
                     <div>
-                        <a href="https://www.facebook.com/profile.php?id=61565494391837" target='_blank'>
+                        <a href="https://www.facebook.com/profile.php?id=61568109125774" target='_blank'>
                             <Image
                                 src="/images/facebook.svg"
                                 width={34}
