@@ -32,7 +32,7 @@ const poppins = Poppins({
 
 const Caracteristicas = () => {
     const [activeTab, setActiveTab] = useState<number>(1)
-    const [texto, settexto] = useState(`<h2>
+    const texto = `<h2>
                                 La Tiger 8 GT viene mas equipada con luz LED,
                                 bocina, display central y ruedas con aire para una mejor calidad de rodada.
                             </h2>
@@ -93,7 +93,7 @@ const Caracteristicas = () => {
                                 <li>
                                     Luz de cubierta delantera, luz de cubierta trasera, luz de freno.
                                 </li>
-                            </ul>`)
+                            </ul>`
     const handleTabClick = (index: number) => {
         setActiveTab(index)
     };

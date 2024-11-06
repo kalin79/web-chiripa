@@ -165,7 +165,7 @@ const DetalleSorteo = () => {
                                                 />
                                             </div>
                                         ) : (
-                                            <div dangerouslySetInnerHTML={{ __html: item.video }}></div>
+                                            <div className={styles.videoFull} dangerouslySetInnerHTML={{ __html: item.video }}></div>
                                         )
                                     }
 
