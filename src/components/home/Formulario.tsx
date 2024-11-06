@@ -39,6 +39,7 @@ const initialTodo = {
     register_from: "1",
     celular: "",
     email: "",
+    birthdate: "",
     password: "",
     password_confirmation: "",
     tyc: false,
@@ -284,7 +285,7 @@ const Formulario = () => {
                                             onChange={handleChangeMovil}
                                         />
                                     </div>
-                                    <div className={styles.fullWidth}>
+                                    <div>
                                         <label htmlFor="email">Correo electrónico:</label>
                                         <input
                                             type="text"
@@ -292,6 +293,17 @@ const Formulario = () => {
                                             placeholder='Ingresa tu correo electrónico'
                                             value={todos.email}
                                             name='email'
+                                            onChange={handleChangeFull}
+                                        />
+                                    </div>
+                                    <div>
+                                        <label htmlFor="birthdate">Fecha de nacimiento:</label>
+                                        <input
+                                            type="date"
+                                            className="form-control"
+                                            placeholder='Ingresa tu correo electrónico'
+                                            value={todos.birthdate}
+                                            name='birthdate'
                                             onChange={handleChangeFull}
                                         />
                                     </div>

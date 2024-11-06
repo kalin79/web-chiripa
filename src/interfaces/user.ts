@@ -4,6 +4,7 @@ export interface objUser {
     apellido_materno?: string;
     celular: string;
     email: string;
+    birthdate: string;
     dni: string;
     register_from: string;
     password: string;

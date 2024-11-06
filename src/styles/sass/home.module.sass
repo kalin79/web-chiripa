@@ -1,6 +1,21 @@
 @use 'vars/colors' as *
 @use 'vars/fonts' as *
 
+.cartelBox
+    position: absolute
+    top: 1rem
+    left: 50%
+    transform: translateX(-50%)
+    width: 90%
+    padding: .5rem 1.5rem
+    border-radius: 30px
+    background: $morado
+    box-shadow: 3px 4px 6px 0px rgba(0,0,0,0.5)
+    z-index: 1
+    h3
+        font-size: 1rem
+        line-height: 1.5em
+        color: white
 .imageRasgado1,
 .imageRasgado2
     position: absolute
@@ -99,10 +114,10 @@
                         height: 500px
                         width: auto
                     @media screen and (min-width: 992px)
-                        height: 480px
+                        height: 500px
                         width: auto
                     @media screen and (min-width: 1400px)
-                        height: 540px
+                        height: 560px
                     &:nth-of-type(2)
                         margin-top: 1.5rem
                         @media screen and (min-width: 768px)
@@ -117,6 +132,9 @@
                             margin-top: 10.5rem
                     .detallePremio
                         text-align: center
+                        margin-top: 1.5rem
+                        @media screen and (min-width: 1400px)
+                            margin-top: .5rem
                         .imageContainer
                             min-height: 320px
                             display: flex

@@ -126,7 +126,7 @@ const BannerMain = () => {
                                             alt="De Chiripa :: COMPUTADORA GAMER"
                                         /> */}
                                         <h2 className={`${Humane600.className} ${styles.cartelSorteo}`}>
-                                            <span>ÚNETE A LOS SORTEOS</span>
+                                            <span>ÚNETE A NUESTROS SORTEOS</span>
                                         </h2>
                                         <h2 className={Humane600.className}>
                                             <span>LLÉVATE UNA</span> <br />
@@ -167,7 +167,7 @@ const BannerMain = () => {
                                             alt="De Chiripa :: SCOOTER ELÉCTRICA"
                                         /> */}
                                         <h2 className={`${Humane600.className} ${styles.cartelSorteo}`}>
-                                            <span>ÚNETE A LOS SORTEOS</span>
+                                            <span>ÚNETE A NUESTROS SORTEOS</span>
                                         </h2>
                                         <h2 className={Humane600.className}>
                                             <span>LLÉVATE UN</span> <br />
@@ -186,7 +186,7 @@ const BannerMain = () => {
                                 <div>
                                     <div className={styles.imageContainer}>
                                         <Image
-                                            src="/images/premio2223.webp"
+                                            src="/images/SCOOTER2024.webp"
                                             className={styles.imageResize}
                                             width={1133}
                                             height={789}
@@ -209,11 +209,11 @@ const BannerMain = () => {
                                             alt="De Chiripa :: SCOOTER ELÉCTRICA"
                                         /> */}
                                         <h2 className={`${Humane600.className} ${styles.cartelSorteo}`}>
-                                            <span>ÚNETE A LOS SORTEOS</span>
+                                            <span>ÚNETE A NUESTROS SORTEOS</span>
                                         </h2>
 
                                         <h2 className={`${Humane600.className} ${styles.titularPC}`}>
-                                            <span>PRONTO DESCUBRIRAS</span> <br />
+                                            <span>PRONTO DESCUBRIR&Aacute;S</span> <br />
                                             <span>DE CHIRIPA</span> <br />
                                         </h2>
                                         <h2 className={`${Humane600.className} ${styles.titularMovil}`}>
@@ -223,7 +223,7 @@ const BannerMain = () => {
                                         </h2>
                                     </div>
                                     <h3 className={Poppins500.className}>
-                                        Donde las probabilidades de ganar, juegan a tu favor.
+                                        Donde las probabilidades de ganar juegan a tu favor.
                                         Porque las matemáticas ¡no mienten!
                                     </h3>
                                     <div className={styles.buttonContainer}>
@@ -249,7 +249,7 @@ const BannerMain = () => {
                                 <div className={styles.centerItemBanner}>
                                     <div className={styles.titleContainer}>
                                         <h2 className={`${Humane600.className} ${styles.cartelSorteo}`}>
-                                            <span>ÚNETE A LOS SORTEOS</span>
+                                            <span>ÚNETE A NUESTROS SORTEOS</span>
                                         </h2>
                                         <h2 className={`${Humane600.className}`}>
                                             <span>LA PROBABILIDAD</span> <br />

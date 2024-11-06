@@ -55,6 +55,9 @@ const Premios = () => {
                             alt="De Chiripa :: Participa"
                             priority={true}
                         />
+                        <div className={styles.cartelBox}>
+                            <h3>1er SORTEO</h3>
+                        </div>
                         <div className={styles.detallePremio}>
                             <div className={styles.imageContainer}>
                                 <Image
@@ -74,33 +77,9 @@ const Premios = () => {
 
                     </div>
                     <div className={`${styles.itemPremio} itemPremioHome`}>
-                        <Image
-                            className={styles.fondoPremio}
-                            src="/images/fondoPremio2.webp"
-                            width={554}
-                            height={851}
-                            alt="De Chiripa :: Participa"
-                            priority={true}
-                        />
-                        <div className={styles.detallePremio}>
-                            <div className={styles.imageContainer}>
-                                <Image
-                                    className={styles.productoPremio}
-                                    src="/images/scooter21.webp"
-                                    width={311}
-                                    height={486}
-                                    alt="De Chiripa :: SEGWAY NINEBOT"
-                                    priority={true}
-                                />
-                            </div>
-                            <div className={styles.footerContent}>
-                                <h3 className={Poppins700.className}>Scooter eléctrico</h3>
-                                <p className={Poppins500.className}>Super autonom&iacute;a para que te olvides del transporte p&uacute;blico</p>
-                            </div>
+                        <div className={styles.cartelBox}>
+                            <h3>PRÓXIMAMENTE</h3>
                         </div>
-
-                    </div>
-                    <div className={`${styles.itemPremio} itemPremioHome`}>
                         <Image
                             className={styles.fondoPremio}
                             src="/images/fondoPremio2.webp"
@@ -131,6 +110,37 @@ const Premios = () => {
                         </div>
 
                     </div>
+                    <div className={`${styles.itemPremio} itemPremioHome`}>
+                        <div className={styles.cartelBox}>
+                            <h3>PRÓXIMAMENTE</h3>
+                        </div>
+                        <Image
+                            className={styles.fondoPremio}
+                            src="/images/fondoPremio2.webp"
+                            width={554}
+                            height={851}
+                            alt="De Chiripa :: Participa"
+                            priority={true}
+                        />
+                        <div className={styles.detallePremio}>
+                            <div className={styles.imageContainer}>
+                                <Image
+                                    className={styles.productoPremio}
+                                    src="/images/SCOOTER2024.webp"
+                                    width={311}
+                                    height={486}
+                                    alt="De Chiripa :: SEGWAY NINEBOT"
+                                    priority={true}
+                                />
+                            </div>
+                            <div className={styles.footerContent}>
+                                <h3 className={Poppins700.className}>Scooter eléctrico</h3>
+                                <p className={Poppins500.className}>Super autonom&iacute;a para que te olvides del transporte p&uacute;blico</p>
+                            </div>
+                        </div>
+
+                    </div>
+
                 </div>
             </div>
         </div>
