@@ -10,6 +10,7 @@ import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 
 import CaracteristicasSorteo from "@/components/sorteo/caracteristicas"
+import MasSorteo from "@/components/sorteo/massorteos"
 
 
 const Humane600 = localFont({
@@ -287,6 +288,7 @@ const DetalleSorteo = () => {
                 </div>
             </div>
             <CaracteristicasSorteo />
+            <MasSorteo />
         </div>
     )
 }
