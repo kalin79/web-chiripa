@@ -235,7 +235,7 @@ const Formulario = () => {
                                     </span>
                                 </h1>
                                 <h3 className={Poppins500.className}>
-                                    ¡Maximiza tus tus 5 lucas!
+                                    ¡Maximiza tus 5 lucas!
                                 </h3>
                             </div>
                             <div>
