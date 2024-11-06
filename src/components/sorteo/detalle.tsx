@@ -239,14 +239,14 @@ const DetalleSorteo = () => {
                             <div>
                                 <Image
                                     className={styles.bgTicket}
-                                    src="/images/bgticket.png"
+                                    src="/images/bgticket.svg"
                                     width={364}
                                     height={144}
                                     alt="De Chiripa :: Preparate para lo que viene"
                                 />
                                 <div className={styles.infoBox}>
                                     <h4 className={Humane600.className}>
-                                        9,500
+                                        100
                                     </h4>
                                     <p className={Poppins600.className}>
                                         Ticteks

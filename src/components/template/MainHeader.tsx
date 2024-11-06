@@ -28,7 +28,7 @@ const Header = () => {
                     <div>
                         <Image
                             className={styles.logoNav}
-                            src="/images/logonav.svg"
+                            src="/images/logo.svg"
                             alt="DeChiripa"
                             width={164}
                             height={165}

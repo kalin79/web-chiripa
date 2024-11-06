@@ -1,6 +1,15 @@
 @use 'vars/colors' as *
 @use 'vars/fonts' as *
 
+.rasgadoBox2
+    position: absolute
+    top: -10rem
+    right: 0rem
+    width: 550px
+    object-fit: cover
+    object-position: center
+    height: auto
+
 .caracteristicasBox
     position: relative
     z-index: 10
@@ -81,12 +90,14 @@
                         background: $naranja
 
 .gridContainer
-    padding-top: 6rem
+    padding-top: 10rem
     position: relative
     z-index: 100
     > div
         &:nth-of-type(1)
             grid-column: 1 / span 6
+            @media screen and (min-width: 1400px)
+                grid-column: 2 / span 5
             .secondThumbailBox
                 overflow: hidden
                 border-radius: 30px
@@ -127,13 +138,13 @@
                 @media screen and (min-width: 992px)
                     height: 562px
                 @media screen and (min-width: 1400px)
-                    height: 662px
+                    height: 600px
                 .videoFull
                     height: 662px
                     @media screen and (min-width: 992px)
                         height: 562px
                     @media screen and (min-width: 1400px)
-                        height: 662px
+                        height: 600px
                     iframe
                         width: 100%
                         height: 100%
@@ -144,7 +155,7 @@
                     @media screen and (min-width: 992px)
                         height: 562px
                     @media screen and (min-width: 1400px)
-                        height: 662px
+                        height: 600px
                     img
                         width: 100%
                         height: 100%
@@ -278,16 +289,19 @@
                             height: 100%
                             width: 100%
                             box-sizing: border-box
-                            padding: 1.25rem 1rem 1rem
+                            padding: 1.25rem 1rem 1rem 1.5rem
                             h4
                                 font-size: 3.125rem
                                 color: white
                                 line-height: 1.5em
+                                // width: 40px
+                                text-align: center
+                                // margin-left: .5rem
                             p
                                 font-size: 0.875rem
                                 color: white
                                 line-height: 1em
-                                margin-left: .5rem
+                                // margin-left: 1.5rem
 
                         .bgTicket
                             position: absolute
@@ -306,3 +320,149 @@
                         position: absolute
                         top: -2.25rem
                         right: -2.25rem
+.premiosSimilaresBox
+    position: relative
+    z-index: 10
+    .botonBannerHeader
+        top: 40%
+        transform: translateY(-50%)
+        z-index: 10
+        &::before
+            content: ''
+            background: url('/images/arrow1.svg') no-repeat
+            background-size: contain
+            background-position: center
+            width: 45px
+            height: 82px
+            display: block
+            // padding: 11rem
+        &.stickRight
+            right: 3.15rem
+        &.stickLeft
+            left: 2rem
+            &::before
+                transform: scale(-1)
+    .cardPremioSimilaresBox
+        padding: 1rem
+    .cardSorteo
+        width: 100%
+        position: relative
+        padding: 3rem 1rem
+        .cardFecha
+            position: absolute
+            top: 1rem
+            left: 1rem
+            z-index: 10
+            border-radius: 10px
+            background: $naranja
+            width: 96px
+            height: 50px
+            box-sizing: border-box
+            padding: .25rem .15rem .25rem .75rem
+            &.cardFechaFull
+                width: auto
+                padding-right: 1rem
+            h3
+                font-size: 0.875rem
+                color: white
+                line-height: 1.25em
+            h2
+                @extend %titularCard
+                color: white
+                line-height: 1em
+            .anuncioSorteo
+                position: absolute
+                top: 1rem
+                right: -3rem
+                width: 200px
+                height: 50px
+                background-color: rgba(255, 0, 0, 0.7)
+                display: flex
+                align-items: center
+                justify-content: center
+                transform: rotate(45deg)
+                color: white
+                font-weight: bold
+                font-size: 1.2em
+                text-align: center
+                z-index: 10
+                span
+                    transform: rotate(0deg)
+                    display: block
+        .fondoCardSorteo
+            position: absolute
+            top: 0
+            left: 0
+            width: 100%
+            height: 100%
+            object-fit: cover
+        .cardFooter
+            position: relative
+            z-index: 2
+            margin-top: 1rem
+            border: 1px solid $verdeLimonClaro
+            border-radius: 10px
+            padding: .5rem .5rem
+            display: flex
+            justify-content: space-between
+            gap: 1rem
+            > div
+                display: flex
+                justify-content: flex-start
+                align-items: center
+                gap: .5rem
+                h2
+                    font-size: 0.75rem
+                    color: white
+                    line-height: 1.15em
+                    @media screen and (min-width: 1400px)
+                        font-size: 0.8rem
+                h3
+                    font-size: 1rem
+                    color: white
+                    line-height: 1em
+                    @media screen and (min-width: 1400px)
+                        font-size: 1.25rem
+        .cardInfo
+            position: relative
+            z-index: 2
+            margin-top: 1rem
+            a
+                display: flex
+                justify-content: center
+                align-items: center
+                gap: .25rem
+            h2
+                @extend %titularCard
+                text-align: center
+        .cardImage
+            position: relative
+            z-index: 2
+            height: 324px
+            @media screen and (min-width: 992px)
+                height: 280px
+            @media screen and (min-width: 1400px)
+                height: 324px
+            img
+                width: 100%
+                height: 100%
+                object-fit: contain
+    .gridContainer
+        padding-top: 2rem
+        > div
+            &:nth-of-type(1)
+                grid-column: 1 / span 6
+            &:nth-of-type(2)
+                grid-column: 1 / -1
+
+    h3
+        @extend %titulares
+        span
+            color: $verdeLimon
+    p
+        @extend %descripcion
+        position: relative
+        .sticketBox
+            position: absolute
+            top: -1.5rem
+            right: -5rem

@@ -101,7 +101,7 @@ const Caracteristicas = () => {
         <div className={`${styles.caracteristicasBox}`}>
             <Image
                 className={styles.rasgadoBox}
-                src="/images/rasgado.png"
+                src="/images/rasgado.webp"
                 width={1326}
                 height={890}
                 alt="De Chiripa :: Formulario Suscribete"
