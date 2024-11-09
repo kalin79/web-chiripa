@@ -6,6 +6,9 @@ h3,
 h4,
 p
     margin: 0
+
+body
+    overflow: auto
 .gridContainer
     display: grid
     grid-template-columns: repeat(1,1fr)
@@ -71,6 +74,29 @@ input[type="checkbox"]:checked + .checkmark
     &::after
         display: block
 
+.btnMain
+    font-size: 1rem
+    align-items: center
+    appearance: none
+    background: $naranja
+    color: white
+    border-radius: 5.6rem
+    border: .15rem solid transparent
+    cursor: pointer
+    display: inline-flex
+    justify-content: center
+    line-height: 1.8rem
+    outline: none
+    box-shadow: none
+    gap: .8rem
+    width: -moz-fit-content
+    width: fit-content
+    padding: 1.6rem 2.4rem
+    max-height: 4.8rem
+    box-shadow: $naranjaOscuro 0px 4px 0px 0px
+    &.btnLg
+        padding: 1rem 2.4rem
+        max-height: 5.6rem
 a
     color: $verdeLimon
     text-decoration: underline
@@ -95,7 +121,8 @@ a
 .containerContent
     position: relative
     z-index: 30
-.backgroundContainer
+.backgroundContainer,
+.backgroundContainer3
     position: relative
     padding: 8rem 0 12rem
     min-height: 80vh
@@ -108,6 +135,8 @@ a
         height: 100%
         object-fit: cover
         object-position: top
+.backgroundContainer3
+    margin-top: 3.5rem
 .backgroundContainer2
     position: relative
     padding: 8rem 0 3rem

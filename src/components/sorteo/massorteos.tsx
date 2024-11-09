@@ -60,7 +60,7 @@ const MasSorteos = () => {
     }
     const settings = {
         centerPadding: "60px",
-        infinite: true,
+        infinite: false,
         slidesToShow: 3,
         slidesToScroll: 3,
         autoplay: true,
@@ -165,65 +165,6 @@ const MasSorteos = () => {
                                         </div>
                                     </div>
                                 </div>
-
-                                <div className={styles.cardPremioSimilaresBox}>
-                                    <div className={styles.cardSorteo}>
-                                        <div className={`${styles.cardFechaFull}  ${styles.cardFecha}`}>
-                                            <h3 className={Poppins500.className}>Sorteo:</h3>
-                                            <h2 className={Poppins700.className}>Pr&oacute;ximamente</h2>
-                                        </div>
-                                        <Image
-                                            className={styles.fondoCardSorteo}
-                                            src="/images/marco.png"
-                                            width={554}
-                                            height={807}
-                                            alt="Iphone 15 Pro Max 256gb"
-                                        />
-                                        <div className={styles.cardImage}>
-                                            <Image
-                                                src="/images/sorteo4.png?v=2"
-                                                width={500}
-                                                height={600}
-                                                alt="Iphone 15 Pro Max 256gb"
-                                            />
-                                        </div>
-                                        <div className={styles.cardInfo}>
-                                            <h2 className={Poppins600.className}>Moto HONDA Navi 2024</h2>
-                                            <Link href="/sorteo/iphone-15-pro-max-256gb" className='btnCar'>
-                                                <Image
-                                                    className={styles.bgTicket2}
-                                                    src="/images/ticket2.svg"
-                                                    width={30}
-                                                    height={30}
-                                                    alt="Añadir Tickets"
-                                                />
-                                                <span>Comprar</span>
-                                            </Link>
-                                        </div>
-                                        <div className={styles.cardFooter}>
-                                            <div>
-                                                <h2>
-                                                    Probabilidad <br />
-                                                    de Ganar:
-                                                </h2>
-                                                <h3>
-                                                    0.04%
-                                                </h3>
-                                            </div>
-                                            <div>
-                                                <h2>
-                                                    Tickets <br />
-                                                    disponibles:
-                                                </h2>
-                                                <h3>
-                                                    100
-                                                </h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-
                             </Slider>
                         </div>
                     </div>

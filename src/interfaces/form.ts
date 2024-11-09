@@ -1,5 +1,5 @@
 export interface dataForm {
     url: string;
-    dataForm: string;
+    dataForm?: string;
     token?: string;
 }

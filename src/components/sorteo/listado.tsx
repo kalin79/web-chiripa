@@ -1,4 +1,6 @@
 'use client'
+// import { useState } from 'react'
+
 import Link from 'next/link'
 import Image from 'next/image'
 import styles from '@/styles/sass/sorteos.module.sass'
@@ -8,6 +10,7 @@ import { Poppins } from 'next/font/google'
 
 
 import FormularioSuscripcion from "@/components/suscripcion/formulario"
+import { ApiResponseSorteos, SorteosApi } from "@/interfaces/sorteos"
 
 
 const Humane600 = localFont({
@@ -35,7 +38,14 @@ const Poppins700 = Poppins({
     display: 'swap',
 })
 
-const ListadoSorteos = () => {
+interface Props {
+    dataSorteos: ApiResponseSorteos,
+}
+
+const ListadoSorteos: React.FC<Props> = ({ dataSorteos }) => {
+    const sorteos: SorteosApi[] = dataSorteos?.data.sorteos;
+    // const [sorteos, setSorteos] = useState<SorteosApi[]>(dataSorteos.data.sorteos);
+
     return (
         <div className={`backgroundContainer`}>
             <Image
@@ -59,6 +69,7 @@ const ListadoSorteos = () => {
                             />
                             LISTADO DE <span>SORTEOS</span>
                         </h1>
+                        {/* {JSON.stringify(dataSorteos.data.sorteos, null,)} */}
                         <p className={Poppins600.className}>
                             <Image
                                 className={styles.stickerP}
@@ -71,224 +82,77 @@ const ListadoSorteos = () => {
                         </p>
                     </div>
                     <div>
-                        <div className={styles.cardSorteo}>
-                            <div className={styles.cardFecha}>
-                                <h3 className={Poppins500.className}>Sorteo:</h3>
-                                <h2 className={Poppins700.className}>15-DIC</h2>
-                            </div>
-                            <Image
-                                className={styles.fondoCardSorteo}
-                                src="/images/marco.png"
-                                width={554}
-                                height={807}
-                                alt="Iphone 15 Pro Max 256gb"
-                            />
-                            <div className={styles.cardImage}>
-                                <Image
-                                    src="/images/sorteo1.png"
-                                    width={500}
-                                    height={600}
-                                    alt="Iphone 15 Pro Max 256gb"
-                                />
-                            </div>
-                            <div className={styles.cardInfo}>
-                                <h2 className={Poppins600.className}>Iphone 15 Pro Max 256gb</h2>
-                                <Link href="/sorteo/iphone-15-pro-max-256gb" className='btnCar'>
+
+                        {
+                            sorteos.map((item, index) => (
+                                <div key={index} className={styles.cardSorteo}>
+                                    <div className={`${styles.cardFechaFull}  ${styles.cardFecha}`}>
+                                        <h3 className={Poppins500.className}>Sorteo:</h3>
+                                        {
+                                            (item.fecha != '') ? (
+                                                <h2 className={Poppins700.className}>{item.fecha}</h2>
+                                            ) : (
+                                                <h2 className={Poppins700.className}>Pr&oacute;ximamente</h2>
+                                            )
+                                        }
+
+                                    </div>
                                     <Image
-                                        className={styles.bgTicket2}
-                                        src="/images/ticket2.svg"
-                                        width={30}
-                                        height={30}
-                                        alt="Añadir Tickets"
+                                        className={styles.fondoCardSorteo}
+                                        src="/images/marco.png"
+                                        width={554}
+                                        height={807}
+                                        alt="Iphone 15 Pro Max 256gb"
                                     />
-                                    <span>Comprar</span>
-                                </Link>
-                            </div>
-                            <div className={styles.cardFooter}>
-                                <div>
-                                    <h2>
-                                        Probabilidad <br />
-                                        de Ganar:
-                                    </h2>
-                                    <h3>
-                                        89 mil
-                                        veces más.
-                                    </h3>
+                                    <div className={styles.cardImage}>
+                                        {(item?.image) && (
+                                            <Image
+                                                src={item.image}
+                                                width={500}
+                                                height={600}
+                                                alt="Iphone 15 Pro Max 256gb"
+                                            />
+                                        )}
+
+                                    </div>
+                                    <div className={styles.cardInfo}>
+                                        <h2 className={Poppins600.className}>{item.name}</h2>
+                                        <Link href={`/sorteo/${item.slug}`} className='btnCar'>
+                                            <Image
+                                                className={styles.bgTicket2}
+                                                src="/images/ticket2.svg"
+                                                width={30}
+                                                height={30}
+                                                alt="Añadir Tickets"
+                                            />
+                                            <span>Comprar</span>
+                                        </Link>
+                                    </div>
+                                    <div className={styles.cardFooter}>
+                                        <div>
+                                            <h2>
+                                                Probabilidad <br />
+                                                de Ganar:
+                                            </h2>
+                                            <h3>
+                                                {item.probabilidad_ganar}
+                                            </h3>
+                                        </div>
+                                        <div>
+                                            <h2>
+                                                Tickets <br />
+                                                disponibles:
+                                            </h2>
+                                            <h3>
+                                                {item.aforo}
+                                            </h3>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div>
-                                    <h2>
-                                        Tickets <br />
-                                        disponibles:
-                                    </h2>
-                                    <h3>
-                                        100
-                                    </h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div className={styles.cardSorteo}>
-                            <div className={`${styles.cardFechaFull}  ${styles.cardFecha}`}>
-                                <h3 className={Poppins500.className}>Sorteo:</h3>
-                                <h2 className={Poppins700.className}>Pr&oacute;ximamente</h2>
-                            </div>
-                            <Image
-                                className={styles.fondoCardSorteo}
-                                src="/images/marco.png"
-                                width={554}
-                                height={807}
-                                alt="Iphone 15 Pro Max 256gb"
-                            />
-                            <div className={styles.cardImage}>
-                                <Image
-                                    src="/images/sorteo2.png"
-                                    width={500}
-                                    height={600}
-                                    alt="Iphone 15 Pro Max 256gb"
-                                />
-                            </div>
-                            <div className={styles.cardInfo}>
-                                <h2 className={Poppins600.className}>Scooter eléctrico NineBot</h2>
-                                <Link href="/sorteo/iphone-15-pro-max-256gb" className='btnCar'>
-                                    <Image
-                                        className={styles.bgTicket2}
-                                        src="/images/ticket2.svg"
-                                        width={30}
-                                        height={30}
-                                        alt="Añadir Tickets"
-                                    />
-                                    <span>Comprar</span>
-                                </Link>
-                            </div>
-                            <div className={styles.cardFooter}>
-                                <div>
-                                    <h2>
-                                        Probabilidad <br />
-                                        de Ganar:
-                                    </h2>
-                                    <h3>
-                                        0.04%
-                                    </h3>
-                                </div>
-                                <div>
-                                    <h2>
-                                        Tickets <br />
-                                        disponibles:
-                                    </h2>
-                                    <h3>
-                                        100
-                                    </h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div className={styles.cardSorteo}>
-                            <div className={`${styles.cardFechaFull}  ${styles.cardFecha}`}>
-                                <h3 className={Poppins500.className}>Sorteo:</h3>
-                                <h2 className={Poppins700.className}>Pr&oacute;ximamente</h2>
-                            </div>
-                            <Image
-                                className={styles.fondoCardSorteo}
-                                src="/images/marco.png"
-                                width={554}
-                                height={807}
-                                alt="Iphone 15 Pro Max 256gb"
-                            />
-                            <div className={styles.cardImage}>
-                                <Image
-                                    src="/images/sorteo3.png"
-                                    width={500}
-                                    height={600}
-                                    alt="Iphone 15 Pro Max 256gb"
-                                />
-                            </div>
-                            <div className={styles.cardInfo}>
-                                <h2 className={Poppins600.className}>Laptop Gamer ASUS i9 Rogue</h2>
-                                <Link href="/sorteo/iphone-15-pro-max-256gb" className='btnCar'>
-                                    <Image
-                                        className={styles.bgTicket2}
-                                        src="/images/ticket2.svg"
-                                        width={30}
-                                        height={30}
-                                        alt="Añadir Tickets"
-                                    />
-                                    <span>Comprar</span>
-                                </Link>
-                            </div>
-                            <div className={styles.cardFooter}>
-                                <div>
-                                    <h2>
-                                        Probabilidad <br />
-                                        de Ganar:
-                                    </h2>
-                                    <h3>
-                                        0.04%
-                                    </h3>
-                                </div>
-                                <div>
-                                    <h2>
-                                        Tickets <br />
-                                        disponibles:
-                                    </h2>
-                                    <h3>
-                                        100
-                                    </h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div className={styles.cardSorteo}>
-                            <div className={`${styles.cardFechaFull}  ${styles.cardFecha}`}>
-                                <h3 className={Poppins500.className}>Sorteo:</h3>
-                                <h2 className={Poppins700.className}>Pr&oacute;ximamente</h2>
-                            </div>
-                            <Image
-                                className={styles.fondoCardSorteo}
-                                src="/images/marco.png"
-                                width={554}
-                                height={807}
-                                alt="Iphone 15 Pro Max 256gb"
-                            />
-                            <div className={styles.cardImage}>
-                                <Image
-                                    src="/images/sorteo4.png?v=2"
-                                    width={500}
-                                    height={600}
-                                    alt="Iphone 15 Pro Max 256gb"
-                                />
-                            </div>
-                            <div className={styles.cardInfo}>
-                                <h2 className={Poppins600.className}>Moto HONDA Navi 2024</h2>
-                                <Link href="/sorteo/iphone-15-pro-max-256gb" className='btnCar'>
-                                    <Image
-                                        className={styles.bgTicket2}
-                                        src="/images/ticket2.svg"
-                                        width={30}
-                                        height={30}
-                                        alt="Añadir Tickets"
-                                    />
-                                    <span>Comprar</span>
-                                </Link>
-                            </div>
-                            <div className={styles.cardFooter}>
-                                <div>
-                                    <h2>
-                                        Probabilidad <br />
-                                        de Ganar:
-                                    </h2>
-                                    <h3>
-                                        0.04%
-                                    </h3>
-                                </div>
-                                <div>
-                                    <h2>
-                                        Tickets <br />
-                                        disponibles:
-                                    </h2>
-                                    <h3>
-                                        100
-                                    </h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div className={styles.cardSorteo}>
+                            ))
+                        }
+
+                        {/* <div className={styles.cardSorteo}>
                             <div className={styles.anuncioSorteo}>
                                 <span>AGOTADO</span>
                             </div>
@@ -313,16 +177,6 @@ const ListadoSorteos = () => {
                             </div>
                             <div className={styles.cardInfo}>
                                 <h2 className={Poppins600.className}>Iphone 15 Pro Max 256gb</h2>
-                                {/* <Link href="/sorteo/iphone-15-pro-max-256gb" className='btnCar'>
-                                    <Image
-                                        className={styles.bgTicket2}
-                                        src="/images/ticket2.svg"
-                                        width={30}
-                                        height={30}
-                                        alt="Añadir Tickets"
-                                    />
-                                    <span>Comprar</span>
-                                </Link> */}
                             </div>
                             <div className={styles.cardFooter}>
                                 <div>
@@ -331,7 +185,8 @@ const ListadoSorteos = () => {
                                         de Ganar:
                                     </h2>
                                     <h3>
-                                        0.04%
+                                        89 mil
+                                        veces más.
                                     </h3>
                                 </div>
                                 <div>
@@ -344,7 +199,7 @@ const ListadoSorteos = () => {
                                     </h3>
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>

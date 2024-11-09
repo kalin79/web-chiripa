@@ -13,8 +13,8 @@ export const fecthApi = async (
     try {
         // es para el tema de cache en seg
         const mergedOptions = {
-            // next : { revalidate : 0 },
-            cache: 'no-cache',
+            next: { revalidate: 1 },
+            // cache: 'no-cache',
             ...options,
             headers: {
                 ...options?.headers,
@@ -67,17 +67,18 @@ export const processForm = async (data: dataForm) => {
     }
 };
 
-export const processFormRegister = async (data: dataForm) => {
-    // console.log(data)
+export const processApi = async (data: dataForm) => {
+    // console.log(`${process.env.NEXT_PUBLIC_BACKEND_URL}${data.url}`)
     try {
-        const respuesta = await fetch(data.url, {
-            method: 'POST',
+        const respuesta = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}${data.url}`, {
+            method: 'GET',
             headers: {
+                "Authorization": `${data.token}`,
                 "Content-Type": "application/json",
-            },
-            body: data.dataForm,
+            }
         })
         const res = await respuesta.json()
+        // console.log(res)
         return res;
     } catch (err) {
         throw err

@@ -63,13 +63,13 @@ const Formulario = () => {
 
     useEffect(() => {
         // Obtener el parámetro "id" y actualizar el estado
-        setTodos({
-            ...todos,
+        setTodos(prevTodos => ({
+            ...prevTodos, // Se mantiene el estado previo
             utm_source: searchParams.get("utm_source") || "",
             utm_medium: searchParams.get("utm_medium") || "",
             utm_campaign: searchParams.get("utm_campaign") || "",
             utm_content: searchParams.get("utm_content") || "",
-        })
+        }));
     }, [searchParams]); // Al convertir `searchParams` a cadena, se actualiza cuando cambia
 
 

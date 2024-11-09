@@ -1,6 +1,185 @@
 @use 'vars/colors' as *
 @use 'vars/fonts' as *
 
+.sideBarCart
+    inset: 0
+    position: fixed
+    background-color: rgba(0,0,0,.5)
+    opacity: 0
+    visibility: hidden
+    transition: all .2s ease
+    .sideBarWrapper
+        background-color: $morado
+        position: absolute
+        right: 0
+        overflow: hidden
+        width: 100%
+        max-width: 32.5rem
+        transition: transform .35s ease
+        transform: translate(150%)
+        padding-top: 1.6rem
+        height: 100vh
+        display: flex
+        flex-direction: column
+        box-sizing: border-box
+        .sideBarContent
+            flex: 1 1
+            position: relative
+            .slideOut
+                position: absolute
+                width: 100%
+                height: 100%
+                transform: translateX(0)
+                opacity: 1
+                transition: transform .3s ease-out,opacity .7s ease-out
+                .overflowFull
+                    height: 100%
+                    display: flex
+                    flex-direction: column
+
+            .siderBarListProducts
+                overflow: auto
+                .products
+                    display: flex
+                    flex-direction: column
+                    gap: 2.4rem
+                    padding: 0 2.4rem
+                    margin-bottom: 1.8rem
+                    &:last-child
+                        .itemProduct
+                            border: none
+                    .itemProduct
+                        display: flex
+                        align-items: center
+                        gap: 1.6rem
+                        padding-bottom: 1.6rem
+                        border-bottom: thin solid $moradoClaro
+                        position: relative
+
+                        figure
+                            display: flex
+                            align-items: center
+                            justify-content: center
+                            img
+                                object-fit: contain
+                        > div
+                            flex: 1 1
+                            .priceCar
+                                margin-top: 1rem
+                                .addTicketBox
+                                    display: flex
+                                    justify-content: flex-start
+                                    align-items: center
+                                    gap: 1rem
+                                    h3
+                                        color: white
+                                        font-size: 1.125rem
+                                        margin-bottom: 1.5rem
+                                    .addTicketInfo
+                                        .addTicketInfoBtn
+                                            margin-top: .5rem
+                                            color: $naranja
+                                            text-align: center
+                                            font-size: .75rem
+                                        .addTicketWrapper
+                                            display: flex
+                                            justify-content: flex-start
+                                            align-items: center
+                                            gap: .5rem
+                                            border-radius: 40px
+                                            border: 1px solid $naranja
+                                            padding: .5rem
+                                            input[type="text"],
+                                            input[type="number"]
+                                                width: 3rem
+                                                height: 3rem
+                                                border: 0px solid $naranja
+                                                background: none
+                                                text-align: center
+                                                font-size: 1.25rem
+                                                color: white
+                                                line-height: 1em
+                                                &:focus
+                                                    outline: none
+                                                    box-shadow: none
+                                                &::placeholder
+                                                    color: white
+                                            p
+                                                font-size: 1.8rem
+                                                color: $naranja
+                                                line-height: 1.1em
+                                                border-radius: 50%
+                                                width: 2.375rem
+                                                height: 2.375rem
+                                                border: 1px solid $naranja
+                                                text-align: center
+                                                cursor: pointer
+
+                            .description
+                                h3
+                                    font-size: 1.125rem
+                                    color: white
+                            button[type="button"]
+                                gap: .4rem
+                                max-height: 2.4rem
+                                font-size: .6rem
+                                border-radius: 2.4rem
+                                background-color: $moradoOscuro2
+                                margin-bottom: .6rem
+                                padding: 0.25rem .85rem
+                                color: white
+                                appearance: none
+                                outline: none
+                                cursor: pointer
+                                border: 0
+                                display: flex
+            .siderBarHeader
+                padding: 0 2.4rem
+                margin-bottom: 2.4rem
+                display: flex
+                justify-content: space-between
+                align-items: flex-end
+                .btnClose
+                    height: 2.6rem
+                    width: 2.6rem
+                    border: 0
+                    background-color: white
+                    box-shadow: 0 4px 5px hsla(0,0%,53%,.4)
+                    border-radius: 50%
+                    transition: all .3s ease-in-out
+                    appearance: none
+                    outline: none
+                    cursor: pointer
+                    padding: 0
+                    font-size: 1.5rem
+                    color: $gris
+                h3
+                    font-size: 1.125rem
+                    color: white
+        .sideBarFooter
+            display: flex
+            flex-direction: column
+            padding: 2.4rem
+            gap: 1.4rem
+            border-top: thin solid $moradoClaro
+            .btnMain
+                width: 100%
+            > div
+                &:nth-of-type(1)
+                    display: flex
+                    justify-content: space-between
+                    align-items: center
+                    p,
+                    h4
+                        color: white
+                        font-size: 1.375rem
+
+    &.active
+        opacity: 1
+        visibility: visible
+        .sideBarWrapper
+            transform: translate(0)
+
 .containerHeader
     position: relative
     width: 100%
@@ -53,6 +232,80 @@
                         align-content: flex-end
                         gap: .5rem
                         margin-left: .5rem
+                        position: relative
+                        border: 0px solid red
+                        .productPopup
+                            position: absolute
+                            right: 0rem
+                            bottom: -2rem
+                            transform: translateY(95%)
+                            max-width: 38rem
+                            width: 23.75rem
+                            height: 10rem
+                            background: $morado
+                            border-radius: 0.8rem 0rem 0.8rem .8rem
+                            opacity: 1
+                            visibility: visible
+                            transition: opacity .3s ease
+                            box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.5)
+                            display: flex
+                            justify-content: flex-start
+                            align-items: flex-start
+                            gap: 1rem
+                            box-sizing: border-box
+                            padding: 1rem .75rem 1rem 1rem
+                            > div
+                                &:nth-of-type(1)
+                                    .smallImage
+                                        width: auto
+                                        object-fit: contain
+                                        height: 130px
+                                        object-position: center
+                                &:nth-of-type(2)
+                                    padding-top: .35rem
+                                    h3
+                                        display: flex
+                                        justify-content: flex-start
+                                        align-items: flex-start
+                                        gap: .15rem
+                                        .checkBox
+                                            width: 18px
+                                            object-fit: contain
+                                            height: auto
+                                            object-position: center
+                                        span
+                                            font-size: 0.75rem
+                                            color: $verdeLimon
+                                    h2
+                                        font-size: 1.125rem
+                                        color: white
+                                        margin-top: .25rem
+                                    > div
+                                        display: flex
+                                        justify-content: flex-start
+                                        align-items: flex-start
+                                        gap: 1.5rem
+                                        margin-top: 1rem
+                                        h4
+                                            font-size: 1.125rem
+                                            color: white
+                                        p
+                                            font-size: 0.875rem
+                                            color: white
+                                            display: flex
+                                            justify-content: flex-start
+                                            align-items: flex-start
+                                            gap: .35rem
+
+                            &:after
+                                content: ""
+                                position: absolute
+                                top: -1.5rem
+                                right: 0
+                                width: 0
+                                height: 0
+                                border-left: 2.1rem solid transparent
+                                border-bottom: 2.1rem solid $morado
                         button[type="button"]
                             border: 0
                             background: none

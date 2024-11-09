@@ -1,22 +1,27 @@
 /** @type {import('next').NextConfig} */
 import path from 'path';
-import { createRequire } from 'module';
+import { fileURLToPath } from 'url';
 
-// Crea una instancia del requerimiento para cargar Sass
-const require = createRequire(import.meta.url);
-const sass = require('sass');
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const nextConfig = {
     sassOptions: {
-        implementation: sass,
         sourceMap: true,
         // additionalData: ``,
         // Puedes incluir otras opciones de Sass si es necesario
         silenceDeprecations: ['legacy-js-api'],
+        includePaths: [path.join(__dirname, 'styles')],
     },
     reactStrictMode: true,
     images: {
-        formats: ['image/avif', 'image/webp']
+        formats: ['image/avif', 'image/webp'],
+        remotePatterns: [
+            {
+                protocol: 'http',
+                hostname: '127.0.0.1',
+                port: '8000', // You can include a port if necessary
+            },
+        ],
     },
     webpack(config) {
         config.module.rules.push({

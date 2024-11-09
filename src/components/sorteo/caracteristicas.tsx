@@ -4,6 +4,7 @@ import Image from 'next/image'
 // import localFont from 'next/font/local'
 import { Poppins } from 'next/font/google'
 import styles from '@/styles/sass/sorteodetalle.module.sass'
+import { ApiResponseProduct, SorteosApi } from "@/interfaces/sorteos"
 
 // const Humane600 = localFont({
 //     src: '../../../public/fonts/Humane-SemiBold.woff2',
@@ -29,71 +30,15 @@ const poppins = Poppins({
     subsets: ['latin'],
 })
 
+interface Props {
+    dataObject: ApiResponseProduct,
+}
 
-const Caracteristicas = () => {
+
+const Caracteristicas: React.FC<Props> = ({ dataObject }) => {
+    const detalleSorteo: SorteosApi = dataObject.data.product;
     const [activeTab, setActiveTab] = useState<number>(1)
-    const texto = `<h2>
-                                La Tiger 8 GT viene mas equipada con luz LED,
-                                bocina, display central y ruedas con aire para una mejor calidad de rodada.
-                            </h2>
-                            <p >
-                                Siempre con su doble motor de 600 W, al igual que la
-                                Tiger 8 PRO que brinda excelente potencia para tus viajes!
-                            </p>
-                            <h3 >MOTOR</h3>
-                            <ul >
-                                <li>
-                                    Capacidad de batería: 48v 15.6amp
-                                </li>
-                                <li>
-                                    Autonomía: hasta 55km (modo 1)
-                                </li>
-                                <li>
-                                    Tiempo de carga: 8 horas aprox.
-                                </li>
-                            </ul>
-                            <h3 >BATERÍA</h3>
-                            <ul >
-                                <li>
-                                    Capacidad de batería: 48v 15.6amp
-                                </li>
-                                <li>
-                                    Autonomía: hasta 55km (modo 1)
-                                </li>
-                                <li>
-                                    Tiempo de carga: 8 horas aprox.
-                                </li>
-                            </ul>
-                            <h3 >OTRAS CARACTERÍSTICAS</h3>
-                            <ul >
-                                <li>
-                                    Ruedas Neumaticas de 8.5″
-                                </li>
-                                <li>
-                                    Display Central con bloqueo NFC
-                                </li>
-                                <li>
-                                    Suspensión trasera y delantera (Spring)
-                                </li>
-                                <li>
-                                    Frenos de tambor (trasero y delantero)
-                                </li>
-                                <li>
-                                    Peso de scooter: 22kg
-                                </li>
-                                <li>
-                                    Peso máximo de usuario: 120 kg
-                                </li>
-                                <li>
-                                    Material del Marco: Aluminio
-                                </li>
-                                <li>
-                                    Resistencia al Agua: IP54
-                                </li>
-                                <li>
-                                    Luz de cubierta delantera, luz de cubierta trasera, luz de freno.
-                                </li>
-                            </ul>`
+
     const handleTabClick = (index: number) => {
         setActiveTab(index)
     };
@@ -110,23 +55,49 @@ const Caracteristicas = () => {
             <div className='container'>
                 <div className={`${styles.tabCaracteristicas}`}>
                     <div className={styles.headerTab}>
-                        <h3 className={`${activeTab === 1 ? styles.active : ''} ${poppins.className}`} onClick={() => handleTabClick(1)}>DESCRIPCIÓN</h3>
-                        <h3 className={`${activeTab === 2 ? styles.active : ''} ${poppins.className}`} onClick={() => handleTabClick(2)}>INFORMACIÓN ADICIONAL</h3>
-                        <h3 className={`${activeTab === 3 ? styles.active : ''} ${poppins.className}`} onClick={() => handleTabClick(3)}>MÉTODOS DE ENTREGA</h3>
+                        <h3 className={`${activeTab === 1 ? styles.active : ''} ${poppins.className}`} onClick={() => handleTabClick(1)}>{detalleSorteo.titulo_tab_1}</h3>
+                        {
+                            (detalleSorteo.titulo_tab_2 && detalleSorteo.titulo_tab_2 != '') && (
+                                <h3 className={`${activeTab === 2 ? styles.active : ''} ${poppins.className}`} onClick={() => handleTabClick(2)}>{detalleSorteo.titulo_tab_2}</h3>
+                            )
+                        }
+                        {
+                            (detalleSorteo.titulo_tab_3 && detalleSorteo.titulo_tab_3?.length > 0) && (
+                                <h3 className={`${activeTab === 3 ? styles.active : ''} ${poppins.className}`} onClick={() => handleTabClick(3)}>{detalleSorteo.titulo_tab_3}</h3>
+                            )
+                        }
                     </div>
                     <div className={`${styles.contentTab} ${poppins.className}`}>
                         <div className={`${activeTab === 1 ? styles.active : ''} ${poppins.className}`} >
                             <div
                                 className={styles.contentContainer} // Aplica estilos específicos
-                                dangerouslySetInnerHTML={{ __html: texto }}
+                                dangerouslySetInnerHTML={{ __html: detalleSorteo.description_tab_1 ? detalleSorteo.description_tab_1 : 'Descripción no disponible' }}
+
                             ></div>
                         </div>
-                        <div className={`${activeTab === 2 ? styles.active : ''} ${poppins.className}`} >
-                            hola
-                        </div>
-                        <div className={`${activeTab === 3 ? styles.active : ''} ${poppins.className}`} >
-                            mundo
-                        </div>
+                        {
+                            (detalleSorteo.titulo_tab_2 && detalleSorteo.titulo_tab_2 != '') && (
+                                <div className={`${activeTab === 2 ? styles.active : ''} ${poppins.className}`} >
+                                    <div
+                                        className={styles.contentContainer} // Aplica estilos específicos
+                                        dangerouslySetInnerHTML={{ __html: detalleSorteo.description_tab_2 ? detalleSorteo.description_tab_2 : 'Descripción no disponible' }}
+
+                                    ></div>
+                                </div>
+                            )
+                        }
+                        {
+                            (detalleSorteo.titulo_tab_3 && detalleSorteo.titulo_tab_3 != '') && (
+                                <div className={`${activeTab === 3 ? styles.active : ''} ${poppins.className}`} >
+                                    <div
+                                        className={styles.contentContainer} // Aplica estilos específicos
+                                        dangerouslySetInnerHTML={{ __html: detalleSorteo.description_tab_3 ? detalleSorteo.description_tab_3 : 'Descripción no disponible' }}
+
+                                    ></div>
+                                </div>
+                            )
+                        }
+
                     </div>
                 </div>
             </div>

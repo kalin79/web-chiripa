@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import MainHeader from '@components/template/MainHeader'
 import MainFooter from '@components/template/MainFooter'
+import CartProvider from '@/context/CartContent'
 // import { GoogleTagManager } from '@next/third-parties/google'
 import Script from 'next/script'
 
@@ -35,9 +36,11 @@ export default function RootLayout({
                 `}
             </Script>
             <body>
-                <MainHeader />
-                {children}
-                <MainFooter />
+                <CartProvider>
+                    <MainHeader />
+                    {children}
+                    <MainFooter />
+                </CartProvider>
             </body>
         </html>
     );

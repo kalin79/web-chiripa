@@ -1,9 +1,15 @@
 'use client'
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useContext, ChangeEvent } from 'react';
+
+import { cartContext } from '@/context/CartContent';
+
 import Image from 'next/image'
 import styles from '@/styles/sass/sorteodetalle.module.sass'
 import localFont from 'next/font/local'
 import { Poppins } from 'next/font/google'
+
+import gsap from "gsap";
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 
 import Slider from "react-slick"
 import "slick-carousel/slick/slick.css"
@@ -11,6 +17,9 @@ import "slick-carousel/slick/slick-theme.css"
 
 import CaracteristicasSorteo from "@/components/sorteo/caracteristicas"
 import MasSorteo from "@/components/sorteo/massorteos"
+
+
+import { ApiResponseProduct, SorteosApi } from "@/interfaces/sorteos"
 
 
 const Humane600 = localFont({
@@ -25,25 +34,87 @@ const Poppins600 = Poppins({
     subsets: ['latin'],
     display: 'swap',
 })
-const Poppins500 = Poppins({
-    weight: '500',
-    subsets: ['latin'],
-    display: 'swap',
-})
+// const Poppins500 = Poppins({
+//     weight: '500',
+//     subsets: ['latin'],
+//     display: 'swap',
+// })
 interface ArrowProps {
     className?: string;
     style?: React.CSSProperties;
     onClick?: React.MouseEventHandler<HTMLDivElement>;
 }
-const DetalleSorteo = () => {
+
+type FormElement = HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
+
+interface Props {
+    dataObject: ApiResponseProduct,
+}
+
+const DetalleSorteo: React.FC<Props> = ({ dataObject }) => {
+    const detalleSorteo: SorteosApi = dataObject.data.product;
+
+    const { addCartProducts } = useContext(cartContext);
+
     const [nav1, setNav1] = useState<Slider | null>(null);
     const [nav2, setNav2] = useState<Slider | null>(null);
+    const [quantityTicket, setQuantityTicket] = useState("1");
     const sliderRef1 = useRef<Slider | null>(null);
     const sliderRef2 = useRef<Slider | null>(null);
+
+    const handleClickAddCart = () => {
+        const id = detalleSorteo.id;
+        const title = detalleSorteo.title_large || '';
+        const price = detalleSorteo.price ? parseInt(detalleSorteo.price) : 0;
+        const quantity = parseInt(quantityTicket)
+        const image = detalleSorteo.image || '';
+
+        addCartProducts({ id, title, price, quantity, image })
+
+
+
+        gsap.to(window, { duration: .5, scrollTo: '.headerNavMain' });
+
+
+
+
+
+    }
+
+    const handleChange = (e: ChangeEvent<FormElement>) => {
+        const inputValue = e.target.value;
+        // Permitir borrar (campo vacío) y validar números de 1 a 10 dígitos
+        if (/^\d*$/.test(inputValue) && inputValue.length <= 9 && (inputValue === "" || inputValue[0] !== "0")) {
+            setQuantityTicket(inputValue)
+        }
+
+    }
+
+    const handleClickDecreaseQutity = () => {
+        if (quantityTicket === "") {
+            setQuantityTicket("1")
+        } else {
+            if (parseInt(quantityTicket) >= 2) {
+                setQuantityTicket((parseInt(quantityTicket) - 1).toString())
+            }
+        }
+
+    }
+
+    const handleClickIncreaseQutity = () => {
+        if (quantityTicket === "") {
+            setQuantityTicket("1")
+        } else {
+            setQuantityTicket((parseInt(quantityTicket) + 1).toString())
+        }
+    }
+
     useEffect(() => {
         setNav1(sliderRef1.current);
         setNav2(sliderRef2.current);
+        gsap.registerPlugin(ScrollToPlugin)
     }, []);
+
     function SamplePrevArrow(props: ArrowProps) {
         const { className, onClick } = props;
         return (
@@ -71,75 +142,9 @@ const DetalleSorteo = () => {
         nextArrow: <SampleNextArrow />,
         prevArrow: <SamplePrevArrow />
     };
-    const objeto = {
-        "gallery": [
-            {
-                id: 1,
-                type: 1,
-                image: 'producto1.png',
-                video: ''
-            },
-            {
-                id: 2,
-                type: 1,
-                image: 'producto2.png',
-                video: ''
-            },
-            {
-                id: 3,
-                type: 1,
-                image: 'producto3.png',
-                video: ''
-            },
-            {
-                id: 4,
-                type: 1,
-                image: 'producto4.png',
-                video: ''
-            },
-            {
-                id: 1,
-                type: 1,
-                image: 'producto1.png',
-                video: ''
-            },
-            {
-                id: 2,
-                type: 1,
-                image: 'producto2.png',
-                video: ''
-            },
-            {
-                id: 3,
-                type: 1,
-                image: 'producto3.png',
-                video: ''
-            },
-            {
-                id: 4,
-                type: 1,
-                image: 'producto4.png',
-                video: ''
-            },
-            {
-                id: 5,
-                type: 2,
-                image: 'producto4.png',
-                video: `<iframe
-                        width="100%"
-                        height="100%"
-                        src="https://www.youtube.com/embed/aqlplKfpNx8?si=iH-B6nebWz0X6KoX"
-                        title="YouTube video player"
-                        frameBorder="0" // Usa 'frameBorder' en lugar de 'frameorder'
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        referrerPolicy="strict-origin-when-cross-origin"
-                        allowFullScreen
-                    ></iframe>`
-            }
-        ]
-    };
+
     return (
-        <div className={`backgroundContainer`}>
+        <div className={`backgroundContainer3`}>
             <Image
                 className={`imageBackGroundContainer`}
                 src="/images/fondocuerpo.webp"
@@ -152,9 +157,18 @@ const DetalleSorteo = () => {
                 <div className={`gridContainer ${styles.gridContainer}`}>
                     <div>
                         <Slider {...settings} className={`${styles.carruselMainBox} carruselMainBox`} asNavFor={nav2 as Slider} ref={sliderRef1}>
-                            {objeto.gallery.map(item => (
-                                <div key={item.id}>
-                                    {
+                            {detalleSorteo.gallery?.map((item, index) => (
+                                <div key={index}>
+                                    <div className={styles.viewImagenMain}>
+                                        <Image
+                                            className={styles.stickerBox}
+                                            src={`${item}`}
+                                            width={1322}
+                                            height={1004}
+                                            alt="De Chiripa :: Scooter Electrico Hiley Tiger 8 GT "
+                                        />
+                                    </div>
+                                    {/* {
                                         (item.type === 1) ? (
                                             <div className={styles.viewImagenMain}>
                                                 <Image
@@ -168,7 +182,7 @@ const DetalleSorteo = () => {
                                         ) : (
                                             <div className={styles.videoFull} dangerouslySetInnerHTML={{ __html: item.video }}></div>
                                         )
-                                    }
+                                    } */}
 
                                 </div>
                             ))}
@@ -183,9 +197,19 @@ const DetalleSorteo = () => {
                             focusOnSelect={true}
                             className={styles.secondThumbailBox}
                         >
-                            {objeto.gallery.map(item => (
-                                <div key={item.id}>
+                            {detalleSorteo.gallery?.map((item, index) => (
+                                <div key={index}>
                                     <div className={styles.imageThumbailBox}>
+                                        <Image
+                                            className={styles.stickerBox}
+                                            src={item}
+                                            width={1322}
+                                            height={1004}
+                                            alt="De Chiripa :: Scooter Electrico Hiley Tiger 8 GT "
+                                        />
+
+                                    </div>
+                                    {/* <div className={styles.imageThumbailBox}>
                                         {
                                             (item.type === 1) ? (
                                                 <Image
@@ -200,7 +224,7 @@ const DetalleSorteo = () => {
                                             )
                                         }
 
-                                    </div>
+                                    </div> */}
                                 </div>
                             ))}
 
@@ -209,7 +233,8 @@ const DetalleSorteo = () => {
                     <div>
                         <h1 className={Humane600.className}>
                             <span>
-                                Scooter Electrico Hiley Tiger 8 GT
+                                {detalleSorteo.title_large}
+                                {/* {JSON.stringify(detalleSorteo)} */}
                                 <Image
                                     className={styles.stickerBox}
                                     src="/images/sticker.svg"
@@ -233,7 +258,7 @@ const DetalleSorteo = () => {
                                     Ticket:
                                 </p>
                                 <h3 className={Humane600.className}>
-                                    S/5.00
+                                    S/{detalleSorteo.price}
                                 </h3>
                             </div>
                             <div>
@@ -246,7 +271,7 @@ const DetalleSorteo = () => {
                                 />
                                 <div className={styles.infoBox}>
                                     <h4 className={Humane600.className}>
-                                        100
+                                        {detalleSorteo.ticket_disponibles || detalleSorteo.aforo}
                                     </h4>
                                     <p className={Poppins600.className}>
                                         Ticteks
@@ -256,23 +281,29 @@ const DetalleSorteo = () => {
                             </div>
                         </div>
                         <div className={styles.descripcionBox}>
-                            <h2 className={Poppins500.className}>Especificaciones principales</h2>
+                            <div
+                                className={styles.contentContainer} // Aplica estilos específicos
+                                dangerouslySetInnerHTML={{ __html: detalleSorteo.description ? detalleSorteo.description : 'Descripción no disponible' }}
+                            ></div>
+                            {/* <h2 className={Poppins500.className}>Especificaciones principales</h2>
                             <ul className={Poppins500.className}>
                                 <li>Doble motor de 600W c/u</li>
                                 <li>Luz LED y Bocina</li>
                                 <li>Display Central con NFC</li>
                                 <li>Autonomía: 55Km (modo 1)</li>
                                 <li>Velocidad Máxima: 50Km/h</li>
-                            </ul>
+                            </ul> */}
                         </div>
                         <div className={styles.addTicketBox}>
                             <div>
-                                <p>-</p>
-                                <input type="text" name='' placeholder='0' />
-                                <p>+</p>
+                                <p onClick={handleClickDecreaseQutity}>-</p>
+                                <input type="text" name='quantityTicket' onChange={handleChange} value={quantityTicket} placeholder='0' />
+                                <p onClick={handleClickIncreaseQutity}>+</p>
                             </div>
                             <div>
-                                <button type='button'>
+                                {/* {totalQuantityTicket}, {totalPriceTicket}, {totalProducts} */}
+
+                                <button type='button' onClick={handleClickAddCart}>
                                     <Image
                                         className={styles.bgTicket2}
                                         src="/images/ticket2.svg"
@@ -287,7 +318,7 @@ const DetalleSorteo = () => {
                     </div>
                 </div>
             </div>
-            <CaracteristicasSorteo />
+            <CaracteristicasSorteo dataObject={dataObject} />
             <MasSorteo />
         </div>
     )

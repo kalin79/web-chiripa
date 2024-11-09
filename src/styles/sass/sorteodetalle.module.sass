@@ -12,7 +12,7 @@
 
 .caracteristicasBox
     position: relative
-    z-index: 10
+    z-index: 8
     border-top: 1px solid white
     margin-top: 20rem
     .rasgadoBox
@@ -92,7 +92,7 @@
 .gridContainer
     padding-top: 10rem
     position: relative
-    z-index: 100
+    z-index: 10
     > div
         &:nth-of-type(1)
             grid-column: 1 / span 6
@@ -180,7 +180,8 @@
                         border-radius: 40px
                         border: 1px solid $naranja
                         padding: .5rem
-                        input[type="text"]
+                        input[type="text"],
+                        input[type="number"]
                             width: 3.25rem
                             height: 3.25rem
                             border: 0px solid $naranja
