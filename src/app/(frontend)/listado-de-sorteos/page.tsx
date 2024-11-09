@@ -14,7 +14,7 @@ const getData = async (token: any) => {
 
     const data = await processApi(formJson)
 
-    console.log(data)
+    // console.log(data)
 
     return data;
 }
@@ -27,7 +27,7 @@ const ListadoSorteos = () => {
     let data = null;
     const response = use(getData(process.env.NEXT_PUBLIC_AUTHORIZATION_FORM));
     data = response
-    console.log(data)
+    // console.log(data)
 
     // if (token?.access_token) {
     //     const response = await getData(token.access_token);

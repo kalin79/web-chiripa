@@ -68,7 +68,7 @@ export const processForm = async (data: dataForm) => {
 };
 
 export const processApi = async (data: dataForm) => {
-    console.log(`${process.env.NEXT_PUBLIC_BACKEND_URL}${data.url}`)
+    // console.log(`${process.env.NEXT_PUBLIC_BACKEND_URL}${data.url}`)
     try {
         const respuesta = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}${data.url}`, {
             method: 'GET',
@@ -79,7 +79,7 @@ export const processApi = async (data: dataForm) => {
             }
         })
         const res = await respuesta.json()
-        console.log(res)
+        // console.log(res)
         return res;
     } catch (err) {
         throw err

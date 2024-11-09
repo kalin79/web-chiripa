@@ -69,7 +69,7 @@ const ListadoSorteos: React.FC<Props> = ({ dataSorteos }) => {
                             />
                             LISTADO DE <span>SORTEOS</span>
                         </h1>
-                        {JSON.stringify(dataSorteos.data.sorteos, null,)}
+                        {/* {JSON.stringify(dataSorteos.data.sorteos, null,)} */}
                         <p className={Poppins600.className}>
                             <Image
                                 className={styles.stickerP}
