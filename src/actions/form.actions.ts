@@ -75,6 +75,7 @@ export const processApi = async (data: dataForm) => {
             headers: {
                 "Authorization": `${data.token}`,
                 "Content-Type": "application/json",
+                "Cache-Control": "no-cache",
             }
         })
         const res = await respuesta.json()
