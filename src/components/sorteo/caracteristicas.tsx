@@ -53,6 +53,7 @@ const Caracteristicas: React.FC<Props> = ({ dataObject }) => {
                 priority={true}
             />
             <div className='container'>
+                {/* {JSON.stringify(detalleSorteo)} */}
                 <div className={`${styles.tabCaracteristicas}`}>
                     <div className={styles.headerTab}>
                         <h3 className={`${activeTab === 1 ? styles.active : ''} ${poppins.className}`} onClick={() => handleTabClick(1)}>{detalleSorteo.titulo_tab_1}</h3>

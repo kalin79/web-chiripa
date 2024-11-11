@@ -1,7 +1,7 @@
 'use client'
 
 import { useContext } from 'react';
-
+import { useRouter } from 'next/navigation';
 
 import { cartContext } from '@/context/CartContent';
 
@@ -11,6 +11,7 @@ import Image from 'next/image'
 import styles from '@/styles/sass/nav.module.sass'
 import { Poppins } from 'next/font/google'
 
+import { formatCurrency } from "@/helpers/funciones"
 
 const Poppins600 = Poppins({
     weight: '600',
@@ -26,9 +27,12 @@ const Poppins300 = Poppins({
 
 
 const Header = () => {
-    const { totalProducts, productActive, decreaseQuantity, increaseQuantity, cartProducts, CloseCartPopup, boolBolsa } = useContext(cartContext);
+    const router = useRouter();
+    const { totalProducts, deleteCartProducts, productActive, decreaseQuantity, increaseQuantity, cartProducts, CloseCartPopup, boolBolsa, totalPriceTicket } = useContext(cartContext);
     const pathname = usePathname();
-
+    const handleClickCart = () => {
+        router.push('/proceso-de-compra');
+    }
     return (
         <div className={styles.containerHeader}>
             <Image
@@ -120,7 +124,7 @@ const Header = () => {
                                         <div>
                                             <Image
                                                 className={styles.smallImage}
-                                                src="/images/sorteo2.png"
+                                                src={productActive.image}
                                                 alt="DeChiripa"
                                                 width={375}
                                                 height={512}
@@ -179,14 +183,14 @@ const Header = () => {
                                                         <figure>
                                                             <Image
                                                                 className={styles.smallImage}
-                                                                src="/images/sorteo2.png"
+                                                                src={product.image}
                                                                 alt="DeChiripa"
                                                                 width={148}
                                                                 height={164}
                                                             />
                                                         </figure>
                                                         <div>
-                                                            <button type='button'>
+                                                            <button type='button' onClick={() => deleteCartProducts(product)}>
                                                                 <span>Eliminar</span>
                                                                 <Image
                                                                     src="/images/trash.svg"
@@ -196,19 +200,19 @@ const Header = () => {
                                                                 />
                                                             </button>
                                                             <div className={styles.description}>
-                                                                <h3>Scooter L8 Raide Max 3000</h3>
+                                                                <h3>{product.title}</h3>
                                                             </div>
                                                             <div className={styles.priceCar}>
                                                                 <div className={styles.addTicketBox}>
                                                                     <div className={styles.addTicketInfo}>
                                                                         <div className={styles.addTicketWrapper}>
-                                                                            <p onClick={() => { decreaseQuantity(1) }}>-</p>
-                                                                            <input type="text" disabled placeholder='0' />
-                                                                            <p onClick={() => { increaseQuantity(1) }}>+</p>
+                                                                            <p onClick={() => { decreaseQuantity(product.id) }}>-</p>
+                                                                            <input type="text" disabled placeholder='0' value={product.quantity} />
+                                                                            <p onClick={() => { increaseQuantity(product.id) }}>+</p>
                                                                         </div>
                                                                         <div className={styles.addTicketInfoBtn}>Cantidad de tickets</div>
                                                                     </div>
-                                                                    <h3 className={Poppins600.className}>S./ 5.00</h3>
+                                                                    <h3 className={Poppins600.className}>{formatCurrency(product.price)}</h3>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -223,10 +227,10 @@ const Header = () => {
                         <div className={`${styles.sideBarFooter}`}>
                             <div className={Poppins600.className}>
                                 <p>Subtotal</p>
-                                <h4>S./ 20.00</h4>
+                                <h4>{formatCurrency(totalPriceTicket)}</h4>
                             </div>
                             <div>
-                                <button type='button' className={`${styles.btnMain} btnMain btnLg`}>Finalizar Compra</button>
+                                <button type='button' onClick={handleClickCart} className={`${styles.btnMain} btnMain btnLg`}>Finalizar Compra</button>
                             </div>
                         </div>
                     </div>

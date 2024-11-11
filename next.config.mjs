@@ -21,6 +21,10 @@ const nextConfig = {
                 hostname: '127.0.0.1',
                 port: '8000', // You can include a port if necessary
             },
+            {
+                protocol: 'https',
+                hostname: 's3.us-east-1.amazonaws.com',
+            },
         ],
     },
     webpack(config) {

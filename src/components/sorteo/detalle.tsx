@@ -319,7 +319,7 @@ const DetalleSorteo: React.FC<Props> = ({ dataObject }) => {
                 </div>
             </div>
             <CaracteristicasSorteo dataObject={dataObject} />
-            <MasSorteo />
+            <MasSorteo dataObject={dataObject} />
         </div>
     )
 }

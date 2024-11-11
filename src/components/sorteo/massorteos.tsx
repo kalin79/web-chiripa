@@ -8,6 +8,9 @@ import Slider from "react-slick"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 
+import { ApiResponseProduct, ApiSorteosRelacionados } from "@/interfaces/sorteos"
+
+
 const Humane600 = localFont({
     src: '../../../public/fonts/Humane-SemiBold.woff2',
     weight: '600',
@@ -37,9 +40,14 @@ interface ArrowProps {
     onClick?: React.MouseEventHandler<HTMLDivElement>;
 }
 
+interface Props {
+    dataObject: ApiResponseProduct,
+}
 
 
-const MasSorteos = () => {
+const MasSorteos: React.FC<Props> = ({ dataObject }) => {
+    const productsRelations: ApiSorteosRelacionados[] | undefined = dataObject.data.related_giveaways
+
     function SamplePrevArrow(props: ArrowProps) {
         const { className, onClick } = props;
         return (
@@ -90,81 +98,106 @@ const MasSorteos = () => {
             <div className={styles.premiosSimilaresBox}>
                 <div className='container'>
                     <div className={`gridContainer ${styles.gridContainer}`}>
-                        <div>
-                            <h3 className={Humane600.className}>
-                                HEY! MIRA <span>MÁS SORTEOS</span>
-                            </h3>
-                            <p className={Poppins600.className}>
-                                <span>
-                                    <Image
-                                        className={styles.sticketBox}
-                                        src="/images/remolino3.svg"
-                                        width={129}
-                                        height={116}
-                                        alt="De Chiripa :: Mas Sorteos"
-                                    />
-                                    ¡Todo puede pasar en De Chiripa! Aquí, cada sorteo es una chance de llevarte premios que todos quieren.
-                                </span>
-                            </p>
-                        </div>
+                        {
+                            ((productsRelations != undefined) && (productsRelations.length > 0)) && (
+                                <div>
+                                    <h3 className={Humane600.className}>
+                                        HEY! MIRA <span>MÁS SORTEOS</span>
+                                    </h3>
+                                    <p className={Poppins600.className}>
+                                        <span>
+                                            <Image
+                                                className={styles.sticketBox}
+                                                src="/images/remolino3.svg"
+                                                width={129}
+                                                height={116}
+                                                alt="De Chiripa :: Mas Sorteos"
+                                            />
+                                            ¡Todo puede pasar en De Chiripa! Aquí, cada sorteo es una chance de llevarte premios que todos quieren.
+                                        </span>
+                                    </p>
+                                </div>
+                            )
+                        }
+
                         <div>
                             <Slider {...settings}>
-                                <div className={styles.cardPremioSimilaresBox}>
-                                    <div className={styles.cardSorteo}>
-                                        <div className={`${styles.cardFechaFull}  ${styles.cardFecha}`}>
-                                            <h3 className={Poppins500.className}>Sorteo:</h3>
-                                            <h2 className={Poppins700.className}>Pr&oacute;ximamente</h2>
-                                        </div>
-                                        <Image
-                                            className={styles.fondoCardSorteo}
-                                            src="/images/marco.png"
-                                            width={554}
-                                            height={807}
-                                            alt="Iphone 15 Pro Max 256gb"
-                                        />
-                                        <div className={styles.cardImage}>
-                                            <Image
-                                                src="/images/sorteo4.png?v=2"
-                                                width={500}
-                                                height={600}
-                                                alt="Iphone 15 Pro Max 256gb"
-                                            />
-                                        </div>
-                                        <div className={styles.cardInfo}>
-                                            <h2 className={Poppins600.className}>Moto HONDA Navi 2024</h2>
-                                            <Link href="/sorteo/iphone-15-pro-max-256gb" className='btnCar'>
-                                                <Image
-                                                    className={styles.bgTicket2}
-                                                    src="/images/ticket2.svg"
-                                                    width={30}
-                                                    height={30}
-                                                    alt="Añadir Tickets"
-                                                />
-                                                <span>Comprar</span>
-                                            </Link>
-                                        </div>
-                                        <div className={styles.cardFooter}>
-                                            <div>
-                                                <h2>
-                                                    Probabilidad <br />
-                                                    de Ganar:
-                                                </h2>
-                                                <h3>
-                                                    0.04%
-                                                </h3>
+                                {
+                                    ((productsRelations != undefined) && (productsRelations.length > 0)) && (
+                                        productsRelations.map((item, index) => (
+                                            <div key={index} className={styles.cardPremioSimilaresBox}>
+                                                <div className={styles.cardSorteo}>
+                                                    <div className={`${styles.cardFechaFull}  ${styles.cardFecha}`}>
+                                                        <h3 className={Poppins500.className}>Sorteo:</h3>
+                                                        {
+                                                            (item.fecha != '') ? (
+                                                                <h2 className={Poppins700.className}>{item.fecha}</h2>
+                                                            ) : (
+                                                                <h2 className={Poppins700.className}>Pr&oacute;ximamente</h2>
+                                                            )
+                                                        }
+
+                                                    </div>
+                                                    <Image
+                                                        className={styles.fondoCardSorteo}
+                                                        src="/images/marco.png"
+                                                        width={554}
+                                                        height={807}
+                                                        alt="Iphone 15 Pro Max 256gb"
+                                                    />
+                                                    <div className={styles.cardImage}>
+                                                        {(item?.image) && (
+                                                            <>
+                                                                {/* {item.image} */}
+                                                                <Image
+                                                                    src={item.image}
+                                                                    width={500}
+                                                                    height={600}
+                                                                    alt="Iphone 15 Pro Max 256gb"
+                                                                />
+                                                            </>
+                                                        )}
+
+                                                    </div>
+                                                    <div className={styles.cardInfo}>
+                                                        <h2 className={Poppins600.className}>{item.name}</h2>
+                                                        <Link href={`/sorteo/${item.slug}`} className='btnCar'>
+                                                            <Image
+                                                                className={styles.bgTicket2}
+                                                                src="/images/ticket2.svg"
+                                                                width={30}
+                                                                height={30}
+                                                                alt="Añadir Tickets"
+                                                            />
+                                                            <span>Comprar</span>
+                                                        </Link>
+                                                    </div>
+                                                    <div className={styles.cardFooter}>
+                                                        <div>
+                                                            <h2>
+                                                                Probabilidad <br />
+                                                                de Ganar:
+                                                            </h2>
+                                                            <h3>
+                                                                {item.probabilidad_ganar}
+                                                            </h3>
+                                                        </div>
+                                                        <div>
+                                                            <h2>
+                                                                Tickets <br />
+                                                                disponibles:
+                                                            </h2>
+                                                            <h3>
+                                                                {item.aforo}
+                                                            </h3>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div>
-                                                <h2>
-                                                    Tickets <br />
-                                                    disponibles:
-                                                </h2>
-                                                <h3>
-                                                    100
-                                                </h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                        ))
+                                    )
+                                }
+
                             </Slider>
                         </div>
                     </div>

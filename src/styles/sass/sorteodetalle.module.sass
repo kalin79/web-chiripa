@@ -349,6 +349,27 @@
         width: 100%
         position: relative
         padding: 3rem 1rem
+        overflow: hidden
+        .anuncioSorteo
+            position: absolute
+            top: 1rem
+            right: -3rem
+            width: 200px
+            height: 50px
+            background-color: rgba(255, 0, 0, 0.7)
+            display: flex
+            align-items: center
+            justify-content: center
+            transform: rotate(45deg)
+            color: white
+            font-weight: bold
+            font-size: 1.2em
+            text-align: center
+            z-index: 10
+            span
+                transform: rotate(0deg)
+                display: block
+
         .cardFecha
             position: absolute
             top: 1rem
@@ -363,6 +384,7 @@
             &.cardFechaFull
                 width: auto
                 padding-right: 1rem
+
             h3
                 font-size: 0.875rem
                 color: white
@@ -371,25 +393,6 @@
                 @extend %titularCard
                 color: white
                 line-height: 1em
-            .anuncioSorteo
-                position: absolute
-                top: 1rem
-                right: -3rem
-                width: 200px
-                height: 50px
-                background-color: rgba(255, 0, 0, 0.7)
-                display: flex
-                align-items: center
-                justify-content: center
-                transform: rotate(45deg)
-                color: white
-                font-weight: bold
-                font-size: 1.2em
-                text-align: center
-                z-index: 10
-                span
-                    transform: rotate(0deg)
-                    display: block
         .fondoCardSorteo
             position: absolute
             top: 0
@@ -408,20 +411,18 @@
             justify-content: space-between
             gap: 1rem
             > div
-                display: flex
-                justify-content: flex-start
-                align-items: center
-                gap: .5rem
                 h2
                     font-size: 0.75rem
                     color: white
                     line-height: 1.15em
                     @media screen and (min-width: 1400px)
                         font-size: 0.8rem
+
                 h3
                     font-size: 1rem
                     color: white
                     line-height: 1em
+                    margin-top: .25rem
                     @media screen and (min-width: 1400px)
                         font-size: 1.25rem
         .cardInfo

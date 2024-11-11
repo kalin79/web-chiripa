@@ -106,12 +106,15 @@ const ListadoSorteos: React.FC<Props> = ({ dataSorteos }) => {
                                     />
                                     <div className={styles.cardImage}>
                                         {(item?.image) && (
-                                            <Image
-                                                src={item.image}
-                                                width={500}
-                                                height={600}
-                                                alt="Iphone 15 Pro Max 256gb"
-                                            />
+                                            <>
+                                                {/* {item.image} */}
+                                                <Image
+                                                    src={item.image}
+                                                    width={500}
+                                                    height={600}
+                                                    alt="Iphone 15 Pro Max 256gb"
+                                                />
+                                            </>
                                         )}
 
                                     </div>

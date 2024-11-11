@@ -44,7 +44,7 @@ export interface SorteosApi {
     gallery?: string[];
 }
 
-interface ApiSorteosRelacionados {
+export interface ApiSorteosRelacionados {
     id: number;
     campaign: string;
     name: string;
