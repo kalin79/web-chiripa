@@ -34,11 +34,6 @@ const Poppins600 = Poppins({
     subsets: ['latin'],
     display: 'swap',
 })
-// const Poppins500 = Poppins({
-//     weight: '500',
-//     subsets: ['latin'],
-//     display: 'swap',
-// })
 interface ArrowProps {
     className?: string;
     style?: React.CSSProperties;

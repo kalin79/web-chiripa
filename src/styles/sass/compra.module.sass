@@ -1,0 +1,319 @@
+@use 'vars/colors' as *
+@use 'vars/fonts' as *
+
+.gridContainer
+    > div
+        &:nth-of-type(1)
+            grid-column: 1 / span 8
+        &:nth-of-type(2)
+            grid-column: 1 / -1
+.detailOrder
+    transition: all .3s ease
+    grid-column: 9 / -1
+    .PriceContent
+        padding: 0 2.4rem
+        > div
+            border-top: 1px solid $grisClaro2
+            padding: .65rem 0
+            display: flex
+            justify-content: space-between
+            align-items: center
+            gap: 1rem
+            p
+                color: $gris
+                font-size: 0.875rem
+            &.infoDscto
+                p
+                    color: $naranja
+            &.priceTotal
+                h2,
+                p
+                    font-size: 1.25rem
+                    color: $gris
+    .headerDetailorder
+        padding: 2rem 2.4rem
+        h2
+            font-size: 1.125rem
+            color: $gris
+    .bodyDetailorder
+        padding-top: 0rem
+        .bodyOverflow
+            overflow: auto
+            height: 304px
+            padding: 1rem 2.4rem
+            > div
+                display: flex
+                justify-content: flex-start
+                justify-items: flex-start
+                gap: 1rem
+                margin-bottom: 2rem
+                h3
+                    font-size: 0.875rem
+                    color: $gris
+                p, span
+                    font-size: 1rem
+                    color: $gris
+                .subTotalInfo
+                    display: flex
+                    justify-content: space-between
+                    justify-items: flex-start
+                    gap: 1rem
+                    margin-top: .5rem
+.detailContent
+    position: -webkit-sticky
+    position: sticky
+    top: 0
+    left: 0
+    display: flex
+    flex-direction: column
+    background-color: $blancoHumo
+    padding: 0rem 0rem 2.4rem
+    border-radius: 1.6rem
+    overflow: hidden
+    width: 100%
+    box-shadow: 0 8px 8px -4px hsla(0,0%,50%,.06),0 20px 24px -4px hsla(0,0%,50%,.1)
+
+.layoutContainer
+    position: relative
+    z-index: 10
+    padding: 2.4rem 0 4rem
+    .paymentMethod
+        width: 100%
+        border: 1px solid white
+        background: white
+        margin-top: 2rem
+        border-radius: 10px
+        padding: 1.5rem 2rem
+
+        .paymentDescription
+            margin-top: 1rem
+            p
+                font-size: .8rem
+                color: $grisClaro
+        .paymentMethodOption
+            display: flex
+            justify-content: space-between
+            align-items: center
+            .customRadio
+                font-size: 16px
+                cursor: pointer
+                display: inline-flex
+                align-items: center
+                margin-bottom: 10px
+                .radioInput
+                    display: none
+
+                .radioCheckmark
+                    width: 20px
+                    height: 20px
+                    border: 2px solid #888
+                    border-radius: 50%
+                    display: inline-block
+                    position: relative
+                    margin-right: 10px
+                    vertical-align: middle
+                    background-color: #fff
+                    transition: all 0.3s ease
+
+                .radioInput:checked + .radioCheckmark
+                    background-color: white
+                    border-color: black
+                    &:after
+                        content: ''
+                        position: absolute
+                        width: 12px
+                        height: 12px
+                        border-radius: 50%
+                        background-color: black
+                        top: 50%
+                        left: 50%
+                        transform: translate(-50%, -50%)
+                &:hover .radioCheckmark
+                    border-color: $gris
+
+    .orderContainer
+        display: grid
+        grid-template-columns: repeat(12,1fr)
+        margin-top: 0rem
+        gap: 1rem
+        .buyContainer
+            grid-column: 1 / span 8
+            .stepsContainer
+                display: flex
+                flex-direction: column
+                gap: 2.4rem
+                .contactForm,
+                .paymentForm
+                    display: flex
+                    justify-content: center
+                    gap: 2.7rem
+                    height: 100%
+                    position: relative
+                    .accordionForm
+                        width: 100%
+                        overflow: hidden
+                        height: -moz-fit-content
+                        height: fit-content
+                        transition: all .3s ease
+                        height: 100%
+                        .accordionBody
+                            clip-path: polygon(0 0,100% 0,100% 0,0 0)
+                            height: 0
+                            transition: all .3s ease
+                            form
+                                padding: 0 1rem 1rem
+                            &.expandedInfo
+                                // padding: 2.4rem 0 1.6rem
+                                height: 100%
+                                clip-path: polygon(0px 0px, 100% 0px, 98.74% 98.41%, 0px 100%)
+                            .FormDatos
+                                display: flex
+                                justify-content: flex-start
+                                align-content: flex-start
+                                flex-wrap: wrap
+                                gap: 1rem
+                                margin-top: 2rem
+                                padding: 0 1rem 1rem
+                                .customCheck
+                                    color: white !important
+                                    a
+                                        color: white !important
+
+                                input[type="checkbox"]:checked + span
+                                    background: black !important
+                                    border-color: black !important
+                                h3
+                                    font-size: 1rem
+                                    color: white
+                                    margin-top: 2rem
+                                label
+                                    font-size: 14px
+                                    color: white
+                                    margin-bottom: .25rem
+                                .customSelect
+                                    width: 100%
+                                    padding: .5rem 2rem
+                                    font-size: 16px
+                                    border: 1px solid $morado
+                                    border-radius: 30px
+                                    height: 52px
+                                    background-color: #f8f9fa
+                                    color: #333
+                                    // appearance: none
+                                    cursor: pointer
+                                    position: relative
+                                    &:focus
+                                        outline: none
+                                        box-shadow: none
+                                    &::after
+                                        content: '▼'
+                                        position: absolute
+                                        top: 50%
+                                        right: 10px
+                                        transform: translateY(-50%)
+                                        font-size: 18px
+                                        pointer-events: none
+                                button[type="submit"]
+                                    height: 42px
+                                    width: 20rem
+                                input[type="text"],
+                                input[type="password"]
+                                    font-size: 14px
+                                    color: black
+                                    border: 1px solid $morado
+                                    border-radius: 30px
+                                    height: 52px
+                                    padding: 0 1.5rem
+                                    &:focus
+                                        outline: none
+                                        box-shadow: none
+                                    &::placeholder
+                                        color: $plomo
+                                >div
+                                    flex: 1 1 100%
+                                    @media screen and (min-width: 768px)
+                                        flex: 1 1 48%
+                                    @media screen and (min-width: 992px)
+                                        flex: 1 1 48%
+                                    &.fullWidth
+                                        flex: 1 1 100%
+                                    &.btnForm
+                                        display: flex
+                                        justify-content: flex-end
+                                        button[type="button"]
+                                            width: 20rem
+                                            max-height: 3.8rem
+                        .accordionHeader
+                            padding: 1rem 2.4rem
+                            border-radius: .8rem
+                            height: 4.6rem
+                            background-color: $moradoOscuro
+                            justify-content: space-between
+                            display: flex
+                            align-items: center
+                            .accordionArrow
+                                transition: transform .3s ease
+                                &.expanded
+                                    transform: rotate(180deg)
+                            .accordionInfo
+                                display: flex
+                                gap: 1.2rem
+                                h3
+                                    font-size: 1rem
+                                    transition: color .3s ease
+                                    color: white
+                    .accordionLine
+                        height: 5.6rem
+                        display: flex
+                        align-items: center
+                        justify-content: center
+                        .LineUp
+                            width: 2px
+                            height: 100%
+                            position: absolute
+                            background-color: $grisOscuro
+                            top: 4rem
+                            left: 1.2rem
+                        p
+                            display: flex
+                            justify-content: center
+                            align-self: center
+                            width: 2.4rem
+                            height: 2.4rem
+                            background-color: $grisOscuro
+                            color: white
+                            border-radius: 2.4rem
+                            font-size: 1.4rem
+                            font-weight: 700
+                            z-index: 1
+                            line-height: 1.75em
+                            transition: background-color .3s ease
+                            &.active
+                                background-color: $naranja
+                                color: white
+
+.containerLogin
+    position: relative
+    z-index: 10
+    > div
+        display: flex
+        justify-content: center
+        flex-direction: column
+        align-items: center
+        gap: 1rem
+        margin-top: 1rem
+    button[type="button"]
+        width: 350px
+        height: 40px
+    p
+        text-align: center
+        color: white
+        font-size: 1rem
+        a
+            margin-left: .5rem
+    h2
+        font-size: 5rem
+        color: white
+        text-align: center
+        letter-spacing: .025em
+        line-height: .65em
