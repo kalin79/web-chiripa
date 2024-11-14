@@ -5,9 +5,11 @@ import RegistroCompra from '@/components/procesarCompra/RegistroCompra'
 
 const ProcesoCompra = () => {
     return (
-        <Suspense fallback={<div>Loading...</div>}>
-            <RegistroCompra />
-        </Suspense>
+        <div className={`backgroundContainer`}>
+            <Suspense fallback={<div>Loading...</div>}>
+                <RegistroCompra />
+            </Suspense>
+        </div>
     )
 
 }

@@ -139,7 +139,7 @@ const DetalleSorteo: React.FC<Props> = ({ dataObject }) => {
     };
 
     return (
-        <div className={`backgroundContainer`}>
+        <>
             <Image
                 className={`imageBackGroundContainer`}
                 src="/images/topBg.png"
@@ -315,7 +315,7 @@ const DetalleSorteo: React.FC<Props> = ({ dataObject }) => {
             </div>
             <CaracteristicasSorteo dataObject={dataObject} />
             <MasSorteo dataObject={dataObject} />
-        </div>
+        </>
     )
 }
 

@@ -26,9 +26,11 @@ const DetallePremio = async ({ params }: any) => {
     const response = await getData(process.env.NEXT_PUBLIC_AUTHORIZATION_FORM, id);
     data = response;
     return (
-        <Suspense fallback={<div>Loading...</div>}>
-            <DetalleSorteo dataObject={data} />
-        </Suspense>
+        <div className={`backgroundContainer`}>
+            <Suspense fallback={<div>Loading...</div>}>
+                <DetalleSorteo dataObject={data} />
+            </Suspense>
+        </div>
     )
 }
 

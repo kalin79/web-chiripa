@@ -6,7 +6,7 @@ import FormularioCompra from '@/components/procesarCompra/Formulario'
 
 const RegistroCompra = () => {
     return (
-        <div className={`backgroundContainer ${styles.bgRegistroContainer}`}>
+        <div className={`${styles.bgRegistroContainer}`}>
             <Image
                 className={`imageBackGroundContainer`}
                 src="/images/topBg.png"

@@ -30,6 +30,10 @@ const Home = () => {
                 <BannerMain />
                 {/* <HomeMain /> */}
             </Suspense>
+            <div className={`backgroundContainer`}>
+                <Suspense fallback={<div>Loading...</div>}>
+                </Suspense>
+            </div>
 
         </>
     )

@@ -15,6 +15,29 @@ export function validateRegisterUser(user: objUser) {
         return errores
     }
 
+    if (!user.birthdate) {
+        errores.msjStatus = "Fecha de nacimiento es obligatorio"
+        errores.status = true;
+        return errores
+    } else {
+        const today = new Date();
+        const birthDateObj = new Date(user.birthdate);
+        const age = today.getFullYear() - birthDateObj.getFullYear();
+        // Ajusta la edad si el cumpleaños aún no ha pasado este año
+        const hasBirthdayPassed =
+            today.getMonth() > birthDateObj.getMonth() ||
+            (today.getMonth() === birthDateObj.getMonth() &&
+                today.getDate() >= birthDateObj.getDate());
+
+        // console.log(age)
+        // console.log(hasBirthdayPassed)
+        if (age <= 18 && ((age === 18) && !hasBirthdayPassed)) {
+            errores.msjStatus = "Debe ser mayor de Edad, para participar"
+            errores.status = true;
+            return errores
+        }
+    }
+
     if (!user.password) {
         errores.msjStatus = "El password es obligatorio"
         errores.status = true;

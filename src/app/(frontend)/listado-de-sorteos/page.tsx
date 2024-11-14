@@ -35,9 +35,11 @@ const ListadoSorteos = () => {
     // }
     return (
         <>
-            <Suspense fallback={<div>Loading...</div>}>
-                <ListarSorteos dataSorteos={data} />
-            </Suspense>
+            <div className={`backgroundContainer`}>
+                <Suspense fallback={<div>Loading...</div>}>
+                    <ListarSorteos dataSorteos={data} />
+                </Suspense>
+            </div>
         </>
     )
 }

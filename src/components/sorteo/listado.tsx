@@ -47,7 +47,7 @@ const ListadoSorteos: React.FC<Props> = ({ dataSorteos }) => {
     // const [sorteos, setSorteos] = useState<SorteosApi[]>(dataSorteos.data.sorteos);
 
     return (
-        <div className={`backgroundContainer`}>
+        <>
             <Image
                 className={`imageBackGroundContainer`}
                 src="/images/topBg.png"
@@ -207,7 +207,7 @@ const ListadoSorteos: React.FC<Props> = ({ dataSorteos }) => {
                 </div>
             </div>
             <FormularioSuscripcion />
-        </div>
+        </>
     )
 }
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from 'react';
-
+import { SessionProvider } from "next-auth/react";
 // import type { Metadata } from "next";
 import MainHeader from '@components/template/MainHeader'
 import MainFooter from '@components/template/MainFooter'
@@ -47,11 +47,13 @@ export default function RootLayout({
                 `}
             </Script>
             <body>
-                <CartProvider>
-                    <MainHeader />
-                    {children}
-                    <MainFooter />
-                </CartProvider>
+                <SessionProvider>
+                    <CartProvider>
+                        <MainHeader />
+                        {children}
+                        <MainFooter />
+                    </CartProvider>
+                </SessionProvider>
             </body>
         </html>
     );
