@@ -35,13 +35,6 @@ const Header = () => {
     }
     return (
         <div className={styles.containerHeader}>
-            <Image
-                className={styles.backgroundHeader}
-                src="/images/fondo1.webp"
-                alt="fondo"
-                width={3456}
-                height={2448}
-            />
             <nav className={`${styles.navContainer} headerNavMain`}>
                 <div className={`container gridContainer ${styles.gridContainer} ${Poppins600.className}`}>
                     <div>
@@ -212,7 +205,7 @@ const Header = () => {
                                                                         </div>
                                                                         <div className={styles.addTicketInfoBtn}>Cantidad de tickets</div>
                                                                     </div>
-                                                                    <h3 className={Poppins600.className}>{formatCurrency(product.price)}</h3>
+                                                                    <h3 className={Poppins600.className}>{formatCurrency(product.price * product.quantity)}</h3>
                                                                 </div>
                                                             </div>
                                                         </div>

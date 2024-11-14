@@ -1,11 +1,7 @@
-// import { Suspense } from 'react';
+import { Suspense } from 'react';
 import { Metadata } from 'next'
-// import BannerMain from "@components/banner/BannerMain"
+import BannerMain from "@components/banner/BannerMain"
 // import HomeMain from "@components/home/Home"
-
-
-
-
 export const metadata: Metadata = {
     title: 'Registro de Usuario - DeChiripa',
     description: 'Regístrate y obtén tu usuario. Las probabilidades de ganar juegan a tu favor.',
@@ -30,10 +26,10 @@ const Home = () => {
 
     return (
         <>
-            {/* <Suspense fallback={<div>Loading...</div>}>
+            <Suspense fallback={<div>Loading...</div>}>
                 <BannerMain />
-                <HomeMain />
-            </Suspense> */}
+                {/* <HomeMain /> */}
+            </Suspense>
 
         </>
     )
