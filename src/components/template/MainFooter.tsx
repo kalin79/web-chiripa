@@ -1,14 +1,14 @@
 'use client'
 import Image from 'next/image'
-// import { Poppins } from 'next/font/google'
+import { Poppins } from 'next/font/google'
 import styles from '@/styles/sass/footer.module.sass'
 
 
-// const Poppins400 = Poppins({
-//     weight: '400',
-//     subsets: ['latin'],
-//     display: 'swap',
-// })
+const Poppins400 = Poppins({
+    weight: '400',
+    subsets: ['latin'],
+    display: 'swap',
+})
 
 const Footer = () => {
     return (
@@ -23,7 +23,7 @@ const Footer = () => {
             <div className={`${styles.containerInfo} container`}>
                 <div className={`gridContainer ${styles.gridContainer}`}>
                     <div>
-                        {/* <div>
+                        <div>
                             <Image
                                 className={styles.imageLogoFooter}
                                 src="/images/logo2.svg"
@@ -31,8 +31,8 @@ const Footer = () => {
                                 height={226}
                                 alt="Picture of the author"
                             />
-                            <p className={Poppins400.className}>© De Chiripa - 2024 - RUC:  </p>
-                        </div> */}
+                            <p className={Poppins400.className}>© De Chiripa - 2024</p>
+                        </div>
                     </div>
                     <div>
                         <a href="https://www.facebook.com/profile.php?id=61568109125774" target='_blank'>
