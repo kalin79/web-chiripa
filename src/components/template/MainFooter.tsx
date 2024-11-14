@@ -6,11 +6,11 @@ import { Poppins } from 'next/font/google'
 import styles from '@/styles/sass/footer.module.sass'
 
 
-const Poppins300 = Poppins({
-    weight: '300',
-    subsets: ['latin'],
-    display: 'swap',
-})
+// const Poppins300 = Poppins({
+//     weight: '300',
+//     subsets: ['latin'],
+//     display: 'swap',
+// })
 
 const Poppins400 = Poppins({
     weight: '400',
@@ -25,13 +25,14 @@ const Poppins500 = Poppins({
 })
 
 const Footer = () => {
+
     return (
         <footer className={styles.containerFooter}>
             <Image
                 className={styles.imageBackGround}
-                src="/images/footer.webp"
-                width={5184}
-                height={3672}
+                src="/images/bgFooterTop.png"
+                width={3456}
+                height={280}
                 alt="Picture of the author"
             />
             <div className={`container`}>
@@ -57,9 +58,22 @@ const Footer = () => {
                     <div>
                         <Link href="/preguntas-frecuentes" className={Poppins500.className}>Preguntas Frecuentes</Link>
                         <Link href="/contacto" className={Poppins500.className}>Contacto</Link>
-                        <div>
+                        {/* <div>
                             <h2 className={Poppins500.className}>Horario de atención</h2>
                             <p className={Poppins300.className}>Lunes a viernes 9:00 AM - 18:00 PM</p>
+                        </div> */}
+                        <div className={styles.boxReclamaciones}>
+                            <a href="https://google.com.pe" target="_blank" className={Poppins500.className}>
+                                <Image
+                                    src="/images/book2.webp"
+                                    width={34}
+                                    height={34}
+                                    alt="Libro de Reclamaciones"
+                                />
+                                <span>
+                                    Libro de Reclamaciones
+                                </span>
+                            </a>
                         </div>
                     </div>
                     <div>

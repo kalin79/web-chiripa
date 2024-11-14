@@ -13,7 +13,7 @@ export const fecthApi = async (
     try {
         // es para el tema de cache en seg
         const mergedOptions = {
-            next: { revalidate: 1 },
+            // next: { revalidate: 1 },
             // cache: 'no-cache',
             ...options,
             headers: {

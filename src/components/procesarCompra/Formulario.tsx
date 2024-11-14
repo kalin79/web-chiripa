@@ -1,5 +1,5 @@
 'use client'
-import { useState, useContext, ChangeEvent } from 'react';
+import { useState, useContext } from 'react';
 import { cartContext } from '@/context/CartContent';
 
 import Image from 'next/image'
@@ -24,14 +24,53 @@ const Poppins400 = Poppins({
 const FormularioCompra = () => {
     const [isOpen, setIsOpen] = useState(false)
     const [isOpenDatos, setIsOpenDatos] = useState(false)
-    const [isLogin, setIsLogin] = useState(true)
+    const isLogin = true
     const { cartProducts, totalPriceTicket } = useContext(cartContext);
     const descuento = 0
+    const email = "c.augusto.espinoza@gmail.com"
     const handlePagar = () => {
         setIsOpen(true)
     }
     const handleOpenDatos = () => {
         setIsOpenDatos(true)
+    }
+    const handleSubmit = async (event: React.FormEvent) => {
+        event.preventDefault();
+        if (!window.Culqi) {
+            alert('Culqi no está cargado');
+            return;
+        }
+        window.Culqi.publicKey = process.env.NEXT_PUBLIC_CULQI_PUBLIC_KEY!;
+        window.Culqi.settings({
+            title: 'Mi Tienda',
+            currency: 'PEN',
+            description: 'Compra de productos',
+            amount: totalPriceTicket * 100, // Monto en céntimos
+        });
+
+        window.Culqi.open();
+        window.Culqi.callback = async () => {
+            if (window.Culqi.token) {
+                const { id: tokenId } = window.Culqi.token;
+
+                // Llamada a la API del backend con el token
+                const response = await fetch('/api/payment', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ tokenId, email, amount: totalPriceTicket * 100 }),
+                });
+
+                const result = await response.json();
+                if (result.charge) {
+                    alert('Pago exitoso');
+                } else {
+                    alert('Error al procesar el pago');
+                }
+            } else {
+                alert('Pago cancelado');
+            }
+        };
+
     }
     return (
         <div className={styles.layoutContainer}>
@@ -140,7 +179,7 @@ const FormularioCompra = () => {
                                     </div>
                                 </div>
                                 <div className={`${styles.accordionBody} ${isOpen ? styles.expandedInfo : ''}`}>
-                                    <form>
+                                    <form onSubmit={handleSubmit}>
                                         <div className={styles.paymentMethod}>
                                             <div className={styles.paymentMethodOption}>
                                                 <div>
@@ -228,7 +267,7 @@ const FormularioCompra = () => {
                                                 <div className={styles.subTotalInfo}>
                                                     <span>{item.quantity} ticket</span>
                                                     <p>
-                                                        {formatCurrency(item.price)}
+                                                        {formatCurrency(item.price * item.quantity)}
                                                     </p>
                                                 </div>
 

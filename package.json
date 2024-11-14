@@ -11,6 +11,7 @@
   "dependencies": {
     "@next/third-parties": "^15.0.1",
     "bootstrap": "^5.3.3",
+    "culqi-node": "^2.1.0",
     "gsap": "^3.12.5",
     "next": "^15.0.1",
     "qs": "^6.13.0",

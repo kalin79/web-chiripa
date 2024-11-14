@@ -1,4 +1,8 @@
-import type { Metadata } from "next";
+"use client";
+
+import { useEffect } from 'react';
+
+// import type { Metadata } from "next";
 import MainHeader from '@components/template/MainHeader'
 import MainFooter from '@components/template/MainFooter'
 import CartProvider from '@/context/CartContent'
@@ -9,10 +13,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'; // Importa el CSS de Bootstrap
 
 import '@/styles/sass/global.sass'
 
-export const metadata: Metadata = {
-    title: "De Chriripa",
-    description: "Regístrate y obtén tu usuario. Pronto multiplicarás tu suerte.",
-};
+
 
 
 export default function RootLayout({
@@ -21,6 +22,16 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     const GTM_ID = 'G-Q692FSLEJN'
+    useEffect(() => {
+        const script = document.createElement('script');
+        script.src = 'https://checkout.culqi.com/js/v4';
+        script.async = true;
+        document.body.appendChild(script);
+
+        return () => {
+            document.body.removeChild(script);
+        };
+    }, []);
     return (
         <html lang="es">
             <Script

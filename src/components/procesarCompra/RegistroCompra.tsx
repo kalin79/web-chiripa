@@ -6,12 +6,12 @@ import FormularioCompra from '@/components/procesarCompra/Formulario'
 
 const RegistroCompra = () => {
     return (
-        <div className={`backgroundContainer3`}>
+        <div className={`backgroundContainer ${styles.bgRegistroContainer}`}>
             <Image
                 className={`imageBackGroundContainer`}
-                src="/images/fondocuerpo.webp"
-                width={5184}
-                height={4365}
+                src="/images/topBg.png"
+                width={3456}
+                height={357}
                 alt="De Chiripa :: Preparate para lo que viene"
                 priority={true}
             />
