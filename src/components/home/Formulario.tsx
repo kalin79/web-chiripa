@@ -205,7 +205,7 @@ const Formulario = () => {
     }
     return (
         <div className="container formularioRegistroHome">
-            {isView && (
+            {isView ? (
                 <div className={`gridContainer ${styles.formContainer}`}>
                     {
                         isSubmitted ? (
@@ -357,7 +357,18 @@ const Formulario = () => {
                     }
 
                 </div>
-            )}
+            ) : (
+                <div className={styles.imagenTemporal}>
+                    <Image
+                        className={styles.imageSticker}
+                        src="/images/aux2.webp"
+                        width={1895}
+                        height={1208}
+                        alt="De Chiripa :: Preparate para lo que viene"
+                    />
+                </div>
+            )
+            }
 
         </div>
     )
