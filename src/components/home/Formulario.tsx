@@ -56,6 +56,7 @@ const Formulario = () => {
     const [isChecked, setIsChecked] = useState<boolean>(false)
     const [isSubmitted, setIsSubmitted] = useState<boolean>(false)
     const [isLoading, setIsLoading] = useState(false)
+    const isView = false
 
 
 
@@ -204,158 +205,160 @@ const Formulario = () => {
     }
     return (
         <div className="container formularioRegistroHome">
-
-            <div className={`gridContainer ${styles.formContainer}`}>
-                {
-                    isSubmitted ? (
-                        <DynamicGraciasForm />
-                    ) : (
-                        <>
-                            <div>
-                                <h1 className={Humane600.className}>
-                                    <span>
-                                        REGÍSTRATE
-                                        <Image
-                                            className={styles.imageSticker2}
-                                            src="/images/remolino.png"
-                                            width={194}
-                                            height={173}
-                                            alt="De Chiripa :: Preparate para lo que viene"
-                                        />
-                                    </span> <br />
-                                    <span>
-                                        Y PARTICIPA
-                                        <Image
-                                            className={styles.imageSticker}
-                                            src="/images/sticker.svg"
-                                            width={54}
-                                            height={73}
-                                            alt="De Chiripa :: Preparate para lo que viene"
-                                        />
-                                    </span>
-                                </h1>
-                                <h3 className={Poppins500.className}>
-                                    ¡Maximiza tus 5 lucas!
-                                </h3>
-                            </div>
-                            <div>
-                                <form onSubmit={handleSubmit}>
-                                    {/* {JSON.stringify(todos, null)} */}
-                                    <div>
-                                        <label htmlFor="nombre">Nombres:</label>
-                                        <input
-                                            type="text"
-                                            className="form-control"
-                                            placeholder='Ingresa tus nombres aquí'
-                                            value={todos.nombres}
-                                            name='nombres'
-                                            onChange={handleChange}
-                                        />
-                                    </div>
-                                    <div>
-                                        <label htmlFor="apellidos">Apellidos:</label>
-                                        <input
-                                            type="text"
-                                            className="form-control"
-                                            placeholder='Ingresa tus apellidos paterno y manterno'
-                                            value={todos.apellido_paterno}
-                                            name='apellido_paterno'
-                                            onChange={handleChange}
-                                        />
-                                    </div>
-                                    <div>
-                                        <label htmlFor="doc">Nro. de DNI:</label>
-                                        <input
-                                            type="text"
-                                            className="form-control"
-                                            placeholder='Ingresa tu DNI'
-                                            value={todos.dni}
-                                            name='dni'
-                                            onChange={handleChangeNumber}
-                                        />
-                                    </div>
-                                    <div>
-                                        <label htmlFor="movil">Celular:</label>
-                                        <input
-                                            type="text"
-                                            className="form-control"
-                                            placeholder='Ingresa tu celular'
-                                            value={todos.celular}
-                                            name='celular'
-                                            onChange={handleChangeMovil}
-                                        />
-                                    </div>
-                                    <div>
-                                        <label htmlFor="email">Correo electrónico:</label>
-                                        <input
-                                            type="text"
-                                            className="form-control"
-                                            placeholder='Ingresa tu correo electrónico'
-                                            value={todos.email}
-                                            name='email'
-                                            onChange={handleChangeFull}
-                                        />
-                                    </div>
-                                    <div>
-                                        <label htmlFor="birthdate">Fecha de nacimiento:</label>
-                                        <input
-                                            type="date"
-                                            className="form-control"
-                                            placeholder='Ingresa tu correo electrónico'
-                                            value={todos.birthdate}
-                                            name='birthdate'
-                                            onChange={handleChangeFull}
-                                        />
-                                    </div>
-                                    <div>
-                                        <label htmlFor="password1">Contraseña:</label>
-                                        <input
-                                            type="password"
-                                            className="form-control"
-                                            placeholder='Contraseña'
-                                            value={todos.password}
-                                            name='password'
-                                            onChange={handleChangeFull}
-                                        />
-                                    </div>
-                                    <div>
-                                        <label htmlFor="password2">Repetir Contraseña:</label>
-                                        <input
-                                            type="password"
-                                            className="form-control"
-                                            placeholder='Repite tu contraseña'
-                                            value={todos.password_confirmation}
-                                            name='password_confirmation'
-                                            onChange={handleChangeFull}
-                                        />
-                                    </div>
-                                    <div className={styles.fullWidth}>
-                                        <label className="custom-checkbox">
-                                            <input
-                                                type="checkbox"
-                                                id="isChecked"
-                                                name="isChecked"
-                                                checked={isChecked}
-                                                onChange={handleCheckboxChange}
+            {isView && (
+                <div className={`gridContainer ${styles.formContainer}`}>
+                    {
+                        isSubmitted ? (
+                            <DynamicGraciasForm />
+                        ) : (
+                            <>
+                                <div>
+                                    <h1 className={Humane600.className}>
+                                        <span>
+                                            REGÍSTRATE
+                                            <Image
+                                                className={styles.imageSticker2}
+                                                src="/images/remolino.png"
+                                                width={194}
+                                                height={173}
+                                                alt="De Chiripa :: Preparate para lo que viene"
                                             />
-                                            <span className="checkmark"></span>
-                                            Acepto los <a href="https://s3.us-east-1.amazonaws.com/img.dechiripa.com.pe/dechiripa/politica.pdf" target='_blank'>Términos y Condiciones</a>&nbsp;y las&nbsp;
-                                            <a href="https://s3.us-east-1.amazonaws.com/img.dechiripa.com.pe/dechiripa/datos.pdf" target='_blank'>Política de Privacidad</a>
-                                        </label>
-                                    </div>
+                                        </span> <br />
+                                        <span>
+                                            Y PARTICIPA
+                                            <Image
+                                                className={styles.imageSticker}
+                                                src="/images/sticker.svg"
+                                                width={54}
+                                                height={73}
+                                                alt="De Chiripa :: Preparate para lo que viene"
+                                            />
+                                        </span>
+                                    </h1>
+                                    <h3 className={Poppins500.className}>
+                                        ¡Maximiza tus 5 lucas!
+                                    </h3>
+                                </div>
+                                <div>
+                                    <form onSubmit={handleSubmit}>
+                                        {/* {JSON.stringify(todos, null)} */}
+                                        <div>
+                                            <label htmlFor="nombre">Nombres:</label>
+                                            <input
+                                                type="text"
+                                                className="form-control"
+                                                placeholder='Ingresa tus nombres aquí'
+                                                value={todos.nombres}
+                                                name='nombres'
+                                                onChange={handleChange}
+                                            />
+                                        </div>
+                                        <div>
+                                            <label htmlFor="apellidos">Apellidos:</label>
+                                            <input
+                                                type="text"
+                                                className="form-control"
+                                                placeholder='Ingresa tus apellidos paterno y manterno'
+                                                value={todos.apellido_paterno}
+                                                name='apellido_paterno'
+                                                onChange={handleChange}
+                                            />
+                                        </div>
+                                        <div>
+                                            <label htmlFor="doc">Nro. de DNI:</label>
+                                            <input
+                                                type="text"
+                                                className="form-control"
+                                                placeholder='Ingresa tu DNI'
+                                                value={todos.dni}
+                                                name='dni'
+                                                onChange={handleChangeNumber}
+                                            />
+                                        </div>
+                                        <div>
+                                            <label htmlFor="movil">Celular:</label>
+                                            <input
+                                                type="text"
+                                                className="form-control"
+                                                placeholder='Ingresa tu celular'
+                                                value={todos.celular}
+                                                name='celular'
+                                                onChange={handleChangeMovil}
+                                            />
+                                        </div>
+                                        <div>
+                                            <label htmlFor="email">Correo electrónico:</label>
+                                            <input
+                                                type="text"
+                                                className="form-control"
+                                                placeholder='Ingresa tu correo electrónico'
+                                                value={todos.email}
+                                                name='email'
+                                                onChange={handleChangeFull}
+                                            />
+                                        </div>
+                                        <div>
+                                            <label htmlFor="birthdate">Fecha de nacimiento:</label>
+                                            <input
+                                                type="date"
+                                                className="form-control"
+                                                placeholder='Ingresa tu correo electrónico'
+                                                value={todos.birthdate}
+                                                name='birthdate'
+                                                onChange={handleChangeFull}
+                                            />
+                                        </div>
+                                        <div>
+                                            <label htmlFor="password1">Contraseña:</label>
+                                            <input
+                                                type="password"
+                                                className="form-control"
+                                                placeholder='Contraseña'
+                                                value={todos.password}
+                                                name='password'
+                                                onChange={handleChangeFull}
+                                            />
+                                        </div>
+                                        <div>
+                                            <label htmlFor="password2">Repetir Contraseña:</label>
+                                            <input
+                                                type="password"
+                                                className="form-control"
+                                                placeholder='Repite tu contraseña'
+                                                value={todos.password_confirmation}
+                                                name='password_confirmation'
+                                                onChange={handleChangeFull}
+                                            />
+                                        </div>
+                                        <div className={styles.fullWidth}>
+                                            <label className="custom-checkbox">
+                                                <input
+                                                    type="checkbox"
+                                                    id="isChecked"
+                                                    name="isChecked"
+                                                    checked={isChecked}
+                                                    onChange={handleCheckboxChange}
+                                                />
+                                                <span className="checkmark"></span>
+                                                Acepto los <a href="https://s3.us-east-1.amazonaws.com/img.dechiripa.com.pe/dechiripa/politica.pdf" target='_blank'>Términos y Condiciones</a>&nbsp;y las&nbsp;
+                                                <a href="https://s3.us-east-1.amazonaws.com/img.dechiripa.com.pe/dechiripa/datos.pdf" target='_blank'>Política de Privacidad</a>
+                                            </label>
+                                        </div>
 
-                                    <div>
-                                        <button type='submit' className='buttonClass' disabled={isLoading} >
-                                            {isLoading ? 'Loading...' : 'Registrar'}
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
-                        </>
-                    )
-                }
+                                        <div>
+                                            <button type='submit' className='buttonClass' disabled={isLoading} >
+                                                {isLoading ? 'Loading...' : 'Registrar'}
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </>
+                        )
+                    }
 
-            </div>
+                </div>
+            )}
+
         </div>
     )
 }
