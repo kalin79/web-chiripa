@@ -5,7 +5,7 @@ import { useState, ChangeEvent, useEffect } from "react";
 
 import { fecthApi } from '@/actions/form.actions'
 import { useSearchParams } from 'next/navigation';
-// import dynamic from 'next/dynamic'
+import dynamic from 'next/dynamic'
 
 import { validateRegisterUser } from "@/helpers/validacion-registro"
 import { objUser } from "@/interfaces/user"
@@ -62,13 +62,13 @@ const initialTodo = {
     utm_content: "",
 }
 
-// const DynamicGraciasForm = dynamic(() => import('@components/home/GraciasForm'), { loading: () => <p>Loading...</p> })
+const DynamicGraciasForm = dynamic(() => import('@components/auth/Gracias'), { loading: () => <p>Loading...</p> })
 
 
 const Create = () => {
     const [todos, setTodos] = useState<objUser>(initialTodo)
     const [isChecked, setIsChecked] = useState<boolean>(false)
-    // const [isSubmitted, setIsSubmitted] = useState<boolean>(false)
+    const [isSubmitted, setIsSubmitted] = useState<boolean>(false)
     const [isLoading, setIsLoading] = useState(false)
     const searchParams = useSearchParams();
     useEffect(() => {
@@ -187,7 +187,7 @@ const Create = () => {
                 }
 
             } else {
-                // setIsSubmitted(true)
+                setIsSubmitted(true)
                 setIsLoading(false)
             }
 
@@ -197,144 +197,153 @@ const Create = () => {
     }
     return (
         <div className={styles.fullGrid}>
-            {/* {JSON.stringify(todos)} */}
-            <div className={styles.boxTitular}>
-                <h1 className={Humane600.className}>REGÍSTRATE</h1>
-                <h2 className={poppins600.className}>
-                    y se unos de los pocos con gran oportunidad de ganar.
-                </h2>
-            </div>
-            <form onSubmit={handleSubmit} className={`${styles.formRegister} ${poppins400.className}`}>
-                <div>
-                    <label htmlFor="nombres">Nombres <span>*</span>:</label>
-                    <input
-                        type='text'
-                        placeholder='Ingresa tus nombres'
-                        className='form-control'
-                        value={todos.nombres}
-                        name='nombres'
-                        onChange={handleChange}
-                    />
-                </div>
-                <div>
-                    <label htmlFor="apellido_paterno">Apellidos Paterno <span>*</span>:</label>
-                    <input
-                        type='text'
-                        placeholder='Ingresa tus apellidos Paternos'
-                        className='form-control'
-                        value={todos.apellido_paterno}
-                        name='apellido_paterno'
-                        onChange={handleChange}
-                    />
-                </div>
-                <div>
-                    <label htmlFor="apellido_materno">Apellidos Materno:</label>
-                    <input
-                        type='text'
-                        placeholder='Ingresa tus apellidos Maternos'
-                        className='form-control'
-                        value={todos.apellido_materno}
-                        name='apellido_materno'
-                        onChange={handleChange}
-                    />
-                </div>
-                <div>
-                    <label htmlFor="celular">Celular <span>*</span>:</label>
-                    <input
-                        type='text'
-                        placeholder='Ingresa Celular'
-                        className='form-control'
-                        value={todos.celular}
-                        name='celular'
-                        onChange={handleChangeMovil}
-                    />
-                </div>
-                <div>
-                    <label htmlFor="dni">Nro. de DNI <span>*</span>:</label>
-                    <input
-                        type='text'
-                        placeholder='Ingresa Nro. de DNI'
-                        className='form-control'
-                        value={todos.dni}
-                        name='dni'
-                        onChange={handleChangeNumber}
-                    />
-                </div>
-                <div>
-                    <label htmlFor="birthdate">Fecha de Nacimiento <span>*</span>:</label>
-                    <input
-                        type="date"
-                        className="form-control"
-                        placeholder='Ingresa tu fecha de nacimiento'
-                        value={todos.birthdate}
-                        name='birthdate'
-                        onChange={handleChangeFull}
-                    />
-                </div>
-                <div className={styles.fullWidth}>
-                    <label htmlFor="direccion">Direcci&oacute;n:</label>
-                    <input
-                        type='text'
-                        placeholder='Ingresa tu direcci&oacute;n'
-                        className='form-control'
-                        value={todos.direccion}
-                        name='direccion'
-                        onChange={handleChangeFull}
-                    />
-                </div>
-                <div className={styles.fullWidth}>
-                    <label htmlFor="email">Correo electrónico <span>*</span>:</label>
-                    <input
-                        type='text'
-                        placeholder='Ingresa tus correo electrónico'
-                        className='form-control'
-                        value={todos.email}
-                        name='email'
-                        onChange={handleChangeFull}
-                    />
-                </div>
-                <div className={styles.fullWidth}>
-                    <label htmlFor="password">Contraseña <span>*</span>:</label>
-                    <input
-                        type='password'
-                        placeholder='Requiere como mínimo 8 caracteres'
-                        className='form-control'
-                        value={todos.password}
-                        name='password'
-                        onChange={handleChangeFull}
-                    />
-                </div>
-                <div className={styles.fullWidth}>
-                    <label htmlFor="password_confirmation">Confirma tu contraseña <span>*</span>:</label>
-                    <input
-                        type='password'
-                        placeholder='Requiere como mínimo 8 caracteres'
-                        className='form-control'
-                        value={todos.password_confirmation}
-                        name='password_confirmation'
-                        onChange={handleChangeFull}
-                    />
-                </div>
-                <div className={styles.fullWidth}>
-                    <label className="custom-checkbox">
-                        <input
-                            type="checkbox"
-                            id="isChecked"
-                            name="isChecked"
-                            checked={isChecked}
-                            onChange={handleCheckboxChange}
-                        />
-                        <span className="checkmark"></span>
-                        Acepto los <a href="#" target='_blank'>Términos y condiciones</a> y <a href="#" target='_blank'>Políticas
-                            de Privacidad</a>
-                    </label>
-                </div>
-                <div className={`${styles.fullWidth} ${styles.buttonBox}`}>
-                    <button type="submit" className='btn btn-primary btnForm' disabled={isLoading}>
-                        {isLoading ? 'Loading...' : 'Crear cuenta'}
-                    </button>
-                </div>
-            </form>
+            {
+                isSubmitted ? (
+                    <DynamicGraciasForm />
+                ) : (
+                    <>
+                        <div className={styles.boxTitular}>
+                            <h1 className={Humane600.className}>REGÍSTRATE</h1>
+                            <h2 className={poppins600.className}>
+                                y se unos de los pocos con gran oportunidad de ganar.
+                            </h2>
+                        </div>
+                        <form onSubmit={handleSubmit} className={`${styles.formRegister} ${poppins400.className}`}>
+                            {/* <pre>{JSON.stringify(todos)}</pre> */}
+                            <div>
+                                <label htmlFor="nombres">Nombres <span>*</span>:</label>
+                                <input
+                                    type='text'
+                                    placeholder='Ingresa tus nombres'
+                                    className='form-control'
+                                    value={todos.nombres}
+                                    name='nombres'
+                                    onChange={handleChange}
+                                />
+                            </div>
+                            <div>
+                                <label htmlFor="apellido_paterno">Apellidos Paterno <span>*</span>:</label>
+                                <input
+                                    type='text'
+                                    placeholder='Ingresa tus apellidos Paternos'
+                                    className='form-control'
+                                    value={todos.apellido_paterno}
+                                    name='apellido_paterno'
+                                    onChange={handleChange}
+                                />
+                            </div>
+                            <div>
+                                <label htmlFor="apellido_materno">Apellidos Materno:</label>
+                                <input
+                                    type='text'
+                                    placeholder='Ingresa tus apellidos Maternos'
+                                    className='form-control'
+                                    value={todos.apellido_materno}
+                                    name='apellido_materno'
+                                    onChange={handleChange}
+                                />
+                            </div>
+                            <div>
+                                <label htmlFor="celular">Celular <span>*</span>:</label>
+                                <input
+                                    type='text'
+                                    placeholder='Ingresa Celular'
+                                    className='form-control'
+                                    value={todos.celular}
+                                    name='celular'
+                                    onChange={handleChangeMovil}
+                                />
+                            </div>
+                            <div>
+                                <label htmlFor="dni">Nro. de DNI <span>*</span>:</label>
+                                <input
+                                    type='text'
+                                    placeholder='Ingresa Nro. de DNI'
+                                    className='form-control'
+                                    value={todos.dni}
+                                    name='dni'
+                                    onChange={handleChangeNumber}
+                                />
+                            </div>
+                            <div>
+                                <label htmlFor="birthdate">Fecha de Nacimiento <span>*</span>:</label>
+                                <input
+                                    type="date"
+                                    className="form-control"
+                                    placeholder='Ingresa tu fecha de nacimiento'
+                                    value={todos.birthdate}
+                                    name='birthdate'
+                                    onChange={handleChangeFull}
+                                />
+                            </div>
+                            <div >
+                                <label htmlFor="direccion">Direcci&oacute;n:</label>
+                                <input
+                                    type='text'
+                                    placeholder='Ingresa tu direcci&oacute;n'
+                                    className='form-control'
+                                    value={todos.direccion}
+                                    name='direccion'
+                                    onChange={handleChangeFull}
+                                />
+                            </div>
+                            <div>
+                                <label htmlFor="email">Correo electrónico <span>*</span>:</label>
+                                <input
+                                    type='text'
+                                    placeholder='Ingresa tus correo electrónico'
+                                    className='form-control'
+                                    value={todos.email}
+                                    name='email'
+                                    onChange={handleChangeFull}
+                                />
+                            </div>
+                            <div >
+                                <label htmlFor="password">Contraseña <span>*</span>:</label>
+                                <input
+                                    type='password'
+                                    placeholder='Requiere como mínimo 8 caracteres'
+                                    className='form-control'
+                                    value={todos.password}
+                                    name='password'
+                                    onChange={handleChangeFull}
+                                />
+                            </div>
+                            <div >
+                                <label htmlFor="password_confirmation">Confirma tu contraseña <span>*</span>:</label>
+                                <input
+                                    type='password'
+                                    placeholder='Requiere como mínimo 8 caracteres'
+                                    className='form-control'
+                                    value={todos.password_confirmation}
+                                    name='password_confirmation'
+                                    onChange={handleChangeFull}
+                                />
+                            </div>
+                            <div className={styles.fullWidth}>
+                                <label className="custom-checkbox">
+                                    <input
+                                        type="checkbox"
+                                        id="isChecked"
+                                        name="isChecked"
+                                        checked={isChecked}
+                                        onChange={handleCheckboxChange}
+                                    />
+                                    <span className="checkmark"></span>
+                                    Acepto los <a href="#" target='_blank'>Términos y condiciones</a> y <a href="#" target='_blank'>Políticas
+                                        de Privacidad</a>
+                                </label>
+                            </div>
+                            <div className={`${styles.fullWidth} ${styles.buttonBox}`}>
+                                <button type="submit" className='btn btn-primary btnForm' disabled={isLoading}>
+                                    {isLoading ? 'Loading...' : 'Crear cuenta'}
+                                </button>
+                            </div>
+                        </form>
+                    </>
+                )
+            }
+
         </div>
     )
 }

@@ -1,5 +1,6 @@
-'use Client'
+'use client'
 import Link from 'next/link'
+import { useRouter } from "next/navigation";
 
 import styles from '@/styles/sass/compra.module.sass'
 
@@ -16,16 +17,20 @@ const Poppins600 = Poppins({
     display: 'swap',
 })
 const CheckLogged = () => {
+    const router = useRouter();
+    const handleLogin = () => {
+        router.push('/auth/login')
+    }
     return (
         <div className={styles.containerLogin}>
             <h2 className={Humane600.className}>Iniciar sesión</h2>
             <div className={Poppins600.className}>
-                <button type='button' className='btnMain'>
+                <button type='button' onClick={handleLogin} className='btnMain'>
                     Iniciar Sesion
                 </button>
                 <p>
                     ¿No tienes una cuenta?
-                    <Link href="/auth">Registrarse</Link>
+                    <Link href="/auth/create">Registrarse</Link>
                 </p>
             </div>
         </div>
