@@ -31,7 +31,7 @@ export function validateRegisterUser(user: objUser) {
 
         console.log(age)
         console.log(hasBirthdayPassed)
-        if (age <= 18 || (hasBirthdayPassed)) {
+        if (age <= 18 && ((age === 18) && (!hasBirthdayPassed))) {
             errores.msjStatus = "Debe ser mayor de Edad, para participar"
             errores.status = true;
             return errores
