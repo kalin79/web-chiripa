@@ -80,10 +80,10 @@ const BannerMain = () => {
                     <div>
                         <div className={styles.itemsCarrusel}>
                             <Image
-                                src="/images/banner2.png"
+                                src="/images/banner3.webp"
                                 alt="Banner"
-                                width="2526"
-                                height="1610"
+                                width="1825"
+                                height="1280"
                             />
                         </div>
                     </div>

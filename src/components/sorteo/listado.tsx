@@ -9,7 +9,6 @@ import localFont from 'next/font/local'
 import { Poppins } from 'next/font/google'
 
 
-import FormularioSuscripcion from "@/components/suscripcion/formulario"
 import { ApiResponseSorteos, SorteosApi } from "@/interfaces/sorteos"
 
 
@@ -206,7 +205,7 @@ const ListadoSorteos: React.FC<Props> = ({ dataSorteos }) => {
                     </div>
                 </div>
             </div>
-            <FormularioSuscripcion />
+
         </>
     )
 }

@@ -91,7 +91,6 @@ const Home = () => {
                 width={5184}
                 height={4365}
                 alt="De Chiripa :: Preparate para lo que viene"
-                priority={true}
             />
             <div className="containerContent">
                 <Image
@@ -100,7 +99,7 @@ const Home = () => {
                     width={1326}
                     height={462}
                     alt="De Chiripa :: Inscribete y participa de los grandes sorteos que se viene"
-                    priority={true}
+
                 />
                 <Image
                     className={styles.imageRasgado2}
@@ -108,7 +107,7 @@ const Home = () => {
                     width={629}
                     height={318}
                     alt="De Chiripa :: Inscribete y participa de los grandes sorteos que se viene"
-                    priority={true}
+
                 />
                 <div ref={layer1Ref}>
                     <Premios />

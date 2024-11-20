@@ -275,19 +275,12 @@ const DetalleSorteo: React.FC<Props> = ({ dataObject }) => {
                                 </div>
                             </div>
                         </div>
-                        <div className={styles.descripcionBox}>
+                        <div className={`${styles.descripcionBox} estilosCMS`}>
                             <div
                                 className={styles.contentContainer} // Aplica estilos específicos
                                 dangerouslySetInnerHTML={{ __html: detalleSorteo.description ? detalleSorteo.description : 'Descripción no disponible' }}
                             ></div>
-                            {/* <h2 className={Poppins500.className}>Especificaciones principales</h2>
-                            <ul className={Poppins500.className}>
-                                <li>Doble motor de 600W c/u</li>
-                                <li>Luz LED y Bocina</li>
-                                <li>Display Central con NFC</li>
-                                <li>Autonomía: 55Km (modo 1)</li>
-                                <li>Velocidad Máxima: 50Km/h</li>
-                            </ul> */}
+
                         </div>
                         <div className={styles.addTicketBox}>
                             <div>

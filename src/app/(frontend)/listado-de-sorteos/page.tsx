@@ -2,6 +2,7 @@ import { Suspense, use } from 'react'
 
 // import { getToken } from "next-auth/jwt";
 // import { cookies } from "next/headers";
+import FormularioSuscripcion from "@/components/suscripcion/formulario"
 import { processApi } from '@/actions/form.actions'
 import ListarSorteos from "@/components/sorteo/listado"
 
@@ -36,9 +37,11 @@ const ListadoSorteos = () => {
     return (
         <>
             <div className={`backgroundContainer`}>
+                {/* {JSON.stringify(data)} */}
                 <Suspense fallback={<div>Loading...</div>}>
                     <ListarSorteos dataSorteos={data} />
                 </Suspense>
+                <FormularioSuscripcion />
             </div>
         </>
     )

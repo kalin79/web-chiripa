@@ -1,12 +1,31 @@
 @use 'vars/colors' as *
 @use 'vars/fonts' as *
 
+.botonBannerHeader
+    // bottom: 0.25rem
+    // top: auto
+    z-index: 10
+    &::before
+        content: ''
+        background: url('/images/arrow1.svg') no-repeat
+        background-size: contain
+        background-position: center
+        width: 45px
+        height: 82px
+        display: block
+    &.stickRight
+        right: 5rem
+    &.stickLeft
+        left: 3rem
+        &::before
+            transform: scale(-1)
+
 .stickLeft
-    left: 1rem
-    border: 1px solid red
+    left: 0rem
+    border: 0px solid red
 .stickRight
-    right: 1rem
-    border: 1px solid red
+    right: 0rem
+    border: 0px solid red
 .containerBanner
     // border: 1px solid red
     // background: red
@@ -26,7 +45,9 @@
             align-items: center
             flex-direction: column
             img
-                width: 75%
+                width: 70%
                 height: auto
                 object-fit: contain
                 object-position: center center
+                @media screen and (min-width: 1400px)
+                    width: 70%

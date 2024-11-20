@@ -27,6 +27,7 @@ const DetallePremio = async ({ params }: any) => {
     data = response;
     return (
         <div className={`backgroundContainer`}>
+            {/* {JSON.stringify(data)} */}
             <Suspense fallback={<div>Loading...</div>}>
                 <DetalleSorteo dataObject={data} />
             </Suspense>

@@ -10,7 +10,7 @@ const Humane600 = localFont({
     weight: '600',
     style: 'normal',
 })
-const Poppins500 = Poppins({
+const Poppins400 = Poppins({
     weight: '400',
     subsets: ['latin'],
     display: 'swap',
@@ -35,12 +35,11 @@ const Premios = () => {
                                 width={81}
                                 height={110}
                                 alt="De Chiripa :: Participa"
-                                priority={true}
                             />
                         </span><br />
                         <span className={styles.txtVerde}>SUPER PREMIOS</span>
                     </h2>
-                    <p className={`${Poppins500.className} descripcionPremioHome`}>
+                    <p className={`${Poppins400.className} descripcionPremioHome`}>
                         Ganar es más fácil con nosotros:
                         ¡Probabilidades superiores a la competencia!
                     </p>
@@ -53,7 +52,6 @@ const Premios = () => {
                             width={554}
                             height={851}
                             alt="De Chiripa :: Participa"
-                            priority={true}
                         />
                         <div className={styles.detallePremio}>
                             <div className={styles.imageContainer}>
@@ -68,7 +66,7 @@ const Premios = () => {
                             </div>
                             <div className={styles.footerContent}>
                                 <h3 className={Poppins700.className}>Celular Iphone 16 Pro</h3>
-                                <p className={Poppins500.className}>Entra en la tecnolog&iacute;a eSIM, pantalla retina y c&aacute;maras apple</p>
+                                <p className={Poppins400.className}>Entra en la tecnolog&iacute;a eSIM, pantalla retina y c&aacute;maras apple</p>
                             </div>
                         </div>
 
@@ -80,7 +78,6 @@ const Premios = () => {
                             width={554}
                             height={851}
                             alt="De Chiripa :: Participa"
-                            priority={true}
                         />
                         <div className={styles.detallePremio}>
                             <div className={styles.imageContainer}>
@@ -90,12 +87,11 @@ const Premios = () => {
                                     width={311}
                                     height={486}
                                     alt="De Chiripa :: SEGWAY NINEBOT"
-                                    priority={true}
                                 />
                             </div>
                             <div className={styles.footerContent}>
                                 <h3 className={Poppins700.className}>Scooter eléctrico</h3>
-                                <p className={Poppins500.className}>Super autonom&iacute;a para que te olvides del transporte p&uacute;blico</p>
+                                <p className={Poppins400.className}>Super autonom&iacute;a para que te olvides del transporte p&uacute;blico</p>
                             </div>
                         </div>
 
@@ -107,7 +103,6 @@ const Premios = () => {
                             width={554}
                             height={851}
                             alt="De Chiripa :: Participa"
-                            priority={true}
                         />
                         <div className={styles.detallePremio}>
                             <div className={`${styles.imageContainer}`}>
@@ -117,14 +112,13 @@ const Premios = () => {
                                     width={311}
                                     height={486}
                                     alt="De Chiripa :: Iphone Pro Max 15"
-                                    priority={true}
                                 />
                             </div>
                             <div className={styles.footerContent}>
                                 <h3 className={Poppins700.className}>
                                     Laptop Corei 7 Última generación
                                 </h3>
-                                <p className={Poppins500.className}>
+                                <p className={Poppins400.className}>
                                     Potencia y velocidad para tus trabajos
                                 </p>
                             </div>

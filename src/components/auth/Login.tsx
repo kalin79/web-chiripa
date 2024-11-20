@@ -168,7 +168,7 @@ const Login = () => {
                             </div>
                         </div>
                     </label>
-                    <Link href='/recuperar-contrasena'>Olvidaste tu contraseña?</Link>
+                    <Link href='/auth/reset-password'>Olvidaste tu contraseña?</Link>
                 </div>
                 <div>
                     <button type="submit" className='btn btn-primary btnForm' disabled={isLoading}>

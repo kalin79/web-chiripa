@@ -1,7 +1,7 @@
 'use Client'
 import Image from 'next/image'
 import styles from '@/styles/sass/compra.module.sass'
-import CheckLogged from '@/components/login/CheckLogged'
+import CheckLogged from '@/components/auth/CheckLogged'
 import FormularioCompra from '@/components/procesarCompra/Formulario'
 
 const RegistroCompra = () => {

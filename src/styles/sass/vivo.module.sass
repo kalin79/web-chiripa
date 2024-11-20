@@ -1,0 +1,52 @@
+@use 'vars/colors' as *
+@use 'vars/fonts' as *
+
+.pageVivo
+    overflow: hidden
+.gridContainer
+    padding-top: 3rem
+    .bannerVivoContainer
+        grid-column: 2 / span 10
+        display: flex
+        justify-content: space-between
+        align-items: center
+        position: relative
+        background-image: url('/images/bgVivo.webp')
+        background-size: cover
+        background-repeat: no-repeat
+        background-position: top
+        height: 155px
+        box-sizing: border-box
+        padding: 0 3.5rem
+        .sticker3
+            position: absolute
+            top: 50%
+            transform: translateY(-50%)
+            left: -4.25rem
+        .sticker4
+            position: absolute
+            top: 50%
+            transform: translateY(-50%)
+            right: -10.5rem
+        > div
+            &:nth-of-type(2)
+                .btnMain
+                    width: 15rem
+                    height: 3.25rem
+                    text-decoration: none
+            &:nth-of-type(1)
+                position: relative
+                .sticker2
+                    position: absolute
+                    right: -3rem
+                    top: .5rem
+                .sticker1
+                    position: absolute
+                    top: -1rem
+                    left: -1.25rem
+                h2
+                    font-size: 5.625rem
+                    line-height: 1em
+                    color: white
+                    span
+                        color: $verdeLimon

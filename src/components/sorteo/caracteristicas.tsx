@@ -52,7 +52,7 @@ const Caracteristicas: React.FC<Props> = ({ dataObject }) => {
                 alt="De Chiripa :: Formulario Suscribete"
                 priority={true}
             />
-            <div className='container'>
+            <div className='container estilosCMS'>
                 {/* {JSON.stringify(detalleSorteo)} */}
                 <div className={`${styles.tabCaracteristicas}`}>
                     <div className={styles.headerTab}>

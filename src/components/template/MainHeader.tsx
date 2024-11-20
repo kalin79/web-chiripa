@@ -92,7 +92,7 @@ const Header = () => {
                     </div>
                     <div>
                         <div className={styles.accessBox}>
-                            <Link href="/login">
+                            <Link href="/auth/login">
                                 <Image
                                     className={styles.userNav}
                                     src="/images/user.svg"

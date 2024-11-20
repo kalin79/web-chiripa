@@ -1,0 +1,141 @@
+@use 'vars/colors' as *
+@use 'vars/fonts' as *
+.btnBoxGanadores
+    display: flex
+    justify-content: center
+    margin-top: 2rem
+    .btnMain
+        text-decoration: none
+        width: 250px
+        height: 52px
+.cardSorteo
+    width: 100%
+    position: relative
+    padding: 3rem 1rem
+    overflow: hidden
+    .cardFecha
+        position: absolute
+        top: 1rem
+        left: 1rem
+        z-index: 10
+        border-radius: 10px
+        background: $naranja
+        width: 96px
+        height: 50px
+        box-sizing: border-box
+        padding: .25rem .15rem .25rem .75rem
+        &.cardFechaFull
+            width: auto
+            padding-right: 1rem
+
+        h3
+            font-size: 0.875rem
+            color: white
+            line-height: 1.25em
+        h2
+            @extend %titularCard
+            color: white
+            line-height: 1em
+    .fondoCardSorteo
+        position: absolute
+        top: 0
+        left: 0
+        width: 100%
+        height: 100%
+        object-fit: cover
+    .cardFooter
+        background-image: url('/images/manta.webp')
+        background-size: cover
+        background-repeat: no-repeat
+        background-position: center
+        margin-top: 1rem
+        max-width: 325px
+        width: 100%
+        height: 107px
+        position: relative
+        box-sizing: border-box
+        padding: 1rem 2.75rem
+        text-align: center
+        h4
+            font-size: 1.25rem
+            color: white
+            line-height: 1em
+        h5
+            font-size: 1rem
+            color: $negroClaro4
+            line-height: 1.75em
+    .cardInfo
+        position: relative
+        z-index: 2
+        margin-top: 1rem
+        a
+            display: flex
+            justify-content: center
+            align-items: center
+            gap: .25rem
+        h2
+            @extend %titularCard
+            text-align: center
+        h3
+            font-size: 0.875rem
+            color: $negroClaro2
+            text-align: center
+    .cardImage
+        position: relative
+        z-index: 2
+        height: 324px
+        @media screen and (min-width: 992px)
+            height: 280px
+        @media screen and (min-width: 1400px)
+            height: 324px
+        img
+            width: 100%
+            height: 100%
+            object-fit: contain
+
+.ganadoresSeccion
+    padding: 6rem 0 10rem
+    border: 0px solid red
+    position: relative
+.gridContainer2
+    margin-top: 6rem
+    > div
+        &:nth-of-type(1)
+            grid-column: 1 / span 4
+        &:nth-of-type(2)
+            grid-column: 5 / span 4
+        &:nth-of-type(3)
+            grid-column: 9 / -1
+.gridContainer
+    > div
+        &:nth-of-type(1)
+            grid-column: 1 / span 6
+            h2
+                color: white
+                font-size: 7.375rem
+                position: relative
+                @media screen and (min-width: 992px)
+                    font-size: 6.5rem
+                    line-height: .75em
+                @media screen and (min-width: 1400px)
+                    font-size: 7.375rem
+                    line-height: .75em
+                span
+                    color: $verdeLimon
+                    font-size: 10.5rem
+                    line-height: .75em
+                    position: relative
+                    @media screen and (min-width: 992px)
+                        font-size: 9.5rem
+                        line-height: .75em
+                    @media screen and (min-width: 1400px)
+                        font-size: 10.5rem
+                        line-height: .75em
+                    .sticker2
+                        position: absolute
+                        top: -1.8rem
+                        right: -2rem
+                .sticker1
+                    position: absolute
+                    bottom: -2.75rem
+                    left: 0

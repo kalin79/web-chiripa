@@ -133,14 +133,7 @@ const Formulario = () => {
     }
     return (
         <div className={`${styles.suscribeteBox}`}>
-            <Image
-                className={styles.rasgadoBox}
-                src="/images/rasgado.webp"
-                width={1326}
-                height={890}
-                alt="De Chiripa :: Formulario Suscribete"
-                priority={true}
-            />
+
             <div className='container'>
                 {
                     isSubmitted ? (
@@ -152,17 +145,17 @@ const Formulario = () => {
                             <div>
                                 <Image
                                     className={styles.chicoBox}
-                                    src="/images/chico.png"
-                                    width={908}
-                                    height={918}
+                                    src="/images/chica.webp"
+                                    width={715}
+                                    height={788}
                                     alt="De Chiripa :: Formulario Suscribete"
                                     priority={true}
                                 />
                             </div>
                             <div>
                                 <h2 className={Humane600.className}>
-                                    SUSCRÍBETE Y QUE NO SE TE ESCAPE <br />
-                                    <span>NI UNA DE CHIRIPA</span>
+                                    SUSCRÍBETE Y QUE NO SE TE <br />
+                                    ESCAPE <span>NI UNA DE CHIRIPA</span>
                                 </h2>
                                 <h3 className={Poppins500.className}>
                                     ¿Te imaginas enterarte de sorteos de laptops, celulares de alta gama, y hasta scooters antes que nadie?
