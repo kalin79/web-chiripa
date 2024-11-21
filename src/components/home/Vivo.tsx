@@ -21,7 +21,7 @@ const Vivo = () => {
     // }, [])
     return (
         <div className={styles.pageVivo}>
-            {JSON.stringify(boolVivo)} SSS
+            {/* {JSON.stringify(boolVivo)} SSS */}
             <Image
                 className={`imageBackGroundContainer`}
                 src="/images/topBg.png"

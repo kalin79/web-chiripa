@@ -9,7 +9,7 @@ const BannerLogin = () => {
         <div>
             <Image
                 className={styles.imageInfluencer}
-                src="/images/influencer.webp"
+                src="/images/influ2.webp"
                 alt="Login :: Chiripa"
                 width="1193"
                 height="1260"
