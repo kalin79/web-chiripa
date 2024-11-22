@@ -1,0 +1,42 @@
+meta {
+  name: order
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{BACKEND_URL}}participante/order
+  body: json
+  auth: none
+}
+
+headers {
+  Authorization-secret: TSTCbj7mQO2xEOuwEK08RajQS1OxndfY
+  Content-Type: application/json
+}
+
+body:json {
+  {
+      "email": "c.augusto.espinoza@gmail.com",
+      "nombres": "Carlos",
+      "apellidos": "Espinoza",
+      "tipo_documento": "dni",
+      "numero_documento": "40609717",
+      "telefono": "906011090",
+      "sub_total": 30,
+      "total_price": 30,
+      "status_pay": 1,
+      "discount": 0,
+      "sorteoListado": [
+        {
+          "id": 1,
+          "title": "scooter",
+          "price": 5,
+          "quantity": 1,
+          "image": "",
+          "precio": 5,
+          "cantidad": 1
+        }
+      ]
+    }
+}

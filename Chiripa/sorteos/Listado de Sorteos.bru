@@ -1,0 +1,16 @@
+meta {
+  name: Listado de Sorteos
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{BACKEND_URL}}sorteos/lista
+  body: none
+  auth: none
+}
+
+headers {
+  Authorization-secret: TSTCbj7mQO2xEOuwEK08RajQS1OxndfY
+  Content-Type: application/json
+}

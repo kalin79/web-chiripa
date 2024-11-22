@@ -1,0 +1,70 @@
+@use 'vars/colors' as *
+@use 'vars/fonts' as *
+
+.seccionPreguntas
+    position: relative
+    padding-top: 12rem
+    padding-bottom: 14rem
+    border: 0px solid red
+    .accordionContainer
+        margin-top: 3rem
+        position: relative
+        border: 0px solid red
+        .sticker1
+            position: absolute
+            bottom: -3.5rem
+            left: -7.5rem
+        .sticker2
+            position: absolute
+            top: 3.5rem
+            right: -7.5rem
+        .accordionItem
+            border: 1px solid $verdeLimon
+            padding: 1rem 2rem
+            border-radius: 20px
+            margin-bottom: 1rem
+            // transition: .5s all ease-in-out
+            .accordionBody
+                height: 0
+                clip-path: polygon(99.95% 100%, 100% 100%, -0.44% 104.17%, -0.91% 107.29%)
+                transition: .5s all ease-in-out
+                visibility: hidden
+                p
+                    color: white
+                    font-size: 1rem
+            .accordionHeader
+                display: flex
+                justify-content: space-between
+                align-items: center
+                cursor: pointer
+                img
+                    transform: rotate(180deg)
+                    transition: .5s all ease-in-out
+                h2
+                    color: $verdeLimon
+                    font-size: 1.125rem
+            &.active
+                .accordionBody
+                    margin-top: 1rem
+                    height: auto
+                    clip-path: polygon(99.95% -5.21%, 100% 100%, -0.44% 104.17%, -0.32% -7.29%)
+                    visibility: visible
+                .accordionHeader
+                    img
+                        transform: rotate(0deg)
+    .gridContainer
+        > div
+            &:nth-of-type(1)
+                grid-column: 1 / span 6
+            &:nth-of-type(2)
+                grid-column: 3 / span 8
+
+    h1
+        position: relative
+        @extend %titulares
+        span
+            color: $verdeLimon
+        .stickerH1
+            position: absolute
+            top: -2.25rem
+            left: -2.15rem

@@ -1,4 +1,5 @@
 'use client'
+
 import Link from 'next/link'
 import { useRouter } from "next/navigation";
 
@@ -16,7 +17,9 @@ const Poppins600 = Poppins({
     subsets: ['latin'],
     display: 'swap',
 })
+
 const CheckLogged = () => {
+
     const router = useRouter();
     const handleLogin = () => {
         router.push('/auth/login')

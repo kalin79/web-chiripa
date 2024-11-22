@@ -1,5 +1,8 @@
 'use client'
-import { useState, useContext } from 'react';
+import { useSession } from "next-auth/react";
+
+import { useState, useContext, useEffect, ChangeEvent } from 'react';
+
 import { cartContext } from '@/context/CartContent';
 
 import Image from 'next/image'
@@ -8,7 +11,12 @@ import styles from '@/styles/sass/compra.module.sass'
 import { Poppins } from 'next/font/google'
 
 import { formatCurrency } from "@/helpers/funciones"
+import { CartUser } from "@/interfaces/cart"
+import Swal from 'sweetalert2'
 
+import { validateCompra } from "@/helpers/validacion-compra"
+import gsap from "gsap";
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 
 const Poppins600 = Poppins({
     weight: '600',
@@ -21,19 +29,69 @@ const Poppins400 = Poppins({
     subsets: ['latin'],
     display: 'swap',
 })
+
+type FormElement = HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
+
+
+const initialTodo = {
+    email: '',
+    nombres: '',
+    apellidos: '',
+    surname: '',
+    tipo_documento: '',
+    numero_documento: '',
+    telefono: '',
+    sub_total: '',
+    total_price: '',
+    status_pay: '',
+    discount: '',
+    sorteoListado: []
+}
 const FormularioCompra = () => {
+    const { data: session } = useSession();
     const [isOpen, setIsOpen] = useState(false)
     const [isOpenDatos, setIsOpenDatos] = useState(false)
+
+    const [todos, setTodos] = useState<CartUser>(initialTodo)
+    // const [isChecked, setIsChecked] = useState<boolean>(false)
+
     const isLogin = true
     const { cartProducts, totalPriceTicket } = useContext(cartContext);
     const descuento = 0
     const email = "c.augusto.espinoza@gmail.com"
-    const handlePagar = () => {
-        setIsOpen(true)
+    useEffect(() => {
+        if (session && session.user) {
+            setTodos(prevTodos => ({
+                ...prevTodos,
+                email: session.user.email ?? '',
+                nombres: session.user.name ?? '',
+            }));
+            setIsOpenDatos(true);
+        } else {
+            setIsOpenDatos(false);
+        }
+    }, [session]);
+    const handlePagar = async () => {
+
+        const erroresValidacion = await validateCompra(todos);
+        if (erroresValidacion.status) {
+            setIsOpen(false)
+            Swal.fire({
+                title: 'Error!',
+                text: `${erroresValidacion.msjStatus}`,
+                icon: 'error',
+                confirmButtonText: 'Cerrar'
+            })
+        } else {
+            gsap.to(window, { duration: .5, scrollTo: '#paymentForm' });
+            setIsOpen(true)
+        }
+
+
     }
-    const handleOpenDatos = () => {
-        setIsOpenDatos(true)
-    }
+    // const handleOpenDatos = () => {
+    //     setIsOpenDatos(true)
+    // }
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
         if (!window.Culqi) {
@@ -72,6 +130,54 @@ const FormularioCompra = () => {
         };
 
     }
+    const handleChangeFull = (e: ChangeEvent<FormElement>) => {
+        const { name, value } = e.target;
+        setTodos(prevTodos => ({
+            ...prevTodos,
+            [name]: value
+        }))
+    }
+    const handleChange = (e: ChangeEvent<FormElement>) => {
+        const { name, value } = e.target;
+        if (value.trim() === "") {
+            setTodos(prevTodos => ({
+                ...prevTodos,
+                [name]: value
+            }))
+            // Permitir el campo vacío o solo espacios
+            // Sin error si el campo está vacío o solo tiene espacios
+        } else if (/^[a-zA-Z']*$/.test(value.replace(/\s/g, ''))) {
+            setTodos(prevTodos => ({
+                ...prevTodos,
+                [name]: value
+            }))
+        }
+    }
+    const handleChangeMovil = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target;
+        // Permitir borrar (campo vacío) y validar números de 1 a 10 dígitos
+
+        if (/^\d*$/.test(value) && value.length <= 9 && (value === "" || value[0] !== "0")) {
+            setTodos(prevTodos => ({
+                ...prevTodos,
+                [name]: value
+            }))
+        }
+    };
+
+    const handleChangeNumber = (e: ChangeEvent<FormElement>) => {
+        // Permitir solo dígitos numéricos
+        const { name, value } = e.target;
+        if (/^\d*$/.test(value) && value.length <= 12) {
+            setTodos(prevTodos => ({
+                ...prevTodos,
+                [name]: value
+            }))
+        }
+    }
+    useEffect(() => {
+        gsap.registerPlugin(ScrollToPlugin)
+    }, []);
     return (
         <div className={styles.layoutContainer}>
             <div className={styles.orderContainer}>
@@ -83,9 +189,10 @@ const FormularioCompra = () => {
                                 <div className={styles.LineUp}></div>
                             </div>
                             <div className={styles.accordionForm}>
-                                <div className={styles.accordionHeader} onClick={handleOpenDatos}>
+                                <div className={styles.accordionHeader}>
                                     <div className={styles.accordionInfo}>
                                         <h3>Datos del Contacto</h3>
+                                        {JSON.stringify(todos)}
                                     </div>
                                     <div className={`${styles.accordionArrow} ${(isLogin && isOpenDatos) ? styles.expanded : ''}`} >
                                         <Image
@@ -102,7 +209,10 @@ const FormularioCompra = () => {
                                             <input
                                                 type="text"
                                                 className={`form-control`}
+                                                name="email"
+                                                value={todos.email ?? ''}
                                                 placeholder='Correo electrónico*'
+                                                onChange={handleChangeFull}
                                             />
                                         </div>
                                         <div className={styles.fullWidth}>
@@ -113,6 +223,9 @@ const FormularioCompra = () => {
                                                 type="text"
                                                 className={`form-control`}
                                                 placeholder='Nombres:*'
+                                                name="nombres"
+                                                onChange={handleChange}
+                                                value={todos.nombres ?? ''}
                                             />
                                         </div>
                                         <div className={styles.fullWidth}>
@@ -120,21 +233,22 @@ const FormularioCompra = () => {
                                                 type="text"
                                                 className={`form-control`}
                                                 placeholder='Apellidos:*'
+                                                name="apellidos"
+                                                onChange={handleChange}
+                                                value={todos.apellidos ?? ''}
+
                                             />
                                         </div>
                                         <div>
                                             <select
                                                 className={styles.customSelect}
-                                                name="tipoEvento"
-                                            // value={selectedOptionTipo}
-                                            // onChange={(e) => handleSelectChangeTipo(e)}
+                                                name="tipo_documento"
+                                                value={todos.tipo_documento}
+                                                onChange={handleChangeFull}
                                             >
                                                 <option value="">Tipo de documento:*</option>
-                                                {/* {
-                                                    tiposEventos.map((tipo: any, index: number) => (
-                                                        <option key={index} value={tipo.uuid}>{tipo.name}</option>
-                                                    ))
-                                                } */}
+                                                <option value="dni">D.N.I</option>
+                                                <option value="ce">C.E</option>
                                             </select>
                                         </div>
                                         <div>
@@ -142,6 +256,9 @@ const FormularioCompra = () => {
                                                 type="text"
                                                 className={`form-control`}
                                                 placeholder='Número de documento:*'
+                                                name="numero_documento"
+                                                value={todos.numero_documento}
+                                                onChange={handleChangeNumber}
                                             />
                                         </div>
                                         <div className={styles.fullWidth}>
@@ -149,6 +266,9 @@ const FormularioCompra = () => {
                                                 type="text"
                                                 className={`form-control`}
                                                 placeholder='Teléfono:*'
+                                                name="telefono"
+                                                value={todos.telefono}
+                                                onChange={handleChangeMovil}
                                             />
                                         </div>
                                         <div className={styles.btnForm}>
@@ -159,7 +279,7 @@ const FormularioCompra = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className={styles.paymentForm}>
+                        <div className={styles.paymentForm} id="paymentForm">
                             <div className={styles.accordionLine}>
                                 <p className={isOpen ? styles.active : ''}>2</p>
                                 {/* <div className={styles.LineUp}></div> */}
@@ -252,28 +372,32 @@ const FormularioCompra = () => {
                         <div className={styles.bodyDetailorder}>
                             <div className={styles.bodyOverflow}>
                                 {
-                                    cartProducts.map((item, index) => (
-                                        <div key={index}>
-                                            <Image
-                                                src={item.image}
-                                                width={110}
-                                                height={120}
-                                                alt="Datos del Contacto"
-                                            />
-                                            <div>
-                                                <h3>
-                                                    {item.title}
-                                                </h3>
-                                                <div className={styles.subTotalInfo}>
-                                                    <span>{item.quantity} ticket</span>
-                                                    <p>
-                                                        {formatCurrency(item.price * item.quantity)}
-                                                    </p>
-                                                </div>
+                                    cartProducts && cartProducts.length > 0 ? (
+                                        cartProducts.map((item, index) => (
+                                            <div key={index}>
+                                                <Image
+                                                    src={item.image}
+                                                    width={110}
+                                                    height={120}
+                                                    alt="Datos del Contacto"
+                                                />
+                                                <div>
+                                                    <h3>
+                                                        {item.title}
+                                                    </h3>
+                                                    <div className={styles.subTotalInfo}>
+                                                        <span>{item.quantity} ticket</span>
+                                                        <p>
+                                                            {formatCurrency(item.price * item.quantity)}
+                                                        </p>
+                                                    </div>
 
+                                                </div>
                                             </div>
-                                        </div>
-                                    ))
+                                        ))
+                                    ) : (
+                                        <p>No hay productos en el carrito.</p>
+                                    )
                                 }
                             </div>
                         </div>

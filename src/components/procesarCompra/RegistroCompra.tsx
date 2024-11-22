@@ -1,10 +1,13 @@
-'use Client'
+'use client'
+import { useSession } from "next-auth/react";
+// signIn, signOut, 
 import Image from 'next/image'
 import styles from '@/styles/sass/compra.module.sass'
 import CheckLogged from '@/components/auth/CheckLogged'
 import FormularioCompra from '@/components/procesarCompra/Formulario'
 
 const RegistroCompra = () => {
+    const { data: session } = useSession();
     return (
         <div className={`${styles.bgRegistroContainer}`}>
             <Image
@@ -18,7 +21,11 @@ const RegistroCompra = () => {
             <div className='container'>
                 <div className={`gridContainer ${styles.gridContainer}`}>
                     <div>
-                        <CheckLogged />
+                        {
+                            (!session?.user) && (
+                                <CheckLogged />
+                            )
+                        }
                     </div>
                     <div>
                         <FormularioCompra />

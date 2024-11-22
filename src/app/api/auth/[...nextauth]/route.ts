@@ -9,48 +9,48 @@ const handler = NextAuth({
                 password: { label: "Password", type: "password" }
             },
             async authorize(credentials) {
+                console.log(`${process.env.NEXT_PUBLIC_BACKEND_URL}participante/authenticate`)
                 try {
-                    console.log(`${process.env.NEXT_PUBLIC_BACKEND_URL}user/login/`)
+
 
                     const res = await fetch(
-                        `${process.env.NEXT_PUBLIC_BACKEND_URL}user/login/`,
+                        `${process.env.NEXT_PUBLIC_BACKEND_URL}participante/authenticate`,
                         {
                             method: "POST",
                             body: JSON.stringify({
                                 email: credentials?.email,
                                 password: credentials?.password,
                             }),
-                            headers: { "Content-Type": "application/json" },
+                            headers: {
+                                "Content-Type": "application/json",
+                                "Authorization-secret": "TSTCbj7mQO2xEOuwEK08RajQS1OxndfY"
+                            },
                         }
                     );
-                    console.log(res)
-                    const user = await res.json();
-                    console.log('user', user)
-                    if (user.errors) {
-                        const errors = {
-                            message: [
-                                user.errors.non_field_errors
-                            ]
-                        }
-                        throw errors;
+                    if (!res.ok) {
+                        throw new Error("Fallo en la autenticación");
                     }
 
-                    console.log('user', user)
-                    const user2 = {
-                        id: user.token.access,
-                        token: user.token.access,
-                        mgs: user.mgs,
-                        name: user.Data.nombres,
-                        lastname: user.Data.apellidos,
-                        nivel: user.Data.Nivel,
-                        image: user.Data.foto,
-                        email: credentials?.email,
+                    const user = await res.json();
+                    if (user.errors) {
+                        throw new Error(user.errors.non_field_errors || "Error desconocido");
                     }
-                    return user2;
+                    console.log('user', user)
+                    return {
+                        id: user.user.id,
+                        token: user.access_token,
+                        name: user.user.nombres,
+                        email: user.user.email,
+                        expires_in: user.expires_in
+                    };
 
                 } catch (err) {
-                    console.log('error', err)
-                    throw err
+                    if (err instanceof Error) {
+                        console.error("Error:", err.message);
+                    } else {
+                        console.error("Error desconocido:", err);
+                    }
+                    throw new Error("Error de autenticación");
                 }
             }
         })
@@ -67,15 +67,18 @@ const handler = NextAuth({
     },
     callbacks: {
         async jwt({ token, user }) {
+            console.log(user)
             if (user) {
-                token.id = user.id;
+                token.accessToken = user.accessToken ?? undefined;
+                // token.token = user.token ?? undefined;
             }
             return token;
         },
         async session({ session, token }) {
-            session.user.accessToken = token.accessToken;
-            session.user.token = token.token;
-            session.user.lastname = token.lastname;
+            console.log("Token recibido:", token);
+            session.user.accessToken = token.accessToken ?? undefined;
+            // session.user.token = token.token ?? undefined;
+
             return session;
         },
     },

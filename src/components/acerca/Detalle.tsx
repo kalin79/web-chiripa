@@ -59,24 +59,26 @@ const Detalle = () => {
                         <div className={styles.XchicoBoxImage}>
                             <Image
                                 className={styles.sticker2}
-                                src='/images/x.webp'
-                                width='1569'
-                                height='1239'
+                                src='/images/c.webp'
+                                width='1278'
+                                height='1678'
                                 alt=''
                             />
                         </div>
                     </div>
                     <div>
-                        <Image
-                            className={styles.sticker2}
-                            src='/images/logoVerde.svg'
-                            width='161'
-                            height='163'
-                            alt=''
-                        />
-                        <p className={Poppins400.className}>
-                            Creemos que la chiripa no es solo un golpe de suerte; es ese momento único que puede cambiarte el día, el mes... ¡o la vida! Nuestro rollo es simple: conectar con jóvenes como tú, que siempre están buscando una oportunidad para ganar en grande.
-                        </p>
+                        <div>
+                            <Image
+                                className={styles.sticker2}
+                                src='/images/logoVerde.svg'
+                                width='161'
+                                height='163'
+                                alt=''
+                            />
+                            <p className={Poppins400.className}>
+                                Creemos que la chiripa no es solo un golpe de suerte; es ese momento único que puede cambiarte el día, el mes... ¡o la vida! Nuestro rollo es simple: conectar con jóvenes como tú, que siempre están buscando una oportunidad para ganar en grande.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>

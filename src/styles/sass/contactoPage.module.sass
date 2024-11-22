@@ -1,0 +1,80 @@
+@use 'vars/colors' as *
+@use 'vars/fonts' as *
+
+.seccionContacto
+    padding-top: 10rem
+    padding-bottom: 28rem
+    position: relative
+    .formContainer
+        margin-top: -2rem
+    form
+        .row
+            margin-top: 1rem
+        .rowFlex
+            display: flex
+            justify-content: space-between
+            gap: 1rem
+            margin-top: 1rem
+            > div
+                flex: 1 1 50%
+        button[type="submit"]
+            grid-column: 7 / -1
+            width: 295px
+            height: 52px
+            background: $naranja
+            border-radius: 40px
+            border: 0
+            box-shadow: $naranjaOscuro 0px 4px 0px 0px
+            color: white
+            font-size: 16px
+            line-height: 3.25rem
+            text-align: center
+            text-decoration: none
+
+        label
+            font-size: 14px
+            color: white
+            margin-bottom: .25rem
+        textarea
+            font-size: 14px
+            color: black
+            border: 1px solid $morado
+            border-radius: 20px
+            height: 180px
+            padding: 1.5rem
+            &:focus
+                outline: none
+                box-shadow: none
+            &::placeholder
+                color: $plomo
+        input[type="text"],
+        input[type="password"]
+            font-size: 14px
+            color: black
+            border: 1px solid $morado
+            border-radius: 30px
+            height: 52px
+            padding: 0 1.5rem
+            &:focus
+                outline: none
+                box-shadow: none
+            &::placeholder
+                color: $plomo
+    .gridContainer
+        > div
+            &:nth-child(1)
+                grid-column: 1 / span 6
+            &:nth-child(2)
+                grid-column: 7 / -1
+
+    h1
+        @extend %titulares
+        color: $verdeLimon
+        span
+            color: white
+            position: relative
+        .stickerH1
+            position: absolute
+            top: -2.5rem
+            right: -1.75rem
+            transform: scaleX(-1)

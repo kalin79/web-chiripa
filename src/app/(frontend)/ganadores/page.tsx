@@ -1,22 +1,18 @@
 import { Suspense } from 'react'
-import DetalleSeccion from "@/components/acerca/Detalle"
-import VisionSeccion from "@/components/acerca/Vision"
-import EquipoSeccion from "@/components/acerca/Equipo"
+import ListadoSeccion from "@/components/ganadores/Listado"
 import FormularioSuscripcion from "@/components/suscripcion/formulario"
 
 
-const AcercaChiripa = () => {
+const Ganadores = () => {
     return (
         <div className={`backgroundContainer`}>
             {/* {JSON.stringify(data)} */}
             <Suspense fallback={<div>Loading...</div>}>
-                <DetalleSeccion />
-                <VisionSeccion />
-                <EquipoSeccion />
+                <ListadoSeccion />
             </Suspense>
             <FormularioSuscripcion />
         </div>
     )
 }
 
-export default AcercaChiripa
+export default Ganadores
