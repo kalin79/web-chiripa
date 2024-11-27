@@ -2,15 +2,19 @@
 @use 'vars/fonts' as *
 
 .seccionBenefecio
-    padding: 12rem 0 10rem
+    padding: 6rem 0 12rem
     border: 0px solid red
     position: relative
+    @media screen and (min-width: 992px)
+        padding: 12rem 0 10rem
     .gridContainer
         > div
             &:nth-of-type(1)
-                grid-column: 1 / span 8
+                grid-column: 1 / -1
                 display: flex
                 justify-content: flex-start
+                @media screen and (min-width: 992px)
+                    grid-column: 1 / span 8
                 > div
                     h1
                         color: $verdeLimon
@@ -47,10 +51,12 @@
                             object-fit: contain
                             height: auto
             &:nth-of-type(2)
-                grid-column: 9 / -1
+                grid-column: 1 / -1
                 padding-top: 4rem
                 position: relative
                 left: 0rem
+                @media screen and (min-width: 992px)
+                    grid-column: 9 / -1
                 .flechaSticker
                     position: absolute
                     top: 3.5rem

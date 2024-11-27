@@ -79,12 +79,23 @@ const BannerMain = () => {
                 <Slider {...settings}>
                     <div>
                         <div className={styles.itemsCarrusel}>
-                            <Image
-                                src="/images/banner3.webp"
-                                alt="Banner"
-                                width="1825"
-                                height="1280"
-                            />
+                            <picture>
+                                <source
+                                    srcSet="/images/bannerM2.webp"
+                                    media="(max-width: 992px)" // Imagen para móviles
+                                />
+                                <source
+                                    srcSet="/images/banner3.webp"
+                                    media="(min-width: 992px)" // Imagen para escritorio
+                                />
+                                <Image
+                                    src="/images/banner3.webp" // Imagen fallback
+                                    alt="Descripción de la imagen"
+                                    width={1825}
+                                    height={1280}
+                                    priority
+                                />
+                            </picture>
                         </div>
                     </div>
                 </Slider>

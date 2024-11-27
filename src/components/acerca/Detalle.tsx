@@ -3,7 +3,7 @@ import Image from 'next/image'
 import localFont from 'next/font/local'
 import { Poppins } from 'next/font/google'
 import styles from '@/styles/sass/acercaPage.module.sass'
-import RasgadoIzq from '@/components/fondo/RasgadoIzq'
+// import RasgadoIzq from '@/components/fondo/RasgadoIzq'
 const Humane600 = localFont({
     src: '../../../public/fonts/Humane-SemiBold.woff2',
     weight: '600',
@@ -20,7 +20,14 @@ const Poppins400 = Poppins({
 const Detalle = () => {
     return (
         <div className={styles.seccionAcerca}>
-            <RasgadoIzq style={{ bottom: "-26rem" }} />
+            {/* <RasgadoIzq style={{ bottom: "-26rem" }} /> */}
+            <Image
+                className={`rasgadoIzq4`}
+                src="/images/rasgado.webp"
+                width={1326}
+                height={890}
+                alt="De Chiripa :: Formulario Suscribete"
+            />
             <Image
                 className={`imageBackGroundContainer`}
                 src="/images/topBg.png"

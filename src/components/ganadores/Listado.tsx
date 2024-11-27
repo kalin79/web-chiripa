@@ -3,7 +3,7 @@ import Image from 'next/image'
 import localFont from 'next/font/local'
 import { Poppins } from 'next/font/google'
 import styles from '@/styles/sass/ganadoresPage.module.sass'
-import RasgadoIzq from '@/components/fondo/RasgadoIzq'
+// import RasgadoIzq from '@/components/fondo/RasgadoIzq'
 const Humane600 = localFont({
     src: '../../../public/fonts/Humane-SemiBold.woff2',
     weight: '600',
@@ -30,7 +30,14 @@ const Poppins700 = Poppins({
 const Listado = () => {
     return (
         <div className={styles.ganadoresAcerca}>
-            <RasgadoIzq style={{ bottom: "-10rem" }} />
+            {/* <RasgadoIzq style={{ bottom: "-10rem" }} /> */}
+            <Image
+                className={`rasgadoIzq3`}
+                src="/images/rasgado.webp"
+                width={1326}
+                height={890}
+                alt="De Chiripa :: Formulario Suscribete"
+            />
             <Image
                 className={`imageBackGroundContainer`}
                 src="/images/topBg.png"

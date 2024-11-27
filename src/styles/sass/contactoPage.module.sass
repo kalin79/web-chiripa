@@ -2,19 +2,27 @@
 @use 'vars/fonts' as *
 
 .seccionContacto
-    padding-top: 10rem
+    padding-top: 6rem
     padding-bottom: 28rem
     position: relative
+    @media screen and (min-width: 992px)
+        padding-top: 10rem
     .formContainer
-        margin-top: -2rem
+        margin-top: 2rem
+        @media screen and (min-width: 992px)
+            margin-top: -2rem
     form
         .row
             margin-top: 1rem
         .rowFlex
             display: flex
-            justify-content: space-between
+
             gap: 1rem
             margin-top: 1rem
+            flex-direction: column
+            @media screen and (min-width: 992px)
+                flex-direction: row
+                justify-content: space-between
             > div
                 flex: 1 1 50%
         button[type="submit"]

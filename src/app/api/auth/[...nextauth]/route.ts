@@ -9,7 +9,7 @@ const handler = NextAuth({
                 password: { label: "Password", type: "password" }
             },
             async authorize(credentials) {
-                console.log(`${process.env.NEXT_PUBLIC_BACKEND_URL}participante/authenticate`)
+                // console.log(`${process.env.NEXT_PUBLIC_BACKEND_URL}participante/authenticate`)
                 try {
 
 
@@ -38,6 +38,7 @@ const handler = NextAuth({
                     console.log('user', user)
                     return {
                         id: user.user.id,
+                        dni: user.user.dni || '',
                         token: user.access_token,
                         name: user.user.nombres,
                         email: user.user.email,
@@ -67,16 +68,20 @@ const handler = NextAuth({
     },
     callbacks: {
         async jwt({ token, user }) {
-            console.log(user)
+            // console.log(user)
             if (user) {
                 token.accessToken = user.accessToken ?? undefined;
+                token.dni = user.dni;
                 // token.token = user.token ?? undefined;
             }
             return token;
         },
         async session({ session, token }) {
-            console.log("Token recibido:", token);
+            // console.log("Token recibido:", token);
             session.user.accessToken = token.accessToken ?? undefined;
+            if (token.dni) {
+                session.user.dni = token.dni;
+            }
             // session.user.token = token.token ?? undefined;
 
             return session;

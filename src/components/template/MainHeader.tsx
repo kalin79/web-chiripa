@@ -1,6 +1,7 @@
 'use client'
 
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
+import { signOut, useSession } from "next-auth/react";
 import { useRouter } from 'next/navigation';
 
 import { cartContext } from '@/context/CartContent';
@@ -10,9 +11,14 @@ import { usePathname } from 'next/navigation';
 import Image from 'next/image'
 import styles from '@/styles/sass/nav.module.sass'
 import { Poppins } from 'next/font/google'
+import localFont from 'next/font/local'
 
 import { formatCurrency } from "@/helpers/funciones"
-
+const Humane600 = localFont({
+    src: '../../../public/fonts/Humane-SemiBold.woff2',
+    weight: '600',
+    style: 'normal',
+})
 const Poppins600 = Poppins({
     weight: '600',
     subsets: ['latin'],
@@ -27,11 +33,21 @@ const Poppins300 = Poppins({
 
 
 const Header = () => {
+    const { data: session } = useSession();
     const router = useRouter();
+    const [activeUser, setActiveUser] = useState(false)
+    const [activeMenuMovil, setActiveMenuMovil] = useState(false)
     const { totalProducts, deleteCartProducts, productActive, decreaseQuantity, increaseQuantity, cartProducts, CloseCartPopup, boolBolsa, totalPriceTicket } = useContext(cartContext);
     const pathname = usePathname();
     const handleClickCart = () => {
         router.push('/proceso-de-compra');
+    }
+    const setUpdateUserMenu = () => {
+        setActiveUser((prevState) => !prevState)
+    }
+    const handleClickCloseMenu = () => {
+        console.log(activeMenuMovil)
+        setActiveMenuMovil((prevState) => !prevState)
     }
     return (
         <div className={styles.containerHeader}>
@@ -46,8 +62,20 @@ const Header = () => {
                             height={165}
                         />
                     </div>
-                    <div>
-                        <div className={styles.itemsNav}>
+                    <div className={activeMenuMovil ? styles.active : ''}>
+                        <div className={styles.headerMovil}>
+                            <Link href="/">
+                                <Image
+                                    className={styles.logoNav}
+                                    src="/images/logomovil.svg"
+                                    alt="DeChiripa"
+                                    width={90}
+                                    height={91}
+                                />
+                            </Link>
+                            <button type="button" onClick={handleClickCloseMenu} className={` ${Poppins600.className}   ${styles.buttonClose}`}>X</button>
+                        </div>
+                        <div className={`${styles.itemsNav} ${Humane600.className} `}>
                             <Link href="/" className={`${pathname === '/' ? styles.active : ''}`}>
                                 Inicio
                                 <Image
@@ -89,18 +117,126 @@ const Header = () => {
                                 />
                             </Link>
                         </div>
+                        <div className={styles.authMovil}>
+                            {
+                                (!session) ? (
+                                    <>
+                                        <Link href="/auth/login" className='btnMain'>Iniciar Sesión</Link>
+                                        <Link href="/auth/create" className='btnMain'>Quiero Registrarme</Link>
+                                    </>
+                                ) : (
+                                    <div className={` ${styles.buttonSessionContainer}`}>
+                                        <Link href="/usuario/mi-cuenta">
+                                            <Image
+                                                className={styles.iconUser}
+                                                src="/images/userlogin.webp"
+                                                alt="DeChiripa"
+                                                width={24}
+                                                height={24}
+                                            />
+                                            <p className={Humane600.className}>Mi cuenta</p>
+                                        </Link>
+                                        <Link href="/usuario/mi-historial">
+                                            <Image
+                                                className={styles.iconUser}
+                                                src="/images/historial.webp"
+                                                alt="DeChiripa"
+                                                width={24}
+                                                height={24}
+                                            />
+                                            <p className={Humane600.className}>Mi historial</p>
+                                        </Link>
+
+                                        <a
+                                            onClick={() => signOut()}
+                                        >
+                                            <Image
+                                                className={styles.iconUser}
+                                                src="/images/logout.webp"
+                                                alt="DeChiripa"
+                                                width={24}
+                                                height={24}
+                                            />
+                                            <p className={Humane600.className}>Cerrar sesi&oacute;n</p>
+                                        </a>
+                                    </div>
+                                )
+                            }
+
+                        </div>
                     </div>
                     <div>
                         <div className={styles.accessBox}>
-                            <Link href="/auth/login">
-                                <Image
-                                    className={styles.userNav}
-                                    src="/images/user.svg"
-                                    alt="DeChiripa"
-                                    width={24}
-                                    height={25}
-                                />
-                            </Link>
+                            <div onClick={handleClickCloseMenu} className={styles.buttonMenu}>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                            <div className={styles.iconUserBox}>
+                                {
+                                    (session) ? (
+                                        <>
+                                            {/* {JSON.stringify(activeUser)} */}
+                                            <button type='button' onClick={setUpdateUserMenu}>
+                                                <Image
+                                                    className={styles.userNav}
+                                                    src="/images/useractive.webp"
+                                                    alt="DeChiripa"
+                                                    width={24}
+                                                    height={24}
+                                                />
+                                            </button>
+                                            <div className={`${styles.menuUsercontainer} ${activeUser ? styles.activeUser : ''}`} >
+                                                <Link href="/usuario/mi-cuenta">
+                                                    <Image
+                                                        className={styles.iconUser}
+                                                        src="/images/userlogin.webp"
+                                                        alt="DeChiripa"
+                                                        width={24}
+                                                        height={24}
+                                                    />
+                                                    <p className={Poppins300.className}>Mi cuenta</p>
+                                                </Link>
+                                                <Link href="/usuario/mi-historial">
+                                                    <Image
+                                                        className={styles.iconUser}
+                                                        src="/images/historial.webp"
+                                                        alt="DeChiripa"
+                                                        width={24}
+                                                        height={24}
+                                                    />
+                                                    <p className={Poppins300.className}>Mi historial</p>
+                                                </Link>
+
+                                                <a
+                                                    onClick={() => signOut()}
+                                                >
+                                                    <Image
+                                                        className={styles.iconUser}
+                                                        src="/images/logout.webp"
+                                                        alt="DeChiripa"
+                                                        width={24}
+                                                        height={24}
+                                                    />
+                                                    <p className={Poppins300.className}>Cerrar sesi&oacute;n</p>
+                                                </a>
+                                            </div>
+                                        </>
+                                    ) : (
+                                        <Link href="/auth/login">
+                                            <Image
+                                                className={styles.userNav}
+                                                src="/images/user.svg"
+                                                alt="DeChiripa"
+                                                width={24}
+                                                height={25}
+                                            />
+                                        </Link>
+                                    )
+                                }
+                            </div>
+
+
                             <button type='button' onClick={() => CloseCartPopup(true)}>
                                 <p>{totalProducts}</p>
                                 <Image
@@ -157,7 +293,7 @@ const Header = () => {
                         </div>
 
                     </div>
-                </div>
+                </div >
                 <div className={`${styles.sideBarCart} ${(boolBolsa ? styles.active : '')}`}>
                     <div className={`${styles.sideBarWrapper}`}>
                         <div className={`${styles.sideBarContent}`}>
@@ -199,9 +335,16 @@ const Header = () => {
                                                                 <div className={styles.addTicketBox}>
                                                                     <div className={styles.addTicketInfo}>
                                                                         <div className={styles.addTicketWrapper}>
-                                                                            <p onClick={() => { decreaseQuantity(product.id) }}>-</p>
-                                                                            <input type="text" disabled placeholder='0' value={product.quantity} />
-                                                                            <p onClick={() => { increaseQuantity(product.id) }}>+</p>
+                                                                            {
+                                                                                (product.id !== undefined) && (
+                                                                                    <>
+                                                                                        <p onClick={() => { decreaseQuantity(product.id ?? 0) }}>-</p>
+                                                                                        <input type="text" disabled placeholder='0' value={product.quantity} />
+                                                                                        <p onClick={() => { increaseQuantity(product.id ?? 0) }}>+</p>
+                                                                                    </>
+                                                                                )
+                                                                            }
+
                                                                         </div>
                                                                         <div className={styles.addTicketInfoBtn}>Cantidad de tickets</div>
                                                                     </div>
@@ -228,8 +371,8 @@ const Header = () => {
                         </div>
                     </div>
                 </div>
-            </nav>
-        </div>
+            </nav >
+        </div >
     )
 }
 

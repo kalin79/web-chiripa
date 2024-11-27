@@ -1,7 +1,7 @@
 'use client'
 import { useSession } from "next-auth/react";
 
-import { useState, useContext, useEffect, ChangeEvent } from 'react';
+import { useState, useContext, useEffect } from 'react';
 
 import { cartContext } from '@/context/CartContent';
 
@@ -12,17 +12,17 @@ import { Poppins } from 'next/font/google'
 
 import { formatCurrency } from "@/helpers/funciones"
 import { CartUser } from "@/interfaces/cart"
-import Swal from 'sweetalert2'
+// import Swal from 'sweetalert2'
 
-import { validateCompra } from "@/helpers/validacion-compra"
+// import { validateCompra } from "@/helpers/validacion-compra"
 import gsap from "gsap";
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 
-const Poppins600 = Poppins({
-    weight: '600',
-    subsets: ['latin'],
-    display: 'swap',
-})
+// const Poppins600 = Poppins({
+//     weight: '600',
+//     subsets: ['latin'],
+//     display: 'swap',
+// })
 
 const Poppins400 = Poppins({
     weight: '400',
@@ -30,7 +30,7 @@ const Poppins400 = Poppins({
     display: 'swap',
 })
 
-type FormElement = HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
+// type FormElement = HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
 
 
 const initialTodo = {
@@ -49,9 +49,10 @@ const initialTodo = {
 }
 const FormularioCompra = () => {
     const { data: session } = useSession();
-    const [isOpen, setIsOpen] = useState(false)
+    // const [isOpen, setIsOpen] = useState(false)
     const [isOpenDatos, setIsOpenDatos] = useState(false)
-
+    const [isViewOrder, setIsViewOrder] = useState(false)
+    const [isChecked, setIsChecked] = useState(true)
     const [todos, setTodos] = useState<CartUser>(initialTodo)
     // const [isChecked, setIsChecked] = useState<boolean>(false)
 
@@ -61,37 +62,37 @@ const FormularioCompra = () => {
     const email = "c.augusto.espinoza@gmail.com"
     useEffect(() => {
         if (session && session.user) {
+            console.log(session)
             setTodos(prevTodos => ({
                 ...prevTodos,
                 email: session.user.email ?? '',
                 nombres: session.user.name ?? '',
+                numero_documento: session.user.dni ?? ''
             }));
             setIsOpenDatos(true);
         } else {
             setIsOpenDatos(false);
         }
     }, [session]);
-    const handlePagar = async () => {
+    // const handlePagar = async () => {
 
-        const erroresValidacion = await validateCompra(todos);
-        if (erroresValidacion.status) {
-            setIsOpen(false)
-            Swal.fire({
-                title: 'Error!',
-                text: `${erroresValidacion.msjStatus}`,
-                icon: 'error',
-                confirmButtonText: 'Cerrar'
-            })
-        } else {
-            gsap.to(window, { duration: .5, scrollTo: '#paymentForm' });
-            setIsOpen(true)
-        }
+    //     const erroresValidacion = await validateCompra(todos);
+    //     if (erroresValidacion.status) {
+    //         setIsOpen(false)
+    //         Swal.fire({
+    //             title: 'Error!',
+    //             text: `${erroresValidacion.msjStatus}`,
+    //             icon: 'error',
+    //             confirmButtonText: 'Cerrar'
+    //         })
+    //     } else {
+    //         gsap.to(window, { duration: .5, scrollTo: '#paymentForm' });
+    //         setIsOpen(true)
+    //     }
 
 
-    }
-    // const handleOpenDatos = () => {
-    //     setIsOpenDatos(true)
     // }
+
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
         if (!window.Culqi) {
@@ -130,69 +131,76 @@ const FormularioCompra = () => {
         };
 
     }
-    const handleChangeFull = (e: ChangeEvent<FormElement>) => {
-        const { name, value } = e.target;
-        setTodos(prevTodos => ({
-            ...prevTodos,
-            [name]: value
-        }))
-    }
-    const handleChange = (e: ChangeEvent<FormElement>) => {
-        const { name, value } = e.target;
-        if (value.trim() === "") {
-            setTodos(prevTodos => ({
-                ...prevTodos,
-                [name]: value
-            }))
-            // Permitir el campo vacío o solo espacios
-            // Sin error si el campo está vacío o solo tiene espacios
-        } else if (/^[a-zA-Z']*$/.test(value.replace(/\s/g, ''))) {
-            setTodos(prevTodos => ({
-                ...prevTodos,
-                [name]: value
-            }))
-        }
-    }
-    const handleChangeMovil = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target;
-        // Permitir borrar (campo vacío) y validar números de 1 a 10 dígitos
+    // const handleChangeFull = (e: ChangeEvent<FormElement>) => {
+    //     const { name, value } = e.target;
+    //     setTodos(prevTodos => ({
+    //         ...prevTodos,
+    //         [name]: value
+    //     }))
+    // }
+    // const handleChange = (e: ChangeEvent<FormElement>) => {
+    //     const { name, value } = e.target;
+    //     if (value.trim() === "") {
+    //         setTodos(prevTodos => ({
+    //             ...prevTodos,
+    //             [name]: value
+    //         }))
+    //     } else if (/^[a-zA-Z']*$/.test(value.replace(/\s/g, ''))) {
+    //         setTodos(prevTodos => ({
+    //             ...prevTodos,
+    //             [name]: value
+    //         }))
+    //     }
+    // }
+    // const handleChangeMovil = (e: React.ChangeEvent<HTMLInputElement>) => {
+    //     const { name, value } = e.target;
 
-        if (/^\d*$/.test(value) && value.length <= 9 && (value === "" || value[0] !== "0")) {
-            setTodos(prevTodos => ({
-                ...prevTodos,
-                [name]: value
-            }))
-        }
-    };
 
-    const handleChangeNumber = (e: ChangeEvent<FormElement>) => {
-        // Permitir solo dígitos numéricos
-        const { name, value } = e.target;
-        if (/^\d*$/.test(value) && value.length <= 12) {
-            setTodos(prevTodos => ({
-                ...prevTodos,
-                [name]: value
-            }))
-        }
-    }
+    //     if (/^\d*$/.test(value) && value.length <= 9 && (value === "" || value[0] !== "0")) {
+    //         setTodos(prevTodos => ({
+    //             ...prevTodos,
+    //             [name]: value
+    //         }))
+    //     }
+    // };
+
+    // const handleChangeNumber = (e: ChangeEvent<FormElement>) => {
+
+    //     const { name, value } = e.target;
+    //     if (/^\d*$/.test(value) && value.length <= 12) {
+    //         setTodos(prevTodos => ({
+    //             ...prevTodos,
+    //             [name]: value
+    //         }))
+    //     }
+    // }
     useEffect(() => {
         gsap.registerPlugin(ScrollToPlugin)
     }, []);
+    const handleViewOrder = () => {
+        console.log(isViewOrder)
+        setIsViewOrder((prevState) => !prevState)
+    }
+
+    const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setIsChecked(event.target.checked);
+    };
+
     return (
         <div className={styles.layoutContainer}>
             <div className={styles.orderContainer}>
                 <div className={styles.buyContainer}>
                     <div className={styles.stepsContainer}>
                         <div className={styles.contactForm}>
-                            <div className={styles.accordionLine}>
+                            {/* <div className={styles.accordionLine}>
                                 <p className={(isLogin && isOpenDatos) ? styles.active : ''}>1</p>
                                 <div className={styles.LineUp}></div>
-                            </div>
+                            </div> */}
                             <div className={styles.accordionForm}>
                                 <div className={styles.accordionHeader}>
                                     <div className={styles.accordionInfo}>
-                                        <h3>Datos del Contacto</h3>
-                                        {JSON.stringify(todos)}
+                                        <h3>Datos de Facturaci&oacute;n</h3>
+                                        {/* {JSON.stringify(todos)} */}
                                     </div>
                                     <div className={`${styles.accordionArrow} ${(isLogin && isOpenDatos) ? styles.expanded : ''}`} >
                                         <Image
@@ -204,107 +212,42 @@ const FormularioCompra = () => {
                                     </div>
                                 </div>
                                 <div className={`${styles.accordionBody} ${(isLogin && isOpenDatos) ? styles.expandedInfo : ''}`}>
-                                    <div className={styles.FormDatos}>
-                                        <div className={styles.fullWidth}>
-                                            <input
-                                                type="text"
-                                                className={`form-control`}
-                                                name="email"
-                                                value={todos.email ?? ''}
-                                                placeholder='Correo electrónico*'
-                                                onChange={handleChangeFull}
-                                            />
-                                        </div>
-                                        <div className={styles.fullWidth}>
-                                            <h3>Información personal</h3>
-                                        </div>
-                                        <div className={styles.fullWidth}>
-                                            <input
-                                                type="text"
-                                                className={`form-control`}
-                                                placeholder='Nombres:*'
-                                                name="nombres"
-                                                onChange={handleChange}
-                                                value={todos.nombres ?? ''}
-                                            />
-                                        </div>
-                                        <div className={styles.fullWidth}>
-                                            <input
-                                                type="text"
-                                                className={`form-control`}
-                                                placeholder='Apellidos:*'
-                                                name="apellidos"
-                                                onChange={handleChange}
-                                                value={todos.apellidos ?? ''}
-
-                                            />
-                                        </div>
-                                        <div>
-                                            <select
-                                                className={styles.customSelect}
-                                                name="tipo_documento"
-                                                value={todos.tipo_documento}
-                                                onChange={handleChangeFull}
-                                            >
-                                                <option value="">Tipo de documento:*</option>
-                                                <option value="dni">D.N.I</option>
-                                                <option value="ce">C.E</option>
-                                            </select>
-                                        </div>
-                                        <div>
-                                            <input
-                                                type="text"
-                                                className={`form-control`}
-                                                placeholder='Número de documento:*'
-                                                name="numero_documento"
-                                                value={todos.numero_documento}
-                                                onChange={handleChangeNumber}
-                                            />
-                                        </div>
-                                        <div className={styles.fullWidth}>
-                                            <input
-                                                type="text"
-                                                className={`form-control`}
-                                                placeholder='Teléfono:*'
-                                                name="telefono"
-                                                value={todos.telefono}
-                                                onChange={handleChangeMovil}
-                                            />
-                                        </div>
-                                        <div className={styles.btnForm}>
-                                            <button type='button' onClick={handlePagar} className='btnMain'>Continuar con la compra</button>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div className={styles.paymentForm} id="paymentForm">
-                            <div className={styles.accordionLine}>
-                                <p className={isOpen ? styles.active : ''}>2</p>
-                                {/* <div className={styles.LineUp}></div> */}
-                            </div>
-                            <div className={`${styles.accordionForm}`}>
-                                <div className={styles.accordionHeader}>
-                                    <div className={styles.accordionInfo}>
-                                        <h3 className={Poppins600.className}>Pago</h3>
-                                    </div>
-                                    <div className={`${styles.accordionArrow} ${isOpen ? styles.expanded : ''}`} >
-                                        <Image
-                                            src="/images/arrow2.svg"
-                                            width={17}
-                                            height={9}
-                                            alt="Datos del Contacto"
-                                        />
-                                    </div>
-                                </div>
-                                <div className={`${styles.accordionBody} ${isOpen ? styles.expandedInfo : ''}`}>
                                     <form onSubmit={handleSubmit}>
+                                        <div className={styles.FormDatos}>
+                                            <div>
+                                                <input
+                                                    type="text"
+                                                    className={`form-control`}
+                                                    name="email"
+                                                    value={todos.email ?? ''}
+                                                    placeholder='Correo electrónico*'
+                                                    // onChange={handleChangeFull}
+                                                    disabled
+                                                />
+                                            </div>
+                                            <div>
+                                                <input
+                                                    type="text"
+                                                    className={`form-control`}
+                                                    placeholder='Número de documento:*'
+                                                    name="numero_documento"
+                                                    value={todos.numero_documento}
+                                                    // onChange={handleChangeNumber}
+                                                    disabled
+                                                />
+                                            </div>
+                                        </div>
                                         <div className={styles.paymentMethod}>
                                             <div className={styles.paymentMethodOption}>
                                                 <div>
                                                     <label className={`${styles.customRadio} ${Poppins400.className}`}>
-                                                        <input type="checkbox" name="payment" className={styles.radioInput} />
+                                                        <input
+                                                            type="checkbox"
+                                                            name="payment"
+                                                            checked={isChecked}
+                                                            className={styles.radioInput}
+                                                            onChange={handleCheckboxChange}
+                                                        />
                                                         <span className={styles.radioCheckmark}></span>
                                                         Culqui Pago
                                                     </label>
@@ -312,6 +255,7 @@ const FormularioCompra = () => {
                                                 <div>
                                                     <Image
                                                         src="/images/brand-culqi.svg"
+                                                        className={styles.imageCulqui}
                                                         width={117}
                                                         height={36}
                                                         alt="Datos del Contacto"
@@ -337,7 +281,7 @@ const FormularioCompra = () => {
                                                     // onChange={handleCheckboxChange}
                                                     />
                                                     <span className="checkmark"></span>
-                                                    Acepto los <a href="https://s3.us-east-1.amazonaws.com/img.dechiripa.com.pe/dechiripa/politica.pdf" target='_blank'>Términos y Condiciones</a>
+                                                    Acepto los <a href="/terminos-y-condiciones" target='_blank'>Términos y Condiciones</a>
                                                 </label>
                                             </div>
                                             <div>
@@ -350,7 +294,7 @@ const FormularioCompra = () => {
                                                     // onChange={handleCheckboxChange}
                                                     />
                                                     <span className="checkmark"></span>
-                                                    Acepto la <a href="https://s3.us-east-1.amazonaws.com/img.dechiripa.com.pe/dechiripa/politica.pdf" target='_blank'>Política de Privacidad</a>
+                                                    Acepto la <a href="/proteccion-de-datos" target='_blank'>Política de Privacidad</a>
                                                     <span> y el uso de mis datos  con fines comerciales y publicitarios</span>
                                                 </label>
                                             </div>
@@ -364,10 +308,21 @@ const FormularioCompra = () => {
                         </div>
                     </div>
                 </div>
-                <div className={styles.detailOrder}>
-                    <div className={styles.detailContent}>
-                        <div className={styles.headerDetailorder}>
-                            <h2>Orden de Compra</h2>
+                <div className={`${isViewOrder ? styles.activeDetailOrder : ''}  ${styles.detailOrder}`}>
+                    <div className={`${isViewOrder ? styles.activeOrderView : ''}  ${styles.detailContent}`} >
+                        <div className={` ${styles.headerDetailorder}`} onClick={handleViewOrder}>
+                            <div>
+                                <Image
+                                    src='/images/down-arrow.webp'
+                                    width={20}
+                                    height={20}
+                                    alt="Datos del Contacto"
+                                />
+                                <h2>Orden de Compra</h2>
+                            </div>
+                            <div>
+                                <p>{formatCurrency(totalPriceTicket - descuento)}</p>
+                            </div>
                         </div>
                         <div className={styles.bodyDetailorder}>
                             <div className={styles.bodyOverflow}>
@@ -407,7 +362,7 @@ const FormularioCompra = () => {
                                 <p>{formatCurrency(totalPriceTicket)}</p>
                             </div>
                             <div className={styles.infoDscto}>
-                                <p>Descuento por primera compra </p>
+                                <p>Descuento Chiripa </p>
                                 <p>{formatCurrency(descuento)}</p>
                             </div>
                             <div className={styles.priceTotal}>

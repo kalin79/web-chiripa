@@ -3,7 +3,7 @@ export interface objUser {
     apellido_paterno: string;
     apellido_materno?: string;
     celular: string;
-    birthdate?: string;
+    birhtday?: string;
     email: string;
     dni: string;
     register_from: string;

@@ -9,17 +9,23 @@ p
 
 body
     overflow: auto
-    background-image: url('/images/fondo1.webp')
+    background-image: url('/images/bgM.webp')
     background-size: contain
     background-repeat: repeat
     background-position: top
     // min-height: 100vh
+    @media screen and (min-width: 992px)
+        background-image: url('/images/fondo1.webp')
 .gridContainer
     display: grid
-    grid-template-columns: repeat(1,1fr)
+    grid-template-columns: repeat(4,1fr)
+    padding-left: 1rem
+    padding-right: 1rem
     @media screen and (min-width: 992px)
         grid-template-columns: repeat(12,1fr)
         gap: 1rem
+        padding-left: 0rem
+        padding-right: 0rem
 .buttonClass
     width: 238px
     height: 52px
@@ -128,55 +134,88 @@ a
     z-index: 30
 .backgroundContainer
     background-image: url('/images/bodyBg.webp')
-    background-attachment: fixed
+
     background-size: cover
     background-repeat: no-repeat
     background-position: center
     position: relative
-    padding: 0rem 0 5rem
+    padding: 0rem 0 0rem
     min-height: 80vh
     margin-top: 0rem
+    @media screen and (min-width: 992px)
+        background-attachment: fixed
+        padding: 0rem 0 5rem
     // background-blend-mode: multiply
 .sinPadd
     padding: 0 !important
 .backgroundContainer2
     background-image: url('/images/bodyBg2.webp')
-    background-attachment: fixed
+
     background-size: cover
     background-repeat: no-repeat
     background-position: center
     position: relative
-    padding: 0rem 0 5rem
+    padding: 0rem 0 0rem
     min-height: 80vh
     margin-top: 0rem
+    @media screen and (min-width: 992px)
+        padding: 0rem 0 5rem
+        background-attachment: fixed
 .cabeceraRasgado
     position: absolute
-    top: -7rem
+    top: -2rem
     left: 0
     width: 100%
     object-fit: contain
     height: auto
+    @media screen and (min-width: 992px)
+        top: -7rem
 .rasgadoRight
     position: absolute
-    top: -14.5rem
+    top: -7.5rem
     right: 0rem
-    width: 419px
+    width: 80%
     object-fit: contain
     height: auto
-.rasgadoIzq
+    @media screen and (min-width: 992px)
+        top: -14.5rem
+        width: 419px
+.rasgadoIzq,
+.rasgadoIzq2,
+.rasgadoIzq3,
+.rasgadoIzq4
     position: absolute
     bottom: -10rem
     left: 0rem
-    width: 700px
+    width: 80%
     object-fit: contain
     height: auto
+    @media screen and (min-width: 992px)
+        width: 700px
+        bottom: -10rem
+
+.rasgadoIzq2
+    bottom: -2rem
+    @media screen and (min-width: 992px)
+        bottom: -16rem
+.rasgadoIzq3
+    bottom: 2rem
+    @media screen and (min-width: 992px)
+        bottom: -10rem
+.rasgadoIzq4
+    bottom: -11rem
+    @media screen and (min-width: 992px)
+        bottom: -26rem
 .rasgadoIzquierdaSmall
     position: absolute
-    bottom: 0rem
+    bottom: -3rem
     left: 0rem
-    width: 419px
+    width: 80%
     object-fit: contain
     height: auto
+    @media screen and (min-width: 992px)
+        bottom: 0rem
+        width: 419px
 .rasgadoDerechaSmall
     position: absolute
     bottom: 0rem

@@ -4,7 +4,7 @@ import Image from 'next/image'
 import localFont from 'next/font/local'
 import { Poppins } from 'next/font/google'
 import styles from '@/styles/sass/preguntasPage.module.sass'
-import RasgadoIzq from '@/components/fondo/RasgadoIzq'
+// import RasgadoIzq from '@/components/fondo/RasgadoIzq'
 
 
 const Humane600 = localFont({
@@ -40,7 +40,14 @@ const Listado = () => {
 
     return (
         <div className={styles.seccionPreguntas}>
-            <RasgadoIzq style={{ bottom: "-16rem" }} />
+            {/* <RasgadoIzq style={{ bottom: "-16rem" }} /> */}
+            <Image
+                className={`rasgadoIzq2`}
+                src="/images/rasgado.webp"
+                width={1326}
+                height={890}
+                alt="De Chiripa :: Formulario Suscribete"
+            />
             <Image
                 className={`imageBackGroundContainer`}
                 src="/images/topBg.png"

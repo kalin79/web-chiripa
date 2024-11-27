@@ -6,7 +6,7 @@ import styles from '@/styles/sass/beneficio.module.sass'
 import localFont from 'next/font/local'
 import { Poppins } from 'next/font/google'
 
-import RasgadoIzq from "@/components/fondo/RasgadoIzq"
+// import RasgadoIzq from "@/components/fondo/RasgadoIzq"
 
 const Humane600 = localFont({
     src: '../../../public/fonts/Humane-SemiBold.woff2',
@@ -27,7 +27,14 @@ const Poppins400 = Poppins({
 const Beneficios = () => {
     return (
         <div className={`${styles.seccionBenefecio}`}>
-            <RasgadoIzq />
+            {/* <RasgadoIzq /> */}
+            <Image
+                className={`rasgadoIzq2`}
+                src="/images/rasgado.webp"
+                width={1326}
+                height={890}
+                alt="De Chiripa :: Formulario Suscribete"
+            />
             <div className='container'>
                 <div className={`gridContainer ${styles.gridContainer}`}>
                     <div>

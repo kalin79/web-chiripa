@@ -101,15 +101,24 @@
     margin-top: 6rem
     > div
         &:nth-of-type(1)
-            grid-column: 1 / span 4
+            grid-column: 1 / -1
+            @media screen and (min-width: 992px)
+                grid-column: 1 / span 4
         &:nth-of-type(2)
-            grid-column: 5 / span 4
+            grid-column: 1 / -1
+            @media screen and (min-width: 992px)
+                grid-column: 5 / span 4
         &:nth-of-type(3)
-            grid-column: 9 / -1
+            grid-column: 1 / -1
+            @media screen and (min-width: 992px)
+                grid-column: 9 / -1
+
 .gridContainer
     > div
         &:nth-of-type(1)
-            grid-column: 1 / span 6
+            grid-column: 1 / -1
+            @media screen and (min-width: 992px)
+                grid-column: 1 / span 6
             h2
                 color: white
                 font-size: 7.375rem
@@ -135,6 +144,9 @@
                         position: absolute
                         top: -1.8rem
                         right: -2rem
+                        display: none
+                        @media screen and (min-width: 992px)
+                            display: block
                 .sticker1
                     position: absolute
                     bottom: -2.75rem

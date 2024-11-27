@@ -15,13 +15,13 @@ export function validateRegisterUser(user: objUser) {
         return errores
     }
 
-    if (!user.birthdate) {
+    if (!user.birhtday) {
         errores.msjStatus = "Fecha de nacimiento es obligatorio"
         errores.status = true;
         return errores
     } else {
         const today = new Date();
-        const birthDateObj = new Date(user.birthdate);
+        const birthDateObj = new Date(user.birhtday);
         const age = today.getFullYear() - birthDateObj.getFullYear();
         // Ajusta la edad si el cumpleaños aún no ha pasado este año
         const hasBirthdayPassed =

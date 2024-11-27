@@ -2,16 +2,68 @@
 @use 'vars/fonts' as *
 
 .bgRegistroContainer
-    padding-top: 6rem
+    padding-top: 3rem
+    @media screen and (min-width: 992px)
+        padding-top: 6rem
 .gridContainer
     > div
         &:nth-of-type(1)
-            grid-column: 1 / span 8
+            grid-column: 1 / -1
+            @media screen and (min-width: 992px)
+                grid-column: 1 / span 8
         &:nth-of-type(2)
             grid-column: 1 / -1
 .detailOrder
     transition: all .3s ease
-    grid-column: 9 / -1
+    grid-column: 1 / -1
+
+    position: fixed
+    inset: 0
+    top: 100%
+    z-index: 1000
+    background-color: rgba(0,0,0,.5)
+    display: flex
+    align-items: flex-end
+    @media screen and (min-width: 992px)
+        grid-column: 9 / -1
+        position: relative
+        top: 0
+        background-color: transparent
+        display: inline-block
+    &.activeDetailOrder
+        top: 0
+        cursor: pointer
+        .headerDetailorder
+            > div
+                &:first-child
+                    img
+                        transform: rotate(0deg)
+
+    .headerDetailorder
+        padding: 2rem 2.4rem
+        display: flex
+        justify-content: space-between
+        align-items: center
+        > div
+            &:last-child
+                p
+                    font-size: 1.25rem
+                    color: $gris
+                    display: block
+                    @media screen and (min-width: 992px)
+                        display: none
+
+            &:first-child
+                display: flex
+                gap: .5rem
+                img
+                    transform: rotate(-180deg)
+                    display: block
+                    @media screen and (min-width: 992px)
+                        display: none
+        h2
+            font-size: 1.125rem
+            color: $gris
     .PriceContent
         padding: 0 2.4rem
         > div
@@ -32,11 +84,7 @@
                 p
                     font-size: 1.25rem
                     color: $gris
-    .headerDetailorder
-        padding: 2rem 2.4rem
-        h2
-            font-size: 1.125rem
-            color: $gris
+
     .bodyDetailorder
         padding-top: 0rem
         .bodyOverflow
@@ -61,24 +109,36 @@
                     justify-items: flex-start
                     gap: 1rem
                     margin-top: .5rem
-.detailContent
-    position: -webkit-sticky
-    position: sticky
-    top: 0
-    left: 0
-    display: flex
-    flex-direction: column
-    background-color: $blancoHumo
-    padding: 0rem 0rem 2.4rem
-    border-radius: 1.6rem
-    overflow: hidden
-    width: 100%
-    box-shadow: 0 8px 8px -4px hsla(0,0%,50%,.06),0 20px 24px -4px hsla(0,0%,50%,.1)
+    .detailContent
+        position: -webkit-sticky
+        position: sticky
+        top: 0
+        left: 0
+        display: flex
+        flex-direction: column
+        background-color: $blancoHumo
+        padding: 0rem 0rem 2.4rem
+        border-radius: 1rem 1rem 0rem 0
+        overflow: hidden
+        width: 100%
+        box-shadow: 0 8px 8px -4px hsla(0,0%,50%,.06),0 20px 24px -4px hsla(0,0%,50%,.1)
 
+        transition: all .4s ease
+        transform: translateY(calc(100% - 5.2rem))
+        cursor: pointer
+        @media screen and (min-width: 992px)
+            border-radius: 1.6rem
+            cursor: default
+            transform: translateY(0)
+        &.activeOrderView
+            transform: translateY(0)
+            // max-height: 100%
 .layoutContainer
     position: relative
-    z-index: 10
+    z-index: 12
     padding: 2.4rem 0 4rem
+    @media screen and (min-width: 992px)
+        z-index: 10
     .paymentMethod
         width: 100%
         border: 1px solid white
@@ -86,7 +146,10 @@
         margin-top: 2rem
         border-radius: 10px
         padding: 1.5rem 2rem
-
+        .imageCulqui
+            width: 80%
+            @media screen and (min-width: 992px)
+                width: auto
         .paymentDescription
             margin-top: 1rem
             p
@@ -107,7 +170,7 @@
 
                 .radioCheckmark
                     width: 20px
-                    height: 20px
+                    height: 18px
                     border: 2px solid #888
                     border-radius: 50%
                     display: inline-block
@@ -116,7 +179,8 @@
                     vertical-align: middle
                     background-color: #fff
                     transition: all 0.3s ease
-
+                    @media screen and (min-width: 992px)
+                        height: 20px
                 .radioInput:checked + .radioCheckmark
                     background-color: white
                     border-color: black
@@ -135,11 +199,15 @@
 
     .orderContainer
         display: grid
-        grid-template-columns: repeat(12,1fr)
+        grid-template-columns: repeat(4,1fr)
         margin-top: 0rem
         gap: 1rem
+        @media screen and (min-with: 992px)
+            grid-template-columns: repeat(12,1fr)
         .buyContainer
-            grid-column: 1 / span 8
+            grid-column: 1 / -1
+            @media screen and (min-with: 992px)
+                grid-column: 1 / span 8
             .stepsContainer
                 display: flex
                 flex-direction: column
@@ -217,7 +285,9 @@
                                         pointer-events: none
                                 button[type="submit"]
                                     height: 42px
-                                    width: 20rem
+                                    width: 100%
+                                    @media screen and (min-width: 992px)
+                                        width: 20rem
                                 input[type="text"],
                                 input[type="password"]
                                     font-size: 14px
@@ -243,8 +313,11 @@
                                         display: flex
                                         justify-content: flex-end
                                         button[type="button"]
-                                            width: 20rem
+                                            width: 100%
                                             max-height: 3.8rem
+                                            @media screen and (min-width: 992px)
+                                                width: 20rem
+
                         .accordionHeader
                             padding: 1rem 2.4rem
                             border-radius: .8rem
@@ -265,10 +338,13 @@
                                     transition: color .3s ease
                                     color: white
                     .accordionLine
-                        height: 5.6rem
-                        display: flex
-                        align-items: center
-                        justify-content: center
+                        display: none
+                        @media screen and (min-width: 992px)
+                            display: flex
+                            display: flex
+                            align-items: center
+                            justify-content: center
+                            height: 5.6rem
                         .LineUp
                             width: 2px
                             height: 100%

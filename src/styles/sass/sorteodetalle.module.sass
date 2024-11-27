@@ -5,10 +5,12 @@
     position: absolute
     top: -13rem
     right: 0rem
-    width: 550px
+    width: 80%
     object-fit: cover
     object-position: center
     height: auto
+    @media screen and (min-width: 992px)
+        width: 550px
 
 .caracteristicasBox
     position: relative
@@ -17,10 +19,13 @@
     margin-top: 20rem
     .rasgadoBox
         position: absolute
-        top: -30rem
+        top: -35rem
         left: 0rem
-        width: 650px
+        width: 95%
         object-fit: contain
+        @media screen and (min-width: 992px)
+            width: 650px
+            top: -30rem
     .tabCaracteristicas
         position: relative
         z-index: 10
@@ -34,16 +39,26 @@
                     display: block
         .headerTab
             display: flex
-            justify-content: center
-            gap: 3.75rem
+            align-items: center
+            flex-direction: column
+            gap: .5rem
+            @media screen and (min-width: 992px)
+                flex-direction: row
+                justify-content: center
+                align-items: flex-start
+                gap: 3.75rem
             h3
                 border: 0px solid red
-                padding: 1rem 1rem
+                padding: 1rem 0rem
                 cursor: pointer
                 color: white
                 font-size: 1rem
                 line-height: 1.5em
                 position: relative
+                margin: 0
+                @media screen and (min-width: 992px)
+                    padding: 1rem 1rem
+                    margin-bottom: 1rem
                 &:before
                     content: ''
                     transition: .5s ease-in width
@@ -64,7 +79,9 @@
     z-index: 10
     > div
         &:nth-of-type(1)
-            grid-column: 1 / span 6
+            grid-column: 1 / -1
+            @media screen and (min-width: 992px)
+                grid-column: 1 / span 6
             @media screen and (min-width: 1400px)
                 grid-column: 2 / span 5
             .secondThumbailBox
@@ -102,14 +119,14 @@
             .carruselMainBox
                 overflow: hidden
                 border-radius: 20px
-                height: 662px
+                height: 400px
                 width: 100%
                 @media screen and (min-width: 992px)
                     height: 562px
                 @media screen and (min-width: 1400px)
                     height: 600px
                 .videoFull
-                    height: 662px
+                    height: 400px
                     @media screen and (min-width: 992px)
                         height: 562px
                     @media screen and (min-width: 1400px)
@@ -120,7 +137,7 @@
                         object-fit: cover
                         object-position: center
                 .viewImagenMain
-                    height: 662px
+                    height: 400px
                     @media screen and (min-width: 992px)
                         height: 562px
                     @media screen and (min-width: 1400px)
@@ -132,14 +149,22 @@
                         object-position: center
 
         &:nth-of-type(2)
-            grid-column: 7 / -1
-            padding-top: 3rem
+            grid-column: 1 / -1
+            padding-top: 5rem
+            @media screen and (min-width: 992px)
+                grid-column: 7 / -1
+                padding-top: 3rem
             .addTicketBox
                 display: flex
+                flex-direction: column
                 justify-content: flex-start
                 align-items: center
                 gap: 1rem
-                margin-top: 6rem
+                margin-top: 2rem
+                @media screen and (min-width: 992px)
+                    flex-direction: row
+                    justify-content: flex-start
+                    margin-top: 6rem
                 > div
                     &:nth-of-type(1)
                         display: flex

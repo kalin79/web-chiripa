@@ -51,7 +51,7 @@ const initialTodo = {
     register_from: "1",
     celular: "",
     email: "",
-    birthdate: "",
+    birhtday: "",
     password: "",
     password_confirmation: "",
     direccion: "",
@@ -153,7 +153,7 @@ const Create = () => {
             const options = {
                 method: 'POST',
                 headers: {
-                    'Authorization': `${process.env.NEXT_PUBLIC_AUTHORIZATION_FORM}`,  // Encabezado de autorización
+                    'Authorization-secret': `${process.env.NEXT_PUBLIC_AUTHORIZATION_FORM}`,  // Encabezado de autorización
                 },
                 body: JSON.stringify(todos),
             }
@@ -266,13 +266,13 @@ const Create = () => {
                                 />
                             </div>
                             <div>
-                                <label htmlFor="birthdate">Fecha de Nacimiento <span>*</span>:</label>
+                                <label htmlFor="birhtday">Fecha de Nacimiento <span>*</span>:</label>
                                 <input
                                     type="date"
                                     className="form-control"
                                     placeholder='Ingresa tu fecha de nacimiento'
-                                    value={todos.birthdate}
-                                    name='birthdate'
+                                    value={todos.birhtday}
+                                    name='birhtday'
                                     onChange={handleChangeFull}
                                 />
                             </div>
@@ -330,7 +330,7 @@ const Create = () => {
                                         onChange={handleCheckboxChange}
                                     />
                                     <span className="checkmark"></span>
-                                    Acepto los <a href="#" target='_blank'>Términos y condiciones</a> y <a href="#" target='_blank'>Políticas
+                                    Acepto los <a href="/terminos-y-condiciones" target='_blank'>Términos y condiciones</a> y <a href="/proteccion-de-datos" target='_blank'>Políticas
                                         de Privacidad</a>
                                 </label>
                             </div>

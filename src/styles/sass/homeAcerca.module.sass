@@ -2,21 +2,24 @@
 @use 'vars/fonts' as *
 
 .acercaSeccion
-    padding: 8rem 0 12rem
+    padding: 8rem 0 7rem
     border: 0px solid red
     position: relative
     width: 100vw
     overflow: hidden
+    @media screen and (min-width: 992px)
+        padding: 8rem 0 12rem
 .gridContainer
     > div
         &:nth-of-type(2)
-            grid-column: 5 / span 7
+            grid-column: 1 / -1
             border: 0px solid red
             display: flex
             justify-content: flex-end
             align-items: flex-start
             flex-direction: column
-
+            @media screen and (min-width: 992px)
+                grid-column: 5 / span 7
             p
                 color: white
                 font-size: 1rem
@@ -25,6 +28,9 @@
                     position: absolute
                     top: -3rem
                     right: -14.5rem
+                    display: none
+                    @media screen and (min-width: 992px)
+                        display: block
             .btnBox
                 display: flex
                 justify-content: flex-end
@@ -34,7 +40,9 @@
                     height: 52px
                     text-decoration: none
         &:nth-of-type(1)
-            grid-column: 1 / span 4
+            grid-column: 1 / -1
+            @media screen and (min-width: 992px)
+                grid-column: 1 / span 4
             h2
                 color: $verdeLimon
                 font-size: 10.5rem

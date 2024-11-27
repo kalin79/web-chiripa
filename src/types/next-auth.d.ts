@@ -7,6 +7,7 @@ declare module "next-auth" {
             accessToken?: string | null;
             name?: string | null;
             email?: string | null;
+            dni?: string | null;
             // token?: string | null;
 
         } & DefaultSession["user"];
@@ -14,6 +15,7 @@ declare module "next-auth" {
 
     interface User {
         accessToken?: string;
+        dni?: string; // Incluye el DNI si lo necesitas aquí.
         // token?: string;
 
     }
@@ -22,6 +24,7 @@ declare module "next-auth" {
 declare module "next-auth/jwt" {
     interface JWT {
         accessToken?: string;
+        dni?: string;
         // token?: string | null;
     }
 }

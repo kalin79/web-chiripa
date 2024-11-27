@@ -3,7 +3,7 @@
 import qs from "qs";
 import { getStrapiUrl } from "@/helpers/api-helpers";
 import { dataForm } from '@/interfaces/form'
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+
 export const fecthApi = async (
     path: string,
     urlParamsObject: any,
@@ -13,8 +13,8 @@ export const fecthApi = async (
     try {
         // es para el tema de cache en seg
         const mergedOptions = {
-            // next: { revalidate: 1 },
-            // cache: 'no-cache',
+            // next : { revalidate : 0 },
+            cache: 'no-cache',
             ...options,
             headers: {
                 ...options?.headers,
@@ -30,20 +30,19 @@ export const fecthApi = async (
             `${path}${queryString ? `?${queryString}` : ""}`
         )}`;
 
-        console.log(requestUrl);
         console.log(mergedOptions);
         const res = await fetch(requestUrl, mergedOptions);
         console.log(res)
 
         const data = await res.json();
-        // console.log('data', data)
+        // console.log('data',data)
         // console.log({queryString})
 
         return data;
 
 
     } catch (error) {
-        console.error(error)
+        console.error(error);
         throw new Error("Error en fetching Api!")
     }
 
@@ -69,7 +68,7 @@ export const processForm = async (data: dataForm) => {
 };
 
 export const processApi = async (data: dataForm) => {
-    console.log(data)
+    // console.log(data)
     try {
         const respuesta = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}${data.url}`, {
             method: 'GET',
@@ -80,7 +79,7 @@ export const processApi = async (data: dataForm) => {
             }
         })
         const res = await respuesta.json()
-        console.log(res)
+        // console.log(res)
         return res;
     } catch (err) {
         throw err
