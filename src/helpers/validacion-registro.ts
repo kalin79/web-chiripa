@@ -38,6 +38,7 @@ export function validateRegisterUser(user: objUser) {
         }
     }
 
+
     if (!user.password) {
         errores.msjStatus = "El password es obligatorio"
         errores.status = true;
@@ -54,14 +55,25 @@ export function validateRegisterUser(user: objUser) {
             return errores
         }
     }
+
+    const regex = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_\-+=<>?/{}[\]~|\\]).{8,}$/;
+
+    if (!regex.test(user.password)) {
+
+        errores.msjStatus = "La contraseña debe tener al menos 8 caracteres, incluir una letra mayúscula, un número y un carácter especial."
+        errores.status = true;
+        return errores
+    }
+
+
     if (!user.nombres) {
         errores.msjStatus = "El nombre es obligatorio"
         errores.status = true;
     }
-    if (!user.apellido_materno) {
-        errores.msjStatus = "El apellido es obligatorio"
-        errores.status = true;
-    }
+    // if (!user.apellido_materno) {
+    //     errores.msjStatus = "El apellido es obligatorio"
+    //     errores.status = true;
+    // }
     if ((!user.dni) || (user.dni.length < 8)) {
         console.log(user.dni.length)
         console.log(user.dni)

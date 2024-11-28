@@ -82,11 +82,11 @@ const BannerMain = () => {
                             <picture>
                                 <source
                                     srcSet="/images/bannerM2.webp"
-                                    media="(max-width: 992px)" // Imagen para móviles
+                                    media="(max-width: 800px)" // Imagen para móviles
                                 />
                                 <source
                                     srcSet="/images/banner3.webp"
-                                    media="(min-width: 992px)" // Imagen para escritorio
+                                    media="(min-width: 800px)" // Imagen para escritorio
                                 />
                                 <Image
                                     src="/images/banner3.webp" // Imagen fallback

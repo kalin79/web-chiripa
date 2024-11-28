@@ -76,7 +76,23 @@ const MasSorteos: React.FC<Props> = ({ dataObject }) => {
         nav: false,
         autoplaySpeed: 5000,
         nextArrow: <SampleNextArrow />,
-        prevArrow: <SamplePrevArrow />
+        prevArrow: <SamplePrevArrow />,
+        responsive: [
+            {
+                breakpoint: 992,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2
+                }
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+            }
+        ]
     };
     if ((productsRelations != undefined) && (productsRelations.length > 0)) {
         return (

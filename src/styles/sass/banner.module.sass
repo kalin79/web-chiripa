@@ -37,7 +37,11 @@
     position: relative
     height: 95vh
     // overflow: hidden
+    @media screen and (min-width: 800px)
+        height: 60vh
     @media screen and (min-width: 992px)
+        height: 80vh
+    @media screen and (min-width: 1200px)
         height: 100vh
     .containerCarrusel
         width: 100%
@@ -50,7 +54,11 @@
             justify-content: flex-end
             align-items: center
             flex-direction: column
+            @media screen and (min-width: 800px)
+                height: 60vh
             @media screen and (min-width: 992px)
+                height: 80vh
+            @media screen and (min-width: 1200px)
                 height: 100vh
             picture
                 display: flex
@@ -60,7 +68,11 @@
                 height: auto
                 object-fit: contain
                 object-position: center center
+                @media screen and (min-width: 800px)
+                    width: 75%
                 @media screen and (min-width: 992px)
-                    width: 69%
+                    width: 70%
+                @media screen and (min-width: 1200px)
+                    width: 70%
                 @media screen and (min-width: 1400px)
                     width: 70%

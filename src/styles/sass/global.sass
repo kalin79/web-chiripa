@@ -143,6 +143,7 @@ a
     min-height: 80vh
     margin-top: 0rem
     @media screen and (min-width: 992px)
+        min-height: 80vh
         background-attachment: fixed
         padding: 0rem 0 5rem
     // background-blend-mode: multiply
@@ -169,6 +170,8 @@ a
     object-fit: contain
     height: auto
     @media screen and (min-width: 992px)
+        top: -6rem
+    @media screen and (min-width: 1200px)
         top: -7rem
 .rasgadoRight
     position: absolute
@@ -177,7 +180,13 @@ a
     width: 80%
     object-fit: contain
     height: auto
+    @media screen and (min-width: 800px)
+        top: -8.25rem
+        width: 350px
     @media screen and (min-width: 992px)
+        top: -13.25rem
+        width: 419px
+    @media screen and (min-width: 1200px)
         top: -14.5rem
         width: 419px
 .rasgadoIzq,
@@ -196,14 +205,20 @@ a
 
 .rasgadoIzq2
     bottom: -2rem
+    @media screen and (min-width: 800px)
+        bottom: -14.5rem
     @media screen and (min-width: 992px)
         bottom: -16rem
 .rasgadoIzq3
     bottom: 2rem
+    @media screen and (min-width: 800px)
+        bottom: -10rem
     @media screen and (min-width: 992px)
         bottom: -10rem
 .rasgadoIzq4
     bottom: -11rem
+    @media screen and (min-width: 800px)
+        bottom: -23rem
     @media screen and (min-width: 992px)
         bottom: -26rem
 .rasgadoIzquierdaSmall
@@ -213,8 +228,11 @@ a
     width: 80%
     object-fit: contain
     height: auto
+    @media screen and (min-width: 800px)
+        width: 55%
+        bottom: -5rem
     @media screen and (min-width: 992px)
-        bottom: 0rem
+        bottom: -5rem
         width: 419px
 .rasgadoDerechaSmall
     position: absolute
@@ -224,6 +242,18 @@ a
     object-fit: contain
     height: auto
     transform: scaleX(-1)
+.rasgadoDerechaSmall2
+    position: absolute
+    bottom: 0rem
+    right: 0rem
+    width: 419px
+    object-fit: contain
+    height: auto
+    transform: scaleX(-1)
+    @media screen and (min-width: 800px)
+        bottom: -10rem
+    @media screen and (min-width: 992px)
+        bottom: 0rem
 .imageBackGroundContainer
     position: absolute
     top: -11rem

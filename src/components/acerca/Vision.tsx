@@ -26,6 +26,13 @@ const Vision = () => {
     return (
         <div className={styles.seccionVision}>
             <RasgadoDerSmall />
+            {/* <Image
+                className={`rasgadoDerechaSmall2`}
+                src="/images/rasgado_small.webp"
+                width={1326}
+                height={890}
+                alt="De Chiripa :: Formulario Suscribete"
+            /> */}
             <div className='container'>
                 <div className={`gridContainer ${styles.gridContainer}`}>
                     <div>
