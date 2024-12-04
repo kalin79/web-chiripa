@@ -46,7 +46,7 @@ const Premios = () => {
                     </p>
                 </div>
                 <div>
-                    <div className={`${styles.itemPremio} itemPremioHome`}>
+                    {/* <div className={`${styles.itemPremio} itemPremioHome`}>
                         <Image
                             className={styles.fondoPremio}
                             src="/images/fondoPremio2.webp"
@@ -75,10 +75,10 @@ const Premios = () => {
                             </div>
                         </div>
 
-                    </div>
+                    </div> */}
                     <div className={`${styles.itemPremio} itemPremioHome`}>
                         <div className={styles.cartelBox}>
-                            <h3>1er SORTEO</h3>
+                            <h3>1er PREMIO</h3>
                         </div>
                         <Image
                             className={styles.fondoPremio}
@@ -92,8 +92,8 @@ const Premios = () => {
                             <div className={`${styles.imageContainer}`}>
                                 <Image
                                     className={`${styles.productoPremio}  ${styles.bigImage}`}
-                                    src="/images/game.png"
-                                    width={311}
+                                    src="/images/sorteo4.png"
+                                    width={600}
                                     height={486}
                                     alt="De Chiripa :: Iphone Pro Max 15"
                                     priority={true}
@@ -101,10 +101,10 @@ const Premios = () => {
                             </div>
                             <div className={styles.footerContent}>
                                 <h3 className={Poppins700.className}>
-                                    1 laptop de última generación
+                                    Samsung Galaxy S24 Ultra
                                 </h3>
                                 <p className={Poppins500.className}>
-                                    Potencia y velocidad para tus trabajos
+                                    Entra en la tecnolog&iacute;a eSIM, pantalla retina y c&aacute;maras.
                                 </p>
                             </div>
                         </div>
@@ -112,7 +112,7 @@ const Premios = () => {
                     </div>
                     <div className={`${styles.itemPremio} itemPremioHome`}>
                         <div className={styles.cartelBox}>
-                            <h3>PRÓXIMAMENTE</h3>
+                            <h3>2do PREMIO</h3>
                         </div>
                         <Image
                             className={styles.fondoPremio}
@@ -125,17 +125,17 @@ const Premios = () => {
                         <div className={styles.detallePremio}>
                             <div className={styles.imageContainer}>
                                 <Image
-                                    className={styles.productoPremio}
-                                    src="/images/SCOOTER2024.webp"
-                                    width={311}
-                                    height={486}
+                                    className={`${styles.productoPremio}  ${styles.bigImage}`}
+                                    src="/images/sorteo3.png"
+                                    width={600}
+                                    height={488}
                                     alt="De Chiripa :: SEGWAY NINEBOT"
                                     priority={true}
                                 />
                             </div>
                             <div className={styles.footerContent}>
-                                <h3 className={Poppins700.className}>Scooter eléctrico</h3>
-                                <p className={Poppins500.className}>Super autonom&iacute;a para que te olvides del transporte p&uacute;blico</p>
+                                <h3 className={Poppins700.className}>Laptop de última generación</h3>
+                                <p className={Poppins500.className}>Potencia y velocidad para tus trabajos</p>
                             </div>
                         </div>
 
