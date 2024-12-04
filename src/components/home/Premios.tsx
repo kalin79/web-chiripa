@@ -70,7 +70,7 @@ const Premios = () => {
                                 />
                             </div>
                             <div className={styles.footerContent}>
-                                <h3 className={Poppins700.className}>Celular Iphone 16 Pro</h3>
+                                <h3 className={Poppins700.className}>1 Samsung Galaxi S24 Ultra</h3>
                                 <p className={Poppins500.className}>Entra en la tecnolog&iacute;a eSIM, pantalla retina y c&aacute;maras apple</p>
                             </div>
                         </div>
@@ -78,7 +78,7 @@ const Premios = () => {
                     </div>
                     <div className={`${styles.itemPremio} itemPremioHome`}>
                         <div className={styles.cartelBox}>
-                            <h3>PRÓXIMAMENTE</h3>
+                            <h3>1er SORTEO</h3>
                         </div>
                         <Image
                             className={styles.fondoPremio}
@@ -101,7 +101,7 @@ const Premios = () => {
                             </div>
                             <div className={styles.footerContent}>
                                 <h3 className={Poppins700.className}>
-                                    Laptop Corei 7 Última generación
+                                    1 laptop de última generación
                                 </h3>
                                 <p className={Poppins500.className}>
                                     Potencia y velocidad para tus trabajos
