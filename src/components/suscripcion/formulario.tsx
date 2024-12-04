@@ -145,9 +145,9 @@ const Formulario = () => {
                             <div>
                                 <Image
                                     className={styles.chicoBox}
-                                    src="/images/chica.webp"
-                                    width={715}
-                                    height={788}
+                                    src="/images/sus.webp"
+                                    width={1364}
+                                    height={1002}
                                     alt="De Chiripa :: Formulario Suscribete"
                                     priority={true}
                                 />
