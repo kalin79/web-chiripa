@@ -233,10 +233,10 @@ const BannerMain = () => {
                                 <div>
                                     <div className={styles.imageContainer}>
                                         <Image
-                                            src="/images/influencer2.png"
+                                            src="/images/chica2.png"
                                             className={`${styles.imageResize2} ${styles.positionInfluencer}`}
-                                            width={1133}
-                                            height={789}
+                                            width={1199}
+                                            height={1706}
                                             alt="De Chiripa :: Regístrate y obtén tu usuario. Pronto multiplicarás tu suerte."
                                         />
                                     </div>

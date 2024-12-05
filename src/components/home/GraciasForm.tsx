@@ -20,6 +20,12 @@ const Poppins500 = Poppins({
     display: 'swap',
 })
 
+const Poppins600 = Poppins({
+    weight: '600',
+    subsets: ['latin'],
+    display: 'swap',
+})
+
 const GraciasForm = () => {
     return (
         <div className={styles.graciasContainer}>
@@ -38,7 +44,7 @@ const GraciasForm = () => {
                     height={156}
                     alt="De Chiripa :: Preparate para lo que viene"
                 />
-                <span className={Humane600.className}>¡Te felicito!</span>
+                <span className={Humane600.className}><span className={Poppins600.className}>¡</span>Te felicito<span className={Poppins600.className}>!</span></span>
             </div>
             <span className={`${Poppins500.className} ${styles.mensajeBox}`}>
                 <Image

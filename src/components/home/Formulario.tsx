@@ -54,7 +54,7 @@ const DynamicGraciasForm = dynamic(() => import('@components/home/GraciasForm'),
 const Formulario = () => {
     const [todos, setTodos] = useState<objUser>(initialTodo)
     const [isChecked, setIsChecked] = useState<boolean>(false)
-    const [isSubmitted, setIsSubmitted] = useState<boolean>(false)
+    const [isSubmitted, setIsSubmitted] = useState<boolean>(true)
     const [isLoading, setIsLoading] = useState(false)
     const isView = true
 
