@@ -38,7 +38,7 @@ const GraciasForm = () => {
                     height={156}
                     alt="De Chiripa :: Preparate para lo que viene"
                 />
-                <span className={Humane600.className}>!Te felicito!</span>
+                <span className={Humane600.className}>¡Te felicito!</span>
             </div>
             <span className={`${Poppins500.className} ${styles.mensajeBox}`}>
                 <Image
