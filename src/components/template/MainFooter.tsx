@@ -51,7 +51,7 @@ const Footer = () => {
                                 alt="DeChiripa :: Instagram"
                             />
                         </a>
-                        <a href="https://www.tiktok.com/@dechiripaperu" target='_blank'>
+                        <a href="https://www.tiktok.com/@dechiripa.pe" target='_blank'>
                             <Image
                                 src="/images/tiktok.svg"
                                 width={34}

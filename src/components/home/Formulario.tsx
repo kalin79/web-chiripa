@@ -56,7 +56,7 @@ const Formulario = () => {
     const [isChecked, setIsChecked] = useState<boolean>(false)
     const [isSubmitted, setIsSubmitted] = useState<boolean>(false)
     const [isLoading, setIsLoading] = useState(false)
-    const isView = false
+    const isView = true
 
 
 
