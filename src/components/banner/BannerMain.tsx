@@ -130,7 +130,7 @@ const BannerMain = () => {
                                         </h2>
                                         <h2 className={Humane600.className}>
                                             <span>LLÉVATE UNA</span> <br />
-                                            <span>Laptop i7</span> <br />
+                                            <span>Laptop</span> <br />
                                             <span>Última generación</span> <br />
                                         </h2>
                                     </div>
@@ -263,7 +263,7 @@ const BannerMain = () => {
                                         </h2> */}
                                     </div>
                                     <h3 className={Poppins500.className}>
-                                        Mayor probabilidad, mayores sueños: Tu oportunidad real de ganar!
+                                        Mayor probabilidad, mayores sueños: ¡Tu oportunidad real de ganar!
                                     </h3>
                                     <div className={styles.buttonContainer}>
                                         <button onClick={handleScrollToSection} className={`buttonClass ${Poppins600.className}`} type='button'>Regístrate</button>
