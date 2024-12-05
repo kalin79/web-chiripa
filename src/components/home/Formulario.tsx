@@ -39,7 +39,7 @@ const initialTodo = {
     register_from: "1",
     celular: "",
     email: "",
-    birthdate: "",
+    birhtday: "",
     password: "",
     password_confirmation: "",
     tyc: false,
@@ -298,13 +298,13 @@ const Formulario = () => {
                                             />
                                         </div>
                                         <div>
-                                            <label htmlFor="birthdate">Fecha de nacimiento:</label>
+                                            <label htmlFor="birhtday">Fecha de nacimiento:</label>
                                             <input
                                                 type="date"
                                                 className="form-control"
                                                 placeholder='Ingresa tu correo electrónico'
-                                                value={todos.birthdate}
-                                                name='birthdate'
+                                                value={todos.birhtday}
+                                                name='birhtday'
                                                 onChange={handleChangeFull}
                                             />
                                         </div>
