@@ -31,7 +31,7 @@ const Footer = () => {
                                 height={226}
                                 alt="Picture of the author"
                             />
-                            <p className={Poppins400.className}>© De Chiripa - 2024</p>
+                            <p className={Poppins400.className}>© De Chiripa - 2024 RUC: 20613505149</p>
                         </div>
                     </div>
                     <div>

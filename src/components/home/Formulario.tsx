@@ -340,8 +340,8 @@ const Formulario = () => {
                                                     onChange={handleCheckboxChange}
                                                 />
                                                 <span className="checkmark"></span>
-                                                Acepto los <a href="https://s3.us-east-1.amazonaws.com/img.dechiripa.com.pe/dechiripa/politica.pdf" target='_blank'>Términos y Condiciones</a>&nbsp;y las&nbsp;
-                                                <a href="https://s3.us-east-1.amazonaws.com/img.dechiripa.com.pe/dechiripa/datos.pdf" target='_blank'>Política de Privacidad</a>
+                                                Acepto los <a href="https://s3.us-east-1.amazonaws.com/img.dechiripa.com.pe/dechiripa/terminosycondiciones.pdf" target='_blank'>Términos y Condiciones</a>&nbsp;y las&nbsp;
+                                                <a href="https://s3.us-east-1.amazonaws.com/img.dechiripa.com.pe/dechiripa/terminosycondiciones.pdf" target='_blank'>Política de Privacidad</a>
                                             </label>
                                         </div>
 
