@@ -84,8 +84,8 @@ const Beneficios = () => {
                         <h2 className={Poppins600.className}>Premios que no te esperas</h2>
                         <p className={Poppins400.className}>Desde los últimos celulares hasta scooters eléctricos y más, cada sorteo es una oportunidad para llevarte algo épico.</p>
 
-                        <h2 className={Poppins600.className}>Todo en vivo y a la vista</h2>
-                        <p className={Poppins400.className}>Con nuestras transmisiones en vivo, ves cómo todo pasa en tiempo real. Aquí no hay truco, ¡solo chiripa!</p>
+                        {/* <h2 className={Poppins600.className}>Todo en vivo y a la vista</h2>
+                        <p className={Poppins400.className}>Con nuestras transmisiones en vivo, ves cómo todo pasa en tiempo real. Aquí no hay truco, ¡solo chiripa!</p> */}
                     </div>
                 </div>
             </div>

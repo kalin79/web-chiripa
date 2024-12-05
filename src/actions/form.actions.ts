@@ -68,7 +68,7 @@ export const processForm = async (data: dataForm) => {
 };
 
 export const processApi = async (data: dataForm) => {
-    // console.log(data)
+    console.log(`${process.env.NEXT_PUBLIC_BACKEND_URL}${data.url}`)
     try {
         const respuesta = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}${data.url}`, {
             method: 'GET',
@@ -76,10 +76,12 @@ export const processApi = async (data: dataForm) => {
                 "Authorization-secret": `${data.token}`,
                 "Content-Type": "application/json",
                 "Cache-Control": "no-cache",
-            }
+                "Pragma": "no-cache" // Compatibilidad con navegadores más antiguos
+            },
+            cache: "no-store", // Evita el uso de caché
         })
         const res = await respuesta.json()
-        // console.log(res)
+        console.log(res)
         return res;
     } catch (err) {
         throw err
