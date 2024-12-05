@@ -341,7 +341,7 @@ const Formulario = () => {
                                                 />
                                                 <span className="checkmark"></span>
                                                 Acepto los <a href="https://s3.us-east-1.amazonaws.com/img.dechiripa.com.pe/dechiripa/terminosycondiciones.pdf" target='_blank'>Términos y Condiciones</a>&nbsp;y las&nbsp;
-                                                <a href="https://s3.us-east-1.amazonaws.com/img.dechiripa.com.pe/dechiripa/terminosycondiciones.pdf" target='_blank'>Política de Privacidad</a>
+                                                <a href="https://s3.us-east-1.amazonaws.com/img.dechiripa.com.pe/dechiripa/terminosycondiciones.pdf" target='_blank'>Política de Privacidad y Reglamento</a>
                                             </label>
                                         </div>
 
