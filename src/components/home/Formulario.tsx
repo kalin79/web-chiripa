@@ -161,7 +161,7 @@ const Formulario = () => {
             const options = {
                 method: 'POST',
                 headers: {
-                    'Authorization': `${process.env.NEXT_PUBLIC_AUTHORIZATION_FORM}`,  // Encabezado de autorización
+                    'Authorization-secret': `${process.env.NEXT_PUBLIC_AUTHORIZATION_FORM}`,  // Encabezado de autorización
                 },
                 body: JSON.stringify(todos),
             }
