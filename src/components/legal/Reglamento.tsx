@@ -2,12 +2,18 @@
 import Image from 'next/image'
 import styles from '@/styles/sass/legal.module.sass'
 import localFont from 'next/font/local'
+import { ObjApiConfig } from "@/interfaces/contenido"
+
 const Humane600 = localFont({
     src: '../../../public/fonts/Humane-SemiBold.woff2',
     weight: '600',
     style: 'normal',
 })
-const Reglamento = () => {
+interface Props {
+    dataContenido: ObjApiConfig,
+}
+const Reglamento: React.FC<Props> = ({ dataContenido }) => {
+    const dataPrint = dataContenido.data.reglamento
     return (
         <div className={`${styles.pageLegal} estilosCMS`}>
             <Image
@@ -29,12 +35,16 @@ const Reglamento = () => {
                                 height={73}
                                 alt="TÉRMINOS Y CONDICIONES"
                             />
-                            REGLAMENTO
+                            <div
+                                dangerouslySetInnerHTML={{ __html: dataPrint?.titulo || '' }}
+                            >
+                            </div>
                         </h1>
                         <div className={styles.infoLegal}>
-                            <p>
-                                hola
-                            </p>
+                            <div
+                                dangerouslySetInnerHTML={{ __html: dataPrint?.descripcion || '' }}
+                            >
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -1,6 +1,12 @@
 @use 'vars/colors' as *
 @use 'vars/fonts' as *
 
+.contentCulebra
+    position: relative
+    .sticker3
+        position: absolute
+        bottom: -3rem
+        right: 5rem
 .botonBannerHeader
     bottom: -3rem
     top: auto !important
@@ -126,11 +132,7 @@
                 transform: rotate(0deg)
     p
         @extend %descripcionSuave
-        position: relative
-        .sticker3
-            position: absolute
-            bottom: -3rem
-            right: 5rem
+
     .gridContainer2
         margin-top: 8rem
         > div

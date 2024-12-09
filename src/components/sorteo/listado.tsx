@@ -88,7 +88,7 @@ const ListadoSorteos: React.FC<Props> = ({ dataSorteos }) => {
                                     <div className={`${styles.cardFechaFull}  ${styles.cardFecha}`}>
                                         <h3 className={Poppins500.className}>Sorteo:</h3>
                                         {
-                                            (item.fecha != '') ? (
+                                            ((item.fecha != undefined) && (item.fecha != '')) ? (
                                                 <h2 className={Poppins700.className}>{item.fecha}</h2>
                                             ) : (
                                                 <h2 className={Poppins700.className}>Pr&oacute;ximamente</h2>

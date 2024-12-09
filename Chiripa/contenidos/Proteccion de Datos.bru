@@ -1,0 +1,16 @@
+meta {
+  name: Proteccion de Datos
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{BACKEND_URL}}config/proteccion-datos
+  body: none
+  auth: none
+}
+
+headers {
+  Authorization-secret: TSTCbj7mQO2xEOuwEK08RajQS1OxndfY
+  Content-Type: application/json
+}

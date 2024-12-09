@@ -37,7 +37,7 @@ const ListadoSorteos = () => {
     return (
         <>
             <div className={`backgroundContainer`}>
-                {JSON.stringify(data)}
+                {/* {JSON.stringify(data)} */}
                 <Suspense fallback={<div>Loading...</div>}>
                     <ListarSorteos dataSorteos={data} />
                 </Suspense>

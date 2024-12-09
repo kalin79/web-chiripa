@@ -3,6 +3,8 @@ import Image from 'next/image'
 import localFont from 'next/font/local'
 import { Poppins } from 'next/font/google'
 import styles from '@/styles/sass/acercaPage.module.sass'
+import { ObjApiConfig } from "@/interfaces/contenido"
+
 // import RasgadoIzq from '@/components/fondo/RasgadoIzq'
 const Humane600 = localFont({
     src: '../../../public/fonts/Humane-SemiBold.woff2',
@@ -16,8 +18,11 @@ const Poppins400 = Poppins({
     subsets: ['latin'],
     display: 'swap',
 })
-
-const Detalle = () => {
+interface Props {
+    dataContenido: ObjApiConfig,
+}
+const Detalle: React.FC<Props> = ({ dataContenido }) => {
+    const dataPrint = dataContenido.data.contenido_principal
     return (
         <div className={styles.seccionAcerca}>
             {/* <RasgadoIzq style={{ bottom: "-26rem" }} /> */}
@@ -58,9 +63,14 @@ const Detalle = () => {
                                 />
                             </span>
                         </h1>
-                        <p className={styles.Poppins500}>
+                        <div
+                            className={Poppins400.className}
+                            dangerouslySetInnerHTML={{ __html: dataPrint?.descripcion || '' }}
+                        >
+                        </div>
+                        {/* <p className={styles.Poppins500}>
                             En DE CHIRIPA somos la plataforma que le pone sazón y emoción a la suerte.
-                        </p>
+                        </p> */}
                     </div>
                     <div>
                         <div className={styles.XchicoBoxImage}>
@@ -74,7 +84,7 @@ const Detalle = () => {
                         </div>
                     </div>
                     <div>
-                        <div>
+                        <div className={Poppins400.className}>
                             <Image
                                 className={styles.sticker2}
                                 src='/images/logoVerde.svg'
@@ -82,9 +92,13 @@ const Detalle = () => {
                                 height='163'
                                 alt=''
                             />
-                            <p className={Poppins400.className}>
+                            <div
+                                dangerouslySetInnerHTML={{ __html: dataPrint?.descripcion || '' }}
+                            >
+                            </div>
+                            {/* <p className={Poppins400.className}>
                                 Creemos que la chiripa no es solo un golpe de suerte; es ese momento único que puede cambiarte el día, el mes... ¡o la vida! Nuestro rollo es simple: conectar con jóvenes como tú, que siempre están buscando una oportunidad para ganar en grande.
-                            </p>
+                            </p> */}
                         </div>
                     </div>
                 </div>

@@ -52,7 +52,7 @@ const Footer = () => {
                     <div>
                         <Link href="/terminos-y-condiciones" className={Poppins500.className}>Términos y condiciones</Link>
                         <Link href="/politicas-de-juego" className={Poppins500.className}>Políticas de juegos</Link>
-                        <Link href="/proteccion-de-datos" className={Poppins500.className}>Protección de datos</Link>
+                        {/* <Link href="/proteccion-de-datos" className={Poppins500.className}>Protección de datos</Link> */}
                         <Link href="/reglamento" className={Poppins500.className}>Reglamento</Link>
                     </div>
                     <div>
@@ -63,7 +63,7 @@ const Footer = () => {
                             <p className={Poppins300.className}>Lunes a viernes 9:00 AM - 18:00 PM</p>
                         </div> */}
                         <div className={styles.boxReclamaciones}>
-                            <a href="https://google.com.pe" target="_blank" className={Poppins500.className}>
+                            <a href="https://reclamovirtual.pe/libros/fde5420c-8673-408a-b8f7-4d7a1ebd2823/DE_CHIRIPA" target="_blank" className={Poppins500.className}>
                                 <Image
                                     src="/images/book2.webp"
                                     width={34}
