@@ -98,7 +98,7 @@ const Formulario = () => {
             })
             // Permitir el campo vacío o solo espacios
             // Sin error si el campo está vacío o solo tiene espacios
-        } else if (/^[a-zA-Z']*$/.test(value.replace(/\s/g, ''))) {
+        } else if (/^[a-zA-ZñÑ']*$/.test(value.replace(/\s/g, ''))) {
             setTodos({
                 ...todos,
                 [e.target.name]: e.target.value
