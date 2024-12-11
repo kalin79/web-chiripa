@@ -70,7 +70,7 @@ const CartProvider = ({ children }: Props) => {
         if (cartProducts) {
             localStorage.setItem('carrito', JSON.stringify(cartProducts));
         } else {
-            localStorage.removeItem('curso');
+            localStorage.removeItem('carrito');
         }
     }, [cartProducts]);
 

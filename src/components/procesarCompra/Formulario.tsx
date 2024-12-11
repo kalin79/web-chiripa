@@ -18,11 +18,8 @@ import { CartUser } from "@/interfaces/cart"
 import gsap from "gsap";
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 
-// const Poppins600 = Poppins({
-//     weight: '600',
-//     subsets: ['latin'],
-//     display: 'swap',
-// })
+import { getNiubizToken } from '@/app/api/niubiz/route';
+import { getResponseBuy } from '@/app/api/niubiz/session';
 
 const Poppins400 = Poppins({
     weight: '400',
@@ -54,12 +51,14 @@ const FormularioCompra = () => {
     const [isViewOrder, setIsViewOrder] = useState(false)
     const [isChecked, setIsChecked] = useState(true)
     const [todos, setTodos] = useState<CartUser>(initialTodo)
+    const [isScriptLoaded, setIsScriptLoaded] = useState(false);
+    const [loading, setLoading] = useState(false);
+    // const [response, setResponse] = useState<any>(null);
     // const [isChecked, setIsChecked] = useState<boolean>(false)
 
     const isLogin = true
     const { cartProducts, totalPriceTicket } = useContext(cartContext);
     const descuento = 0
-    const email = "c.augusto.espinoza@gmail.com"
     useEffect(() => {
         if (session && session.user) {
             console.log(session)
@@ -93,42 +92,119 @@ const FormularioCompra = () => {
 
     // }
 
+    const generatePurchaseNumber = () => {
+        const timestamp = Date.now(); // Obtiene la fecha actual en milisegundos
+        const random = Math.floor(Math.random() * 10000); // Genera un número aleatorio
+        return `${timestamp}${random}`; // Concatenamos el timestamp con el número aleatorio
+    };
+
+    useEffect(() => {
+        // Cargar el script de checkout de Niubiz
+        const script = document.createElement('script');
+        script.src = "https://static-content-qas.vnforapps.com/env/sandbox/js/checkout.js";
+        script.type = "text/javascript";
+        script.async = true;
+        document.body.appendChild(script);
+
+        // Configurar VisanetCheckout una vez que el script esté cargado
+        script.onload = () => {
+            setIsScriptLoaded(true); // Indicamos que el script se ha cargado correctamente
+        };
+
+        // Limpiar el script cuando el componente se desmonte
+        return () => {
+            document.body.removeChild(script);
+        };
+    }, []);
+
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
-        if (!window.Culqi) {
-            alert('Culqi no está cargado');
-            return;
-        }
-        window.Culqi.publicKey = process.env.NEXT_PUBLIC_CULQI_PUBLIC_KEY!;
-        window.Culqi.settings({
-            title: 'Mi Tienda',
-            currency: 'PEN',
-            description: 'Compra de productos',
-            amount: totalPriceTicket * 100, // Monto en céntimos
-        });
+        setLoading(true);
+        // setResponse(null);
 
-        window.Culqi.open();
-        window.Culqi.callback = async () => {
-            if (window.Culqi.token) {
-                const { id: tokenId } = window.Culqi.token;
+        const purchaseNumber = generatePurchaseNumber();
+        const expirationMinutes = '20';
+        const dataMerchantid = process.env.NEXT_PUBLIC_NIUBIZ_CLIENT_MERCHANTID || ''
+        const payload = {
+            channel: 'web',
+            amount: 10.5,
+            antifraud: {
+                clientIp: '24.252.107.29',
+                merchantDefineData: {
+                    MDD4: 'c.augusto.espinoza@gmail.com',
+                    MDD32: '40609717',
+                    MDD75: 'Registrado',
+                    MDD77: 4,
+                },
+            },
+            dataMap: {
+                cardholderCity: 'Lima',
+                cardholderCountry: 'PE',
+                cardholderAddress: 'Av Jose Pardo 831',
+                cardholderPostalCode: '12345',
+                cardholderState: 'LIM',
+                cardholderPhoneNumber: '987654321',
+            },
+        };
 
-                // Llamada a la API del backend con el token
-                const response = await fetch('/api/payment', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ tokenId, email, amount: totalPriceTicket * 100 }),
+
+        try {
+
+            const token = await getNiubizToken();
+            const response = await getResponseBuy(payload, token)
+            // setResponse(response)
+            console.log({
+                sessiontoken: response.sessionKey,
+                channel: 'web',
+                merchantid: dataMerchantid,
+                purchasenumber: purchaseNumber,
+                amount: payload.amount,
+                expirationminutes: expirationMinutes,
+                timeouturl: 'about:blank',
+                merchantlogo: 'img/comercio.png',
+                formbuttoncolor: '#000000',
+                action: 'paginaRespuesta'
+            })
+            // Cargamos el formulario
+            if (isScriptLoaded && window.VisanetCheckout) {
+                // Configurar VisanetCheckout antes de abrir el formulario
+                window.VisanetCheckout.configure({
+                    sessiontoken: response.sessionKey,
+                    channel: 'web',
+                    merchantid: dataMerchantid,
+                    purchasenumber: purchaseNumber,
+                    amount: payload.amount,
+                    expirationminutes: expirationMinutes,
+                    timeouturl: 'about:blank',
+                    merchantlogo: 'img/comercio.png',
+                    formbuttoncolor: '#000000',
+                    action: 'paginaRespuesta',
+                    complete: (params: any) => {
+                        console.log("Pago completado:", params);
+                        // procesar(params);
+                    }
                 });
 
-                const result = await response.json();
-                if (result.charge) {
-                    alert('Pago exitoso');
-                } else {
-                    alert('Error al procesar el pago');
-                }
+                // Abre el formulario de pago
+                window.VisanetCheckout.open();
+                // Manejo adicional de resultados
+                // window.VisanetCheckout.configuration.complete = procesar;
+                // function procesar(parametros: any) {
+                //     console.log(parametros);
+                // }
             } else {
-                alert('Pago cancelado');
+                console.error('El script de VisanetCheckout no se ha cargado correctamente.');
             }
-        };
+        } catch (error) {
+            console.error('Error:', error);
+            // setResponse({ error: 'Error al procesar la solicitud' });
+        } finally {
+            setLoading(false);
+        }
+
+
+
+
 
     }
     // const handleChangeFull = (e: ChangeEvent<FormElement>) => {
@@ -196,6 +272,13 @@ const FormularioCompra = () => {
                                 <p className={(isLogin && isOpenDatos) ? styles.active : ''}>1</p>
                                 <div className={styles.LineUp}></div>
                             </div> */}
+
+                            {/* {response && (
+                                <div style={{ marginTop: '20px' }}>
+                                    <h3>Respuesta:</h3>
+                                    <pre>{JSON.stringify(response, null, 2)}</pre>
+                                </div>
+                            )} */}
                             <div className={styles.accordionForm}>
                                 <div className={styles.accordionHeader}>
                                     <div className={styles.accordionInfo}>
@@ -271,35 +354,28 @@ const FormularioCompra = () => {
 
                                         </div>
                                         <div className={styles.FormDatos}>
-                                            <div>
-                                                <label className={`custom-checkbox ${styles.customCheck}`}>
-                                                    <input
-                                                        type="checkbox"
-                                                        id="isChecked"
-                                                        name="isChecked"
-                                                    // checked={isChecked}
-                                                    // onChange={handleCheckboxChange}
-                                                    />
-                                                    <span className="checkmark"></span>
-                                                    Acepto los <a href="/terminos-y-condiciones" target='_blank'>Términos y Condiciones</a>
-                                                </label>
-                                            </div>
-                                            <div>
-                                                <label className={`custom-checkbox ${styles.customCheck}`}>
-                                                    <input
-                                                        type="checkbox"
-                                                        id="isChecked"
-                                                        name="isChecked"
-                                                    // checked={isChecked}
-                                                    // onChange={handleCheckboxChange}
-                                                    />
-                                                    <span className="checkmark"></span>
-                                                    Acepto la <a href="/proteccion-de-datos" target='_blank'>Política de Privacidad</a>
-                                                    <span> y el uso de mis datos  con fines comerciales y publicitarios</span>
-                                                </label>
-                                            </div>
+                                            <label className={`custom-checkbox ${styles.customCheck}`}>
+                                                <input
+                                                    type="checkbox"
+                                                    id="isChecked"
+                                                    name="isChecked"
+                                                // checked={isChecked}
+                                                // onChange={handleCheckboxChange}
+                                                />
+                                                <span className="checkmark"></span>
+                                                Acepto los <a href="/terminos-y-condiciones" target='_blank'>Términos y Condiciones</a> y
+                                                las <a href="/proteccion-de-datos" target='_blank'>Política de Privacidad y Reglamento</a>
+                                            </label>
+                                        </div>
+                                        <div className={styles.FormDatos}>
                                             <div className={styles.btnForm}>
-                                                <button type='submit' className='btnMain'>Pagar</button>
+                                                <button
+                                                    type='submit'
+                                                    className='btnMain'
+                                                    disabled={loading}
+                                                >
+                                                    {loading ? 'Procesando...' : 'Realizar Pago'}
+                                                </button>
                                             </div>
                                         </div>
                                     </form>
