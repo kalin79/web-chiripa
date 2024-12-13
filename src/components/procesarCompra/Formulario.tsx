@@ -18,8 +18,8 @@ import { CartUser } from "@/interfaces/cart"
 import gsap from "gsap";
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 
-import { getNiubizToken } from '@/app/api/niubiz/route';
-import { getResponseBuy } from '@/app/api/niubiz/session';
+import { getNiubizToken } from '@/util/niubiz';
+import { getResponseBuy } from '@/util/session';
 
 const Poppins400 = Poppins({
     weight: '400',
