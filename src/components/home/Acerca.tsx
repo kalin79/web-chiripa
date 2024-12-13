@@ -6,6 +6,7 @@ import Link from 'next/link'
 import styles from '@/styles/sass/homeAcerca.module.sass'
 import localFont from 'next/font/local'
 import { Poppins } from 'next/font/google'
+import { ApiObjectHome } from "@/interfaces/home"
 
 // import RasgadoIzqSmall from "@/components/fondo/RasgadoIzqSmall"
 
@@ -20,7 +21,11 @@ const Poppins400 = Poppins({
     subsets: ['latin'],
     display: 'swap',
 })
-const Acerca = () => {
+interface Props {
+    dataContenido: ApiObjectHome,
+}
+const Acerca: React.FC<Props> = ({ dataContenido }) => {
+    const data = dataContenido.data.acerca_de_chiripa
     return (
         <div className={styles.acercaSeccion}>
             {/* <RasgadoIzqSmall /> */}
@@ -52,7 +57,7 @@ const Acerca = () => {
                                     height='221'
                                     alt=''
                                 />
-                                En DE CHIRIPA somos la plataforma que le pone sazón y emoción a la suerte. Creemos que la chiripa no es solo un golpe de suerte; es ese momento único que puede cambiarte el día, el mes... ¡o la vida! Nuestro rollo es simple: conectar con jóvenes como tú, que siempre están buscando una oportunidad para ganar en grande.
+                                {data.descripcion_corta}
                             </p>
                             <div className={styles.btnBox}>
                                 <Link href="/acerca-de-chiripa" className={`btnMain ${styles.btnMain}`}>Sobre Nosotros</Link>

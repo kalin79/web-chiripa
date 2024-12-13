@@ -1,5 +1,7 @@
 'use client'
 import { useEffect, useRef } from 'react';
+import Link from 'next/link'
+
 import Image from 'next/image'
 import gsap from "gsap";
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
@@ -7,6 +9,7 @@ import Slider from "react-slick"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import styles from '@/styles/sass/banner.module.sass'
+import { ApiObjectHome } from "@/interfaces/home"
 
 
 
@@ -17,7 +20,12 @@ interface ArrowProps {
     onClick?: React.MouseEventHandler<HTMLDivElement>;
 }
 
-const BannerMain = () => {
+interface Props {
+    dataContenido: ApiObjectHome,
+}
+
+const BannerMain: React.FC<Props> = ({ dataContenido }) => {
+    const data = dataContenido.data.banners
     const boxRef = useRef<HTMLImageElement>(null);
     function SamplePrevArrow(props: ArrowProps) {
         const { className, onClick } = props;
@@ -77,27 +85,56 @@ const BannerMain = () => {
 
             <div className={styles.containerCarrusel}>
                 <Slider {...settings}>
-                    <div>
-                        <div className={styles.itemsCarrusel}>
-                            <picture>
-                                <source
-                                    srcSet="/images/bannerM2.webp"
-                                    media="(max-width: 800px)" // Imagen para móviles
-                                />
-                                <source
-                                    srcSet="/images/banner3.webp"
-                                    media="(min-width: 800px)" // Imagen para escritorio
-                                />
-                                <Image
-                                    src="/images/banner3.webp" // Imagen fallback
-                                    alt="Descripción de la imagen"
-                                    width={1825}
-                                    height={1280}
-                                    priority
-                                />
-                            </picture>
-                        </div>
-                    </div>
+                    {
+                        data.map((banner, index) => (
+                            <div key={index}>
+                                <div className={styles.itemsCarrusel}>
+                                    {
+                                        banner.link != '' ? (
+                                            <Link href={banner.link}>
+                                                <picture>
+                                                    <source
+                                                        srcSet={banner.imagemobile}
+                                                        media="(max-width: 800px)" // Imagen para móviles
+                                                    />
+                                                    <source
+                                                        srcSet={banner.image}
+                                                        media="(min-width: 800px)" // Imagen para escritorio
+                                                    />
+                                                    <Image
+                                                        src={banner.image}// Imagen fallback
+                                                        alt="Descripción de la imagen"
+                                                        width={1825}
+                                                        height={1280}
+                                                        priority
+                                                    />
+                                                </picture>
+                                            </Link>
+                                        ) : (
+                                            <picture>
+                                                <source
+                                                    srcSet={banner.imagemobile}
+                                                    media="(max-width: 800px)" // Imagen para móviles
+                                                />
+                                                <source
+                                                    srcSet={banner.image}
+                                                    media="(min-width: 800px)" // Imagen para escritorio
+                                                />
+                                                <Image
+                                                    src={banner.image}// Imagen fallback
+                                                    alt="Descripción de la imagen"
+                                                    width={1825}
+                                                    height={1280}
+                                                    priority
+                                                />
+                                            </picture>
+                                        )
+                                    }
+                                </div>
+                            </div>
+                        ))
+                    }
+
                 </Slider>
             </div>
         </div>

@@ -63,14 +63,9 @@ const Detalle: React.FC<Props> = ({ dataContenido }) => {
                                 />
                             </span>
                         </h1>
-                        <div
-                            className={Poppins400.className}
-                            dangerouslySetInnerHTML={{ __html: dataPrint?.descripcion || '' }}
-                        >
-                        </div>
-                        {/* <p className={styles.Poppins500}>
-                            En DE CHIRIPA somos la plataforma que le pone sazón y emoción a la suerte.
-                        </p> */}
+                        <p className={styles.Poppins500}>
+                            {dataPrint?.descripcion_corta}
+                        </p>
                     </div>
                     <div>
                         <div className={styles.XchicoBoxImage}>

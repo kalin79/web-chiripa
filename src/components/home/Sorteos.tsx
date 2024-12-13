@@ -9,6 +9,8 @@ import styles from '@/styles/sass/homeSorteos.module.sass'
 import Slider from "react-slick"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
+import { ApiObjectHome } from "@/interfaces/home"
+
 const Humane600 = localFont({
     src: '../../../public/fonts/Humane-SemiBold.woff2',
     weight: '600',
@@ -39,7 +41,11 @@ interface ArrowProps {
     style?: React.CSSProperties;
     onClick?: React.MouseEventHandler<HTMLDivElement>;
 }
-const Sorteos = () => {
+interface Props {
+    dataContenido: ApiObjectHome,
+}
+const Sorteos: React.FC<Props> = ({ dataContenido }) => {
+    const data = dataContenido.data.sorteos
     function SamplePrevArrow(props: ArrowProps) {
         const { className, onClick } = props;
         return (
@@ -124,177 +130,72 @@ const Sorteos = () => {
                     <div>
                         <div className={styles.containerCarrusel}>
                             <Slider {...settings}>
-                                <div className={styles.cardPremioSimilaresBox}>
-                                    <div className={styles.cardSorteo}>
-                                        <div className={styles.cardFecha}>
-                                            <h3 className={Poppins500.className}>Sorteo:</h3>
-                                            <h2 className={Poppins700.className}>24-NOV</h2>
-                                        </div>
-                                        <Image
-                                            className={styles.fondoCardSorteo}
-                                            src="/images/marco.png"
-                                            width={554}
-                                            height={807}
-                                            alt="Iphone 15 Pro Max 256gb"
-                                        />
-                                        <div className={styles.cardImage}>
-                                            <Image
-                                                src="/images/sorteo1.png"
-                                                width={500}
-                                                height={600}
-                                                alt="Iphone 15 Pro Max 256gb"
-                                            />
-                                        </div>
-                                        <div className={styles.cardInfo}>
-                                            <h2 className={Poppins600.className}>Iphone 15 Pro Max 256gb</h2>
-                                            <Link href={`/sorteo/`} className='btnCar'>
+                                {
+                                    data.map((sorteos, index) => (
+                                        <div key={index} className={styles.cardPremioSimilaresBox}>
+                                            <div className={styles.cardSorteo}>
+                                                <div className={styles.cardFecha}>
+                                                    <h3 className={Poppins500.className}>Sorteo:</h3>
+                                                    {
+                                                        ((sorteos.fecha != undefined) && (sorteos.fecha != '')) ? (
+                                                            <h2 className={Poppins700.className}>{sorteos.fecha}</h2>
+                                                        ) : (
+                                                            <h2 className={Poppins700.className}>Pr&oacute;ximamente</h2>
+                                                        )
+                                                    }
+                                                </div>
                                                 <Image
-                                                    className={styles.bgTicket2}
-                                                    src="/images/ticket2.svg"
-                                                    width={30}
-                                                    height={30}
-                                                    alt="Añadir Tickets"
+                                                    className={styles.fondoCardSorteo}
+                                                    src="/images/marco.png"
+                                                    width={554}
+                                                    height={807}
+                                                    alt={sorteos.name}
                                                 />
-                                                <span>Comprar</span>
-                                            </Link>
-                                        </div>
-                                        <div className={styles.cardFooter}>
-                                            <div>
-                                                <h2>
-                                                    Probabilidad <br />
-                                                    de Ganar:
-                                                </h2>
-                                                <h3>
-                                                    89 mil
-                                                    veces más.
-                                                </h3>
-                                            </div>
-                                            <div>
-                                                <h2>
-                                                    Tickets <br />
-                                                    disponibles:
-                                                </h2>
-                                                <h3>
-                                                    100
-                                                </h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className={styles.cardPremioSimilaresBox}>
-                                    <div className={styles.cardSorteo}>
-                                        <div className={styles.cardFecha}>
-                                            <h3 className={Poppins500.className}>Sorteo:</h3>
-                                            <h2 className={Poppins700.className}>24-NOV</h2>
-                                        </div>
-                                        <Image
-                                            className={styles.fondoCardSorteo}
-                                            src="/images/marco.png"
-                                            width={554}
-                                            height={807}
-                                            alt="Iphone 15 Pro Max 256gb"
-                                        />
-                                        <div className={styles.cardImage}>
-                                            <Image
-                                                src="/images/sorteo1.png"
-                                                width={500}
-                                                height={600}
-                                                alt="Iphone 15 Pro Max 256gb"
-                                            />
-                                        </div>
-                                        <div className={styles.cardInfo}>
-                                            <h2 className={Poppins600.className}>Iphone 15 Pro Max 256gb</h2>
-                                            <Link href={`/sorteo/`} className='btnCar'>
-                                                <Image
-                                                    className={styles.bgTicket2}
-                                                    src="/images/ticket2.svg"
-                                                    width={30}
-                                                    height={30}
-                                                    alt="Añadir Tickets"
-                                                />
-                                                <span>Comprar</span>
-                                            </Link>
-                                        </div>
-                                        <div className={styles.cardFooter}>
-                                            <div>
-                                                <h2>
-                                                    Probabilidad <br />
-                                                    de Ganar:
-                                                </h2>
-                                                <h3>
-                                                    89 mil
-                                                    veces más.
-                                                </h3>
-                                            </div>
-                                            <div>
-                                                <h2>
-                                                    Tickets <br />
-                                                    disponibles:
-                                                </h2>
-                                                <h3>
-                                                    100
-                                                </h3>
+                                                <div className={styles.cardImage}>
+                                                    <Image
+                                                        src={sorteos.image}
+                                                        width={500}
+                                                        height={600}
+                                                        alt={sorteos.name}
+                                                    />
+                                                </div>
+                                                <div className={styles.cardInfo}>
+                                                    <h2 className={Poppins600.className}>{sorteos.name}</h2>
+                                                    <Link href={`/sorteo/`} className='btnCar'>
+                                                        <Image
+                                                            className={styles.bgTicket2}
+                                                            src="/images/ticket2.svg"
+                                                            width={30}
+                                                            height={30}
+                                                            alt="Añadir Tickets"
+                                                        />
+                                                        <span>Comprar</span>
+                                                    </Link>
+                                                </div>
+                                                <div className={styles.cardFooter}>
+                                                    <div>
+                                                        <h2>
+                                                            Probabilidad <br />
+                                                            de Ganar:
+                                                        </h2>
+                                                        <h3>
+                                                            {sorteos.probabilidad_ganar}
+                                                        </h3>
+                                                    </div>
+                                                    <div>
+                                                        <h2>
+                                                            Tickets <br />
+                                                            disponibles:
+                                                        </h2>
+                                                        <h3>
+                                                            {sorteos.aforo}
+                                                        </h3>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <div className={styles.cardPremioSimilaresBox}>
-                                    <div className={styles.cardSorteo}>
-                                        <div className={styles.cardFecha}>
-                                            <h3 className={Poppins500.className}>Sorteo:</h3>
-                                            <h2 className={Poppins700.className}>24-NOV</h2>
-                                        </div>
-                                        <Image
-                                            className={styles.fondoCardSorteo}
-                                            src="/images/marco.png"
-                                            width={554}
-                                            height={807}
-                                            alt="Iphone 15 Pro Max 256gb"
-                                        />
-                                        <div className={styles.cardImage}>
-                                            <Image
-                                                src="/images/sorteo1.png"
-                                                width={500}
-                                                height={600}
-                                                alt="Iphone 15 Pro Max 256gb"
-                                            />
-                                        </div>
-                                        <div className={styles.cardInfo}>
-                                            <h2 className={Poppins600.className}>Iphone 15 Pro Max 256gb</h2>
-                                            <Link href={`/sorteo/`} className='btnCar'>
-                                                <Image
-                                                    className={styles.bgTicket2}
-                                                    src="/images/ticket2.svg"
-                                                    width={30}
-                                                    height={30}
-                                                    alt="Añadir Tickets"
-                                                />
-                                                <span>Comprar</span>
-                                            </Link>
-                                        </div>
-                                        <div className={styles.cardFooter}>
-                                            <div>
-                                                <h2>
-                                                    Probabilidad <br />
-                                                    de Ganar:
-                                                </h2>
-                                                <h3>
-                                                    89 mil
-                                                    veces más.
-                                                </h3>
-                                            </div>
-                                            <div>
-                                                <h2>
-                                                    Tickets <br />
-                                                    disponibles:
-                                                </h2>
-                                                <h3>
-                                                    100
-                                                </h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                    ))
+                                }
                             </Slider>
                         </div>
                     </div>

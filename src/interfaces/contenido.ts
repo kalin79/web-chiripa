@@ -6,6 +6,13 @@ export interface ObjApiConfig {
     data_error: any[];
 }
 
+
+export interface ObjApiFaq {
+    id: number;
+    pregunta: string;
+    respuesta: string;
+}
+
 interface DataConfig {
     terminosCondiciones?: {
         titulo?: string;
@@ -22,6 +29,7 @@ interface DataConfig {
     contenido_principal?: {
         titulo?: string;
         descripcion?: string;
+        descripcion_corta?: string;
     };
     mision?: {
         titulo?: string;

@@ -4,6 +4,7 @@
 import Image from 'next/image'
 import styles from '@/styles/sass/vivo.module.sass'
 import localFont from 'next/font/local'
+import { ApiObjectHome } from "@/interfaces/home"
 
 const Humane600 = localFont({
     src: '../../../public/fonts/Humane-SemiBold.woff2',
@@ -11,9 +12,12 @@ const Humane600 = localFont({
     style: 'normal',
 })
 
+interface Props {
+    dataContenido: ApiObjectHome,
+}
 
-
-const Vivo = () => {
+const Vivo: React.FC<Props> = ({ dataContenido }) => {
+    const data = dataContenido.data.link_transmision
     // const [boolVivo, setBoolVivo] = useState(true)
     const boolVivo = true
     // useEffect(() => {
@@ -67,7 +71,7 @@ const Vivo = () => {
                                     <h2 className={Humane600.className}>TRANSMISIONES <span>EN VIVO</span></h2>
                                 </div>
                                 <div>
-                                    <a href="#" target='_blank' className={`btnMain ${styles.btnMain}`}>Ver transmisión</a>
+                                    <a href={data?.descripcion_corta ?? undefined} target='_blank' className={`btnMain ${styles.btnMain}`}>Ver transmisión</a>
                                 </div>
                             </div>
                         </div>

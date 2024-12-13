@@ -5,6 +5,7 @@ import localFont from 'next/font/local'
 import { Poppins } from 'next/font/google'
 import styles from '@/styles/sass/preguntasPage.module.sass'
 // import RasgadoIzq from '@/components/fondo/RasgadoIzq'
+import { ObjApiFaq } from "@/interfaces/contenido"
 
 
 const Humane600 = localFont({
@@ -26,8 +27,10 @@ const Poppins300 = Poppins({
     display: 'swap',
 })
 
-
-const Listado = () => {
+interface Props {
+    dataContenido: ObjApiFaq[],
+}
+const Listado: React.FC<Props> = ({ dataContenido }) => {
     const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
     const toggleAccordion = (indice: number) => {
@@ -69,6 +72,7 @@ const Listado = () => {
                                 />
                                 FRECUENTES
                             </span>
+                            {/* {JSON.stringify(dataContenido)} */}
                         </h1>
                     </div>
                     <div>
@@ -87,50 +91,29 @@ const Listado = () => {
                                 height={115}
                                 alt=""
                             />
-                            <div className={`${styles.accordionItem} ${(activeIndex === 1) ? styles.active : ''}`}>
-                                <div className={styles.accordionHeader} onClick={() => toggleAccordion(1)}>
-                                    <h2 className={Poppins600.className}>1. ¿Cómo sé si soy uno de los ganadores semanales?</h2>
-                                    <Image
-                                        className={styles.stickerH1}
-                                        src="/images/arrow5.svg"
-                                        width={12}
-                                        height={24}
-                                        alt=""
-                                    />
-                                </div>
-                                <div className={styles.accordionBody}>
-                                    <p className={Poppins300.className}>
-                                        Hermanito, si eres uno de los suertudos el equipo de DeChiripa se
-                                        contactará contigo a través del correo y número que nos brindaste
-                                        al momento de suscribirte en un máximo de 72 horas.
-                                        De igual modo, podrás revisar la lista de ganadores
-                                        en nuestra página web y en nuestra cuenta de Instagram.
-                                        Nuestro correo de contacto es <a href="mailto:info@dechiripa.com">info@dechiripa.com</a>
-                                    </p>
-                                </div>
-                            </div>
-                            <div className={`${styles.accordionItem} ${(activeIndex === 2) ? styles.active : ''}`}>
-                                <div className={styles.accordionHeader} onClick={() => toggleAccordion(2)}>
-                                    <h2 className={Poppins600.className}>2. ¿Puedo participar desde el extranjero?</h2>
-                                    <Image
-                                        className={styles.stickerH1}
-                                        src="/images/arrow5.svg"
-                                        width={12}
-                                        height={24}
-                                        alt=""
-                                    />
-                                </div>
-                                <div className={styles.accordionBody}>
-                                    <p className={Poppins300.className}>
-                                        Hermanito, si eres uno de los suertudos el equipo de DeChiripa se
-                                        contactará contigo a través del correo y número que nos brindaste
-                                        al momento de suscribirte en un máximo de 72 horas.
-                                        De igual modo, podrás revisar la lista de ganadores
-                                        en nuestra página web y en nuestra cuenta de Instagram.
-                                        Nuestro correo de contacto es <a href="mailto:info@dechiripa.com">info@dechiripa.com</a>
-                                    </p>
-                                </div>
-                            </div>
+
+                            {
+                                dataContenido.map((faq, index) => (
+                                    <div key={index} className={`${styles.accordionItem} ${(activeIndex === (index + 1)) ? styles.active : ''}`}>
+                                        <div className={styles.accordionHeader} onClick={() => toggleAccordion(index + 1)}>
+                                            <h2 className={Poppins600.className}>{index + 1}. {faq.pregunta}</h2>
+                                            <Image
+                                                className={styles.stickerH1}
+                                                src="/images/arrow5.svg"
+                                                width={12}
+                                                height={24}
+                                                alt=""
+                                            />
+                                        </div>
+                                        <div className={styles.accordionBody}>
+                                            <div
+                                                className={Poppins300.className} // Aplica estilos específicos
+                                                dangerouslySetInnerHTML={{ __html: faq.respuesta }}
+                                            ></div>
+                                        </div>
+                                    </div>
+                                ))
+                            }
                         </div>
                     </div>
                 </div>

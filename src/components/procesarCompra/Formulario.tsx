@@ -73,6 +73,7 @@ const FormularioCompra = () => {
             setIsOpenDatos(false);
         }
     }, [session]);
+
     // const handlePagar = async () => {
 
     //     const erroresValidacion = await validateCompra(todos);
@@ -95,7 +96,7 @@ const FormularioCompra = () => {
     const generatePurchaseNumber = () => {
         const timestamp = Date.now(); // Obtiene la fecha actual en milisegundos
         const random = Math.floor(Math.random() * 10000); // Genera un número aleatorio
-        return `${timestamp}${random}`; // Concatenamos el timestamp con el número aleatorio
+        return `${timestamp}${random}`.slice(0, 12); // Concatenamos el timestamp con el número aleatorio
     };
 
     useEffect(() => {
@@ -116,6 +117,8 @@ const FormularioCompra = () => {
             document.body.removeChild(script);
         };
     }, []);
+
+
 
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
@@ -153,21 +156,14 @@ const FormularioCompra = () => {
             const token = await getNiubizToken();
             const response = await getResponseBuy(payload, token)
             // setResponse(response)
-            console.log({
-                sessiontoken: response.sessionKey,
-                channel: 'web',
-                merchantid: dataMerchantid,
-                purchasenumber: purchaseNumber,
-                amount: payload.amount,
-                expirationminutes: expirationMinutes,
-                timeouturl: 'about:blank',
-                merchantlogo: 'img/comercio.png',
-                formbuttoncolor: '#000000',
-                action: 'paginaRespuesta'
-            })
+
             // Cargamos el formulario
             if (isScriptLoaded && window.VisanetCheckout) {
                 // Configurar VisanetCheckout antes de abrir el formulario
+                // alert(2)
+                console.log(response.sessionKey);  // Verifica que no sea undefined o null
+                console.log(dataMerchantid);
+                console.log(purchaseNumber);
                 window.VisanetCheckout.configure({
                     sessiontoken: response.sessionKey,
                     channel: 'web',
@@ -178,20 +174,66 @@ const FormularioCompra = () => {
                     timeouturl: 'about:blank',
                     merchantlogo: 'img/comercio.png',
                     formbuttoncolor: '#000000',
-                    action: 'paginaRespuesta',
+                    action: 'javascript:void(0);',
                     complete: (params: any) => {
                         console.log("Pago completado:", params);
-                        // procesar(params);
                     }
                 });
 
                 // Abre el formulario de pago
                 window.VisanetCheckout.open();
                 // Manejo adicional de resultados
-                // window.VisanetCheckout.configuration.complete = procesar;
-                // function procesar(parametros: any) {
-                //     console.log(parametros);
-                // }
+                window.VisanetCheckout.configuration.complete = procesar;
+                function procesar(parametros: any) {
+                    console.log(parametros);
+                    // Extraer los datos del token de pago
+                    const tokenId = parametros.token || ''; // Verifica el campo exacto
+                    // const purchaseNumber_ = purchaseNumber || ''; // Verifica el campo exacto
+                    const amount = 10.5; // Verifica el campo exacto
+                    const currency = 'PEN'; // Define la moneda (modificar si es necesario)
+
+                    // // Crear el cuerpo de la solicitud
+                    const authorizationPayload = {
+                        channel: "web",
+                        captureType: "manual", // Cambiar a 'automatic' si es necesario
+                        countable: true,
+                        order: {
+                            tokenId,
+                            purchaseNumber: parseInt(purchaseNumber),
+                            amount,
+                            currency
+                        }
+                    };
+
+                    console.log(authorizationPayload)
+
+                    console.log('token', token)
+                    // Enviar los datos a la API de autorización
+                    // console.log(`https://apisandbox.vnforappstest.com/api.authorization/v3/authorization/ecommerce/${dataMerchantid}`)
+                    fetch(`https://apisandbox.vnforappstest.com/api.authorization/v3/authorization/ecommerce/${dataMerchantid}`, {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': `${token}`,
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(authorizationPayload)
+                    })
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error(`Error en la autorización:  ${response.status} ${response.statusText}`);
+                            }
+                            return response.json();
+                        })
+                        .then(data => {
+                            console.log('Autorización exitosa:', data);
+
+                            // Procesar la respuesta, como mostrar un mensaje de éxito al usuario
+                        })
+                        .catch(error => {
+                            console.error('Error al autorizar el pago:', error);
+                            // Mostrar un mensaje de error al usuario
+                        });
+                }
             } else {
                 console.error('El script de VisanetCheckout no se ha cargado correctamente.');
             }
@@ -283,7 +325,7 @@ const FormularioCompra = () => {
                                 <div className={styles.accordionHeader}>
                                     <div className={styles.accordionInfo}>
                                         <h3>Datos de Facturaci&oacute;n</h3>
-                                        {/* {JSON.stringify(todos)} */}
+                                        {JSON.stringify(cartProducts)}
                                     </div>
                                     <div className={`${styles.accordionArrow} ${(isLogin && isOpenDatos) ? styles.expanded : ''}`} >
                                         <Image
