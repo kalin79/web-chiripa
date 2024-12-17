@@ -1,5 +1,4 @@
 "use client"
-
 import { useState, createContext, useEffect } from "react";
 import { ProductCartItem } from "@/interfaces/cart"
 
@@ -24,6 +23,7 @@ interface ProductCartContext {
     cartProducts: ProductCartItem[];
     addCartProducts: (product: ProductCartItem) => void;
     deleteCartProducts: (product: ProductCartItem) => void;
+    resetCartProducts: () => void;
     productActive: ProductCartItem;
     deleteCartActive: () => void;
     increaseQuantity: (value: number) => void;
@@ -33,6 +33,8 @@ interface ProductCartContext {
     totalProducts: number;
     boolBolsa: boolean;
     CloseCartPopup: (value: boolean) => void;
+    respuestaCompra: string;
+    actualizarRespuestaCompra: (value: string) => void;
 }
 
 interface Props {
@@ -50,6 +52,7 @@ const initProduct = {
 export const cartContext = createContext({} as ProductCartContext);
 
 const CartProvider = ({ children }: Props) => {
+    const [respuestaCompra, setRespuestaCompra] = useState<string>('')
     const [cartProducts, setCartProducts] = useState<ProductCartItem[]>([])
     const [productActive, setProductActive] = useState<ProductCartItem>(initProduct)
     const [timerActive, setTimerActive] = useState<NodeJS.Timeout | null>(null); // Para manejar el identificador del temporizador
@@ -58,8 +61,12 @@ const CartProvider = ({ children }: Props) => {
     useEffect(() => {
         // Cargar el estado desde Local Storage al montar
         const storedCarrito = localStorage.getItem('carrito');
+        const storedRespuesta = localStorage.getItem('respuestacompra');
         if (storedCarrito) {
             setCartProducts(JSON.parse(storedCarrito));
+        }
+        if (storedRespuesta) {
+            setRespuestaCompra(JSON.parse(storedRespuesta));
         }
     }, []);
 
@@ -72,7 +79,32 @@ const CartProvider = ({ children }: Props) => {
         } else {
             localStorage.removeItem('carrito');
         }
-    }, [cartProducts]);
+
+        if (respuestaCompra) {
+            localStorage.setItem('respuestacompra', JSON.stringify(respuestaCompra));
+        } else {
+            localStorage.removeItem('respuestacompra');
+        }
+
+    }, [cartProducts, respuestaCompra]);
+
+    const resetCartProducts = () => {
+        setCartProducts([]);
+        setProductActive(initProduct);
+        setTimerActive(null);
+        setBoolBolsa(false);
+    }
+
+    // const resetCartProducts = useCallback(() => {
+    //     setCartProducts([]);
+    //     setProductActive(initProduct);
+    //     setTimerActive(null);
+    //     setBoolBolsa(false);
+    // }, [setCartProducts, setProductActive, setTimerActive, setBoolBolsa]);
+
+    const actualizarRespuestaCompra = (val: string) => {
+        setRespuestaCompra(val);
+    }
 
     const addCartProducts = ({ id, title, price, quantity, image }: ProductCartItem) => {
 
@@ -180,7 +212,7 @@ const CartProvider = ({ children }: Props) => {
     const totalPriceTicket = cartProducts.reduce((acc, item) => acc + item.price * item.quantity, 0)
     const totalProducts = cartProducts.length
     return (
-        <cartContext.Provider value={{ cartProducts, addCartProducts, totalQuantityTicket, totalPriceTicket, totalProducts, productActive, deleteCartActive, increaseQuantity, decreaseQuantity, CloseCartPopup, boolBolsa, deleteCartProducts }}>
+        <cartContext.Provider value={{ cartProducts, addCartProducts, totalQuantityTicket, totalPriceTicket, totalProducts, productActive, deleteCartActive, increaseQuantity, decreaseQuantity, CloseCartPopup, boolBolsa, deleteCartProducts, respuestaCompra, actualizarRespuestaCompra, resetCartProducts }}>
             {children}
         </cartContext.Provider>
     )

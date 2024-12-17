@@ -44,9 +44,10 @@ type FormElement = HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
 
 interface Props {
     dataObject: ApiResponseProduct,
+    idSorteo: string,
 }
 
-const DetalleSorteo: React.FC<Props> = ({ dataObject }) => {
+const DetalleSorteo: React.FC<Props> = ({ dataObject, idSorteo }) => {
     const detalleSorteo: SorteosApi = dataObject.data.product;
 
     const { addCartProducts } = useContext(cartContext);
@@ -58,7 +59,7 @@ const DetalleSorteo: React.FC<Props> = ({ dataObject }) => {
     const sliderRef2 = useRef<Slider | null>(null);
 
     const handleClickAddCart = () => {
-        const id = detalleSorteo.id;
+        const id = parseInt(idSorteo);
         const title = detalleSorteo.title_large || '';
         const price = detalleSorteo.price ? parseInt(detalleSorteo.price) : 0;
         const quantity = parseInt(quantityTicket)
@@ -66,6 +67,9 @@ const DetalleSorteo: React.FC<Props> = ({ dataObject }) => {
 
         addCartProducts({ id, title, price, quantity, image })
 
+        console.log(
+            { id, title, price, quantity, image }
+        )
 
 
         gsap.to(window, { duration: .5, scrollTo: '.headerNavMain' });

@@ -1,6 +1,6 @@
 "use client";
 
-// import { useEffect } from 'react';
+import { useEffect } from 'react';
 import { SessionProvider } from "next-auth/react";
 // import type { Metadata } from "next";
 import MainHeader from '@components/template/MainHeader'
@@ -32,6 +32,24 @@ export default function RootLayout({
     //         document.body.removeChild(script);
     //     };
     // }, []);
+    useEffect(() => {
+        // Cargar el script de checkout de Niubiz
+        const script = document.createElement('script');
+        script.src = "https://static-content-qas.vnforapps.com/env/sandbox/js/checkout.js";
+        script.type = "text/javascript";
+        script.async = true;
+        document.body.appendChild(script);
+
+        // Configurar VisanetCheckout una vez que el script esté cargado
+        script.onload = () => {
+            // setIsScriptLoaded(true); // Indicamos que el script se ha cargado correctamente
+        };
+
+        // Limpiar el script cuando el componente se desmonte
+        return () => {
+            document.body.removeChild(script);
+        };
+    }, []);
     return (
         <html lang="es">
             <Script

@@ -41,7 +41,9 @@ const handler = NextAuth({
                         dni: user.user.dni || '',
                         token: user.access_token,
                         name: user.user.nombres,
+                        apellido_paterno: user.user.apellido_paterno,
                         email: user.user.email,
+                        celular: user.user.celular,
                         expires_in: user.expires_in
                     };
 
@@ -72,7 +74,10 @@ const handler = NextAuth({
             if (user) {
                 token.accessToken = user.accessToken ?? undefined;
                 token.dni = user.dni;
-                // token.token = user.token ?? undefined;
+                token.id = user.id;
+                token.apellido_paterno = user.apellido_paterno;
+                token.celular = user.celular;
+                token.token = user.token ?? undefined;
             }
             return token;
         },
@@ -81,8 +86,11 @@ const handler = NextAuth({
             session.user.accessToken = token.accessToken ?? undefined;
             if (token.dni) {
                 session.user.dni = token.dni;
+                session.user.id = token.id;
+                session.user.apellido_paterno = token.apellido_paterno;
+                session.user.celular = token.celular;
             }
-            // session.user.token = token.token ?? undefined;
+            session.user.token = token.token ?? undefined;
 
             return session;
         },

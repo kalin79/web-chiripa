@@ -5,10 +5,13 @@ declare module "next-auth" {
     interface Session {
         user: {
             accessToken?: string | null;
+            id?: string | null;
             name?: string | null;
             email?: string | null;
             dni?: string | null;
-            // token?: string | null;
+            apellido_paterno?: string | null;
+            celular?: string | null;
+            token?: string | null;
 
         } & DefaultSession["user"];
     }
@@ -16,7 +19,10 @@ declare module "next-auth" {
     interface User {
         accessToken?: string;
         dni?: string; // Incluye el DNI si lo necesitas aquí.
-        // token?: string;
+        id?: string | null;
+        apellido_paterno?: string | null;
+        celular?: string | null;
+        token?: string;
 
     }
 }
@@ -25,6 +31,9 @@ declare module "next-auth/jwt" {
     interface JWT {
         accessToken?: string;
         dni?: string;
-        // token?: string | null;
+        id?: string | null;
+        apellido_paterno?: string | null;
+        celular?: string | null;
+        token?: string | null;
     }
 }

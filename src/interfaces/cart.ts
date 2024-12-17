@@ -9,6 +9,7 @@ export interface ProductCartItem {
 }
 
 export interface CartUser {
+    id?: string;
     email: string;
     nombres: string;
     apellidos: string;
@@ -21,6 +22,7 @@ export interface CartUser {
     status_pay: string;
     discount: string;
     sorteoListado: ProductCartItem[]
+    tyc?: boolean;
 }
 
 

@@ -15,23 +15,27 @@ export function validateCompra(user: CartUser) {
         return errores
     }
 
-    if (!user.nombres) {
-        errores.msjStatus = "Nombre y apellido es obligatorio"
-        errores.status = true;
-    }
+    // if (!user.nombres) {
+    //     errores.msjStatus = "Nombre y apellido es obligatorio"
+    //     errores.status = true;
+    // }
 
-    if (!user.apellidos) {
-        errores.msjStatus = "Apellido es obligatorio"
-        errores.status = true;
-    }
+    // if (!user.apellidos) {
+    //     errores.msjStatus = "Apellido es obligatorio"
+    //     errores.status = true;
+    // }
 
     if (!user.telefono) {
         errores.msjStatus = "Celular es obligatorio"
         errores.status = true;
     }
 
-    if (!user.numero_documento) {
-        errores.msjStatus = "Documento es obligatorio"
+    // if (!user.numero_documento) {
+    //     errores.msjStatus = "Documento es obligatorio"
+    //     errores.status = true;
+    // }
+    if (!user.tyc) {
+        errores.msjStatus = "Términos y Condiciones es obligatorio"
         errores.status = true;
     }
     return errores

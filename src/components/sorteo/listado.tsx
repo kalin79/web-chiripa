@@ -119,7 +119,7 @@ const ListadoSorteos: React.FC<Props> = ({ dataSorteos }) => {
                                     </div>
                                     <div className={styles.cardInfo}>
                                         <h2 className={Poppins600.className}>{item.name}</h2>
-                                        <Link href={`/sorteo/${item.slug}`} className='btnCar'>
+                                        <Link href={`/sorteo/${item.slug}/${item.id}`} className='btnCar'>
                                             <Image
                                                 className={styles.bgTicket2}
                                                 src="/images/ticket2.svg"
