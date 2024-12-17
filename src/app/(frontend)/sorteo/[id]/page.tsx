@@ -17,16 +17,25 @@ const getData = async (token: any, slug: string) => {
     return data;
 }
 
+const DetallePremio = async ({
+    params,
+}: {
+    params: Promise<{ id: string }>
+}) => {
+    const { id } = await params
 
-
-
-const DetallePremio = async ({ params }: { params: { id: string; sorteo: string } }) => {
-    const { id, sorteo } = await params;
+    // const _parametros = params.id?.split("--") || [];
+    // if (_parametros.length < 2) {
+    //     console.error('Invalid parameters:', params.id);
+    //     return <div>Error: Invalid parameters</div>;
+    // }
     let data = null;
 
     try {
-        const response = await getData(process.env.NEXT_PUBLIC_AUTHORIZATION_FORM, id);
+        const response = await getData(process.env.NEXT_PUBLIC_AUTHORIZATION_FORM, id.split('--')[0]);
         data = response;
+        // console.log(response)
+
     } catch (error) {
         console.error('Error fetching data:', error);
         return <div>Error loading data</div>;
@@ -39,7 +48,7 @@ const DetallePremio = async ({ params }: { params: { id: string; sorteo: string 
     return (
         <div className={`backgroundContainer`}>
             {/* {JSON.stringify(data)} */}
-            <DetalleSorteo dataObject={data} idSorteo={sorteo} />
+            <DetalleSorteo dataObject={data} idSorteo={id.split('--')[1]} />
         </div>
     );
 
