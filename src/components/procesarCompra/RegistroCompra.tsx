@@ -5,8 +5,10 @@ import Image from 'next/image'
 import styles from '@/styles/sass/compra.module.sass'
 import CheckLogged from '@/components/auth/CheckLogged'
 import FormularioCompra from '@/components/procesarCompra/Formulario'
-
-const RegistroCompra = () => {
+interface Props {
+    myIP: string
+}
+const RegistroCompra: React.FC<Props> = ({ myIP }) => {
     const { data: session } = useSession();
     return (
         <div className={`${styles.bgRegistroContainer}`}>
@@ -28,7 +30,7 @@ const RegistroCompra = () => {
                         }
                     </div>
                     <div>
-                        <FormularioCompra />
+                        <FormularioCompra myIP={myIP} />
                     </div>
                 </div>
             </div>

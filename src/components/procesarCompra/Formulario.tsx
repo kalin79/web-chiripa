@@ -3,7 +3,7 @@ import { useSession } from "next-auth/react";
 // import { useRouter } from 'next/navigation';
 
 import { useState, useContext, useEffect } from 'react';
-import { fecthApi } from '@/actions/form.actions'
+import { fecthApi, fecthApiNubiz } from '@/actions/form.actions'
 
 import { cartContext } from '@/context/CartContent';
 
@@ -47,7 +47,10 @@ const initialTodo = {
     discount: '',
     sorteoListado: []
 }
-const FormularioCompra = () => {
+interface Props {
+    myIP: string
+}
+const FormularioCompra: React.FC<Props> = ({ myIP }) => {
     const { data: session } = useSession();
     const tokenLogin: string = session?.user.token || ''
     // const router = useRouter();
@@ -135,7 +138,7 @@ const FormularioCompra = () => {
                 channel: 'web',
                 amount: (totalPriceTicket - descuento),
                 antifraud: {
-                    clientIp: '24.252.107.29', // ipdel cliente
+                    clientIp: myIP, // ipdel cliente
                     merchantDefineData: {
                         MDD4: todos.email,
                         MDD32: todos.numero_documento,
@@ -146,10 +149,10 @@ const FormularioCompra = () => {
                 dataMap: {
                     cardholderCity: 'Lima',
                     cardholderCountry: 'PE',
-                    cardholderAddress: 'Av Jose Pardo 831',
-                    cardholderPostalCode: '12345',
+                    cardholderAddress: 'Jr. Maximiliano Velarde N° 171, Dpto. 404',
+                    cardholderPostalCode: '15054',
                     cardholderState: 'LIM',
-                    cardholderPhoneNumber: '987654321',
+                    cardholderPhoneNumber: '919553693',
                 },
             };
 
@@ -158,7 +161,7 @@ const FormularioCompra = () => {
 
                 const token = await getNiubizToken();
                 const response = await getResponseBuy(payload, token)
-                // setResponse(response)
+                console.log(payload)
 
                 // Cargamos el formulario
                 if (window.VisanetCheckout) {
@@ -187,7 +190,7 @@ const FormularioCompra = () => {
                     window.VisanetCheckout.open();
                     // Manejo adicional de resultados
                     window.VisanetCheckout.configuration.complete = procesar;
-                    function procesar(parametros: any) {
+                    async function procesar(parametros: any) {
                         // console.log(parametros);
                         // Extraer los datos del token de pago
                         const tokenId = parametros.token || ''; // Verifica el campo exacto
@@ -207,15 +210,51 @@ const FormularioCompra = () => {
                                 currency
                             },
                             dataMap: {
-                                urlAddress: 'url',
+                                urlAddress: 'https://dechiripa.com.pe/',
                                 partnerIdCode: '',
                                 serviceLocationCityName: 'Lima',
-                                serviceLocationCountrySubdivisionCode: 'LIMA',
+                                serviceLocationCountrySubdivisionCode: 'LIM',
                                 serviceLocationCountryCode: 'PER',
                                 serviceLocationPostalCode: '15086'
                             }
                         };
+                        const payLoad = {
+                            purchaseNumber: purchaseNumber,
+                            participante_id: todos.id,
+                            nombres: todos.nombres,
+                            apellidos: todos.apellidos,
+                            tipo_documento: 'DNI',
+                            numero_documento: todos.numero_documento,
+                            email: todos.email,
+                            telefono: todos.telefono,
+                            montoSubTotal: totalPriceTicket,
+                            montoTotal: (totalPriceTicket - descuento),
+                            status_pay: 1,
+                            montoDescuento: descuento,
+                            // transaction_id: dataTransaccion.dataMap.TRANSACTION_ID,
+                            // transaction_result: dataTransaccion.dataMap,
+                            sorteoListado: cartProducts
 
+                        }
+                        console.log({
+                            authorizationPayload,
+                            payLoad
+                        })
+                        // const urlParamsObject = {}
+                        // const path = `niubiz-notification/${process.env.NEXT_PUBLIC_AUTHORIZATION_FORM}`
+                        // console.log(process.env.NEXT_PUBLIC_AUTHORIZATION_FORM)
+                        // // ${process.env.NEXT_PUBLIC_BACKEND_URL}
+                        // const options = {
+                        //     method: 'POST',
+                        //     body: JSON.stringify({
+                        //         authorizationPayload,
+                        //         payLoad,
+                        //         token,
+                        //         dataMerchantid
+                        //     }),
+                        // }
+                        // const data = await fecthApi(path, urlParamsObject, options)
+                        // console.log(data)
                         // En el response del api autorizador en la venta aprobada validar en el objeto datamap en el campo STATUS : Authorized y para la venta denegada en el objeto data en el campo STATUS : Not Authorized.
 
                         // RESPUESTAS VENTA APROBADA		
@@ -237,39 +276,49 @@ const FormularioCompra = () => {
 
                         console.log('token', token)
                         // Enviar los datos a la API de autorización
-                        // console.log(`https://apisandbox.vnforappstest.com/api.authorization/v3/authorization/ecommerce/${dataMerchantid}`)
-                        fetch(`https://apisandbox.vnforappstest.com/api.authorization/v3/authorization/ecommerce/${dataMerchantid}`, {
+
+
+                        const urlParamsObject = {}
+                        const path = `https://apisandbox.vnforappstest.com/api.authorization/v3/authorization/ecommerce/${dataMerchantid}`
+                        // console.log(process.env.NEXT_PUBLIC_AUTHORIZATION_FORM)
+                        // ${process.env.NEXT_PUBLIC_BACKEND_URL}
+                        const options = {
                             method: 'POST',
                             headers: {
-                                'Authorization': `${token}`,
+                                'Authorization': token,
                                 'Content-Type': 'application/json'
                             },
-                            body: JSON.stringify(authorizationPayload)
-                        })
-                            .then(response => {
-                                if (!response.ok) {
-                                    actualizarRespuestaCompra('error')
-                                    setTimeout(() => {
-                                        top!.location.href = '/respuesta-compra';
-                                    }, 1000)
-                                    // throw new Error(`Error en la autorización:  ${response.status} ${response.statusText}`);
-                                }
-                                // return response.json();
-                            })
-                            .then(data => {
-                                console.log('Autorización exitosa:', data);
-                                procesarTransaccion(data, purchaseNumber);
-                                // Procesar la respuesta, como mostrar un mensaje de éxito al usuario
-                            })
-                            .catch(error => {
-                                actualizarRespuestaCompra('error')
-                                // actualizarRespuestaCompra(`No se pudo realizar la compra: ${error}`)
-                                console.error('Error al autorizar el pago:', error);
-                                setTimeout(() => {
-                                    top!.location.href = '/respuesta-compra';
-                                }, 1000)
-                                // Mostrar un mensaje de error al usuario
-                            });
+                            body: JSON.stringify(authorizationPayload),
+                        }
+                        const data = await fecthApiNubiz(path, urlParamsObject, options)
+                        console.log(data)
+
+                        procesarTransaccion(data, purchaseNumber);
+
+
+                        // console.log(`https://apisandbox.vnforappstest.com/api.authorization/v3/authorization/ecommerce/${dataMerchantid}`)
+                        // fetch(`https://apisandbox.vnforappstest.com/api.authorization/v3/authorization/ecommerce/${dataMerchantid}`, {
+                        //     method: 'POST',
+                        //     headers: {
+                        //         'Authorization': `${token}`,
+                        //         'Content-Type': 'application/json'
+                        //     },
+                        //     body: JSON.stringify(authorizationPayload)
+                        // })
+                        //     .then(data => {
+                        //         console.log('Autorización exitosa:', data);
+                        //         procesarTransaccion(data, purchaseNumber);
+                        //         // Procesar la respuesta, como mostrar un mensaje de éxito al usuario
+                        //     })
+                        //     .catch(error => {
+                        //         actualizarRespuestaCompra('error')
+                        //         // actualizarRespuestaCompra(`No se pudo realizar la compra: ${error}`)
+                        //         console.error('Error al autorizar el pago:', error);
+                        //         setTimeout(() => {
+                        //             top!.location.href = '/respuesta-compra';
+                        //         }, 1000)
+                        //         // Mostrar un mensaje de error al usuario
+                        //     });
                     }
                 } else {
                     console.error('El script de VisanetCheckout no se ha cargado correctamente.');

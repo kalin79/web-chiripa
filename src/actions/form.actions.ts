@@ -4,6 +4,46 @@ import qs from "qs";
 import { getStrapiUrl } from "@/helpers/api-helpers";
 import { dataForm } from '@/interfaces/form'
 
+
+export const fecthApiNubiz = async (
+    path: string,
+    urlParamsObject: any,
+    options?: any,
+) => {
+
+    try {
+        // es para el tema de cache en seg
+        const mergedOptions = {
+            // next : { revalidate : 0 },
+            cache: 'no-cache',
+            ...options,
+            headers: {
+                ...options?.headers,
+                "Content-Type": "application/json",
+            },
+        };
+
+        const requestUrl = path;
+
+        console.log(mergedOptions);
+        const res = await fetch(requestUrl, mergedOptions);
+        console.log(res)
+
+        const data = await res.json();
+        // console.log('data',data)
+        // console.log({queryString})
+
+        return data;
+
+
+    } catch (error) {
+        console.error(error);
+        throw new Error(`Error en fetching Api! ${error}`)
+    }
+
+
+}
+
 export const fecthApi = async (
     path: string,
     urlParamsObject: any,
