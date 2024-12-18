@@ -135,12 +135,12 @@ const FormularioCompra = () => {
                 channel: 'web',
                 amount: (totalPriceTicket - descuento),
                 antifraud: {
-                    clientIp: '24.252.107.29',
+                    clientIp: '24.252.107.29', // ipdel cliente
                     merchantDefineData: {
                         MDD4: todos.email,
                         MDD32: todos.numero_documento,
                         MDD75: 'Registrado',
-                        MDD77: 4,
+                        MDD77: 4, // Dias de registro desde que se creo el usuario hasta la fecha 
                     },
                 },
                 dataMap: {
@@ -205,8 +205,33 @@ const FormularioCompra = () => {
                                 purchaseNumber: parseInt(purchaseNumber),
                                 amount,
                                 currency
+                            },
+                            dataMap: {
+                                urlAddress: 'url',
+                                partnerIdCode: '',
+                                serviceLocationCityName: 'Lima',
+                                serviceLocationCountrySubdivisionCode: 'LIMA',
+                                serviceLocationCountryCode: 'PER',
+                                serviceLocationPostalCode: '15086'
                             }
                         };
+
+                        // En el response del api autorizador en la venta aprobada validar en el objeto datamap en el campo STATUS : Authorized y para la venta denegada en el objeto data en el campo STATUS : Not Authorized.
+
+                        // RESPUESTAS VENTA APROBADA		
+                        // • Número de pedido. (purchaseNumber)		
+                        // • Nombre y apellido del usuario. (opcional)		
+                        // • Fecha y hora del pedido. (TRANSACTION_DATE) Fecha de la transacción expresada en formato nativo yyMMddHHmmSS		
+                        // • Importe de la transacción.(Amount)		
+                        // • Tipo de moneda.(Currency)		
+                        // • Descripción de el /los productos.(opcional)		
+                        // • Tarjeta enmascarada.(Card)		
+                        // • Marca de la tarjeta.(Brand)
+
+                        // RESPUESTAS VENTA DENEGADA
+                        // • Número de pedido. (purchaseNumber recuperar por base de datos o variable)
+                        // • Fecha y hora del pedido. (TRANSACTION_DATE) Fecha de la transacción expresada en formato nativo yyMMddHHmmSS
+                        // • Descripción de la denegación.(ACTION_DESCRIPTION)
 
                         console.log(authorizationPayload)
 
