@@ -78,7 +78,7 @@ const Premios = () => {
                     </div> */}
                     <div className={`${styles.itemPremio} itemPremioHome`}>
                         <div className={styles.cartelBox}>
-                            <h3>1er PREMIO</h3>
+                            <h3>1er Sorteo</h3>
                         </div>
                         <Image
                             className={styles.fondoPremio}
@@ -101,46 +101,19 @@ const Premios = () => {
                             </div>
                             <div className={styles.footerContent}>
                                 <h3 className={Poppins700.className}>
-                                    Samsung Galaxy S24 Ultra
+                                    Samsung Galaxy S24 Ultra &
+                                </h3>
+                                <h3 className={Poppins700.className}>
+                                    Laptop de última generación
                                 </h3>
                                 <p className={Poppins500.className}>
-                                    Entra en la tecnolog&iacute;a eSIM, pantalla retina y c&aacute;maras.
+                                    Tecnolog&iacute;a eSIM con IA y con
+                                    súper cámaras.
                                 </p>
                             </div>
                         </div>
-
                     </div>
-                    <div className={`${styles.itemPremio} itemPremioHome`}>
-                        <div className={styles.cartelBox}>
-                            <h3>2do PREMIO</h3>
-                        </div>
-                        <Image
-                            className={styles.fondoPremio}
-                            src="/images/fondoPremio2.webp"
-                            width={554}
-                            height={851}
-                            alt="De Chiripa :: Participa"
-                            priority={true}
-                        />
-                        <div className={styles.detallePremio}>
-                            <div className={styles.imageContainer}>
-                                <Image
-                                    className={`${styles.productoPremio}  ${styles.bigImage}`}
-                                    src="/images/sorteo3.png"
-                                    width={600}
-                                    height={488}
-                                    alt="De Chiripa :: SEGWAY NINEBOT"
-                                    priority={true}
-                                />
-                            </div>
-                            <div className={styles.footerContent}>
-                                <h3 className={Poppins700.className}>Laptop de última generación</h3>
-                                <p className={Poppins500.className}>Potencia y velocidad para tus trabajos</p>
-                            </div>
-                        </div>
-
-                    </div>
-
+                    <div className={`${styles.itemPremio} itemPremioHome`}></div>
                 </div>
             </div>
         </div>
