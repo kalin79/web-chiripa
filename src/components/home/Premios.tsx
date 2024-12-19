@@ -92,7 +92,7 @@ const Premios = () => {
                             <div className={`${styles.imageContainer}`}>
                                 <Image
                                     className={`${styles.productoPremio}  ${styles.bigImage}`}
-                                    src="/images/sorteo4.png"
+                                    src="/images/sorteolap.png"
                                     width={600}
                                     height={486}
                                     alt="De Chiripa :: Iphone Pro Max 15"
