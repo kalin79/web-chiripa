@@ -375,9 +375,9 @@ const FormularioCompra: React.FC<Props> = ({ myIP }) => {
 
         } else {
             actualizarRespuestaCompra(`Su compra se realizo con éxito!`)
-            setTimeout(() => {
-                top!.location.href = '/respuesta-compra';
-            }, 1000)
+            // setTimeout(() => {
+            //     top!.location.href = '/respuesta-compra';
+            // }, 1000)
         }
     }
 
