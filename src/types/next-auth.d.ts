@@ -12,6 +12,7 @@ declare module "next-auth" {
             apellido_paterno?: string | null;
             celular?: string | null;
             token?: string | null;
+            created_user?: string | null;
 
         } & DefaultSession["user"];
     }
@@ -23,6 +24,7 @@ declare module "next-auth" {
         apellido_paterno?: string | null;
         celular?: string | null;
         token?: string;
+        created_user?: string | null;
 
     }
 }
@@ -35,5 +37,6 @@ declare module "next-auth/jwt" {
         apellido_paterno?: string | null;
         celular?: string | null;
         token?: string | null;
+        created_user?: string | null;
     }
 }

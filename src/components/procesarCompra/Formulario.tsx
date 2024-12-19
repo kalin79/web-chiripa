@@ -112,13 +112,25 @@ const FormularioCompra: React.FC<Props> = ({ myIP }) => {
 
 
 
+    const contadorDias = (payload: string) => {
+        // Fecha inicial
+        const fechaInicial = new Date(payload);
 
+        // Fecha actual
+        const fechaActual = new Date();
+
+        // Diferencia en milisegundos
+        const diferenciaMilisegundos = fechaActual.getTime() - fechaInicial.getTime();
+
+        // Convertir milisegundos a días (1 día = 24 * 60 * 60 * 1000 ms)
+        return Math.floor(diferenciaMilisegundos / (24 * 60 * 60 * 1000));
+    }
 
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
         setLoading(true);
         // setResponse(null);
-
+        const diasCreoUsuario = contadorDias(session?.user.created_user ?? '2024-12-05T18:28:10.000Z')
 
         const erroresValidacion = await validateCompra(todos);
         if (erroresValidacion.status) {
@@ -143,7 +155,7 @@ const FormularioCompra: React.FC<Props> = ({ myIP }) => {
                         MDD4: todos.email,
                         MDD32: todos.numero_documento,
                         MDD75: 'Registrado',
-                        MDD77: 4, // Dias de registro desde que se creo el usuario hasta la fecha 
+                        MDD77: diasCreoUsuario, // Dias de registro desde que se creo el usuario hasta la fecha 
                     },
                 },
                 dataMap: {
@@ -506,7 +518,7 @@ const FormularioCompra: React.FC<Props> = ({ myIP }) => {
                                 <div className={styles.accordionHeader}>
                                     <div className={styles.accordionInfo}>
                                         <h3>Datos de Facturaci&oacute;n</h3>
-                                        {/* {JSON.stringify(tokenLogin)} */}
+                                        {/* {JSON.stringify(session)} */}
                                     </div>
                                     <div className={`${styles.accordionArrow} ${(isLogin && isOpenDatos) ? styles.expanded : ''}`} >
                                         <Image

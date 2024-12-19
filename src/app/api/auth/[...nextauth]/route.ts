@@ -44,7 +44,8 @@ const handler = NextAuth({
                         apellido_paterno: user.user.apellido_paterno,
                         email: user.user.email,
                         celular: user.user.celular,
-                        expires_in: user.expires_in
+                        expires_in: user.expires_in,
+                        created_user: user.user.created_at
                     };
 
                 } catch (err) {
@@ -77,6 +78,7 @@ const handler = NextAuth({
                 token.id = user.id;
                 token.apellido_paterno = user.apellido_paterno;
                 token.celular = user.celular;
+                token.created_user = user.created_user;
                 token.token = user.token ?? undefined;
             }
             return token;
@@ -89,6 +91,7 @@ const handler = NextAuth({
                 session.user.id = token.id;
                 session.user.apellido_paterno = token.apellido_paterno;
                 session.user.celular = token.celular;
+                session.user.created_user = token.created_user;
             }
             session.user.token = token.token ?? undefined;
 
