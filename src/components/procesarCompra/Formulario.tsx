@@ -292,8 +292,12 @@ const FormularioCompra: React.FC<Props> = ({ myIP }) => {
                         }
                         const data = await fecthApiNubiz(path, urlParamsObject, options)
                         console.log(data)
+                        if (data.errorCode) {
+                            transaccionDenegada(data, purchaseNumber);
+                        } else {
+                            procesarTransaccion(data, purchaseNumber);
+                        }
 
-                        procesarTransaccion(data, purchaseNumber);
 
 
                         // console.log(`https://apisandbox.vnforappstest.com/api.authorization/v3/authorization/ecommerce/${dataMerchantid}`)
@@ -332,6 +336,32 @@ const FormularioCompra: React.FC<Props> = ({ myIP }) => {
         }
     }
 
+    const formatDate = () => {
+        const now = new Date();
+        const yy = String(now.getFullYear()).slice(-2); // Últimos 2 dígitos del año
+        const MM = String(now.getMonth() + 1).padStart(2, '0'); // Mes (agregar 1 porque comienza desde 0)
+        const dd = String(now.getDate()).padStart(2, '0'); // Día
+        const HH = String(now.getHours()).padStart(2, '0'); // Hora
+        const mm = String(now.getMinutes()).padStart(2, '0'); // Minutos
+        const SS = String(now.getSeconds()).padStart(2, '0'); // Segundos
+
+        return `${yy}${MM}${dd}${HH}${mm}${SS}`;
+    };
+
+    const transaccionDenegada = (dataTransaccion: any, purchaseNumber: string) => {
+        const fechaTransaccion = formatDate()
+        const respondeCart = {
+            numeroPedido: purchaseNumber,
+            fechayHora: fechaTransaccion,
+            descripcion: dataTransaccion.data.ACTION_DESCRIPTION,
+            status: false
+        }
+        actualizarRespuestaCompra(respondeCart)
+        setTimeout(() => {
+            top!.location.href = '/respuesta-compra';
+        }, 1000)
+    }
+
     const procesarTransaccion = async (dataTransaccion: any, purchaseNumber: string) => {
         const urlParamsObject = {}
         const path = "participante/order"
@@ -353,7 +383,8 @@ const FormularioCompra: React.FC<Props> = ({ myIP }) => {
             sorteoListado: cartProducts
 
         }
-        console.log(tokenLogin)
+        const fechaTransaccion = formatDate()
+        // console.log(tokenLogin)
         const options = {
             method: 'POST',
             headers: {
@@ -367,17 +398,26 @@ const FormularioCompra: React.FC<Props> = ({ myIP }) => {
         resetCartProducts();
         if (dataApiResponde.status === 'error') {
             console.log(dataApiResponde)
-            actualizarRespuestaCompra(`error`);
-            setTimeout(() => {
-                top!.location.href = '/respuesta-compra';
-            }, 1000)
-
-
-        } else {
-            actualizarRespuestaCompra(`Su compra se realizo con éxito!`)
+            // actualizarRespuestaCompra(`error`);
             // setTimeout(() => {
             //     top!.location.href = '/respuesta-compra';
             // }, 1000)
+
+
+        } else {
+            const respondeCart = {
+                numeroPedido: purchaseNumber,
+                fechayHora: fechaTransaccion,
+                importeTotal: dataTransaccion.order.amount,
+                tipoMoneda: dataTransaccion.order.currency,
+                tarjeta: dataTransaccion.dataMap.CARD,
+                marcaTarjeta: dataTransaccion.dataMap.BRAND_NAME,
+                status: true
+            }
+            actualizarRespuestaCompra(respondeCart)
+            setTimeout(() => {
+                top!.location.href = '/respuesta-compra';
+            }, 1000)
         }
     }
 

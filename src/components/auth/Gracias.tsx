@@ -34,11 +34,16 @@ const Gracias = () => {
                 </h2>
                 <div className={styles.infoGracias}>
                     <p>
-                        Atento a tu correo, pronto <strong>DeChiripa</strong> te dara la primera
-                        sorpresa. <br />
-                        El sorteo donde las probabilidades juegan a tu favor<br />
+                        🎉 ¡Bienvenido/a a De Chiripa! 🎉
                     </p>
-                    <a href="#" target='_blank' className={poppins500.className}>&Uacute;nete al Grupo De Chiripa</a>
+                    <p>
+                        Ahora eres parte de nuestra comunidad donde la suerte te sonríe. 💫
+                    </p>
+                    <p>Inicia sesión y participa en nuestros sorteos para ganar premios increíbles.</p>
+                    <p>
+                        ¡Estamos emocionados de tenerte con nosotros! 🌟
+                    </p>
+                    <a href="https://whatsapp.com/channel/0029Vavpfw24yltWH5h3hc0J" target='_blank' className={poppins500.className}>&Uacute;nete al WhatsApp del Grupo De Chiripa</a>
                 </div>
 
             </div>

@@ -1,10 +1,13 @@
 'use client'
 import { useContext } from 'react';
+import Link from 'next/link'
+
 import { cartContext } from '@/context/CartContent';
 import Image from 'next/image'
 import localFont from 'next/font/local'
 import styles from '@/styles/sass/form.module.sass'
 import { Poppins } from 'next/font/google'
+import { formatCurrency } from "@/helpers/funciones"
 
 const Humane600 = localFont({
     src: '../../../public/fonts/Humane-SemiBold.woff2',
@@ -20,7 +23,7 @@ const Poppins500 = Poppins({
     display: 'swap',
 })
 const Respuesta = () => {
-    const { respuestaCompra } = useContext(cartContext);
+    const { respondeCart } = useContext(cartContext);
     // useEffect(() => {
     //     resetCartProducts()
     // }, [])
@@ -28,6 +31,14 @@ const Respuesta = () => {
 
     return (
         <div className={`${styles.compraBox}  ${styles.graciasContainer}`}>
+            <Image
+                className={`imageBackGroundContainer`}
+                src="/images/topBg.png"
+                width={3456}
+                height={357}
+                alt="De Chiripa :: Preparate para lo que viene"
+                priority={true}
+            />
             <div className={styles.titularBox}>
                 <Image
                     className={styles.imageSticker2}
@@ -43,11 +54,12 @@ const Respuesta = () => {
                     height={156}
                     alt="De Chiripa :: Preparate para lo que viene"
                 />
+                {/* {JSON.stringify(respondeCart)} */}
                 {
-                    respuestaCompra === 'error' ? (
-                        <span className={Humane600.className}>!Error!</span>
-                    ) : (
+                    respondeCart?.status ? (
                         <span className={Humane600.className}>!Te felicito!</span>
+                    ) : (
+                        <span className={Humane600.className}>!ERROR!</span>
                     )
                 }
 
@@ -61,14 +73,30 @@ const Respuesta = () => {
                     alt="De Chiripa :: Preparate para lo que viene"
                 />
                 {
-                    respuestaCompra === 'error' ? (
-                        <p className={Poppins500.className}>
-                            Se produjo un error en la compra, vuelva intentarlo mas tarde.
-                        </p>
+                    respondeCart?.status ? (
+                        <>
+
+                            <p className={Poppins500.className}>N&uacute;mero de Pedido: {respondeCart.numeroPedido}</p>
+                            <p className={Poppins500.className}>Importe Total: {formatCurrency(respondeCart.importeTotal)}</p>
+                            <p className={Poppins500.className}>Moneda: {respondeCart.tipoMoneda}</p>
+                            <p className={Poppins500.className}>Fecha y Hora: {respondeCart.fechayHora}</p>
+                            <p className={Poppins500.className}>Tarjeta: {respondeCart.tarjeta}</p>
+                            <p className={Poppins500.className}>Brand: {respondeCart.marcaTarjeta}</p>
+                            <div className='transaccionRespuestaBox'>
+                                <p>Ademas te hemos enviado a tu correo la boleta, en caso no este en tu bandeja de entrada revisa tus no deseados</p>
+                            </div>
+                        </>
                     ) : (
-                        <p className={Poppins500.className}>
-                            {respuestaCompra}
-                        </p>
+                        <>
+                            {/* {JSON.stringify(respondeCart)} */}
+                            <p className={Poppins500.className}>N&uacute;mero de Pedido: {respondeCart?.numeroPedido}</p>
+                            <p className={Poppins500.className}>Fecha y Hora: {respondeCart?.fechayHora}</p>
+                            <p className={Poppins500.className}>Descripci&oacute;n: {respondeCart?.descripcion}</p>
+                            <div className='transaccionRespuestaBox'>
+                                <Link className='btnMain btnLg' href="/proceso-de-compra">Intentar Nuevamente</Link>
+                            </div>
+                        </>
+
                     )
                 }
 

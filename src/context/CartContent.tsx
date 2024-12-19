@@ -11,16 +11,20 @@ import { ProductCartItem } from "@/interfaces/cart"
 //     image: string;
 // }
 
-// interface ProductCartItem {
-//     id: number;
-//     title: string;
-//     price: number;
-//     quantity: number;
-//     image: string;
-// }
+interface respuestaCompra {
+    numeroPedido?: string;
+    fechayHora?: string;
+    importeTotal?: any;
+    tipoMoneda?: any;
+    tarjeta?: any;
+    marcaTarjeta?: any;
+    descripcion?: any;
+    status: boolean;
+}
 
 interface ProductCartContext {
     cartProducts: ProductCartItem[];
+    respondeCart: respuestaCompra | undefined;
     addCartProducts: (product: ProductCartItem) => void;
     deleteCartProducts: (product: ProductCartItem) => void;
     resetCartProducts: () => void;
@@ -33,8 +37,8 @@ interface ProductCartContext {
     totalProducts: number;
     boolBolsa: boolean;
     CloseCartPopup: (value: boolean) => void;
-    respuestaCompra: string;
-    actualizarRespuestaCompra: (value: string) => void;
+    // respuestaCompra: string;
+    actualizarRespuestaCompra: (payload: respuestaCompra) => void;
 }
 
 interface Props {
@@ -52,8 +56,9 @@ const initProduct = {
 export const cartContext = createContext({} as ProductCartContext);
 
 const CartProvider = ({ children }: Props) => {
-    const [respuestaCompra, setRespuestaCompra] = useState<string>('')
+    // const [respuestaCompra, setRespuestaCompra] = useState<string>('')
     const [cartProducts, setCartProducts] = useState<ProductCartItem[]>([])
+    const [respondeCart, setrespondeCart] = useState<respuestaCompra>()
     const [productActive, setProductActive] = useState<ProductCartItem>(initProduct)
     const [timerActive, setTimerActive] = useState<NodeJS.Timeout | null>(null); // Para manejar el identificador del temporizador
     const [boolBolsa, setBoolBolsa] = useState(false);
@@ -61,12 +66,12 @@ const CartProvider = ({ children }: Props) => {
     useEffect(() => {
         // Cargar el estado desde Local Storage al montar
         const storedCarrito = localStorage.getItem('carrito');
-        const storedRespuesta = localStorage.getItem('respuestacompra');
+        const storedRespondeCart = localStorage.getItem('respondeCart');
         if (storedCarrito) {
             setCartProducts(JSON.parse(storedCarrito));
         }
-        if (storedRespuesta) {
-            setRespuestaCompra(JSON.parse(storedRespuesta));
+        if (storedRespondeCart) {
+            setrespondeCart(JSON.parse(storedRespondeCart));
         }
     }, []);
 
@@ -80,13 +85,13 @@ const CartProvider = ({ children }: Props) => {
             localStorage.removeItem('carrito');
         }
 
-        if (respuestaCompra) {
-            localStorage.setItem('respuestacompra', JSON.stringify(respuestaCompra));
+        if (respondeCart) {
+            localStorage.setItem('respondeCart', JSON.stringify(respondeCart));
         } else {
-            localStorage.removeItem('respuestacompra');
+            localStorage.removeItem('respondeCart');
         }
 
-    }, [cartProducts, respuestaCompra]);
+    }, [cartProducts, respondeCart]);
 
     const resetCartProducts = () => {
         setCartProducts([]);
@@ -102,8 +107,10 @@ const CartProvider = ({ children }: Props) => {
     //     setBoolBolsa(false);
     // }, [setCartProducts, setProductActive, setTimerActive, setBoolBolsa]);
 
-    const actualizarRespuestaCompra = (val: string) => {
-        setRespuestaCompra(val);
+
+
+    const actualizarRespuestaCompra = (payload: respuestaCompra) => {
+        setrespondeCart(payload)
     }
 
     const addCartProducts = ({ id, title, price, quantity, image }: ProductCartItem) => {
@@ -212,7 +219,7 @@ const CartProvider = ({ children }: Props) => {
     const totalPriceTicket = cartProducts.reduce((acc, item) => acc + item.price * item.quantity, 0)
     const totalProducts = cartProducts.length
     return (
-        <cartContext.Provider value={{ cartProducts, addCartProducts, totalQuantityTicket, totalPriceTicket, totalProducts, productActive, deleteCartActive, increaseQuantity, decreaseQuantity, CloseCartPopup, boolBolsa, deleteCartProducts, respuestaCompra, actualizarRespuestaCompra, resetCartProducts }}>
+        <cartContext.Provider value={{ cartProducts, addCartProducts, totalQuantityTicket, totalPriceTicket, totalProducts, productActive, deleteCartActive, increaseQuantity, decreaseQuantity, CloseCartPopup, boolBolsa, deleteCartProducts, actualizarRespuestaCompra, resetCartProducts, respondeCart }}>
             {children}
         </cartContext.Provider>
     )

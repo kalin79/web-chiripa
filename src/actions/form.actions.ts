@@ -75,7 +75,7 @@ export const fecthApi = async (
         console.log(res)
 
         const data = await res.json();
-        // console.log('data',data)
+        console.log('data', data)
         // console.log({queryString})
 
         return data;
