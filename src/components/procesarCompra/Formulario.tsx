@@ -51,6 +51,7 @@ interface Props {
     myIP: string
 }
 const FormularioCompra: React.FC<Props> = ({ myIP }) => {
+
     const { data: session } = useSession();
     const tokenLogin: string = session?.user.token || ''
     // const router = useRouter();
@@ -63,11 +64,13 @@ const FormularioCompra: React.FC<Props> = ({ myIP }) => {
     const [loading, setLoading] = useState(false);
     // const [response, setResponse] = useState<any>(null);
     const [isChecked2, setIsChecked2] = useState<boolean>(true)
-
+    // const [pathDinamico, setPathDinamico] 
     const isLogin = true
     const { cartProducts, totalPriceTicket, actualizarRespuestaCompra, resetCartProducts } = useContext(cartContext);
     const descuento = 0
+
     useEffect(() => {
+        console.log(window.location.href)
         if (session && session.user) {
             console.log(session)
             setTodos(prevTodos => ({
@@ -190,7 +193,7 @@ const FormularioCompra: React.FC<Props> = ({ myIP }) => {
                         amount: payload.amount,
                         expirationminutes: expirationMinutes,
                         timeouturl: 'about:blank',
-                        merchantlogo: 'img/comercio.png',
+                        merchantlogo: 'https://s3.us-east-1.amazonaws.com/img.dechiripa.com.pe/dechiripa/logo.svg',
                         formbuttoncolor: '#000000',
                         action: 'javascript:void(0)',
                         complete: (params: any) => {
@@ -222,7 +225,8 @@ const FormularioCompra: React.FC<Props> = ({ myIP }) => {
                                 currency
                             },
                             dataMap: {
-                                urlAddress: 'https://dechiripa.com.pe/',
+                                urlAddress: window.location.href, // captura de URL DINAMICA
+                                // urlAddress: 'https://dechiripa.com.pe', // captura de URL DINAMICA
                                 partnerIdCode: '',
                                 serviceLocationCityName: 'Lima',
                                 serviceLocationCountrySubdivisionCode: 'LIM',
@@ -252,6 +256,7 @@ const FormularioCompra: React.FC<Props> = ({ myIP }) => {
                             authorizationPayload,
                             payLoad
                         })
+
                         // const urlParamsObject = {}
                         // const path = `niubiz-notification/${process.env.NEXT_PUBLIC_AUTHORIZATION_FORM}`
                         // console.log(process.env.NEXT_PUBLIC_AUTHORIZATION_FORM)
@@ -272,7 +277,7 @@ const FormularioCompra: React.FC<Props> = ({ myIP }) => {
                         // RESPUESTAS VENTA APROBADA		
                         // • Número de pedido. (purchaseNumber)		
                         // • Nombre y apellido del usuario. (opcional)		
-                        // • Fecha y hora del pedido. (TRANSACTION_DATE) Fecha de la transacción expresada en formato nativo yyMMddHHmmSS		
+                        // • Fecha y hora del pedido. (TRANSACTION_DATE) Fecha de la transacción expresada en formato nativo yyMMddHHmmSS [dd-mm-aaaa hh:mm:ss]		
                         // • Importe de la transacción.(Amount)		
                         // • Tipo de moneda.(Currency)		
                         // • Descripción de el /los productos.(opcional)		
@@ -304,10 +309,11 @@ const FormularioCompra: React.FC<Props> = ({ myIP }) => {
                         }
                         const data = await fecthApiNubiz(path, urlParamsObject, options)
                         console.log(data)
-                        if (data.errorCode) {
-                            transaccionDenegada(data, purchaseNumber);
-                        } else {
+
+                        if ((data.dataMap) && (data.dataMap.STATUS === 'Authorized')) {
                             procesarTransaccion(data, purchaseNumber);
+                        } else {
+                            transaccionDenegada(data, purchaseNumber);
                         }
 
 
@@ -349,15 +355,15 @@ const FormularioCompra: React.FC<Props> = ({ myIP }) => {
     }
 
     const formatDate = () => {
-        const now = new Date();
-        const yy = String(now.getFullYear()).slice(-2); // Últimos 2 dígitos del año
-        const MM = String(now.getMonth() + 1).padStart(2, '0'); // Mes (agregar 1 porque comienza desde 0)
-        const dd = String(now.getDate()).padStart(2, '0'); // Día
-        const HH = String(now.getHours()).padStart(2, '0'); // Hora
-        const mm = String(now.getMinutes()).padStart(2, '0'); // Minutos
-        const SS = String(now.getSeconds()).padStart(2, '0'); // Segundos
+        const date = new Date();
+        const day = String(date.getDate()).padStart(2, '0'); // Día (dd)
+        const month = String(date.getMonth() + 1).padStart(2, '0'); // Mes (mm)
+        const year = date.getFullYear(); // Año (aaaa)
+        const hours = String(date.getHours()).padStart(2, '0'); // Horas (hh)
+        const minutes = String(date.getMinutes()).padStart(2, '0'); // Minutos (mm)
+        const seconds = String(date.getSeconds()).padStart(2, '0'); // Segundos (ss)
 
-        return `${yy}${MM}${dd}${HH}${mm}${SS}`;
+        return `${day}-${month}-${year} ${hours}:${minutes}:${seconds}`;
     };
 
     const transaccionDenegada = (dataTransaccion: any, purchaseNumber: string) => {
@@ -423,7 +429,7 @@ const FormularioCompra: React.FC<Props> = ({ myIP }) => {
                 importeTotal: dataTransaccion.order.amount,
                 tipoMoneda: dataTransaccion.order.currency,
                 tarjeta: dataTransaccion.dataMap.CARD,
-                marcaTarjeta: dataTransaccion.dataMap.BRAND_NAME,
+                marcaTarjeta: dataTransaccion.dataMap.BRAND,
                 status: true
             }
             actualizarRespuestaCompra(respondeCart)
