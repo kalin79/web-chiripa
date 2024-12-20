@@ -100,7 +100,7 @@ const Premios = () => {
                                 <div className={styles.imageContainer}>
                                     <Image
                                         className={`${styles.productoPremio}  ${styles.bigImage}`}
-                                        src="/images/sorteo3.png"
+                                        src="/images/asus.png"
                                         width={600}
                                         height={488}
                                         alt="De Chiripa :: SEGWAY NINEBOT"
