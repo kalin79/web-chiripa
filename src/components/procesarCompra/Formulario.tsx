@@ -296,7 +296,7 @@ const FormularioCompra: React.FC<Props> = ({ myIP }) => {
 
 
                         const urlParamsObject = {}
-                        const path = `https://apisandbox.vnforappstest.com/api.authorization/v3/authorization/ecommerce/${dataMerchantid}`
+                        const path = `https://apiprod.vnforapps.com/api.authorization/v3/authorization/ecommerce/${dataMerchantid}`
                         // console.log(process.env.NEXT_PUBLIC_AUTHORIZATION_FORM)
                         // ${process.env.NEXT_PUBLIC_BACKEND_URL}
                         const options = {

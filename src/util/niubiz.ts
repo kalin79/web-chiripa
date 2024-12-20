@@ -14,7 +14,7 @@ export async function getNiubizToken() {
 
     try {
         // Realiza la solicitud a la API de Niubiz
-        const response = await fetch('https://apisandbox.vnforappstest.com/api.security/v1/security', {
+        const response = await fetch('https://apiprod.vnforapps.com/api.security/v1/security', {
             method: 'GET',
             headers: {
                 'Authorization': `Basic ${encodedAuth}`,

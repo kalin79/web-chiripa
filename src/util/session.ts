@@ -4,7 +4,7 @@ import { NextResponse } from 'next/server';
 export async function getResponseBuy(payload: any, token: any) {
     // const body = payload;
     const dataMerchantid = process.env.NEXT_PUBLIC_NIUBIZ_CLIENT_MERCHANTID || ''
-    const endpoint = `https://apisandbox.vnforappstest.com/api.ecommerce/v2/ecommerce/token/session/${dataMerchantid}`;
+    const endpoint = `https://apiprod.vnforapps.com/api.ecommerce/v2/ecommerce/token/session/${dataMerchantid}`;
 
     // console.log(payload)
     // console.log(token)
