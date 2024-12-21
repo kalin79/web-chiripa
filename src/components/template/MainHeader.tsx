@@ -187,7 +187,7 @@ const Header = () => {
                                                 />
                                             </button>
                                             <div className={`${styles.menuUsercontainer} ${activeUser ? styles.activeUser : ''}`} >
-                                                <Link href="/usuario/mi-cuenta">
+                                                <Link href="/cliente/perfil">
                                                     <Image
                                                         className={styles.iconUser}
                                                         src="/images/userlogin.webp"
@@ -197,7 +197,7 @@ const Header = () => {
                                                     />
                                                     <p className={Poppins300.className}>Mi cuenta</p>
                                                 </Link>
-                                                <Link href="/usuario/mi-historial">
+                                                <Link href="/cliente/historial-compras">
                                                     <Image
                                                         className={styles.iconUser}
                                                         src="/images/historial.webp"

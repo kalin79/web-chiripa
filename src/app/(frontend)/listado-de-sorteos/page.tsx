@@ -1,50 +1,30 @@
-import { Suspense, use } from 'react'
-
-// import { getToken } from "next-auth/jwt";
-// import { cookies } from "next/headers";
-import FormularioSuscripcion from "@/components/suscripcion/formulario"
-import { processApi } from '@/actions/form.actions'
-import ListarSorteos from "@/components/sorteo/listado"
+import { Suspense } from 'react';
+import FormularioSuscripcion from '@/components/suscripcion/formulario';
+import { processApi } from '@/actions/form.actions';
+import ListarSorteos from '@/components/sorteo/listado';
 
 const getData = async (token: any) => {
-
     const formJson = {
-        url: "sorteos/lista",
-        token: token
-    }
+        url: 'sorteos/lista',
+        token,
+    };
 
-    const data = await processApi(formJson)
-
-    // console.log(data)
-
+    const data = await processApi(formJson);
     return data;
-}
+};
 
-const ListadoSorteos = () => {
-    // Obtenemos las cookies como un objeto regular
-    // const cookieStore = cookies();
-    // const token = await getToken({ req: { cookies: cookieStore } as any });
-    // const { data } = await getData(token?.access_token);
-    let data = null;
-    const response = use(getData(process.env.NEXT_PUBLIC_AUTHORIZATION_FORM));
-    data = response
-    // console.log(data)
+// Asegúrate de que este componente sea tratado como Server Component
+const ListadoSorteos = async () => {
+    const data = await getData(process.env.NEXT_PUBLIC_AUTHORIZATION_FORM);
 
-    // if (token?.access_token) {
-    //     const response = await getData(token.access_token);
-    //     data = response
-    // }
     return (
-        <>
-            <div className={`backgroundContainer`}>
-                {/* {JSON.stringify(data)} */}
-                <Suspense fallback={<div>Loading...</div>}>
-                    <ListarSorteos dataSorteos={data} />
-                </Suspense>
-                <FormularioSuscripcion />
-            </div>
-        </>
-    )
-}
+        <div className={`backgroundContainer`}>
+            <Suspense fallback={<div>Loading...</div>}>
+                <ListarSorteos dataSorteos={data} />
+            </Suspense>
+            <FormularioSuscripcion />
+        </div>
+    );
+};
 
 export default ListadoSorteos

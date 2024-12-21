@@ -1,0 +1,60 @@
+@use 'vars/colors' as *
+@use 'vars/fonts' as *
+.comprasPage
+    position: relative
+    padding-top: 0rem
+    padding-bottom: 8rem
+    .gridContainer2
+        margin-top: 5rem
+        grid-template-columns: repeat(1, 1fr)
+        @media screen and (min-width: 992px)
+            grid-template-columns: repeat(3, 1fr)
+        .itemHistorial
+            width: 100%
+            padding: 1rem 1.5rem
+            border-radius: 20px
+            background: white
+            .fechaSorteoBox
+                display: flex
+                justify-content: space-between
+                align-items: center
+
+            .infoBox
+                margin-top: 1rem
+                h2
+                    font-size: 2.5rem
+                    letter-spacing: .025em
+                    text-align: center
+                    margin-bottom: .5rem
+                h3
+                    font-size: 1rem
+                    span
+                        color: $naranja
+                p
+                    font-size: .85rem
+                    color: $negroClaro3
+                    margin-top: 1rem
+            .imageBox
+                height: 120px
+                text-align: center
+                img
+                    height: 100%
+                    width: auto
+                    object-fit: contain
+                    margin: 0 auto
+    .gridContainer
+        > div
+            &:nth-of-type(1)
+                grid-column: 1 / -1
+    h1
+        position: relative
+        @extend %titulares
+        span
+            color: $verdeLimon
+        .stickerH1
+            position: absolute
+            top: -2.25rem
+            left: -2.15rem
+    p
+        color: white
+        font-size: 1rem
