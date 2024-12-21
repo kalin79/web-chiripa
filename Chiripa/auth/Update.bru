@@ -1,0 +1,24 @@
+meta {
+  name: Update
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{BACKEND_URL}}participante/update
+  body: json
+  auth: bearer
+}
+
+headers {
+  Authorization-secret: TSTCbj7mQO2xEOuwEK08RajQS1OxndfY
+  Content-Type: application/json
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {"id":34,"nombres":"Carlos Augusto","apellido_paterno":"Espinoza","apellido_materno":"Galarza","dni":"40609717","celular":"906011090","email":"c.augusto.espinoza@gmail.com","provincia":null,"ciudad":null,"distrito":null,"direccion":"Jiron Mariscal Ramon Castilla 678","register_from":"1","tickets_gratis":0,"active":1,"created_at":"2024-12-21T19:28:39.000000Z","updated_at":"2024-12-21T19:28:39.000000Z","deleted_at":null,"created_user_id":0,"updated_user_id":null,"deleted_user_id":null,"tyc":true,"utm_source":null,"utm_medium":null,"utm_campaign":null,"utm_content":null,"birhtday":"1979-05-24","fecha_expiracion_ticket":null,"password":"Xjnzq6z1@","password_confirmation":"Xjnzq6z1@"}
+}

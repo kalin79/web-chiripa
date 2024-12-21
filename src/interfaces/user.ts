@@ -1,4 +1,5 @@
 export interface objUser {
+    id?: number;
     nombres: string;
     apellido_paterno: string;
     apellido_materno?: string;

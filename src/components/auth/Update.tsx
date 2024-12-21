@@ -1,5 +1,6 @@
 "use client";
-// import { signIn } from "next-auth/react";
+import { useSession } from "next-auth/react";
+
 import { useState, ChangeEvent } from "react";
 // import { useRouter } from "next/navigation";
 
@@ -41,31 +42,20 @@ const poppins400 = Poppins({
 type FormElement = HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
 
 
-
-const initialTodo = {
-    nombres: "",
-    apellido_paterno: "",
-    apellido_materno: "",
-    dni: "",
-    register_from: "1",
-    celular: "",
-    email: "",
-    birhtday: "",
-    password: "",
-    password_confirmation: "",
-    direccion: "",
-    tyc: false,
-    utm_source: "",
-    utm_medium: "",
-    utm_campaign: "",
-    utm_content: "",
+const DynamicGraciasForm = dynamic(() => import('@components/auth/Gracias'), { loading: () => <p>Loading...</p> })
+interface Props {
+    dataUser: any,
 }
 
-const DynamicGraciasForm = dynamic(() => import('@components/auth/Gracias'), { loading: () => <p>Loading...</p> })
+const Update: React.FC<Props> = ({ dataUser }) => {
+    const { data: session } = useSession();
+    const tokenLogin: string = session?.user.token || ''
+    const [todos, setTodos] = useState<objUser>({
+        ...dataUser,
+        password: '',
+        password_confirmation: ''
 
-
-const Create = () => {
-    const [todos, setTodos] = useState<objUser>(initialTodo)
+    })
     const [isChecked, setIsChecked] = useState<boolean>(false)
     const [isSubmitted, setIsSubmitted] = useState<boolean>(false)
     const [isLoading, setIsLoading] = useState(false)
@@ -78,10 +68,10 @@ const Create = () => {
         })
     }
     const handleChangeFull = (e: ChangeEvent<FormElement>) => {
-        setTodos({
-            ...todos,
+        setTodos((prevState) => ({
+            ...prevState,
             [e.target.name]: e.target.value
-        })
+        }));
     }
 
     const handleChange = (e: ChangeEvent<FormElement>) => {
@@ -138,10 +128,11 @@ const Create = () => {
             })
         } else {
             const urlParamsObject = {}
-            const path = "participante/store"
+            const path = "participante/update"
             const options = {
                 method: 'POST',
                 headers: {
+                    'Authorization': 'Bearer ' + tokenLogin,
                     'Authorization-secret': `${process.env.NEXT_PUBLIC_AUTHORIZATION_FORM}`,  // Encabezado de autorización
                 },
                 body: JSON.stringify(todos),
@@ -176,7 +167,13 @@ const Create = () => {
                 }
 
             } else {
-                setIsSubmitted(true)
+                Swal.fire({
+                    title: 'Actualizado!',
+                    text: 'Se actualizo correctamente!',
+                    icon: 'success',
+                    confirmButtonText: 'Cerrar'
+                })
+                setIsSubmitted(false)
                 setIsLoading(false)
             }
 
@@ -194,7 +191,7 @@ const Create = () => {
                         <div className={styles.boxTitular}>
                             <h1 className={Humane600.className}>ACTUALIZAR</h1>
                             <h2 className={poppins600.className}>
-                                y se unos de los pocos con gran oportunidad de ganar.
+                                🎉 ¡En DeChiripa la suerte es tuya! 🌟 Participa y gana, porque la suerte la haces tú. 🍀💪
                             </h2>
                         </div>
                         <form onSubmit={handleSubmit} className={`${styles.formRegister} ${poppins400.className}`}>
@@ -337,4 +334,4 @@ const Create = () => {
     )
 }
 
-export default Create
+export default Update
