@@ -6,8 +6,9 @@ export async function getResponseBuy(payload: any, token: any) {
     const dataMerchantid = process.env.NEXT_PUBLIC_NIUBIZ_CLIENT_MERCHANTID || ''
     const endpoint = `https://apiprod.vnforapps.com/api.ecommerce/v2/ecommerce/token/session/${dataMerchantid}`;
 
-    // console.log(payload)
-    // console.log(token)
+
+    console.log(payload)
+    console.log(token)
     // return false
 
     try {
@@ -22,7 +23,7 @@ export async function getResponseBuy(payload: any, token: any) {
 
 
         // return false
-
+        console.log(response)
         if (!response.ok) {
             const error = await response.json();
             return NextResponse.json({ error, message: 'Error al contactar con Niubiz' }, { status: response.status });

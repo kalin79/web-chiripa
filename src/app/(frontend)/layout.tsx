@@ -35,7 +35,7 @@ export default function RootLayout({
     useEffect(() => {
         // Cargar el script de checkout de Niubiz
         const script = document.createElement('script');
-        script.src = "	https://static-content.vnforapps.com/v2/js/checkout.js";
+        script.src = "https://static-content.vnforapps.com/v2/js/checkout.js";
         script.type = "text/javascript";
         script.async = true;
         document.body.appendChild(script);

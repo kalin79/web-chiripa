@@ -1,15 +1,12 @@
 'use client'
-import { useSession } from "next-auth/react";
 // signIn, signOut, 
 import Image from 'next/image'
 import styles from '@/styles/sass/compra.module.sass'
-import CheckLogged from '@/components/auth/CheckLogged'
-import FormularioCompra from '@/components/procesarCompra/Formulario'
+import FormularioCompra from '@/components/procesoCompraInvitado/Formulario'
 interface Props {
     myIP: string
 }
 const RegistroCompra: React.FC<Props> = ({ myIP }) => {
-    const { data: session } = useSession();
     return (
         <div className={`${styles.bgRegistroContainer}`}>
             <Image
@@ -22,15 +19,7 @@ const RegistroCompra: React.FC<Props> = ({ myIP }) => {
             />
             <div className='container'>
                 <div className={`gridContainer ${styles.gridContainer}`}>
-                    <div>
-                        {
-                            (!session?.user) && (
-                                <div className="boxChekLogged">
-                                    <CheckLogged />
-                                </div>
-                            )
-                        }
-                    </div>
+                    <div></div>
                     <div>
                         <FormularioCompra myIP={myIP} />
                     </div>

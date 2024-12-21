@@ -1,0 +1,20 @@
+meta {
+  name: Invitado
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{BACKEND_URL}}visitante/order/store
+  body: json
+  auth: none
+}
+
+headers {
+  Authorization-secret: TSTCbj7mQO2xEOuwEK08RajQS1OxndfY
+  Content-Type: application/json
+}
+
+body:json {
+  {"purchaseNumber":"173473943199","participante_id":"","nombres":"Carmen","apellidos":"Galarza","tipo_documento":"DNI","numero_documento":"07534014","email":"cngalarzav@gmail.com","telefono":"987654567","montoSubTotal":10,"montoTotal":10,"status_pay":1,"montoDescuento":0,"transaction_id":"993211570048581","transaction_result":{"TERMINAL":"00000001","BRAND_ACTION_CODE":"00","BRAND_HOST_DATE_TIME":"201222141839","TRACE_NUMBER":"611024","CARD_TYPE":"D","ECI_DESCRIPTION":"Transaccion no autenticada pero enviada en canal seguro","SIGNATURE":"ebc55f7e-86fd-4c30-be11-4a9499ff55df","CARD":"447411******2240","MERCHANT":"109705108","STATUS":"Authorized","ACTION_DESCRIPTION":"Aprobado y completado con exito","ID_UNICO":"993211570048581","AMOUNT":"10.0","AUTHORIZATION_CODE":"091800","YAPE_ID":"","CURRENCY":"0604","TRANSACTION_DATE":"241220190441","ACTION_CODE":"000","CVV2_VALIDATION_RESULT":"M","ECI":"07","ID_RESOLUTOR":"420201222142237","BRAND":"visa","ADQUIRENTE":"570002","BRAND_NAME":"VI","PROCESS_CODE":"000000","TRANSACTION_ID":"993211570048581"},"sorteoListado":[{"id":1,"title":"Celular Samsung S24 ULTRA","price":5,"quantity":2,"image":"https://s3.amazonaws.com/img.dechiripa.com.pe/1-1733369977-675120790cbb4-pc.png"}]}
+}

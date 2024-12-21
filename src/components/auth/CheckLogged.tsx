@@ -24,19 +24,32 @@ const CheckLogged = () => {
     const handleLogin = () => {
         router.push('/auth/login')
     }
+    const handleInvitado = () => {
+        router.push('/proceso-de-compra-invitado')
+    }
     return (
-        <div className={styles.containerLogin}>
-            <h2 className={Humane600.className}>Iniciar sesión</h2>
-            <div className={Poppins600.className}>
-                <button type='button' onClick={handleLogin} className='btnMain'>
-                    Iniciar Sesion
-                </button>
-                <p>
-                    ¿No tienes una cuenta?
-                    <Link href="/auth/create">Registrarse</Link>
-                </p>
+        <>
+            <div className={styles.containerLogin}>
+                <h2 className={Humane600.className}>Iniciar sesión</h2>
+                <div className={Poppins600.className}>
+                    <button type='button' onClick={handleLogin} className='btnMain'>
+                        Iniciar Sesion
+                    </button>
+                    <p>
+                        ¿No tienes una cuenta?
+                        <Link href="/auth/create">Registrarse</Link>
+                    </p>
+                </div>
             </div>
-        </div>
+            <div className={styles.containerLogin}>
+                <h2 className={Humane600.className}>Invitado</h2>
+                <div className={Poppins600.className}>
+                    <button type='button' onClick={handleInvitado} className='btnMain'>
+                        Iniciar como invitado
+                    </button>
+                </div>
+            </div>
+        </>
     )
 }
 
