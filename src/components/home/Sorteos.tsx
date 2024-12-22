@@ -72,7 +72,7 @@ const Sorteos: React.FC<Props> = ({ dataContenido }) => {
         // speed: 500,
 
         centerPadding: "60px",
-        infinite: true,
+        infinite: false,
         slidesToShow: 3,
         slidesToScroll: 3,
         autoplay: true,

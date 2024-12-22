@@ -3,6 +3,7 @@ import Image from 'next/image'
 import localFont from 'next/font/local'
 import { Poppins } from 'next/font/google'
 import styles from '@/styles/sass/ganadoresPage.module.sass'
+import { formatDate } from '@/helpers/funciones'
 // import RasgadoIzq from '@/components/fondo/RasgadoIzq'
 const Humane600 = localFont({
     src: '../../../public/fonts/Humane-SemiBold.woff2',
@@ -27,7 +28,12 @@ const Poppins700 = Poppins({
     subsets: ['latin'],
     display: 'swap',
 })
-const Listado = () => {
+
+interface Props {
+    dataGanadores: any,
+}
+const Listado: React.FC<Props> = ({ dataGanadores }) => {
+    const ganadores = dataGanadores?.data?.sorteos
     return (
         <div className={styles.ganadoresAcerca}>
             {/* <RasgadoIzq style={{ bottom: "-10rem" }} /> */}
@@ -64,122 +70,44 @@ const Listado = () => {
                     </div>
                 </div>
                 <div className={`${styles.gridContainer2}`}>
-                    <div className={styles.cardSorteo}>
-                        <div className={styles.cardFecha}>
-                            <h3 className={Poppins500.className}>Se sorteó:</h3>
-                            <h2 className={Poppins700.className}>24-NOV</h2>
-                        </div>
-                        <Image
-                            className={styles.fondoCardSorteo}
-                            src="/images/marco.png"
-                            width={554}
-                            height={807}
-                            alt="Iphone 15 Pro Max 256gb"
-                        />
-                        <div className={styles.cardImage}>
-                            <Image
-                                src="/images/sorteo21.png"
-                                width={573}
-                                height={399}
-                                alt="Iphone 15 Pro Max 256gb"
-                            />
-                        </div>
-                        <div className={styles.cardInfo}>
-                            <h2 className={Poppins600.className}>Laptop GAMER Asus Rogue i9</h2>
-                            <h3 className={Poppins600.className}>SORTEO 980-84AD</h3>
-                        </div>
-                        <div className={styles.cardFooter}>
-                            <h4 className={Poppins600.className}>Carlos Augusto Espinoza Galarza</h4>
-                            <h5 className={Poppins700.className}>GANADOR</h5>
-                        </div>
-                    </div>
-                    <div className={styles.cardSorteo}>
-                        <div className={styles.cardFecha}>
-                            <h3 className={Poppins500.className}>Se sorteó:</h3>
-                            <h2 className={Poppins700.className}>24-NOV</h2>
-                        </div>
-                        <Image
-                            className={styles.fondoCardSorteo}
-                            src="/images/marco.png"
-                            width={554}
-                            height={807}
-                            alt="Iphone 15 Pro Max 256gb"
-                        />
-                        <div className={styles.cardImage}>
-                            <Image
-                                src="/images/sorteo22.png"
-                                width={392}
-                                height={384}
-                                alt="Iphone 15 Pro Max 256gb"
-                            />
-                        </div>
-                        <div className={styles.cardInfo}>
-                            <h2 className={Poppins600.className}>MOTO HONDA Navi 2024</h2>
-                            <h3 className={Poppins600.className}>SORTEO 980-84AD</h3>
-                        </div>
-                        <div className={styles.cardFooter}>
-                            <h4 className={Poppins600.className}>Yoshiro Geofrey Olivera </h4>
-                            <h5 className={Poppins700.className}>GANADOR</h5>
-                        </div>
-                    </div>
-                    <div className={styles.cardSorteo}>
-                        <div className={styles.cardFecha}>
-                            <h3 className={Poppins500.className}>Se sorteó:</h3>
-                            <h2 className={Poppins700.className}>24-NOV</h2>
-                        </div>
-                        <Image
-                            className={styles.fondoCardSorteo}
-                            src="/images/marco.png"
-                            width={554}
-                            height={807}
-                            alt="Iphone 15 Pro Max 256gb"
-                        />
-                        <div className={styles.cardImage}>
-                            <Image
-                                src="/images/sorteo23.png"
-                                width={392}
-                                height={384}
-                                alt="Iphone 15 Pro Max 256gb"
-                            />
-                        </div>
-                        <div className={styles.cardInfo}>
-                            <h2 className={Poppins600.className}>Nintendo SWITCH</h2>
-                            <h3 className={Poppins600.className}>SORTEO 980-84AD</h3>
-                        </div>
-                        <div className={styles.cardFooter}>
-                            <h4 className={Poppins600.className}>Paco Zevallos Rodriguez</h4>
-                            <h5 className={Poppins700.className}>GANADOR</h5>
-                        </div>
-                    </div>
-                    <div className={styles.cardSorteo}>
-                        <div className={styles.cardFecha}>
-                            <h3 className={Poppins500.className}>Se sorteó:</h3>
-                            <h2 className={Poppins700.className}>24-NOV</h2>
-                        </div>
-                        <Image
-                            className={styles.fondoCardSorteo}
-                            src="/images/marco.png"
-                            width={554}
-                            height={807}
-                            alt="Iphone 15 Pro Max 256gb"
-                        />
-                        <div className={styles.cardImage}>
-                            <Image
-                                src="/images/sorteo23.png"
-                                width={392}
-                                height={384}
-                                alt="Iphone 15 Pro Max 256gb"
-                            />
-                        </div>
-                        <div className={styles.cardInfo}>
-                            <h2 className={Poppins600.className}>Nintendo SWITCH</h2>
-                            <h3 className={Poppins600.className}>SORTEO 980-84AD</h3>
-                        </div>
-                        <div className={styles.cardFooter}>
-                            <h4 className={Poppins600.className}>Paco Zevallos Rodriguez</h4>
-                            <h5 className={Poppins700.className}>GANADOR</h5>
-                        </div>
-                    </div>
+                    {
+                        ganadores?.map((item: any, index: any) => {
+                            if (item.ganador.length > 0) {
+                                return (
+                                    <div key={index} className={styles.cardSorteo}>
+                                        <div className={styles.cardFecha}>
+                                            <h3 className={Poppins500.className}>Se sorteó:</h3>
+                                            <h2 className={Poppins700.className}>{formatDate(item.fecha)}</h2>
+                                        </div>
+                                        <Image
+                                            className={styles.fondoCardSorteo}
+                                            src="/images/marco.png"
+                                            width={554}
+                                            height={807}
+                                            alt="Iphone 15 Pro Max 256gb"
+                                        />
+                                        <div className={styles.cardImage}>
+                                            <Image
+                                                src={item.image}
+                                                width={573}
+                                                height={399}
+                                                alt="Iphone 15 Pro Max 256gb"
+                                            />
+                                        </div>
+                                        <div className={styles.cardInfo}>
+                                            <h2 className={Poppins600.className}>{item.name}</h2>
+                                            {/* <h3 className={Poppins600.className}>SORTEO 980-84AD</h3> */}
+                                        </div>
+                                        <div className={styles.cardFooter}>
+                                            <h4 className={Poppins600.className}>{item.ganador}</h4>
+                                            <h5 className={Poppins700.className}>GANADOR</h5>
+                                        </div>
+                                    </div>
+                                )
+                            }
+                        })
+                    }
+
                 </div>
             </div>
         </div>

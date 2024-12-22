@@ -47,17 +47,18 @@ const Footer = () => {
                                 alt="Picture of the author"
                             />
                         </div>
-                        <p className={Poppins400.className}>© De Chiripa - 2024 - RUC: </p>
+                        <p className={Poppins400.className}>© De Chiripa - 2024 - RUC: 20613505149</p>
                     </div>
                     <div>
                         <Link href="/terminos-y-condiciones" className={Poppins500.className}>Términos y condiciones</Link>
-                        <Link href="/politicas-de-juego" className={Poppins500.className}>Políticas de juegos</Link>
+                        {/* <Link href="/politicas-de-juego" className={Poppins500.className}>Políticas de juegos</Link> */}
                         {/* <Link href="/proteccion-de-datos" className={Poppins500.className}>Protección de datos</Link> */}
-                        <Link href="/reglamento" className={Poppins500.className}>Reglamento</Link>
+                        {/* <Link href="/reglamento" className={Poppins500.className}>Reglamento</Link> */}
+                        <Link href="/contacto" className={Poppins500.className}>Contacto</Link>
                     </div>
                     <div>
                         <Link href="/preguntas-frecuentes" className={Poppins500.className}>Preguntas Frecuentes</Link>
-                        <Link href="/contacto" className={Poppins500.className}>Contacto</Link>
+
                         {/* <div>
                             <h2 className={Poppins500.className}>Horario de atención</h2>
                             <p className={Poppins300.className}>Lunes a viernes 9:00 AM - 18:00 PM</p>

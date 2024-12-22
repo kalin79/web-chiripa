@@ -60,12 +60,12 @@ const HomeAlternativo = () => {
                             <TransmisionVivoSeccion dataContenido={data} />
                         )
                     }
-
+                    {/* {JSON.stringify(data)} */}
                     <BeneficiosSeccion dataContenido={data} />
                     <SorteosSeccion dataContenido={data} />
                     <div className={`backgroundContainer2`}>
                         <RasgadoFullImg />
-                        <GanadoresSeccion />
+                        <GanadoresSeccion dataContenido={data} />
                         <AcercaSeccion dataContenido={data} />
                         <Suscribete />
                     </div>

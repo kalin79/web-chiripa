@@ -2,6 +2,7 @@
 // import Link from 'next/link'
 import { useState, ChangeEvent } from "react"
 import dynamic from 'next/dynamic'
+import { fecthApi } from '@/actions/form.actions'
 
 import Swal from 'sweetalert2'
 
@@ -83,51 +84,50 @@ const Formulario = () => {
         } else {
             setIsSubmitted(true)
             setIsLoading(false)
-            // const urlParamsObject = {}
-            // const path = "participante/store"
-            // console.log(process.env.NEXT_PUBLIC_AUTHORIZATION_FORM)
-            // const options = {
-            //     method: 'POST',
-            //     headers: {
-            //         'Authorization': `${process.env.NEXT_PUBLIC_AUTHORIZATION_FORM}`,  // Encabezado de autorización
-            //     },
-            //     body: JSON.stringify(todos),
-            // }
-            // const data = await fecthApi(path, urlParamsObject, options)
-            // if (data.status === 'error') {
-            //     setIsLoading(false)
-            //     // console.log(data)
-            //     if (data.errors.dni) {
-            //         Swal.fire({
-            //             title: 'Error!',
-            //             text: 'El DNI registrado ya existe!',
-            //             icon: 'error',
-            //             confirmButtonText: 'Cerrar'
-            //         })
-            //     } else {
-            //         if (data.errors.password) {
-            //             Swal.fire({
-            //                 title: 'Error!',
-            //                 text: 'El campo de contraseña debe tener al menos 6 caracteres.',
-            //                 icon: 'error',
-            //                 confirmButtonText: 'Cerrar'
-            //             })
-            //         } else {
-            //             Swal.fire({
-            //                 title: 'Error!',
-            //                 text: 'Vuelva a intentar mas tarde!',
-            //                 icon: 'error',
-            //                 confirmButtonText: 'Cerrar'
-            //             })
-            //         }
-            //     }
+            const urlParamsObject = {}
+            const path = "subscription"
+            const options = {
+                method: 'POST',
+                headers: {
+                    'Authorization-secret': `${process.env.NEXT_PUBLIC_AUTHORIZATION_FORM}`,  // Encabezado de autorización
+                },
+                body: JSON.stringify(todos),
+            }
+            const data = await fecthApi(path, urlParamsObject, options)
+            if (data.status === 'error') {
+                setIsLoading(false)
+                console.log(data)
+                if (data.errors.dni) {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: 'El DNI registrado ya existe!',
+                        icon: 'error',
+                        confirmButtonText: 'Cerrar'
+                    })
+                } else {
+                    if (data.errors.password) {
+                        Swal.fire({
+                            title: 'Error!',
+                            text: 'El campo de contraseña debe tener al menos 6 caracteres.',
+                            icon: 'error',
+                            confirmButtonText: 'Cerrar'
+                        })
+                    } else {
+                        Swal.fire({
+                            title: 'Error!',
+                            text: 'Vuelva a intentar mas tarde!',
+                            icon: 'error',
+                            confirmButtonText: 'Cerrar'
+                        })
+                    }
+                }
 
-            // } else {
-            //     setIsSubmitted(true)
-            //     setIsLoading(false)
-            // }
+            } else {
+                setIsSubmitted(true)
+                setIsLoading(false)
+            }
 
-            // console.log(data)
+            console.log(data)
         }
 
     }

@@ -12,8 +12,22 @@ interface DataHome {
     beneficios: Beneficios;
     acerca_de_chiripa: Acercadechiripa;
     sorteos: Sorteo[];
+    ganadores: GanadoresApi[];
 }
-
+export interface GanadoresApi {
+    id: number;
+    campaign: string;
+    name: string;
+    title: string;
+    slug: string;
+    fecha: string;
+    aforo: string;
+    probabilidad_ganar: string;
+    image: string;
+    imagemobile: string;
+    link: string;
+    ganador: string;
+}
 interface Sorteo {
     id: number;
     campaign: string;

@@ -48,16 +48,16 @@ const GraciasForm = () => {
                     height={115}
                     alt="De Chiripa :: Preparate para lo que viene"
                 />
-                Ya estás dentro. <br />
-                Atento a tu correo, pronto <strong>DeChiripa</strong> te dara la primera
-                sorpresa. <br />
-                El sorteo donde las probabilidades juegan a tu favor<br />
+                🎉 ¡Gracias por unirte al boletín de DeChiripa! 🌟 <br />
+                Ahora estás un paso más cerca de las mejores sorpresas, sorteos y premios increíbles. 🙌  <br />
+                Prepárate para vivir la emoción y no olvides que aquí, la suerte la haces tú. <br />
+                🍀💪 ¡Vamos por más! 🎁
 
             </span>
             {/* <p className={Poppins500.className}>
                 &Uacute;nete a nuestro grupo de WhatsApp dando click aqu&iacute;
             </p> */}
-            <a href="#" target='_blank' className={Poppins500.className}>&Uacute;nete al Grupo De Chiripa</a>
+            <a href="https://whatsapp.com/channel/0029Vavpfw24yltWH5h3hc0J" target='_blank' className={Poppins500.className}>&Uacute;nete al Grupo De Chiripa</a>
         </div>
     )
 }
