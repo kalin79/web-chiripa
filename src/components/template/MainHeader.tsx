@@ -51,15 +51,15 @@ const Header = () => {
     }
     return (
         <div className={styles.containerHeader}>
-            <nav className={`${styles.navContainer} headerNavMain`}>
+            <nav className={`${styles.navContainer} ${styles.active}`}>
                 <div className={`container gridContainer ${styles.gridContainer} ${Poppins600.className}`}>
                     <div>
                         <Image
                             className={styles.logoNav}
-                            src="/images/logo.svg"
+                            src="/images/logoOficial.webp"
                             alt="DeChiripa"
-                            width={164}
-                            height={165}
+                            width={1417}
+                            height={1484}
                         />
                     </div>
                     <div className={activeMenuMovil ? styles.active : ''}>

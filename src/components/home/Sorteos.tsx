@@ -1,4 +1,5 @@
 'use client'
+import dynamic from "next/dynamic";
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -6,11 +7,13 @@ import localFont from 'next/font/local'
 import { Poppins } from 'next/font/google'
 
 import styles from '@/styles/sass/homeSorteos.module.sass'
-import Slider from "react-slick"
+// import Slider from "react-slick"
+
+import { ApiObjectHome } from "@/interfaces/home"
+// Carga dinámica de react-slick para evitar problemas de SSR
+const Slider = dynamic(() => import("react-slick"), { ssr: false });
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
-import { ApiObjectHome } from "@/interfaces/home"
-
 const Humane600 = localFont({
     src: '../../../public/fonts/Humane-SemiBold.woff2',
     weight: '600',
@@ -131,8 +134,8 @@ const Sorteos: React.FC<Props> = ({ dataContenido }) => {
                         <div className={styles.containerCarrusel}>
                             <Slider {...settings}>
                                 {
-                                    data.map((sorteos, index) => (
-                                        <div key={index} className={styles.cardPremioSimilaresBox}>
+                                    data.map((sorteos) => (
+                                        <div key={sorteos.id} className={styles.cardPremioSimilaresBox}>
                                             <div className={styles.cardSorteo}>
                                                 <div className={styles.cardFecha}>
                                                     <h3 className={Poppins500.className}>Sorteo:</h3>

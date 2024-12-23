@@ -5,7 +5,18 @@ meta {
 }
 
 post {
-  url: subscription
-  body: none
+  url: {{BACKEND_URL}}subscription
+  body: json
   auth: none
+}
+
+headers {
+  Authorization-secret: TSTCbj7mQO2xEOuwEK08RajQS1OxndfY
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "email": "cespinoza2479@hotmail.com"
+  }
 }

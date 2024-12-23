@@ -41,13 +41,16 @@ const Footer = () => {
                         <div>
                             <Image
                                 className={styles.imageLogoFooter}
-                                src="/images/logo.svg"
-                                width={135}
-                                height={137}
+                                src="/images/logoOficial.webp"
+                                width={1417}
+                                height={1484}
                                 alt="Picture of the author"
                             />
                         </div>
-                        <p className={Poppins400.className}>© De Chiripa - 2024 - RUC: 20613505149</p>
+                        <div>
+                            <p className={Poppins400.className}>© De Chiripa - 2024 </p>
+                            <p className={Poppins400.className}>RUC: 20613505149</p>
+                        </div>
                     </div>
                     <div>
                         <Link href="/terminos-y-condiciones" className={Poppins500.className}>Términos y condiciones</Link>
