@@ -12,7 +12,7 @@ import localFont from 'next/font/local'
 import { Poppins } from 'next/font/google'
 import styles from '@/styles/sass/login.module.sass'
 
-import { validateReset } from "@/helpers/validacion-reset"
+import { validateReset2 } from "@/helpers/validacion-reset"
 const poppins600 = Poppins({
     weight: '600',
     subsets: ['latin'],
@@ -34,25 +34,33 @@ const Humane600 = localFont({
 type FormElement = HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
 
 interface Todo {
+    token: string;
+    password: string;
+    password_confirmation: string;
     email: string;
 }
 
-const DynamicGraciasForm = dynamic(() => import('@components/auth/GraciasReset'), { loading: () => <p>Loading...</p> })
+const DynamicGraciasForm = dynamic(() => import('@components/auth/GraciasForgot'), { loading: () => <p>Loading...</p> })
+interface Props {
+    tokenId: string,
+}
 
-
-const Reset = () => {
+const Forgot: React.FC<Props> = ({ tokenId }) => {
     // const router = useRouter();
     const [isLoading, setIsLoading] = useState(false);
     const [isSubmitted, setIsSubmitted] = useState<boolean>(false)
     const initialTodo = {
-        email: ""
+        token: tokenId,
+        password: "",
+        password_confirmation: "",
+        email: "",
     }
     const [todos, setTodos] = useState<Todo>(initialTodo)
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         // const { email } = todos
         setIsLoading(true);
-        const erroresValidacion = await validateReset(todos);
+        const erroresValidacion = await validateReset2(todos);
         if (erroresValidacion.status) {
             setIsLoading(false)
             Swal.fire({
@@ -63,7 +71,7 @@ const Reset = () => {
             })
         } else {
             const urlParamsObject = {}
-            const path = "forgot-password"
+            const path = "reset-password"
             const options = {
                 method: 'POST',
                 headers: {
@@ -77,7 +85,7 @@ const Reset = () => {
                 setIsLoading(false)
                 Swal.fire({
                     title: 'Error!',
-                    text: 'Correo inválido!',
+                    text: 'No se pudo realizar!',
                     icon: 'error',
                     confirmButtonText: 'Cerrar'
                 })
@@ -106,20 +114,43 @@ const Reset = () => {
                 ) : (
                     <>
                         <div className={styles.boxTitular}>
-                            <h1 className={Humane600.className}>Recuperar contraseña</h1>
+                            <h1 className={Humane600.className}>Actualizar contraseña</h1>
                             <h2 className={poppins600.className}>
                                 Rellena el formulario para restablecer tu contraseña
                             </h2>
                         </div>
                         <form onSubmit={handleSubmit} className={`${styles.loginForm} ${poppins400.className}`}>
                             <div>
-                                <label htmlFor="email">Correo electrónico:</label>
+                                <label htmlFor="password">Ingresa t&uacute; Email :</label>
                                 <input
                                     type='text'
-                                    placeholder='Ingrese su email'
+                                    placeholder='Ingresa el email'
                                     className='form-control'
                                     value={todos.email}
                                     name='email'
+                                    onChange={handleChange}
+                                />
+                            </div>
+                            <div>
+                                <label htmlFor="password">Nueva Contraseña:</label>
+                                <input
+                                    type='text'
+                                    placeholder='Nueva Contraseña'
+                                    className='form-control'
+                                    value={todos.password}
+                                    name='password'
+                                    onChange={handleChange}
+                                />
+                            </div>
+
+                            <div>
+                                <label htmlFor="password">Confirmar Contraseña:</label>
+                                <input
+                                    type='text'
+                                    placeholder='Confirmar Contraseña'
+                                    className='form-control'
+                                    value={todos.password_confirmation}
+                                    name='password_confirmation'
                                     onChange={handleChange}
                                 />
                             </div>
@@ -139,4 +170,4 @@ const Reset = () => {
     )
 }
 
-export default Reset
+export default Forgot

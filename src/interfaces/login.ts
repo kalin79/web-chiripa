@@ -1,4 +1,6 @@
 export interface objLogin {
     password?: string;
-    email: string;
+    password_confirmation?: string;
+    token?: string;
+    email?: string;
 }

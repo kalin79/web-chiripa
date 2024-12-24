@@ -177,7 +177,7 @@ const Update: React.FC<Props> = ({ dataUser }) => {
                 setIsLoading(false)
             }
 
-            console.log(data)
+            // console.log(data)
         }
 
     }
@@ -189,7 +189,7 @@ const Update: React.FC<Props> = ({ dataUser }) => {
                 ) : (
                     <>
                         <div className={styles.boxTitular}>
-                            <h1 className={Humane600.className}>ACTUALIZAR</h1>
+                            <h1 className={Humane600.className}>PERFIL</h1>
                             <h2 className={poppins600.className}>
                                 🎉 ¡En DeChiripa la suerte es tuya! 🌟 Participa y gana, porque la suerte la haces tú. 🍀💪
                             </h2>

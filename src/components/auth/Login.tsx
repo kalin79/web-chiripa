@@ -79,7 +79,7 @@ const Login = () => {
                 password,
                 redirect: false,
             });
-            console.log(responseNextAuth)
+            // console.log(responseNextAuth)
             if (responseNextAuth?.error) {
                 // setErrors(responseNextAuth.error.split(","));
                 // console.log(responseNextAuth?.error)

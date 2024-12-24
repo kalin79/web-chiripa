@@ -191,7 +191,7 @@ const Create = () => {
                 setIsLoading(false)
             }
 
-            console.log(data)
+            // console.log(data)
         }
 
     }

@@ -132,15 +132,13 @@ const FormularioCompra: React.FC<Props> = ({ myIP }) => {
 
                 const token = await getNiubizToken();
                 const response = await getResponseBuy(payload, token)
-                console.log(payload)
+                // console.log(payload)
 
                 // Cargamos el formulario
                 if (window.VisanetCheckout) {
                     // Configurar VisanetCheckout antes de abrir el formulario
                     // alert(2)
-                    console.log(response.sessionKey);  // Verifica que no sea undefined o null
-                    console.log(dataMerchantid);
-                    console.log(purchaseNumber);
+
                     window.VisanetCheckout.configure({
                         sessiontoken: response.sessionKey,
                         channel: 'web',
@@ -190,33 +188,6 @@ const FormularioCompra: React.FC<Props> = ({ myIP }) => {
                                 serviceLocationPostalCode: '15086'
                             }
                         };
-                        const payLoad = {
-                            purchaseNumber: purchaseNumber,
-                            participante_id: todos.id,
-                            nombres: todos.nombres,
-                            apellidos: todos.apellidos,
-                            tipo_documento: 'DNI',
-                            numero_documento: todos.numero_documento,
-                            email: todos.email,
-                            telefono: todos.telefono,
-                            montoSubTotal: totalPriceTicket,
-                            montoTotal: (totalPriceTicket - descuento),
-                            status_pay: 1,
-                            montoDescuento: descuento,
-                            // transaction_id: dataTransaccion.dataMap.TRANSACTION_ID,
-                            // transaction_result: dataTransaccion.dataMap,
-                            sorteoListado: cartProducts
-
-                        }
-                        console.log({
-                            authorizationPayload,
-                            payLoad
-                        })
-
-                        console.log(authorizationPayload)
-
-                        console.log('token', token)
-
 
                         const urlParamsObject = {}
                         const path = `https://apiprod.vnforapps.com/api.authorization/v3/authorization/ecommerce/${dataMerchantid}`
@@ -230,7 +201,7 @@ const FormularioCompra: React.FC<Props> = ({ myIP }) => {
                             body: JSON.stringify(authorizationPayload),
                         }
                         const data = await fecthApiNubiz(path, urlParamsObject, options)
-                        console.log(data)
+                        // console.log(data)
 
                         if ((data.dataMap) && (data.dataMap.STATUS === 'Authorized')) {
                             procesarTransaccion(data, purchaseNumber);
@@ -309,10 +280,10 @@ const FormularioCompra: React.FC<Props> = ({ myIP }) => {
             body: JSON.stringify(payLoad),
         }
         const dataApiResponde = await fecthApi(path, urlParamsObject, options)
-        console.log(dataApiResponde)
+        // console.log(dataApiResponde)
         resetCartProducts();
         if (dataApiResponde.status === 'error') {
-            console.log(dataApiResponde)
+            // console.log(dataApiResponde)
             // actualizarRespuestaCompra(`error`);
             // setTimeout(() => {
             //     top!.location.href = '/respuesta-compra';
@@ -383,7 +354,7 @@ const FormularioCompra: React.FC<Props> = ({ myIP }) => {
         gsap.registerPlugin(ScrollToPlugin)
     }, []);
     const handleViewOrder = () => {
-        console.log(isViewOrder)
+        // console.log(isViewOrder)
         setIsViewOrder((prevState) => !prevState)
     }
 
