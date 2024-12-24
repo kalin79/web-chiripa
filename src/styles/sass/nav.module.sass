@@ -1,6 +1,11 @@
 @use 'vars/colors' as *
 @use 'vars/fonts' as *
 
+.limitedText
+    width: 15ch
+    white-space: nowrap
+    overflow: hidden
+    text-overflow: ellipsis
 .sideBarCart
     inset: 0
     position: fixed
@@ -8,6 +13,7 @@
     opacity: 0
     visibility: hidden
     transition: all .2s ease
+
     .sideBarWrapper
         background-color: $morado
         position: absolute
@@ -179,6 +185,7 @@
     &.active
         opacity: 1
         visibility: visible
+        height: 100vh
         .sideBarWrapper
             transform: translate(0)
 
@@ -186,13 +193,15 @@
     position: relative
     width: 100%
     height: 180px
+    // overflow: hidden
     @media screen and (min-width: 992px)
         height: 300px
     .navContainer
-        position: fixed
+        position: absolute
         z-index: 100
         width: 100%
         border: 0px solid red
+        transition: .5s all ease-in-out
         &.active
             background: rgba($verdeLimon,1)
         .gridContainer

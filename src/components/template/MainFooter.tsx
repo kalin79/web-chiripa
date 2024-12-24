@@ -53,7 +53,7 @@ const Footer = () => {
                         </div>
                     </div>
                     <div>
-                        <Link href="/terminos-y-condiciones" className={Poppins500.className}>Términos y condiciones</Link>
+                        <Link href="/terminos-y-condiciones" className={Poppins500.className}>Términos y condiciones / Política de Datos y Reglamento</Link>
                         {/* <Link href="/politicas-de-juego" className={Poppins500.className}>Políticas de juegos</Link> */}
                         {/* <Link href="/proteccion-de-datos" className={Poppins500.className}>Protección de datos</Link> */}
                         {/* <Link href="/reglamento" className={Poppins500.className}>Reglamento</Link> */}

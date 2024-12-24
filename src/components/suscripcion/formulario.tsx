@@ -161,7 +161,9 @@ const Formulario = () => {
                                     ¿Te imaginas enterarte de sorteos de laptops, celulares de alta gama, y hasta scooters antes que nadie?
                                 </h3>
                                 <p className={Poppins400.className}>
-                                    Con nuestro newsletter, no te perderás ningún sorteo, premio o sorpresa. Suscríbete y mantente en la primera fila de los ganadores. ¡Dale click, que la suerte se pegue!
+                                    Con nuestro newsletter no te perderás de ningun sorteo, premio o sorpresa. Suscríbete y mantente en la primera fila de los ganadores.
+                                    ¡Dale click, que las probabilidades estén contigo!
+
                                 </p>
                                 <div className={styles.formContainer}>
                                     <form onSubmit={handleSubmit}>
@@ -191,8 +193,8 @@ const Formulario = () => {
                                                     />
                                                     <span className="checkmark"></span>
                                                     <div>
-                                                        Acepto los <a href="/terminos-y-condiciones" target='_blank'>Términos y Condiciones</a>&nbsp;y las&nbsp;
-                                                        <a href="/proteccion-de-datos" target='_blank'>Política de Privacidad</a>
+                                                        Acepto los <a href="/terminos-y-condiciones" target='_blank'>Términos y Condiciones</a>&nbsp; / &nbsp;
+                                                        <a href="/terminos-y-condiciones" target='_blank'>Política de Datos y Reglamento</a>
                                                     </div>
                                                 </div>
                                             </label>

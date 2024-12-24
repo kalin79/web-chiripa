@@ -65,7 +65,9 @@ const Listado: React.FC<Props> = ({ dataGanadores }) => {
                             LISTADO DE <span>GANADORES</span>
                         </h1>
                         <p className={Poppins500.className}>
-                            ¡Hey, amig@ De-Chiripa! 🎉 Aquí están tod@s nuestr@s ganadores del mes, ¡y tú podrías estar entre ell@s muy pronto! 💥 No pierdas la oportunidad de probar tu suerte y ser el/la próximo/a en llevarte un premio. 🤑 ¡Anímate, juega, y deja que la suerte te sorprenda con De-Chiripa! 🍀
+                            ¡Hey amig@ DeChiripa 😲 aquí están todos nuestros ganadores del mes, y tú podrías estar aquí entre ellos pronto
+                            ✨ No pierdas la oportunidad de probar tu suerte y ser quien gane el próximo premio  😜
+                            Anímate y deja que las probabilidades jueguen a tu favor.
                         </p>
                     </div>
                 </div>

@@ -1,10 +1,12 @@
 'use client'
 
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect, useRef } from 'react';
 import { signOut, useSession } from "next-auth/react";
 import { useRouter } from 'next/navigation';
 
 import { cartContext } from '@/context/CartContent';
+import gsap from "gsap";
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation';
@@ -33,6 +35,8 @@ const Poppins300 = Poppins({
 
 
 const Header = () => {
+    const layer1Ref = useRef<HTMLDivElement>(null)
+
     const { data: session } = useSession();
     const router = useRouter();
     const [activeUser, setActiveUser] = useState(false)
@@ -40,7 +44,9 @@ const Header = () => {
     const { totalProducts, deleteCartProducts, productActive, decreaseQuantity, increaseQuantity, cartProducts, CloseCartPopup, boolBolsa, totalPriceTicket } = useContext(cartContext);
     const pathname = usePathname();
     const handleClickCart = () => {
+        CloseCartPopup(false)
         router.push('/proceso-de-compra');
+
     }
     const setUpdateUserMenu = () => {
         setActiveUser((prevState) => !prevState)
@@ -49,9 +55,84 @@ const Header = () => {
         console.log(activeMenuMovil)
         setActiveMenuMovil((prevState) => !prevState)
     }
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            gsap.registerPlugin(ScrollTrigger)
+            const mm = gsap.matchMedia()
+
+            // Definir diferentes animaciones para diferentes tamaños de pantalla
+            mm.add("(min-width: 992px)", () => {
+                const tl = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: layer1Ref.current,
+                        start: "bottom+=20% top", // Comienza cuando la parte superior del contenedor entra en la vista
+                        end: "bottom+=20% top",   // Finaliza cuando la parte inferior del contenedor sale de la vista
+                        scrub: true,         // La animación sigue el scroll
+                        markers: false,
+                        // toggleActions: "restart pause reverse pause"
+                    },
+                })
+
+                // Animar el título
+                tl.fromTo(
+                    '.navMainFijo',
+                    { backgroundColor: "transparent", y: "0%", position: "absolute" }, // Estado inicial
+                    {
+                        y: "-100%",
+                        backgroundColor: "#CBDB3A",
+                        duration: .5
+                        // ease: "power2.out"
+                    } // Estado final y duración
+
+                ).to(
+                    ".navMainFijo", // Selector del elemento
+                    {
+                        y: "0",
+                        position: "fixed",
+                        duration: .5,
+                        ease: "power2.out"
+                    }
+                )
+                // stagger: 0.1, // para que avance de manera secuencuial a partir de 0.3 seg.
+            })
+
+            // mm.add("(max-width: 992px)", () => {
+            //     const tl = gsap.timeline({
+            //         scrollTrigger: {
+            //             trigger: layer1Ref.current,
+            //             start: "top+=10% center", // Comienza cuando la parte superior del contenedor entra en la vista
+            //             end: "center-=5% center",   // Finaliza cuando la parte inferior del contenedor sale de la vista
+            //             scrub: true,         // La animación sigue el scroll
+            //             markers: false,
+            //         },
+            //     })
+
+            //     // Animar el título
+            //     tl.fromTo(
+            //         '.titularPremioHome',
+            //         { scale: 0 },
+            //         { scale: 1, y: 0, duration: .5, ease: "power2.inOut" }
+            //     )
+            //         .fromTo(
+            //             '.descripcionPremioHome',
+            //             { opacity: 0, x: -50 },
+            //             { opacity: 1, x: 0, duration: 1 }
+            //         )
+            //         .fromTo(
+            //             '.itemPremioHome',
+            //             { opacity: 0, y: -50 },
+            //             { opacity: 1, y: 0, duration: 1, stagger: 0.2 }
+            //         )
+            //     // stagger: 0.1, // para que avance de manera secuencuial a partir de 0.3 seg.
+            // })
+
+
+
+        }
+    }, [])
     return (
         <div className={styles.containerHeader}>
-            <nav className={`${styles.navContainer} ${styles.active}`}>
+            <nav ref={layer1Ref} className={`${styles.navContainer} navMainFijo`}>
                 <div className={`container gridContainer ${styles.gridContainer} ${Poppins600.className}`}>
                     <div>
                         <Image
@@ -270,11 +351,11 @@ const Header = () => {
                                                 />
                                                 <span>Agregaste</span>
                                             </h3>
-                                            <h2>
+                                            <h2 className={styles.limitedText}>
                                                 {productActive.title}
                                             </h2>
                                             <div>
-                                                <h4>S/ {productActive.price * productActive.quantity}</h4>
+                                                <h4 >S/ {productActive.price * productActive.quantity}</h4>
                                                 <p>
                                                     <Image
                                                         className={styles.ticketBox}

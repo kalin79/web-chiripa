@@ -77,7 +77,7 @@ const ListadoSorteos: React.FC<Props> = ({ dataSorteos }) => {
                                 height={116}
                                 alt="¡Todo puede pasar en De Chiripa!"
                             />
-                            ¡Todo puede pasar en De Chiripa! Aquí, cada sorteo es una chance de llevarte premios que todos quieren.
+                            Donde las probabilidades de ganar juegan a tu favor.
                         </p>
                     </div>
                     <div>

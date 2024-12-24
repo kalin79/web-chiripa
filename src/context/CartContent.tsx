@@ -166,7 +166,8 @@ const CartProvider = ({ children }: Props) => {
             }
         } else {
             if (_body) {
-                _body.style.overflow = 'auto';
+                _body.style.overflowX = 'hidden';
+                _body.style.overflowY = 'auto';
             }
         }
 
