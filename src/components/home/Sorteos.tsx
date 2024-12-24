@@ -164,7 +164,7 @@ const Sorteos: React.FC<Props> = ({ dataContenido }) => {
                                                 </div>
                                                 <div className={styles.cardInfo}>
                                                     <h2 className={Poppins600.className}>{sorteos.name}</h2>
-                                                    <Link href={`/sorteo/`} className='btnCar'>
+                                                    <Link href={`/sorteo/${sorteos.slug}`} className='btnCar'>
                                                         <Image
                                                             className={styles.bgTicket2}
                                                             src="/images/ticket2.svg"
