@@ -134,7 +134,7 @@ const Forgot: React.FC<Props> = ({ tokenId }) => {
                             <div>
                                 <label htmlFor="password">Nueva Contraseña:</label>
                                 <input
-                                    type='text'
+                                    type='password'
                                     placeholder='Nueva Contraseña'
                                     className='form-control'
                                     value={todos.password}
@@ -146,7 +146,7 @@ const Forgot: React.FC<Props> = ({ tokenId }) => {
                             <div>
                                 <label htmlFor="password">Confirmar Contraseña:</label>
                                 <input
-                                    type='text'
+                                    type='password'
                                     placeholder='Confirmar Contraseña'
                                     className='form-control'
                                     value={todos.password_confirmation}
