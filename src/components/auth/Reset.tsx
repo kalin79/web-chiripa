@@ -126,7 +126,7 @@ const Reset = () => {
 
                             <div>
                                 <button type="submit" className='btn btn-primary btnForm' disabled={isLoading}>
-                                    {isLoading ? 'Loading...' : 'Evniar'}
+                                    {isLoading ? 'Loading...' : 'Enviar'}
                                 </button>
                             </div>
 

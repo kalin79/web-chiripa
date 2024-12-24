@@ -157,7 +157,7 @@ const Forgot: React.FC<Props> = ({ tokenId }) => {
 
                             <div>
                                 <button type="submit" className='btn btn-primary btnForm' disabled={isLoading}>
-                                    {isLoading ? 'Loading...' : 'Evniar'}
+                                    {isLoading ? 'Loading...' : 'Actualizar'}
                                 </button>
                             </div>
 
