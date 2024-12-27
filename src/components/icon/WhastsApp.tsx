@@ -9,7 +9,7 @@ const WhastsApp = () => {
                 src="/images/whatsapp.png"
                 width={50}
                 height={50}
-                alt="Iphone 15 Pro Max 256gb"
+                alt="Unete al grupo de WhatsApp Dechiripa"
             />
         </a>
 
