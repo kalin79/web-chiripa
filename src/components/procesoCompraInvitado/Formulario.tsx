@@ -132,7 +132,7 @@ const FormularioCompra: React.FC<Props> = ({ myIP }) => {
 
                 const token = await getNiubizToken();
                 const response = await getResponseBuy(payload, token)
-                // console.log(payload)
+                console.log(payload)
 
                 // Cargamos el formulario
                 if (window.VisanetCheckout) {
@@ -201,7 +201,7 @@ const FormularioCompra: React.FC<Props> = ({ myIP }) => {
                             body: JSON.stringify(authorizationPayload),
                         }
                         const data = await fecthApiNubiz(path, urlParamsObject, options)
-                        // console.log(data)
+                        console.log(data)
 
                         if ((data.dataMap) && (data.dataMap.STATUS === 'Authorized')) {
                             procesarTransaccion(data, purchaseNumber);
