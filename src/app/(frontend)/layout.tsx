@@ -8,7 +8,7 @@ import MainFooter from '@components/template/MainFooter'
 import CartProvider from '@/context/CartContent'
 // import { GoogleTagManager } from '@next/third-parties/google'
 import Script from 'next/script'
-
+import IconWhatsApp from '@/components/icon/WhastsApp'
 import 'bootstrap/dist/css/bootstrap.min.css'; // Importa el CSS de Bootstrap
 
 import '@/styles/sass/global.sass'
@@ -65,6 +65,7 @@ export default function RootLayout({
                 `}
             </Script>
             <body>
+                <IconWhatsApp />
                 <SessionProvider>
                     <CartProvider>
                         <MainHeader />

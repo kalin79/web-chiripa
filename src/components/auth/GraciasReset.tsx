@@ -28,9 +28,9 @@ const GraciasReset = () => {
     return (
         <>
             <div className={styles.boxTitular}>
-                <h1 className={Humane600.className}>Reseto</h1>
+                <h1 className={Humane600.className}>Restablecer</h1>
                 <h2 className={poppins600.className}>
-                    Se envi&oacute; un correo. <br />
+                    Se ha restablecido su contraseña. <br />
                 </h2>
                 <div className={styles.infoGracias}>
                     <p className={poppins500.className}>

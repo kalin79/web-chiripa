@@ -5,7 +5,12 @@ meta {
 }
 
 get {
-  url: sorteo/${slug}
+  url: {{BACKEND_URL}}sorteo/scooter-electrico-ninebot
   body: none
   auth: none
+}
+
+headers {
+  Authorization-secret: TSTCbj7mQO2xEOuwEK08RajQS1OxndfY
+  Content-Type: application/json
 }

@@ -501,7 +501,7 @@ const FormularioCompra: React.FC<Props> = ({ myIP }) => {
                                                 />
                                                 <span className="checkmark"></span>
                                                 Acepto los <a href="/terminos-y-condiciones" target='_blank'>Términos y Condiciones</a> y
-                                                las <a href="/proteccion-de-datos" target='_blank'>Política de Privacidad y Reglamento</a>
+                                                las <a href="/terminos-y-condiciones" target='_blank'>Política de Privacidad y Reglamento</a>
                                             </label>
                                         </div>
                                         <div className={styles.FormDatos}>

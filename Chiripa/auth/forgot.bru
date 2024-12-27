@@ -5,7 +5,18 @@ meta {
 }
 
 post {
-  url: reset-password
-  body: none
+  url: {{BACKEND_URL}}reset-password
+  body: json
   auth: none
+}
+
+headers {
+  Authorization-secret: TSTCbj7mQO2xEOuwEK08RajQS1OxndfY
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "token":"ywCaW5myjrNSlkSz8sHCzdRZYZg2RODhZOvPWvFpipBaCGVHcHsM05q0g73l","password":"Xjnzq6z1@#$","password_confirmation":"Xjnzq6z1@#$","email":"c.augusto.espinoza@gmail.com"
+  }
 }

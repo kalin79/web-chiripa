@@ -28,6 +28,7 @@ export interface SorteosApi {
     price?: string;
     description?: string;
     slug?: string;
+    hora?: string;
     fecha?: string;
     aforo?: number;
     probabilidad_ganar?: string;

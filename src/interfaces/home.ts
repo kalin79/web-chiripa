@@ -35,8 +35,10 @@ interface Sorteo {
     title: string;
     slug: string;
     fecha: null | string;
+    hora: string;
     aforo: number;
     probabilidad_ganar: string;
+    ticket_disponibles: number;
     image: string;
     imagemobile: string;
     link: string;
