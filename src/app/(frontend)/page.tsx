@@ -11,11 +11,11 @@ import RasgadoFullImg from "@/components/fondo/RasgadoFull"
 import { processApi } from '@/actions/form.actions'
 
 export const metadata: Metadata = {
-    title: 'Registro de Usuario - DeChiripa',
-    description: 'Regístrate y obtén tu usuario. Las probabilidades de ganar juegan a tu favor.',
+    title: 'Bienvenido a la pagina :: DeChiripa',
+    description: 'Más oportunidades de ganar: Al vender menos boletos que la competencia, las posibilidades de ganar están más a la mano',
     openGraph: {
-        title: 'Registro de Usuario - DeChiripa',
-        description: 'Regístrate y obtén tu usuario. Las probabilidades de ganar juegan a tu favor.',
+        title: 'Bienvenido a la pagina :: DeChiripa',
+        description: 'Más oportunidades de ganar: Al vender menos boletos que la competencia, las posibilidades de ganar están más a la mano',
         url: 'https://dechiripa.com.pe/',
         siteName: 'DeChiripa',
         images: [
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
                 url: 'https://s3.us-east-1.amazonaws.com/img.dechiripa.com.pe/dechiripa/facebook.png',
                 width: 800,
                 height: 492,
-                alt: 'Regístrate y obtén tu usuario. Las probabilidades de ganar juegan a tu favor.',
+                alt: 'Más oportunidades de ganar: Al vender menos boletos que la competencia, las posibilidades de ganar están más a la mano',
             },
         ],
         locale: 'es_ES',

@@ -55,6 +55,11 @@ const Header = () => {
         console.log(activeMenuMovil)
         setActiveMenuMovil((prevState) => !prevState)
     }
+
+    const handleClickClose = () => {
+        setActiveMenuMovil(false)
+    }
+
     useEffect(() => {
         if (typeof window !== 'undefined') {
             gsap.registerPlugin(ScrollTrigger)
@@ -157,7 +162,7 @@ const Header = () => {
                             <button type="button" onClick={handleClickCloseMenu} className={` ${Poppins600.className}   ${styles.buttonClose}`}>X</button>
                         </div>
                         <div className={`${styles.itemsNav} ${Humane600.className} `}>
-                            <Link href="/" className={`${pathname === '/' ? styles.active : ''}`}>
+                            <Link onClick={handleClickClose} href="/" className={`${pathname === '/' ? styles.active : ''}`}>
                                 Inicio
                                 <Image
                                     className={styles.curvaNav}
@@ -167,7 +172,7 @@ const Header = () => {
                                     height={6}
                                 />
                             </Link>
-                            <Link href="/acerca-de-chiripa" className={`${pathname === '/acerca-de-chiripa' ? styles.active : ''}`}>
+                            <Link onClick={handleClickClose} href="/acerca-de-chiripa" className={`${pathname === '/acerca-de-chiripa' ? styles.active : ''}`}>
                                 Acerca De Chiripa
                                 <Image
                                     className={styles.curvaNav}
@@ -177,7 +182,7 @@ const Header = () => {
                                     height={6}
                                 />
                             </Link>
-                            <Link href="/listado-de-sorteos" className={`${pathname === '/listado-de-sorteos' ? styles.active : ''}`}>
+                            <Link onClick={handleClickClose} href="/listado-de-sorteos" className={`${pathname === '/listado-de-sorteos' ? styles.active : ''}`}>
                                 Listado de Sorteos
                                 <Image
                                     className={styles.curvaNav}
@@ -187,7 +192,7 @@ const Header = () => {
                                     height={6}
                                 />
                             </Link>
-                            <Link href="/ganadores" className={`${pathname === '/ganadores' ? styles.active : ''}`}>
+                            <Link onClick={handleClickClose} href="/ganadores" className={`${pathname === '/ganadores' ? styles.active : ''}`}>
                                 Ganadores
                                 <Image
                                     className={styles.curvaNav}
@@ -202,12 +207,12 @@ const Header = () => {
                             {
                                 (!session) ? (
                                     <>
-                                        <Link href="/auth/login" className='btnMain'>Iniciar Sesión</Link>
-                                        <Link href="/auth/create" className='btnMain'>Quiero Registrarme</Link>
+                                        <Link href="/auth/login" onClick={handleClickClose} className='btnMain'>Iniciar Sesión</Link>
+                                        <Link href="/auth/create" onClick={handleClickClose} className='btnMain'>Quiero Registrarme</Link>
                                     </>
                                 ) : (
                                     <div className={` ${styles.buttonSessionContainer}`}>
-                                        <Link href="/usuario/mi-cuenta">
+                                        <Link onClick={handleClickClose} href="/cliente/perfil">
                                             <Image
                                                 className={styles.iconUser}
                                                 src="/images/userlogin.webp"
@@ -217,7 +222,7 @@ const Header = () => {
                                             />
                                             <p className={Humane600.className}>Mi cuenta</p>
                                         </Link>
-                                        <Link href="/usuario/mi-historial">
+                                        <Link onClick={handleClickClose} href="/cliente/historial-compras">
                                             <Image
                                                 className={styles.iconUser}
                                                 src="/images/historial.webp"

@@ -1,8 +1,28 @@
 import { Suspense } from 'react';
+import { Metadata } from 'next'
 import FormularioSuscripcion from '@/components/suscripcion/formulario';
 import { processApi } from '@/actions/form.actions';
 import ListarSorteos from '@/components/sorteo/listado';
-
+export const metadata: Metadata = {
+    title: 'DeChiripa :: Listado de Sorteos',
+    description: 'DeChiripa :: Listado de Sorteos - Donde las probabilidades de ganar juegan a tu favor',
+    openGraph: {
+        title: 'DeChiripa :: Listado de Sorteos',
+        description: 'DeChiripa :: Listado de Sorteos - Donde las probabilidades de ganar juegan a tu favor',
+        url: 'https://dechiripa.com.pe/',
+        siteName: 'DeChiripa',
+        images: [
+            {
+                url: 'https://s3.us-east-1.amazonaws.com/img.dechiripa.com.pe/dechiripa/facebook.png',
+                width: 800,
+                height: 492,
+                alt: 'Más oportunidades de ganar: Al vender menos boletos que la competencia, las posibilidades de ganar están más a la mano',
+            },
+        ],
+        locale: 'es_ES',
+        type: 'website',
+    }
+}
 const getData = async (token: any) => {
     const formJson = {
         url: 'sorteos/lista',

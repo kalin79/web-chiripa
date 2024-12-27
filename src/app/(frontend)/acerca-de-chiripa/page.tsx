@@ -1,9 +1,32 @@
 import { Suspense, use } from 'react'
+import { Metadata } from 'next'
+
 import { processApi } from '@/actions/form.actions'
 import DetalleSeccion from "@/components/acerca/Detalle"
 import VisionSeccion from "@/components/acerca/Vision"
 // import EquipoSeccion from "@/components/acerca/Equipo"
 import FormularioSuscripcion from "@/components/suscripcion/formulario"
+
+export const metadata: Metadata = {
+    title: 'ACERCA DE CHIRIPA',
+    description: 'En DE CHIRIPA somos la plataforma que le pone sazón y emoción a la suerte.',
+    openGraph: {
+        title: 'ACERCA DE CHIRIPA',
+        description: 'En DE CHIRIPA somos la plataforma que le pone sazón y emoción a la suerte.',
+        url: 'https://dechiripa.com.pe/',
+        siteName: 'DeChiripa',
+        images: [
+            {
+                url: 'https://s3.us-east-1.amazonaws.com/img.dechiripa.com.pe/dechiripa/facebook.png',
+                width: 800,
+                height: 492,
+                alt: 'Más oportunidades de ganar: Al vender menos boletos que la competencia, las posibilidades de ganar están más a la mano',
+            },
+        ],
+        locale: 'es_ES',
+        type: 'website',
+    }
+}
 
 const getData = async (token: any, apiURL: string) => {
 
