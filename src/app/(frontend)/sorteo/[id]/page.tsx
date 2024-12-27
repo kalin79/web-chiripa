@@ -1,5 +1,6 @@
 
 // import { Suspense } from 'react'
+import { Metadata } from 'next';
 import { processApi } from '@/actions/form.actions'
 import DetalleSorteo from "@/components/sorteo/detalle"
 
@@ -16,6 +17,37 @@ const getData = async (token: any, slug: string) => {
 
     return data;
 }
+
+// Función para generar metadatos dinámicos
+export async function generateMetadata({
+    params,
+}: {
+    params: Promise<{ id: string }>
+}): Promise<Metadata> {
+    const { id } = await params
+
+    // Llamada a la API para obtener datos
+    const responde = await getData(process.env.NEXT_PUBLIC_AUTHORIZATION_FORM, id.split('--')[0]);
+    const post = responde.data.product
+    // Retornar los metadatos dinámicos
+    return {
+        title: post.title_large,
+        description: post.description,
+        openGraph: {
+            title: post.title_large,
+            description: post.description,
+            url: `https://dechiripa.com.pe/sorteo/${id}`,
+            images: post.image,
+        },
+        twitter: {
+            card: 'summary_large_image',
+            title: post.title_large,
+            description: post.description,
+            images: post.image,
+        },
+    };
+}
+
 
 const DetallePremio = async ({
     params,

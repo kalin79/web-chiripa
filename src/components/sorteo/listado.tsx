@@ -134,7 +134,7 @@ const ListadoSorteos: React.FC<Props> = ({ dataSorteos }) => {
                                                 <div className={styles.cardInfo}>
                                                     <h2 className={Poppins600.className}>{item.name}</h2>
                                                     {
-                                                        (parseInt(item?.ticket_disponibles || "0") === 2799) ? (
+                                                        (parseInt(item?.ticket_disponibles || "0") === 0) ? (
                                                             <button className='btnMain disabledBtn' disabled>Agotado</button>
                                                         ) : (
                                                             <Link href={`/sorteo/${item.slug}--${item.id}`} className='btnCar'>

@@ -1,10 +1,14 @@
 @use 'vars/colors' as *
 @use 'vars/fonts' as *
-
+.cardSorteoMain
+    padding: .5rem
 .botonBannerHeader
-    bottom: 0.25rem
+    bottom: -1.25rem
     top: auto
     z-index: 10
+    @media screen and (min-width: 992px)
+        bottom: 0.25rem
+
     &::before
         content: ''
         background: url('/images/arrowPremios.svg') no-repeat
