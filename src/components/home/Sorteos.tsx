@@ -202,24 +202,38 @@ const Sorteos: React.FC<Props> = ({ dataContenido }) => {
 
                                                             </div>
                                                             <div className={styles.cardFooter}>
-                                                                <div>
-                                                                    <h2>
-                                                                        Probabilidad <br />
-                                                                        de Ganar:
-                                                                    </h2>
-                                                                    <h3>
-                                                                        {sorteos.probabilidad_ganar}
-                                                                    </h3>
-                                                                </div>
-                                                                <div>
-                                                                    <h2>
-                                                                        Tickets <br />
-                                                                        disponibles:
-                                                                    </h2>
-                                                                    <h3>
-                                                                        {sorteos.ticket_disponibles}
-                                                                    </h3>
-                                                                </div>
+
+                                                                {
+                                                                    (sorteos?.probabilidad_ganar?.length > 0) && (
+                                                                        <div>
+                                                                            <h2>
+                                                                                Probabilidad <br />
+                                                                                de Ganar:
+                                                                            </h2>
+                                                                            <h3>
+                                                                                {sorteos.probabilidad_ganar}
+                                                                            </h3>
+                                                                        </div>
+                                                                    )
+                                                                }
+
+
+
+                                                                {
+                                                                    (parseInt(String(sorteos?.ticket_disponibles || "0"), 10) <= 200) && (
+                                                                        <div>
+                                                                            <h2>
+                                                                                Tickets <br />
+                                                                                disponibles:
+                                                                            </h2>
+                                                                            <h3>
+                                                                                {sorteos.ticket_disponibles}
+                                                                            </h3>
+                                                                        </div>
+                                                                    )
+                                                                }
+
+
                                                             </div>
                                                         </div>
                                                     </div>

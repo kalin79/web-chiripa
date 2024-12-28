@@ -31,18 +31,18 @@ export async function generateMetadata({
     const post = responde.data.product
     // Retornar los metadatos dinámicos
     return {
-        title: post.title_large,
-        description: post.description,
+        title: post.meta_title,
+        description: post.meta_descripcion,
         openGraph: {
-            title: post.title_large,
-            description: post.description,
+            title: post.meta_title,
+            description: post.meta_descripcion,
             url: `https://dechiripa.com.pe/sorteo/${id}`,
-            images: post.image,
+            images: post.meta_image,
         },
         twitter: {
             card: 'summary_large_image',
-            title: post.title_large,
-            description: post.description,
+            title: post.meta_title,
+            description: post.meta_descripcion,
             images: post.image,
         },
     };

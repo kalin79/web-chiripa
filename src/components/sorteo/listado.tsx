@@ -134,7 +134,7 @@ const ListadoSorteos: React.FC<Props> = ({ dataSorteos }) => {
                                                 <div className={styles.cardInfo}>
                                                     <h2 className={Poppins600.className}>{item.name}</h2>
                                                     {
-                                                        (parseInt(item?.ticket_disponibles || "0") === 0) ? (
+                                                        (parseInt(item?.ticket_disponibles || "0") <= 0) ? (
                                                             <button className='btnMain disabledBtn' disabled>Agotado</button>
                                                         ) : (
                                                             <Link href={`/sorteo/${item.slug}--${item.id}`} className='btnCar'>
@@ -153,24 +153,37 @@ const ListadoSorteos: React.FC<Props> = ({ dataSorteos }) => {
 
                                                 </div>
                                                 <div className={styles.cardFooter}>
-                                                    <div>
-                                                        <h2>
-                                                            Probabilidad <br />
-                                                            de Ganar:
-                                                        </h2>
-                                                        <h3>
-                                                            {item.probabilidad_ganar}
-                                                        </h3>
-                                                    </div>
-                                                    <div>
-                                                        <h2>
-                                                            Tickets <br />
-                                                            disponibles:
-                                                        </h2>
-                                                        <h3>
-                                                            {item.ticket_disponibles}
-                                                        </h3>
-                                                    </div>
+                                                    {
+
+                                                        (item?.probabilidad_ganar && item?.probabilidad_ganar?.length > 0) && (
+                                                            <div>
+                                                                <h2>
+                                                                    Probabilidad <br />
+                                                                    de Ganar:
+                                                                </h2>
+                                                                <h3>
+                                                                    {item.probabilidad_ganar}
+                                                                </h3>
+                                                            </div>
+                                                        )
+                                                    }
+
+
+                                                    {
+                                                        (parseInt(item?.ticket_disponibles || "0") <= 200) && (
+                                                            <div>
+                                                                <h2>
+                                                                    Tickets <br />
+                                                                    disponibles:
+                                                                </h2>
+                                                                <h3>
+                                                                    {item.ticket_disponibles}
+                                                                </h3>
+                                                            </div>
+                                                        )
+                                                    }
+
+
                                                 </div>
                                             </div>
                                         )
@@ -218,24 +231,37 @@ const ListadoSorteos: React.FC<Props> = ({ dataSorteos }) => {
                                                         <button className='btnMain disabledBtn' disabled>Cerrado</button>
                                                     </div>
                                                     <div className={styles.cardFooter}>
-                                                        <div>
-                                                            <h2>
-                                                                Probabilidad <br />
-                                                                de Ganar:
-                                                            </h2>
-                                                            <h3>
-                                                                {item.probabilidad_ganar}
-                                                            </h3>
-                                                        </div>
-                                                        <div>
-                                                            <h2>
-                                                                Tickets <br />
-                                                                disponibles:
-                                                            </h2>
-                                                            <h3>
-                                                                {item.ticket_disponibles}
-                                                            </h3>
-                                                        </div>
+
+                                                        {
+                                                            (item?.probabilidad_ganar && item?.probabilidad_ganar?.length > 0) && (
+                                                                <div>
+                                                                    <h2>
+                                                                        Probabilidad <br />
+                                                                        de Ganar:
+                                                                    </h2>
+                                                                    <h3>
+                                                                        {item.probabilidad_ganar}
+                                                                    </h3>
+                                                                </div>
+                                                            )
+                                                        }
+
+
+                                                        {
+                                                            (parseInt(item?.ticket_disponibles || "0") <= 200) && (
+                                                                <div>
+                                                                    <h2>
+                                                                        Tickets <br />
+                                                                        disponibles:
+                                                                    </h2>
+                                                                    <h3>
+                                                                        {item.ticket_disponibles}
+                                                                    </h3>
+                                                                </div>
+                                                            )
+                                                        }
+
+
                                                     </div>
                                                 </div>
                                             )
@@ -290,24 +316,38 @@ const ListadoSorteos: React.FC<Props> = ({ dataSorteos }) => {
                                                 </Link>
                                             </div>
                                             <div className={styles.cardFooter}>
-                                                <div>
-                                                    <h2>
-                                                        Probabilidad <br />
-                                                        de Ganar:
-                                                    </h2>
-                                                    <h3>
-                                                        {item.probabilidad_ganar}
-                                                    </h3>
-                                                </div>
-                                                <div>
-                                                    <h2>
-                                                        Tickets <br />
-                                                        disponibles:
-                                                    </h2>
-                                                    <h3>
-                                                        {item.ticket_disponibles}
-                                                    </h3>
-                                                </div>
+
+                                                {
+                                                    (item?.probabilidad_ganar && item?.probabilidad_ganar?.length > 0) && (
+                                                        <div>
+                                                            <h2>
+                                                                Probabilidad <br />
+                                                                de Ganar:
+                                                            </h2>
+                                                            <h3>
+                                                                {item.probabilidad_ganar}
+                                                            </h3>
+                                                        </div>
+                                                    )
+                                                }
+
+
+
+                                                {
+                                                    (parseInt(item?.ticket_disponibles || "0") <= 200) && (
+                                                        <div>
+                                                            <h2>
+                                                                Tickets <br />
+                                                                disponibles:
+                                                            </h2>
+                                                            <h3>
+                                                                {item.ticket_disponibles}
+                                                            </h3>
+                                                        </div>
+                                                    )
+                                                }
+
+
                                             </div>
                                         </div>
                                     )
