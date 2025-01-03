@@ -260,24 +260,31 @@ const DetalleSorteo: React.FC<Props> = ({ dataObject, idSorteo }) => {
                                     S/{detalleSorteo.price}
                                 </h3>
                             </div>
-                            <div>
-                                <Image
-                                    className={styles.bgTicket}
-                                    src="/images/bgticket.svg"
-                                    width={364}
-                                    height={144}
-                                    alt="De Chiripa :: Preparate para lo que viene"
-                                />
-                                <div className={styles.infoBox}>
-                                    <h4 className={Humane600.className}>
-                                        {detalleSorteo.ticket_disponibles || detalleSorteo.aforo}
-                                    </h4>
-                                    <p className={Poppins600.className}>
-                                        Ticteks
-                                        Disponibles
-                                    </p>
-                                </div>
-                            </div>
+                            {
+                                (parseInt(detalleSorteo?.ticket_disponibles || "0") <= 200) && (
+                                    <div>
+                                        <Image
+                                            className={styles.bgTicket}
+                                            src="/images/bgticket.svg"
+                                            width={364}
+                                            height={144}
+                                            alt="De Chiripa :: Preparate para lo que viene"
+                                        />
+
+                                        <div className={styles.infoBox}>
+                                            <h4 className={Humane600.className}>
+                                                {detalleSorteo.ticket_disponibles || detalleSorteo.aforo}
+                                            </h4>
+                                            <p className={Poppins600.className}>
+                                                Ticteks
+                                                Disponibles
+                                            </p>
+                                        </div>
+
+
+                                    </div>
+                                )
+                            }
                         </div>
                         <div className={`${styles.descripcionBox} estilosCMS`}>
                             <div
