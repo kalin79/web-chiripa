@@ -26,14 +26,6 @@ const Vivo: React.FC<Props> = ({ dataContenido }) => {
     return (
         <div className={styles.pageVivo}>
             {/* {JSON.stringify(boolVivo)} SSS */}
-            <Image
-                className={`imageBackGroundContainer`}
-                src="/images/topBg.png"
-                width={3456}
-                height={357}
-                alt="De Chiripa :: Preparate para lo que viene"
-
-            />
             {
                 (boolVivo) && (
                     <div className={`container`}>

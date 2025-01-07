@@ -58,6 +58,11 @@
     z-index: 10
     padding: 0 0 10rem 0
     border: 0px solid red
+
+    @media screen and (min-width: 768px)
+        margin-top: -3rem
+    @media screen and (min-width: 1200px)
+        padding: 0 0 5rem 0
     .gridContainer
         // padding-top: 20rem
         position: relative
@@ -71,6 +76,8 @@
             &:nth-of-type(1)
                 grid-column: 1 / -1
                 order: 2
+                margin: auto
+                text-align: center
                 @media screen and (min-width: 992px)
                     grid-column: 1 /span 6
                     order: 1
@@ -79,11 +86,11 @@
                     height: 100%
                     object-fit: contain
                     position: relative
-                    left: -2rem
+                    left: 0rem
                     top: 0rem
                     @media screen and (min-width: 800px)
-                        width: 120%
-                        left: -4.5rem
+                        width: 70%
+                        left: 0rem
                     @media screen and (min-width: 992px)
                         left: -9.5rem
                         width: 135%

@@ -5,8 +5,9 @@
     padding-top: 6rem
     padding-bottom: 28rem
     position: relative
+    // z-index: 200
     @media screen and (min-width: 992px)
-        padding-top: 10rem
+        padding-top: 4rem
     .formContainer
         margin-top: 2rem
         @media screen and (min-width: 992px)
@@ -69,11 +70,14 @@
             &::placeholder
                 color: $plomo
     .gridContainer
+        position: relative
         > div
             &:nth-child(1)
                 grid-column: 1 / span 6
             &:nth-child(2)
-                grid-column: 7 / -1
+                grid-column: 1 / -1
+                @media screen and (min-width: 992px)
+                    grid-column: 7 / -1
 
     h1
         @extend %titulares

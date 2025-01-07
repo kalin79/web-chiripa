@@ -8,6 +8,8 @@ import Suscribete from "@components/suscripcion/formulario"
 import GanadoresSeccion from "@/components/home/Ganadores"
 import AcercaSeccion from "@/components/home/Acerca"
 import RasgadoFullImg from "@/components/fondo/RasgadoFull"
+import RasgadoTop from "@/components/fondo/RasgadoTop"
+
 import { processApi } from '@/actions/form.actions'
 
 export const metadata: Metadata = {
@@ -54,6 +56,7 @@ const Home = () => {
                 <BannerMain dataContenido={data} />
             </Suspense>
             <div className={`backgroundContainer sinPadd`}>
+                <RasgadoTop />
                 <Suspense fallback={<div>Loading...</div>}>
                     {
                         data?.data?.link_transmision?.descripcion_corta?.length > 0 && (
