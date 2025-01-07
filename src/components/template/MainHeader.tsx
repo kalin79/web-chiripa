@@ -182,7 +182,7 @@ const Header = () => {
                                     height={6}
                                 />
                             </Link>
-                            <Link onClick={handleClickClose} href="/listado-de-sorteos" className={`${pathname === '/listado-de-sorteos' ? styles.active : ''}`}>
+                            <Link onClick={handleClickClose} href="/sorteos" className={`${pathname === '/listado-de-sorteos' ? styles.active : ''}`}>
                                 Sorteos
                                 <Image
                                     className={styles.curvaNav}
