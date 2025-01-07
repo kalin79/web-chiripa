@@ -64,9 +64,9 @@ const ListadoSorteos: React.FC<Props> = ({ dataSorteos }) => {
                                 src="/images/sticker1.svg"
                                 width={54}
                                 height={73}
-                                alt="LISTADO DE Sorteos"
+                                alt="Sorteos"
                             />
-                            LISTADO DE <span>SORTEOS</span>
+                            <span>SORTEOS</span>
                         </h1>
                         {/* {JSON.stringify(dataSorteos.data.sorteos, null,)} */}
                         <p className={Poppins600.className}>
